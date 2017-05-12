@@ -1,0 +1,44 @@
+{
+  "name": "dts-jest",
+  "version": "0.0.0-dev",
+  "description": "A preprocessor for jest to test TypeScript declaration (.d.ts) files",
+  "keywords": [
+    "preprocessor",
+    "jest",
+    "typescript",
+    "declaration",
+    "dts",
+    "type",
+    "checker",
+    "test"
+  ],
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "repository": "https://github.com/ikatyang/dts-jest",
+  "homepage": "https://github.com/ikatyang/dts-jest#readme",
+  "author": "ikatyang",
+  "license": "MIT",
+  "scripts": {
+    "prepublish": "yarn run link && yarn run lint && yarn run build-release && yarn run test",
+    "lint": "tslint --type-check --project ./tsconfig.json",
+    "test": "jest --config ./jest.json",
+    "pretest-coverage": "rm -rf ./coverage",
+    "test-coverage": "yarn run test -- --coverage",
+    "coverage": "codecov",
+    "prebuild": "rm -rf ./lib",
+    "build": "tsc -p ./tsconfig.build.json",
+    "build-release": "yarn run build -- --sourceMap false",
+    "link": "ln -sf $PWD $PWD/node_modules/"
+  },
+  "devDependencies": {
+    "@types/jest": "19.2.3",
+    "@types/node": "7.0.18",
+    "codecov": "2.2.0",
+    "jest": "20.0.1",
+    "ts-jest": "20.0.3",
+    "tslint": "5.2.0",
+    "tslint-config-ikatyang": "0.4.0",
+    "typescript": "2.3.2"
+  },
+  "files": ["lib"]
+}

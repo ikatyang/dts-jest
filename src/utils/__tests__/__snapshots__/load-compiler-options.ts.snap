@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should return extended "compilerOptions" while there is key "extends" in tsconfig (different-folder) 1`] = `
+Object {
+  "tsconfig": "0",
+  "tsconfig-0": "0",
+  "tsconfig-1": "1",
+  "tsconfig-2": "2",
+}
+`;
+
+exports[`should return extended "compilerOptions" while there is key "extends" in tsconfig (empty-object) 1`] = `
+Object {
+  "tsconfig": "0",
+}
+`;
+
+exports[`should return extended "compilerOptions" while there is key "extends" in tsconfig (same-folder) 1`] = `
+Object {
+  "tsconfig": "0",
+  "tsconfig-0": "0",
+  "tsconfig-1": "1",
+  "tsconfig-2": "2",
+}
+`;

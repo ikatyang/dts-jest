@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should setup correctly 1`] = `
+"trigger(line:16) -> number[]
+trigger(line:17) -> <T>(a: T) => I<T>
+trigger(line:18) -> <T>(a: T) => X<T>
+trigger(line:19) -> <T>(a: T) => { x: T; }
+trigger(line:20) -> <T, U>(a: T, b: U) => T | U
+trigger(line:21) -> { (): void; (): string; }
+trigger(line:22) -> number
+trigger(line:23) -> I<number[]>
+trigger(line:24) -> X<number[]>
+trigger(line:25) -> { x: number[]; }
+trigger(line:26) -> 1 | \\"\\"
+trigger(line:27) -> (<T>(a: T) => { x: T; }) | 1
+trigger(line:28) -> void"
+`;

@@ -1,0 +1,7 @@
+{
+  "extends": "../folder-2/tsconfig.json",
+  "compilerOptions": {
+    "tsconfig": "1",
+    "tsconfig-1": "1"
+  }
+}

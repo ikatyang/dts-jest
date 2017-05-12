@@ -1,0 +1,27 @@
+{
+  "automock": true,
+  "unmockedModulePathPatterns": [
+    "<rootDir>/node_modules/",
+    "<rootDir>/src/definitions\\.ts"
+  ],
+  "clearMocks": true,
+  "testEnvironment": "node",
+  "moduleFileExtensions": ["ts", "js", "json"],
+  "testMatch": ["<rootDir>/src/**/__tests__/**/*.ts", "<rootDir>/tests/**/*.ts"],
+  "transform": {
+    "/src/.+\\.ts$": "<rootDir>/node_modules/ts-jest/preprocessor.js",
+    "/tests/.+\\.ts$": "<rootDir>/node_modules/dts-jest/lib/index.js"
+  },
+  "mapCoverage": true,
+  "coverageReporters": ["lcov", "text-summary"],
+  "collectCoverageFrom": ["src/**/*.ts"],
+  "coveragePathIgnorePatterns": ["index.ts"],
+  "coverageThreshold": {
+    "global": {
+      "branches": 100,
+      "functions": 100,
+      "lines": 100,
+      "statements": 100
+    }
+  }
+}

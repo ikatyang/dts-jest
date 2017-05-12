@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should transform correctly 1`] = `
+"var _dts_jest_ = require(\\"dts-jest\\").setup({
+  \\"tsconfig\\": {
+    \\"some_option\\": \\"some_value\\"
+  },
+  \\"triggers\\": [
+    {
+      \\"line\\": 2,
+      \\"kind\\": 0,
+      \\"description\\": \\"_('expect', 'no-description')\\"
+    },
+    {
+      \\"line\\": 5,
+      \\"kind\\": 1,
+      \\"description\\": \\"_('expect-skip', 'no-description')\\"
+    },
+    {
+      \\"line\\": 8,
+      \\"kind\\": 2,
+      \\"description\\": \\"_('expect-only', 'no-description')\\"
+    },
+    {
+      \\"line\\": 11,
+      \\"kind\\": 0,
+      \\"description\\": \\"[expect, description]\\"
+    },
+    {
+      \\"line\\": 14,
+      \\"kind\\": 1,
+      \\"description\\": \\"[expect-skip, description]\\"
+    },
+    {
+      \\"line\\": 17,
+      \\"kind\\": 2,
+      \\"description\\": \\"[expect-only, description]\\"
+    },
+    {
+      \\"line\\": 20,
+      \\"kind\\": 0,
+      \\"description\\": \\"_('invalid')\\"
+    }
+  ],
+  \\"source_filename\\": \\"/Users/ikatyang/Documents/GitHub/dts-jest/fixtures/transform/declaration.test.ts\\"
+});
+test(\\"_('expect', 'no-description')\\", function () {
+  expect(_dts_jest_(2)).toMatchSnapshot();
+});
+test.skip(\\"_('expect-skip', 'no-description')\\", function () {
+  expect(_dts_jest_(5)).toMatchSnapshot();
+});
+test.only(\\"_('expect-only', 'no-description')\\", function () {
+  expect(_dts_jest_(8)).toMatchSnapshot();
+});
+test(\\"[expect, description]\\", function () {
+  expect(_dts_jest_(11)).toMatchSnapshot();
+});
+test.skip(\\"[expect-skip, description]\\", function () {
+  expect(_dts_jest_(14)).toMatchSnapshot();
+});
+test.only(\\"[expect-only, description]\\", function () {
+  expect(_dts_jest_(17)).toMatchSnapshot();
+});
+test(\\"_('invalid')\\", function () {
+  expect(_dts_jest_(20)).toMatchSnapshot();
+});"
+`;
