@@ -42,7 +42,7 @@ exports[`should transform correctly 1`] = `
       \\"description\\": \\"_('invalid')\\"
     }
   ],
-  \\"source_filename\\": \\"/Users/ikatyang/Documents/GitHub/dts-jest/fixtures/transform/declaration.test.ts\\"
+  \\"source_filename\\": \\"../../fixtures/transform/declaration.test.ts\\"
 });
 test(\\"_('expect', 'no-description')\\", function () {
   expect(_dts_jest_(2)).toMatchSnapshot();
