@@ -40,6 +40,16 @@ exports[`should transform correctly 1`] = `
       \\"line\\": 20,
       \\"kind\\": 0,
       \\"description\\": \\"_('invalid')\\"
+    },
+    {
+      \\"line\\": 24,
+      \\"kind\\": 3,
+      \\"description\\": \\"_('expect-show', 'no-description')\\"
+    },
+    {
+      \\"line\\": 27,
+      \\"kind\\": 3,
+      \\"description\\": \\"[expect-show, description]\\"
     }
   ],
   \\"source_filename\\": \\"../../fixtures/transform/declaration.test.ts\\"
@@ -64,5 +74,11 @@ test.only(\\"[expect-only, description]\\", function () {
 });
 test(\\"_('invalid')\\", function () {
   expect(_dts_jest_(20)).toMatchSnapshot();
+});
+test(\\"_('expect-show', 'no-description')\\", function () {
+  console.log(_dts_jest_(24));
+});
+test(\\"[expect-show, description]\\", function () {
+  console.log(_dts_jest_(27));
 });"
 `;

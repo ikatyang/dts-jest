@@ -21,3 +21,9 @@ _('expect-only', 'description');
 // @dts-jest
 
 _('invalid');
+
+// @dts-jest:show
+_('expect-show', 'no-description');
+
+// @dts-jest:show [expect-show, description]
+_('expect-show', 'description');

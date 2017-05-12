@@ -35,7 +35,7 @@ export const transform = (options: ITransformOptions) => {
 
   const triggers: ITrigger[] = [];
   {
-    const regex = /\/\/ @dts-jest(?::(skip|only))?[ \t]*([^\n]*)?\s*\n[ \t]*([^;]+);/g;
+    const regex = /\/\/ @dts-jest(?::(skip|only|show))?[ \t]*([^\n]*)?\s*\n[ \t]*([^;]+);/g;
     for (let results = regex.exec(source_text); results !== null; results = regex.exec(source_text)) {
       const [, raw_kind, description, test_code] = results;
       const {index} = results;
@@ -51,7 +51,9 @@ export const transform = (options: ITransformOptions) => {
           ? TriggerKind.Skip
           : (raw_kind === 'only')
             ? TriggerKind.Only
-            : TriggerKind.None,
+            : (raw_kind === 'show')
+              ? TriggerKind.Show
+              : TriggerKind.None,
         description: (
           ((description as string | undefined) !== undefined)
             ? description.trim()
@@ -81,7 +83,11 @@ export const transform = (options: ITransformOptions) => {
         : 'test';
     return dedent(`
       ${test}(${JSON.stringify(description)}, function () {
-        expect(${namespace}(${JSON.stringify(line)})).toMatchSnapshot();
+        ${
+          (kind === TriggerKind.Show)
+            ? `console.log(${namespace}(${JSON.stringify(line)}));`
+            : `expect(${namespace}(${JSON.stringify(line)})).toMatchSnapshot();`
+        }
       });
     `);
   });

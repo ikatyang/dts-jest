@@ -10,6 +10,7 @@ export enum TriggerKind {
   None,
   Skip,
   Only,
+  Show,
 }
 
 export interface ITSConfig {
