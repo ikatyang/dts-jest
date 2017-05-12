@@ -13,5 +13,9 @@ trigger(line:24) -> X<number[]>
 trigger(line:25) -> { x: number[]; }
 trigger(line:26) -> 1 | \\"\\"
 trigger(line:27) -> (<T>(a: T) => { x: T; }) | 1
-trigger(line:28) -> void"
+trigger(line:28) -> void
+trigger(line:29) -> Supplied parameters do not match any signature of call target.
+trigger(line:30) -> Argument of type '{}' is not assignable to parameter of type 'I<I<I<string>>>'.
+  Property 'x' is missing in type '{}'.
+"
 `;

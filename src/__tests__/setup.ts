@@ -19,9 +19,9 @@ it('should setup correctly', () => {
     triggers,
     source_filename,
   });
-  expect(
+  expect(`${
     triggers
       .map(({line}) => `trigger(line:${line}) -> ${get_type(line)}`)
-      .join('\n'),
-  ).toMatchSnapshot();
+      .join('\n')
+  }\n`).toMatchSnapshot();
 });
