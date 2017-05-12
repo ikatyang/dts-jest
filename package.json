@@ -19,16 +19,19 @@
   "author": "ikatyang",
   "license": "MIT",
   "scripts": {
-    "prepublish": "yarn run link && yarn run lint && yarn run build-release && yarn run test",
+    "prepublish": "yarn run link && yarn run build-release",
     "lint": "tslint --type-check --project ./tsconfig.json",
     "test": "jest --config ./jest.json",
+    "test-ci": "yarn run test -- --verbose",
     "pretest-coverage": "rm -rf ./coverage",
     "test-coverage": "yarn run test -- --coverage",
-    "coverage": "codecov",
+    "test-coverage-ci": "yarn run test-coverage -- --verbose && codecov",
     "prebuild": "rm -rf ./lib",
     "build": "tsc -p ./tsconfig.build.json",
     "build-release": "yarn run build -- --sourceMap false",
-    "link": "ln -sf $PWD $PWD/node_modules/"
+    "link": "ln -sf $PWD $PWD/node_modules/",
+    "prerelease": "yarn run lint && yarn run test",
+    "release": "yarn publish"
   },
   "devDependencies": {
     "@types/jest": "19.2.3",
