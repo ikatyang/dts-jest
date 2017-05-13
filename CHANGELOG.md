@@ -10,7 +10,7 @@ All changes to this project will be documented in this file.
 > - 🏠 [Internal]
 > - 💅 [Polish]
 
-## Unreleased
+## v1.0.5 (2017-05-13)
 
 #### 🐛 Bug Fix
 - Fix dependency
