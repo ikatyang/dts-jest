@@ -18,7 +18,7 @@
   "scripts": {
     "prepublish": "yarn run link && yarn run build-release",
     "lint": "tslint --type-check --project ./tsconfig.json",
-    "test": "jest --config ./jest.json",
+    "test": "jest --config ./jest.json --no-cache",
     "test-ci": "yarn run test -- --verbose",
     "pretest-coverage": "rm -rf ./coverage",
     "test-coverage": "yarn run test -- --coverage",
