@@ -30,6 +30,9 @@
     "prerelease": "yarn run lint && yarn run test",
     "release": "yarn publish"
   },
+  "dependencies": {
+    "typescript": "^2.3.2"
+  },
   "devDependencies": {
     "@types/jest": "19.2.3",
     "@types/node": "7.0.18",
@@ -37,8 +40,7 @@
     "jest": "20.0.1",
     "ts-jest": "20.0.3",
     "tslint": "5.2.0",
-    "tslint-config-ikatyang": "0.4.0",
-    "typescript": "2.3.2"
+    "tslint-config-ikatyang": "0.4.0"
   },
   "peerDependencies": {
     "jest": "^20.0.1"
