@@ -1,5 +1,6 @@
 import * as ts from 'typescript';
 import {ITrigger, ITSConfig} from './definitions';
+import {indent} from './utils/indent';
 import {load_compiler_options} from './utils/load-compiler-options';
 
 export interface ISetupOptions {
@@ -58,5 +59,8 @@ export const setup = (options: ISetupOptions) => {
     }
   }
 
-  return (line: number) => snapshots[line];
+  return {
+    indent,
+    snapshot: (line: number) => snapshots[line],
+  };
 };

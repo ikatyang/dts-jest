@@ -14,14 +14,14 @@ it('should setup correctly', () => {
       'utf8',
     ),
   );
-  const get_type = setup({
+  const get_snapshot = setup({
     tsconfig,
     triggers,
     source_filename,
-  });
+  }).snapshot;
   expect(`${
     triggers
-      .map(({line}) => `trigger(line:${line}) -> ${get_type(line)}`)
+      .map(({line}) => `trigger(line:${line}) -> ${get_snapshot(line)}`)
       .join('\n')
   }\n`).toMatchSnapshot();
 });

@@ -3,7 +3,8 @@ import * as ts from 'typescript';
 export interface ITrigger {
   line: number;
   kind: TriggerKind;
-  description: string;
+  expression: string;
+  description?: string;
 }
 
 export enum TriggerKind {
