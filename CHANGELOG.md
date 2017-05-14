@@ -10,7 +10,7 @@ All changes to this project will be documented in this file.
 > - 🏠 [Internal]
 > - 💅 [Polish]
 
-## Unreleased
+## v20.0.0 (2017-05-14)
 
 #### 🚀 New Feature
 - Use same MAJOR.MINOR version as Jest
