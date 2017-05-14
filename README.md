@@ -43,6 +43,24 @@ Modify your [jest config](https://facebook.github.io/jest/docs/en/configuration.
 
 This setup allow you to test files `**/dts-jest/**/*.ts` via dts-jest.
 
+#### tsconfig
+
+You can specify which `tsconfig.json` (string) or compilerOptions (object) to use ( default: `{}` )
+
+(./package.json)
+
+```json
+{
+  "jest": {
+    "globals": {
+      "_dts_jest_": {
+        "tsconfig": "path/to/tsconfig.json"
+      }
+    }
+  }
+}
+```
+
 ## Writing Tests
 
 The test cases must start with `// @dts-jest`, and the second line should be an expression that you want to test its type.
