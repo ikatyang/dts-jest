@@ -1,21 +1,23 @@
-import {ITrigger, ITSConfig, TriggerKind} from './definitions';
+import {ISelfConfig, ITrigger, TriggerKind} from './definitions';
 import {ISetupOptions} from './setup';
 
 // tslint:disable-next-line:no-require-imports no-var-requires
 const package_json = require('../package.json');
 
 export interface ITransformOptions {
-  tsconfig: ITSConfig;
+  self_config: ISelfConfig;
   source_text: string;
   source_filename: string;
 }
 
 export const transform = (options: ITransformOptions) => {
   const {
-    tsconfig,
+    self_config,
     source_text,
     source_filename,
   } = options;
+
+  const {tsconfig} = self_config;
 
   const breaklines: number[] = [];
   {

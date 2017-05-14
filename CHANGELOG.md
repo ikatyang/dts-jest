@@ -10,6 +10,11 @@ All changes to this project will be documented in this file.
 > - 🏠 [Internal]
 > - 💅 [Polish]
 
+## Unreleased
+
+#### 🏠 Internal
+- refactor to have more options available easily
+
 ## v20.0.0 (2017-05-14)
 
 #### 🚀 New Feature

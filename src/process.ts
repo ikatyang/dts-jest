@@ -1,14 +1,19 @@
-import {ITSConfig} from './definitions';
+import {IJestConfig, ISelfConfig, ITSConfig} from './definitions';
 import {transform} from './transform';
 
-export const process = (source_text: string, source_filename: string, configs: {[key: string]: any}) => {
-  // tslint:disable-next-line:strict-boolean-expressions
-  const self_configs = configs.globals._dts_jest_ || {};
-  const raw_tsconfig = self_configs.tsconfig;
-  const tsconfig: ITSConfig = (typeof raw_tsconfig === 'string')
-    ? {extends: raw_tsconfig.replace('<rootDir>', configs.rootDir)}
-    : (typeof raw_tsconfig === 'object')
-      ? {compilerOptions: raw_tsconfig}
+export const process = (source_text: string, source_filename: string, jest_config: IJestConfig) => {
+  const {
+    _dts_jest_: raw_self_config = {},
+  } = jest_config.globals;
+
+  const tsconfig: ITSConfig = (typeof raw_self_config.tsconfig === 'string')
+    ? {extends: raw_self_config.tsconfig.replace('<rootDir>', jest_config.rootDir)}
+    : (typeof raw_self_config.tsconfig === 'object')
+      ? {compilerOptions: raw_self_config.tsconfig}
       : {compilerOptions: {}};
-  return transform({source_text, source_filename, tsconfig});
+
+  const self_config: ISelfConfig = {
+    tsconfig,
+  };
+  return transform({source_text, source_filename, self_config});
 };

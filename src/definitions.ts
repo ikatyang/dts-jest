@@ -18,3 +18,18 @@ export interface ITSConfig {
   extends?: string;
   compilerOptions?: ts.CompilerOptions;
 }
+
+export interface ISelfConfig {
+  tsconfig: ITSConfig;
+}
+
+export interface IRawSelfConfig {
+  tsconfig?: string | ts.CompilerOptions;
+}
+
+export interface IJestConfig {
+  rootDir: string;
+  globals: {
+    _dts_jest_?: IRawSelfConfig;
+  };
+}

@@ -6,27 +6,37 @@ import {process} from '../process';
 const source_text = '';
 const source_filename = '';
 
-const create_configs = (tsconfig: any) => ({globals: {_dts_jest_: {tsconfig}}});
+const create_jest_config = <T>(globals: T) => ({
+  globals,
+  rootDir: 'path/to/somewhere',
+});
+const create_jest_config_with_tsconfig = <T>(tsconfig: T) => create_jest_config({
+  _dts_jest_: {tsconfig},
+});
+
+const create_self_config_wrapper_with_tsconfig = <T>(tsconfig: T) => ({
+  self_config: {
+    tsconfig,
+  },
+});
 
 it('(string) should use tsconfig to be "extends" property in tsconfig.json', () => {
   const tsconfig = 'path/to/tsconfig.json';
-  const configs = create_configs(tsconfig);
-  expect(process(source_text, source_filename, configs)).toMatchObject({
-    tsconfig: {extends: tsconfig},
-  });
+  const jest_config = create_jest_config_with_tsconfig(tsconfig);
+  expect(process(source_text, source_filename, jest_config))
+    .toMatchObject(create_self_config_wrapper_with_tsconfig({extends: tsconfig}));
 });
 
 it('(object) should use tsconfig to be "compilerOptions" property in tsconfig.json', () => {
   const tsconfig = {some_option: 'some_value'};
-  const configs = create_configs(tsconfig);
-  expect(process(source_text, source_filename, configs)).toMatchObject({
-    tsconfig: {compilerOptions: tsconfig},
-  });
+  const jest_config = create_jest_config_with_tsconfig(tsconfig);
+  expect(process(source_text, source_filename, jest_config))
+    .toMatchObject(create_self_config_wrapper_with_tsconfig({compilerOptions: tsconfig}));
 });
 
 // tslint:disable-next-line:max-line-length
 it('(otherwise) should use empty object to be "compilerOptions" property in tsconfig.json', () => {
-  expect(process(source_text, source_filename, {globals: {}})).toMatchObject({
-    tsconfig: {compilerOptions: {}},
-  });
+  const jest_config = create_jest_config({});
+  expect(process(source_text, source_filename, jest_config))
+    .toMatchObject(create_self_config_wrapper_with_tsconfig({compilerOptions: {}}));
 });
