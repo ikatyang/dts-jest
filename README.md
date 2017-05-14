@@ -91,7 +91,7 @@ npm run test -- --watch
 
 After running tests, you'll get the following result:
 
-![pass](https://github.com/ikatyang/dts-jest/blob/master/images/pass.png)
+![pass](https://github.com/ikatyang/dts-jest/raw/master/images/pass.png)
 
 Since snapshot testing will always pass and write the result at first time, it's reommended you to use flag `:show` to see the result first without writing results.
 
@@ -103,7 +103,7 @@ declare const arrayify: <T extends boolean>(v: T) => T[];
 
 and test again, you'll get the following result:
 
-![fail](https://github.com/ikatyang/dts-jest/blob/master/images/fail.png)
+![fail](https://github.com/ikatyang/dts-jest/raw/master/images/fail.png)
 
 ## Development
 
