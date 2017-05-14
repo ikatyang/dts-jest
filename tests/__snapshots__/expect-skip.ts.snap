@@ -1,5 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`1: expect 1`] = `"{ result: any; }"`;
-
-exports[`3: expect 1`] = `"{ result: any; }"`;

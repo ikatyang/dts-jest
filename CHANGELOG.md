@@ -13,6 +13,7 @@ All changes to this project will be documented in this file.
 ## Unreleased
 
 #### 🏠 Internal
+- refactor tests for better naming
 - refactor to have more options available easily
 
 ## v20.0.0 (2017-05-14)
