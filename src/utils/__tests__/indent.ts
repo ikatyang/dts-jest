@@ -11,5 +11,6 @@ line 3
 `;
 
 it('should return correctly', () => {
-  expect(indent(str)).toMatchSnapshot();
+  // tslint:disable-next-line:no-magic-numbers
+  expect(indent(str, 2)).toMatchSnapshot();
 });

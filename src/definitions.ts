@@ -21,9 +21,10 @@ export interface ITSConfig {
 
 export interface ISelfConfig {
   tsconfig: ITSConfig;
+  reporter_template: string;
 }
 
-export interface IRawSelfConfig {
+export interface IRawSelfConfig extends Partial<ISelfConfig> {
   tsconfig?: string | ts.CompilerOptions;
 }
 

@@ -43,24 +43,6 @@ Modify your [jest config](https://facebook.github.io/jest/docs/en/configuration.
 
 This setup allow you to test files `**/dts-jest/**/*.ts` via dts-jest.
 
-#### tsconfig
-
-You can specify which `tsconfig.json` (string) or compilerOptions (object) to use ( default: `{}` )
-
-(./package.json)
-
-```json
-{
-  "jest": {
-    "globals": {
-      "_dts_jest_": {
-        "tsconfig": "path/to/tsconfig.json"
-      }
-    }
-  }
-}
-```
-
 ## Writing Tests
 
 The test cases must start with `// @dts-jest`, and the second line should be an expression that you want to test its type.
@@ -122,6 +104,38 @@ declare const arrayify: <T extends boolean>(v: T) => T[];
 and test again, you'll get the following result:
 
 ![fail](https://github.com/ikatyang/dts-jest/raw/master/images/fail.png)
+
+## Configs
+
+Configs are in `_dts_jest_` field of jest config `globals`.
+
+There are several options
+
+- tsconfig
+  - default: `{}`
+  - specify which *path of `tsconfig.json` (string)* or *compilerOptions (object)* to use
+- reporter_template
+  - default: `"\nInferred\n\n{{expression,2}}\n\nto be\n\n{{type,2}}"`
+  - specify template of log message for `:show` flag
+    - `{{kind,spaces}}`
+      - kind: `expression` | `type`
+      - spaces: how many spaces to be used as indentation
+
+For example:
+
+(./package.json)
+
+```json
+{
+  "jest": {
+    "globals": {
+      "_dts_jest_": {
+        "tsconfig": "path/to/tsconfig.json"
+      }
+    }
+  }
+}
+```
 
 ## Development
 

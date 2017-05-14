@@ -12,6 +12,9 @@ All changes to this project will be documented in this file.
 
 ## Unreleased
 
+#### 🚀 New Feature
+- allow to customize reporter with reporter_template option
+
 #### 🏠 Internal
 - refactor tests for better naming
 - refactor to have more options available easily

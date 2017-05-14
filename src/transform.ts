@@ -61,6 +61,24 @@ export const transform = (options: ITransformOptions) => {
   const fn_indent = `${namespace}.indent`;
   const fn_snapshot = `${namespace}.snapshot`;
 
+  // tslint:disable:no-magic-numbers restrict-plus-operands
+  const stringified_empty_string = JSON.stringify('');
+  const generate_stringified_reporter_message = (stringified_expression: string, stringified_line: string) =>
+    self_config.reporter_template
+      .split(/\{\{(expression|type),([0-9]+)\}\}/g)
+      .map((chunk, index, chunks) =>
+        (index % 3 === 0)
+          ? JSON.stringify(chunk)
+          : (index % 3 === 2)
+            ? stringified_empty_string
+            : (chunk === 'type')
+              ? `${fn_indent}(${fn_snapshot}(${stringified_line}), ${chunks[index + 1]})`
+              : `${fn_indent}(${stringified_expression}, ${chunks[index + 1]})`,
+      )
+      .filter(chunk => chunk !== stringified_empty_string)
+      .join(' + ');
+  // tslint:enable:no-magic-numbers restrict-plus-operands
+
   const transformed_lines = breaklines.map(() => '');
 
   const setup_options: ISetupOptions = {
@@ -78,19 +96,18 @@ export const transform = (options: ITransformOptions) => {
       : (kind === TriggerKind.Only)
         ? 'test.only'
         : 'test';
-    const line = JSON.stringify(trigger.line);
-    const expression = JSON.stringify(trigger.expression);
-    const description = JSON.stringify((
+    const stringified_line = JSON.stringify(trigger.line);
+    const stringified_expression = JSON.stringify(trigger.expression);
+    const stringified_description = JSON.stringify((
       (trigger.description !== undefined)
         ? trigger.description
         : trigger.expression
     ).replace(/\n/g, '\n    '));
     const matcher = (kind === TriggerKind.Show)
-      // tslint:disable-next-line:max-line-length
-      ? `console.log('\\nInferred\\n\\n' + ${fn_indent}(${expression}) + '\\n\\nto be\\n\\n' + ${fn_indent}(${fn_snapshot}(${line})) + '\\n');`
-      : `expect(${fn_snapshot}(${line})).toMatchSnapshot();`;
+      ? `console.log(${generate_stringified_reporter_message(stringified_expression, stringified_line)});`
+      : `expect(${fn_snapshot}(${stringified_line})).toMatchSnapshot();`;
 
-    transformed_lines[trigger.line] += `${test}(${description}, function () { ${matcher} });`;
+    transformed_lines[trigger.line] += `${test}(${stringified_description}, function () { ${matcher} });`;
   });
 
   return transformed_lines.join('\n');
