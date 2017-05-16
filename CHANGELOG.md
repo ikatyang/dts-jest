@@ -10,7 +10,7 @@ All changes to this project will be documented in this file.
 > - 🏠 [Internal]
 > - 💅 [Polish]
 
-## Unreleased
+## v20.0.2 (2017-05-16)
 
 #### 🐛 Bug Fix
 - Fix missing config
