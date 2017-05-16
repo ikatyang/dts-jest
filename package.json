@@ -1,7 +1,7 @@
 {
   "name": "dts-jest",
   "version": "20.0.0",
-  "description": "A preprocessor for jest to snapshot test TypeScript declaration (.d.ts) files",
+  "description": "A preprocessor for Jest to snapshot test TypeScript declaration (.d.ts) files",
   "keywords": [
     "jest",
     "jest-transform",

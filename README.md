@@ -4,7 +4,7 @@
 [![build](https://img.shields.io/travis/ikatyang/dts-jest/master.svg)](https://travis-ci.org/ikatyang/dts-jest/builds)
 [![coverage](https://img.shields.io/codecov/c/github/ikatyang/dts-jest.svg)](https://codecov.io/gh/ikatyang/dts-jest)
 
-A preprocessor for [jest](https://facebook.github.io/jest/) to snapshot test [TypeScript declaration (.d.ts)](http://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html) files
+A preprocessor for [Jest](https://facebook.github.io/jest/) to snapshot test [TypeScript declaration (.d.ts)](http://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html) files
 
 [Changelog](https://github.com/ikatyang/dts-jest/blob/master/CHANGELOG.md)
 
@@ -28,7 +28,7 @@ yarn add --dev jest dts-jest
 
 ## Usage
 
-Modify your [jest config](https://facebook.github.io/jest/docs/en/configuration.html) so that looks something like:
+Modify your [Jest config](https://facebook.github.io/jest/docs/en/configuration.html) so that looks something like:
 
 (./package.json)
 
@@ -85,7 +85,7 @@ expression
 
 ## Testing
 
-It's recommended you to run jest in watching mode via `--watch` flag.
+It's recommended you to run Jest in watching mode via `--watch` flag.
 
 ```sh
 npm run test -- --watch
@@ -111,7 +111,7 @@ and test again, you'll get the following result:
 
 ## Configs
 
-Configs are in `_dts_jest_` field of jest config `globals`.
+Configs are in `_dts_jest_` field of Jest config `globals`.
 
 There are several options
 
