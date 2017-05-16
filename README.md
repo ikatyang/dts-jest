@@ -8,6 +8,10 @@ A preprocessor for [jest](https://facebook.github.io/jest/) to snapshot test [Ty
 
 [Changelog](https://github.com/ikatyang/dts-jest/blob/master/CHANGELOG.md)
 
+## Version
+
+This project uses the same MAJOR.MINOR version as Jest.
+
 ## Installation
 
 using npm
@@ -87,6 +91,8 @@ It's recommended you to run jest in watching mode via `--watch` flag.
 npm run test -- --watch
 ```
 
+**NOTE**: If you had changed the version of `dts-jest`, you might have to use `--no-cache` flag since Jest may use the older cache.
+
 After running tests, you'll get the following result:
 
 ![pass](https://github.com/ikatyang/dts-jest/raw/master/images/pass.png)
@@ -119,9 +125,9 @@ There are several options
     - `{{kind,spaces}}`
       - kind: `expression` | `snapshot`
       - spaces: how many spaces to be used as indentation
-- type-detail
+- type_detail
   - default: `false`
-- type-format
+- type_format
   - default: `ts.TypeFormatFlags.NoTruncation`
 
 For example:

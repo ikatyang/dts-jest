@@ -15,7 +15,7 @@ All changes to this project will be documented in this file.
 #### 🚀 New Feature
 - detect unattachable triggers
 - allow to customize `:show` message with `reporter` option
-- allow to customize inferred type with `type-detail` and `type-format` option
+- allow to customize inferred type with `type_detail` and `type_format` option
 
 #### 🏠 Internal
 - rewrite for better user experience about cache
