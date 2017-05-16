@@ -40,9 +40,9 @@ export const transform = (source_text: string, _source_filename?: string, _jest_
   );
 
   const transformed_line_texts = line_texts.map(() => '');
-  transformed_line_texts[0] += `var ${config_namespace} = ${config_namespace} || {};`;
+  const get_config_expression = `(function () { try { return ${config_namespace}; } catch (e) { return {}; } })()`;
   transformed_line_texts[0] += `var ${runtime_namespace} = require('dts-jest')`
-    + `.setup(module, ${config_namespace}, ${JSON.stringify(trigger_descriptions)});`;
+    + `.setup(module, ${get_config_expression}, ${JSON.stringify(trigger_descriptions)});`;
 
   triggers.forEach(trigger => {
     const {line, kind} = trigger;
