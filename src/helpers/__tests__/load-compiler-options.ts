@@ -1,4 +1,4 @@
-jest.unmock('../load-compiler-options.ts');
+jest.unmock('../load-compiler-options');
 
 import * as fs from 'fs';
 import * as path from 'path';

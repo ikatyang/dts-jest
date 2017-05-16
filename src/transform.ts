@@ -1,114 +1,57 @@
-import {ISelfConfig, ITrigger, TriggerKind} from './definitions';
-import {ISetupOptions} from './setup';
+import {
+  config_namespace,
+  runtime_namespace,
+  trigger_regex,
+  IJestConfig,
+  ITrigger,
+  ITriggerDescriptions,
+  ITriggerMatchArray,
+  TriggerMatchIndex,
+} from './definitions';
+import {get_assertion_expression} from './helpers/get-assertion-expression';
+import {get_description_expression} from './helpers/get-description-expression';
+import {get_kind} from './helpers/get-kind';
+import {get_test_method_name} from './helpers/get-test-method-name';
 
-// tslint:disable-next-line:no-require-imports no-var-requires
-const package_json = require('../package.json');
+export const transform = (source_text: string, _source_filename?: string, _jest_config?: IJestConfig) => {
 
-export interface ITransformOptions {
-  self_config: ISelfConfig;
-  source_text: string;
-  source_filename: string;
-}
+  const line_texts = source_text.split('\n');
 
-export const transform = (options: ITransformOptions) => {
-  const {
-    self_config,
-    source_text,
-    source_filename,
-  } = options;
-
-  const {tsconfig} = self_config;
-
-  const breaklines: number[] = [];
-  {
-    const regex = /\n/g;
-    for (let results = regex.exec(source_text); results !== null; results = regex.exec(source_text)) {
-      breaklines.push(results.index);
-    }
-  }
-
-  let current_line = 0;
-
-  const triggers: ITrigger[] = [];
-  {
-    const breakline_indexes = breaklines.slice();
-    const regex = /\/\/ @dts-jest(?::(skip|only|show))?[ \t]*([^\n]*)?\s*\n[ \t]*([^;]+);/g;
-    for (let results = regex.exec(source_text); results !== null; results = regex.exec(source_text)) {
-      const [, raw_kind, description, expression] = results;
-      const {index} = results;
-
-      while (index > breakline_indexes[0]) {
-        current_line++;
-        breakline_indexes.shift();
+  const triggers = line_texts.reduce(
+    (current_triggers: ITrigger[], line_text, index) => {
+      const matched = line_text.match(trigger_regex);
+      if (matched !== null) {
+        const trigger_match_array = matched as ITriggerMatchArray;
+        current_triggers.push({
+          line: index,
+          kind: get_kind(trigger_match_array[TriggerMatchIndex.Flag]),
+          // tslint:disable-next-line strict-boolean-expressions
+          description: trigger_match_array[TriggerMatchIndex.Description] || null,
+        });
       }
+      return current_triggers;
+    },
+    [],
+  );
 
-      triggers.push({
-        expression,
-        description,
-        line: current_line,
-        kind: (raw_kind === 'skip')
-          ? TriggerKind.Skip
-          : (raw_kind === 'only')
-            ? TriggerKind.Only
-            : (raw_kind === 'show')
-              ? TriggerKind.Show
-              : TriggerKind.None,
-      });
-    }
-  }
+  const trigger_descriptions: ITriggerDescriptions = triggers.reduce(
+    (current_triggers, trigger) => ({...current_triggers, [trigger.line]: trigger.description}),
+    {},
+  );
 
-  const namespace = '_dts_jest_runtime_';
-  const fn_indent = `${namespace}.indent`;
-  const fn_snapshot = `${namespace}.snapshot`;
-
-  // tslint:disable:no-magic-numbers restrict-plus-operands
-  const stringified_empty_string = JSON.stringify('');
-  const generate_stringified_reporter_message = (stringified_expression: string, stringified_line: string) =>
-    self_config.reporter_template
-      .split(/\{\{(expression|type),([0-9]+)\}\}/g)
-      .map((chunk, index, chunks) =>
-        (index % 3 === 0)
-          ? JSON.stringify(chunk)
-          : (index % 3 === 2)
-            ? stringified_empty_string
-            : (chunk === 'type')
-              ? `${fn_indent}(${fn_snapshot}(${stringified_line}), ${chunks[index + 1]})`
-              : `${fn_indent}(${stringified_expression}, ${chunks[index + 1]})`,
-      )
-      .filter(chunk => chunk !== stringified_empty_string)
-      .join(' + ');
-  // tslint:enable:no-magic-numbers restrict-plus-operands
-
-  const transformed_lines = breaklines.map(() => '');
-
-  const setup_options: ISetupOptions = {
-    tsconfig,
-    triggers,
-    source_filename,
-  };
-  transformed_lines[0] =
-    `var ${namespace} = require(${JSON.stringify(package_json.name)}).setup(${JSON.stringify(setup_options)});`;
+  const transformed_line_texts = line_texts.map(() => '');
+  transformed_line_texts[0] += `var ${config_namespace} = ${config_namespace} || {};`;
+  transformed_line_texts[0] += `var ${runtime_namespace} = require('dts-jest')`
+    + `.setup(module, ${config_namespace}, ${JSON.stringify(trigger_descriptions)});`;
 
   triggers.forEach(trigger => {
-    const {kind} = trigger;
-    const test = (kind === TriggerKind.Skip)
-      ? 'test.skip'
-      : (kind === TriggerKind.Only)
-        ? 'test.only'
-        : 'test';
-    const stringified_line = JSON.stringify(trigger.line);
-    const stringified_expression = JSON.stringify(trigger.expression);
-    const stringified_description = JSON.stringify((
-      (trigger.description !== undefined)
-        ? trigger.description
-        : trigger.expression
-    ).replace(/\n/g, '\n    '));
-    const matcher = (kind === TriggerKind.Show)
-      ? `console.log(${generate_stringified_reporter_message(stringified_expression, stringified_line)});`
-      : `expect(${fn_snapshot}(${stringified_line})).toMatchSnapshot();`;
-
-    transformed_lines[trigger.line] += `${test}(${stringified_description}, function () { ${matcher} });`;
+    const {line, kind} = trigger;
+    const test_method_name = get_test_method_name(kind);
+    const assertion_expression = get_assertion_expression(kind, line);
+    const description_expression = get_description_expression(line);
+    transformed_line_texts[line] +=
+      `${test_method_name}(${description_expression}, function () { ${assertion_expression}; });`;
   });
 
-  return transformed_lines.join('\n');
+  return transformed_line_texts.join('\n');
 };

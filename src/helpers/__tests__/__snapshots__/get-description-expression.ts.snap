@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should return correctly 1`] = `"_dts_jest_runtime_.description({\\"line\\":1})"`;

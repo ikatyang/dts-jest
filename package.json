@@ -23,6 +23,7 @@
     "pretest-coverage": "rm -rf ./coverage",
     "test-coverage": "yarn run test -- --coverage",
     "test-coverage-ci": "yarn run test-coverage -- --verbose && codecov",
+    "test-integration": "jest --config ./tests/jest.json --no-cache --verbose",
     "prebuild": "rm -rf ./lib",
     "build": "tsc -p ./tsconfig.build.json",
     "build-release": "yarn run build -- --sourceMap false",

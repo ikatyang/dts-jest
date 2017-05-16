@@ -114,11 +114,12 @@ There are several options
 - tsconfig
   - default: `{}`
   - specify which *path of `tsconfig.json` (string)* or *compilerOptions (object)* to use
-- reporter_template
-  - default: `"\nInferred\n\n{{expression,2}}\n\nto be\n\n{{type,2}}"`
+  - **NOTE** the path is relative to `process.cwd()`
+- reporter
+  - default: `"\nInferred\n\n{{expression,2}}\n\nto be\n\n{{snapshot,2}}"`
   - specify template of log message for `:show` flag
     - `{{kind,spaces}}`
-      - kind: `expression` | `type`
+      - kind: `expression` | `snapshot`
       - spaces: how many spaces to be used as indentation
 
 For example:
@@ -145,6 +146,9 @@ yarn run test
 
 # test with coverage
 yarn run test-coverage
+
+# test actual behavior
+yarn run test-integration
 
 # build
 yarn run build

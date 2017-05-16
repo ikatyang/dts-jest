@@ -13,11 +13,11 @@ All changes to this project will be documented in this file.
 ## Unreleased
 
 #### 🚀 New Feature
-- allow to customize reporter with reporter_template option
+- detect unattachable triggers
+- allow to customize :show message with reporter option
 
 #### 🏠 Internal
-- refactor tests for better naming
-- refactor to have more options available easily
+- rewrite for better user experience about cache
 
 ## v20.0.0 (2017-05-14)
 

@@ -1,21 +1,66 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should setup correctly 1`] = `
-"trigger(line:16) -> number[]
-trigger(line:17) -> <T>(a: T) => I<T>
-trigger(line:18) -> <T>(a: T) => X<T>
-trigger(line:19) -> <T>(a: T) => { x: T; }
-trigger(line:20) -> <T, U>(a: T, b: U) => T | U
-trigger(line:21) -> { (): void; (): string; }
-trigger(line:22) -> number
-trigger(line:23) -> I<number[]>
-trigger(line:24) -> X<number[]>
-trigger(line:25) -> { x: number[]; }
-trigger(line:26) -> 1 | \\"\\"
-trigger(line:27) -> (<T>(a: T) => { x: T; }) | 1
-trigger(line:28) -> void
-trigger(line:29) -> Supplied parameters do not match any signature of call target.
-trigger(line:30) -> Argument of type '{}' is not assignable to parameter of type 'I<I<I<string>>>'.
-  Property 'x' is missing in type '{}'.
-"
+exports[`should setup correctly while all triggers are attachable 1`] = `
+Object {
+  "10": Object {
+    "description": "function_with_generic_return_interface_with_generic(str)",
+    "report": "[report]",
+    "snapshot": "I<string>",
+  },
+  "11": Object {
+    "description": "function_with_generics_return_union_with_generics(str, num)",
+    "report": "[report]",
+    "snapshot": "string | number",
+  },
+  "2": Object {
+    "description": "optional-description",
+    "report": "[report]",
+    "snapshot": "number",
+  },
+  "3": Object {
+    "description": "number_array",
+    "report": "[report]",
+    "snapshot": "number[]",
+  },
+  "4": Object {
+    "description": "overload_signature",
+    "report": "[report]",
+    "snapshot": "{ (): void; (): string; }",
+  },
+  "5": Object {
+    "description": "overload_signature()",
+    "report": "[report]",
+    "snapshot": "void",
+  },
+  "6": Object {
+    "description": "function_with_never(str)",
+    "report": "[report]",
+    "snapshot": "Argument of type 'string' is not assignable to parameter of type 'never'.",
+  },
+  "7": Object {
+    "description": "function_with_deep_never({v: str})",
+    "report": "[report]",
+    "snapshot": "Argument of type '{ v: string; }' is not assignable to parameter of type '{ v: never; }'.
+  Types of property 'v' are incompatible.
+    Type 'string' is not assignable to type 'never'.",
+  },
+  "8": Object {
+    "description": "function_with_generic_return_type_with_generic(str)",
+    "report": "[report]",
+    "snapshot": "X<string>",
+  },
+  "9": Object {
+    "description": "function_with_generic_return_object_with_generic(str)",
+    "report": "[report]",
+    "snapshot": "{ x: string; }",
+  },
+}
+`;
+
+exports[`should throw error while unattachable trigger(s) existed 1`] = `
+"Unattachable trigger(s) detected:
+
+  fixtures/setup/unattachable/test.ts:1
+  fixtures/setup/unattachable/test.ts:2
+  fixtures/setup/unattachable/test.ts:3"
 `;

@@ -1,33 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should transform correctly 1`] = `
-"var _dts_jest_runtime_ = require(\\"dts-jest\\").setup({\\"tsconfig\\":{\\"some_option\\":\\"some_value\\"},\\"triggers\\":[{\\"expression\\":\\"_('expect', 'no-description')\\",\\"line\\":2,\\"kind\\":0},{\\"expression\\":\\"_('expect-skip', 'no-description')\\",\\"line\\":5,\\"kind\\":1},{\\"expression\\":\\"_('expect-only', 'no-description')\\",\\"line\\":8,\\"kind\\":2},{\\"expression\\":\\"_('expect', 'description')\\",\\"description\\":\\"[expect, description]\\",\\"line\\":11,\\"kind\\":0},{\\"expression\\":\\"_('expect-skip', 'description')\\",\\"description\\":\\"[expect-skip, description]\\",\\"line\\":14,\\"kind\\":1},{\\"expression\\":\\"_('expect-only', 'description')\\",\\"description\\":\\"[expect-only, description]\\",\\"line\\":17,\\"kind\\":2},{\\"expression\\":\\"_('invalid')\\",\\"line\\":20,\\"kind\\":0},{\\"expression\\":\\"_('expect-show', 'no-description')\\",\\"line\\":24,\\"kind\\":3},{\\"expression\\":\\"_('expect-show', 'description')\\",\\"description\\":\\"[expect-show, description]\\",\\"line\\":27,\\"kind\\":3}],\\"source_filename\\":\\"../../fixtures/transform/declaration.test.ts\\"});
+"var _dts_jest_ = _dts_jest_ || {};var _dts_jest_runtime_ = require('dts-jest').setup(module, _dts_jest_, {\\"2\\":null,\\"5\\":\\"optional-description\\"});
 
-test(\\"_('expect', 'no-description')\\", function () { expect(_dts_jest_runtime_.snapshot(2)).toMatchSnapshot(); });
-
-
-test.skip(\\"_('expect-skip', 'no-description')\\", function () { expect(_dts_jest_runtime_.snapshot(5)).toMatchSnapshot(); });
+[test-method-name]([description-expression], function () { [assertion-expression]; });
 
 
-test.only(\\"_('expect-only', 'no-description')\\", function () { expect(_dts_jest_runtime_.snapshot(8)).toMatchSnapshot(); });
+[test-method-name]([description-expression], function () { [assertion-expression]; });
 
-
-test(\\"[expect, description]\\", function () { expect(_dts_jest_runtime_.snapshot(11)).toMatchSnapshot(); });
-
-
-test.skip(\\"[expect-skip, description]\\", function () { expect(_dts_jest_runtime_.snapshot(14)).toMatchSnapshot(); });
-
-
-test.only(\\"[expect-only, description]\\", function () { expect(_dts_jest_runtime_.snapshot(17)).toMatchSnapshot(); });
-
-
-test(\\"_('invalid')\\", function () { expect(_dts_jest_runtime_.snapshot(20)).toMatchSnapshot(); });
-
-
-
-test(\\"_('expect-show', 'no-description')\\", function () { console.log(\\"\\\\nInferred\\\\n\\\\n\\" + _dts_jest_runtime_.indent(\\"_('expect-show', 'no-description')\\", 2) + \\"\\\\n\\\\nto be\\\\n\\\\n\\" + _dts_jest_runtime_.indent(_dts_jest_runtime_.snapshot(24), 2)); });
-
-
-test(\\"[expect-show, description]\\", function () { console.log(\\"\\\\nInferred\\\\n\\\\n\\" + _dts_jest_runtime_.indent(\\"_('expect-show', 'description')\\", 2) + \\"\\\\n\\\\nto be\\\\n\\\\n\\" + _dts_jest_runtime_.indent(_dts_jest_runtime_.snapshot(27), 2)); });
 "
 `;
