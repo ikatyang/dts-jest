@@ -16,6 +16,9 @@ import {indent_title} from './utils/indent-title';
 export const setup = (the_module: {filename: string}, config: ISelfConfig, descriptions: ITriggerDescriptions) => {
   const {
     tsconfig: raw_tsconfig,
+    type_detail = false,
+    // istanbul ignore next
+    type_format = ts.TypeFormatFlags.NoTruncation,
     // istanbul ignore next
     reporter = default_reporter_template,
   } = config;
@@ -65,8 +68,10 @@ export const setup = (the_module: {filename: string}, config: ISelfConfig, descr
         try {
           const target_node = node.getChildAt(0);
           const type = checker.getTypeAtLocation(target_node);
-          // tslint:disable-next-line strict-boolean-expressions
-          snapshots[trigger_line] = snapshots[trigger_line] || checker.typeToString(type);
+          // tslint:disable strict-boolean-expressions
+          snapshots[trigger_line] = snapshots[trigger_line]
+            || checker.typeToString(type, type_detail ? node : undefined, type_format);
+          // tslint:enable strict-boolean-expressions
           expressions[trigger_line] = target_node.getText();
           return {remove: true};
         } catch (e) {

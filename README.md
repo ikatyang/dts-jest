@@ -119,6 +119,10 @@ There are several options
     - `{{kind,spaces}}`
       - kind: `expression` | `snapshot`
       - spaces: how many spaces to be used as indentation
+- type-detail
+  - default: `false`
+- type-format
+  - default: `ts.TypeFormatFlags.NoTruncation`
 
 For example:
 

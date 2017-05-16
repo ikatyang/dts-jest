@@ -29,6 +29,8 @@ export type IRawTSConfig = undefined | string | ts.CompilerOptions;
 export interface ISelfConfig {
   tsconfig?: IRawTSConfig;
   reporter?: string;
+  type_detail?: boolean;
+  type_format?: ts.TypeFormatFlags;
 }
 
 export const default_reporter_template = '\nInferred\n\n{{expression,2}}\n\nto be\n\n{{snapshot,2}}';

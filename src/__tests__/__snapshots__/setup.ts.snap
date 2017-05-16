@@ -2,57 +2,87 @@
 
 exports[`should setup correctly while all triggers are attachable 1`] = `
 Object {
-  "10": Object {
-    "description": "function_with_generic_return_interface_with_generic(str)",
+  "1": Object {
+    "description": "optional-description",
     "report": "[report]",
-    "snapshot": "I<string>",
+    "snapshot": "number",
   },
-  "11": Object {
+  "10": Object {
     "description": "function_with_generics_return_union_with_generics(str, num)",
     "report": "[report]",
     "snapshot": "string | number",
   },
   "2": Object {
-    "description": "optional-description",
-    "report": "[report]",
-    "snapshot": "number",
-  },
-  "3": Object {
     "description": "number_array",
     "report": "[report]",
     "snapshot": "number[]",
   },
-  "4": Object {
+  "3": Object {
     "description": "overload_signature",
     "report": "[report]",
     "snapshot": "{ (): void; (): string; }",
   },
-  "5": Object {
+  "4": Object {
     "description": "overload_signature()",
     "report": "[report]",
     "snapshot": "void",
   },
-  "6": Object {
+  "5": Object {
     "description": "function_with_never(str)",
     "report": "[report]",
     "snapshot": "Argument of type 'string' is not assignable to parameter of type 'never'.",
   },
-  "7": Object {
+  "6": Object {
     "description": "function_with_deep_never({v: str})",
     "report": "[report]",
     "snapshot": "Argument of type '{ v: string; }' is not assignable to parameter of type '{ v: never; }'.
   Types of property 'v' are incompatible.
     Type 'string' is not assignable to type 'never'.",
   },
-  "8": Object {
+  "7": Object {
     "description": "function_with_generic_return_type_with_generic(str)",
     "report": "[report]",
     "snapshot": "X<string>",
   },
-  "9": Object {
+  "8": Object {
     "description": "function_with_generic_return_object_with_generic(str)",
     "report": "[report]",
     "snapshot": "{ x: string; }",
+  },
+  "9": Object {
+    "description": "function_with_generic_return_interface_with_generic(str)",
+    "report": "[report]",
+    "snapshot": "I<string>",
+  },
+}
+`;
+
+exports[`should setup correctly with type-detail = false 1`] = `
+Object {
+  "1": Object {
+    "description": "function_with_parameter_type",
+    "report": "[report]",
+    "snapshot": "(v: Type) => any",
+  },
+  "2": Object {
+    "description": "function_with_parameter_interface",
+    "report": "[report]",
+    "snapshot": "(v: Interface) => any",
+  },
+}
+`;
+
+exports[`should setup correctly with type-detail = true 1`] = `
+Object {
+  "1": Object {
+    "description": "function_with_parameter_type",
+    "report": "[report]",
+    "snapshot": "(v: { key: \\"value\\"; }) => any",
+  },
+  "2": Object {
+    "description": "function_with_parameter_interface",
+    "report": "[report]",
+    "snapshot": "(v: Interface) => any",
   },
 }
 `;
