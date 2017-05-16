@@ -47,8 +47,6 @@ This setup allow you to test files `**/dts-jest/**/*.ts` via dts-jest.
 
 The test cases must start with `// @dts-jest`, and the second line should be an expression that you want to test its type.
 
-**NOTE**: Expressions that you want to test must be ended with a semicolon ( `;` ).
-
 **NOTE**: While testing, expression with error will snapshot its error message instead of its type.
 
 (./dts-jest/example.ts)
@@ -70,7 +68,7 @@ arrayify(0);
 
 ```ts
 // @dts-jest[:flag] [description]
-expression;
+expression
 ```
 
 - flags
