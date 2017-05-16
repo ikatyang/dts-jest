@@ -5,6 +5,7 @@ import {
   IRuntimeMethods,
   ISelfConfig,
   ITriggerDescriptions,
+  SnapshotFormatter,
 } from './definitions';
 import {get_report} from './helpers/get-report';
 import {load_compiler_options} from './helpers/load-compiler-options';
@@ -16,6 +17,7 @@ import {indent_title} from './utils/indent-title';
 export const setup = (the_module: {filename: string}, config: ISelfConfig, descriptions: ITriggerDescriptions) => {
   const {
     tsconfig: raw_tsconfig,
+    snapshot_formatter: snapshot_formatter_filename,
     type_detail = false,
     // istanbul ignore next
     type_format = ts.TypeFormatFlags.NoTruncation,
@@ -37,6 +39,11 @@ export const setup = (the_module: {filename: string}, config: ISelfConfig, descr
   const snapshots: {[line: number]: string} = {};
   const expressions: {[line: number]: string} = {};
 
+  const snapshot_formatter: SnapshotFormatter = (snapshot_formatter_filename === undefined)
+    ? snapshot => snapshot
+    // tslint:disable-next-line:no-require-imports
+    : require(path.resolve(process.cwd(), snapshot_formatter_filename));
+
   const trigger_lines = Object.keys(descriptions).map(line_string => +line_string);
 
   const find_line =
@@ -54,7 +61,10 @@ export const setup = (the_module: {filename: string}, config: ISelfConfig, descr
   for (const diagnostic of diagnostics) {
     const {line: error_line} = diagnostic.file.getLineAndCharacterOfPosition(diagnostic.start);
     find_line(error_line, {on_success: trigger_line => {
-      snapshots[trigger_line] = ts.flattenDiagnosticMessageText(diagnostic.messageText, '\n');
+      snapshots[trigger_line] = snapshot_formatter(
+        ts.flattenDiagnosticMessageText(diagnostic.messageText, '\n'),
+        'error',
+      );
       return {remove: false};
     }});
   }
@@ -70,7 +80,10 @@ export const setup = (the_module: {filename: string}, config: ISelfConfig, descr
           const type = checker.getTypeAtLocation(target_node);
           // tslint:disable strict-boolean-expressions
           snapshots[trigger_line] = snapshots[trigger_line]
-            || checker.typeToString(type, type_detail ? node : undefined, type_format);
+            || snapshot_formatter(
+              checker.typeToString(type, type_detail ? node : undefined, type_format),
+              'type',
+            );
           // tslint:enable strict-boolean-expressions
           expressions[trigger_line] = target_node.getText();
           return {remove: true};

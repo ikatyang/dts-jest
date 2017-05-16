@@ -16,6 +16,7 @@ All changes to this project will be documented in this file.
 - detect unattachable triggers
 - allow to customize `:show` message with `reporter` option
 - allow to customize inferred type with `type_detail` and `type_format` option
+- allow to customize snapshot content with `snapshot_formatter` option
 
 #### 🏠 Internal
 - rewrite for better user experience about cache

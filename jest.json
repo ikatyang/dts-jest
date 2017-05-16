@@ -3,7 +3,8 @@
   "unmockedModulePathPatterns": [
     "<rootDir>/node_modules/",
     "<rootDir>/src/definitions\\.ts",
-    "<rootDir>/src/utils/"
+    "<rootDir>/src/utils/",
+    "<rootDir>/fixtures/"
   ],
   "clearMocks": true,
   "testEnvironment": "node",

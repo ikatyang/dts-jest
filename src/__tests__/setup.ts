@@ -51,14 +51,21 @@ it('should throw error while unattachable trigger(s) existed', () => {
   expect(() => get_informations_from_setup_fixture('../../fixtures/setup/unattachable')).toThrowErrorMatchingSnapshot();
 });
 
-it('should setup correctly with type-detail = false', () => {
+it('should setup correctly with type_detail = false', () => {
   expect(get_informations_from_setup_fixture('../../fixtures/setup/type-detail', {
     type_detail: false,
   })).toMatchSnapshot();
 });
 
-it('should setup correctly with type-detail = true', () => {
+it('should setup correctly with type_detail = true', () => {
   expect(get_informations_from_setup_fixture('../../fixtures/setup/type-detail', {
     type_detail: true,
+  })).toMatchSnapshot();
+});
+
+it('should setup correctly with snapshot_formatter', () => {
+  const relative_dirname = '../../fixtures/setup/snapshot-formatter';
+  expect(get_informations_from_setup_fixture(relative_dirname, {
+    snapshot_formatter: path.join(path.resolve(__dirname, relative_dirname), 'snapshot-formatter.ts'),
   })).toMatchSnapshot();
 });

@@ -31,9 +31,12 @@ export interface ISelfConfig {
   reporter?: string;
   type_detail?: boolean;
   type_format?: ts.TypeFormatFlags;
+  snapshot_formatter?: string;
 }
 
 export const default_reporter_template = '\nInferred\n\n{{expression,2}}\n\nto be\n\n{{snapshot,2}}';
+
+export type SnapshotFormatter = (snapshot: string, kind: 'error' | 'type') => string;
 
 export interface IJestConfig {
   globals: {

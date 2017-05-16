@@ -118,17 +118,22 @@ There are several options
 - tsconfig
   - default: `{}`
   - specify which *path of `tsconfig.json` (string)* or *compilerOptions (object)* to use
-  - **NOTE** the path is relative to `process.cwd()`
 - reporter
   - default: `"\nInferred\n\n{{expression,2}}\n\nto be\n\n{{snapshot,2}}"`
   - specify template of log message for `:show` flag
     - `{{kind,spaces}}`
       - kind: `expression` | `snapshot`
       - spaces: how many spaces to be used as indentation
+- snapshot_formatter
+  - default: `(snapshot: string) => snapshot`
+  - specify a path to a module used as snapshot formatter
+  - `module.exports = (snapshot: string, kind: 'type' | 'error') => string` ( [example](https://github.com/ikatyang/dts-jest/blob/master/fixtures/setup/snapshot-formatter/snapshot-formatter.ts) )
 - type_detail
   - default: `false`
 - type_format
   - default: `ts.TypeFormatFlags.NoTruncation`
+
+**NOTE**: paths are relative to `process.cwd()`
 
 For example:
 

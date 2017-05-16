@@ -57,7 +57,22 @@ Object {
 }
 `;
 
-exports[`should setup correctly with type-detail = false 1`] = `
+exports[`should setup correctly with snapshot_formatter 1`] = `
+Object {
+  "1": Object {
+    "description": "function_with_parameter_any('')",
+    "report": "[report]",
+    "snapshot": "Type -> any",
+  },
+  "2": Object {
+    "description": "function_with_parameter_never('')",
+    "report": "[report]",
+    "snapshot": "Error -> Argument of type '\\"\\"' is not assignable to parameter of type 'never'.",
+  },
+}
+`;
+
+exports[`should setup correctly with type_detail = false 1`] = `
 Object {
   "1": Object {
     "description": "function_with_parameter_type",
@@ -72,7 +87,7 @@ Object {
 }
 `;
 
-exports[`should setup correctly with type-detail = true 1`] = `
+exports[`should setup correctly with type_detail = true 1`] = `
 Object {
   "1": Object {
     "description": "function_with_parameter_type",
