@@ -1,6 +1,0 @@
-{
-  "extends": "./tsconfig.empty.json",
-  "compilerOptions": {
-    "tsconfig": "0"
-  }
-}

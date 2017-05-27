@@ -1,5 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`should return console.log() while kind is show 1`] = `"console.log(_dts_jest_runtime_.report({\\"line\\":1}))"`;
-
-exports[`should return expect().toMatchSnapshot() while kind is not show 1`] = `"expect(_dts_jest_runtime_.snapshot({\\"line\\":1})).toMatchSnapshot()"`;

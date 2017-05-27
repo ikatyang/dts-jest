@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`none 1`] = `"test"`;
-
-exports[`only 1`] = `"test.only"`;
-
-exports[`show 1`] = `"test"`;
-
-exports[`skip 1`] = `"test.skip"`;

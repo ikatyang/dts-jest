@@ -3,7 +3,6 @@
     "declaration": true,
     "module": "commonjs",
     "outDir": "lib",
-    "sourceMap": true,
     "strict": true,
     "target": "es5"
   },

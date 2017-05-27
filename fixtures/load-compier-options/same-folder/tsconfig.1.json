@@ -1,7 +1,0 @@
-{
-  "extends": "./tsconfig.2.json",
-  "compilerOptions": {
-    "tsconfig": "1",
-    "tsconfig-1": "1"
-  }
-}

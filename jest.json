@@ -10,7 +10,7 @@
   "testEnvironment": "node",
   "moduleFileExtensions": ["ts", "js", "json"],
   "testMatch": ["<rootDir>/src/**/__tests__/**/*.ts"],
-  "transform": {"\\.ts$": "<rootDir>/node_modules/ts-jest/preprocessor.js"},
+  "transform": {"\\.ts$": "ts-jest/preprocessor"},
   "mapCoverage": true,
   "coverageReporters": ["lcov", "text-summary"],
   "collectCoverageFrom": ["src/**/*.ts"],
