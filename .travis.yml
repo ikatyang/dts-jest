@@ -9,8 +9,8 @@ env:
 
 script:
   - if [ "$JOB" = "lint" ]; then yarn run lint; fi
-  - if [ "$JOB" = "test" ]; then yarn run test-ci; fi
-  - if [ "$JOB" = "test-coverage" ]; then yarn run test-coverage-ci; fi
+  - if [ "$JOB" = "test" ]; then yarn run test -- --verbose; fi
+  - if [ "$JOB" = "test-coverage" ]; then yarn run test-coverage -- --verbose; fi
 
 after_success:
   - if [ "$JOB" != "lint" ]; then yarn run test-integration; fi

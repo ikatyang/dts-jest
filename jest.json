@@ -1,15 +1,7 @@
 {
-  "automock": true,
-  "unmockedModulePathPatterns": [
-    "<rootDir>/node_modules/",
-    "<rootDir>/src/definitions\\.ts",
-    "<rootDir>/src/utils/",
-    "<rootDir>/fixtures/"
-  ],
-  "clearMocks": true,
   "testEnvironment": "node",
   "moduleFileExtensions": ["ts", "js", "json"],
-  "testMatch": ["<rootDir>/src/**/__tests__/**/*.ts"],
+  "testMatch": ["<rootDir>/src/**/__tests__/*.ts"],
   "transform": {"\\.ts$": "ts-jest/preprocessor"},
   "mapCoverage": true,
   "coverageReporters": ["lcov", "text-summary"],

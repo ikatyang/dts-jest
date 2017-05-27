@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should transform correctly 1`] = `
+"var _dts_jest_runtime_ = require(\\"dts-jest\\").setup(module, (function () { try { return _dts_jest_; } catch (e) { return {}; } })(), {\\"1\\":null,\\"3\\":\\"description-none\\",\\"5\\":null,\\"7\\":\\"description-show\\",\\"9\\":null,\\"11\\":\\"description-skip\\",\\"13\\":null,\\"15\\":\\"description-only\\"});test(_dts_jest_runtime_.description(1), function () { expect(_dts_jest_runtime_.snapshot(1)).toMatchSnapshot(); });
+
+test(_dts_jest_runtime_.description(3), function () { expect(_dts_jest_runtime_.snapshot(3)).toMatchSnapshot(); });
+
+test(_dts_jest_runtime_.description(5), function () { console.log(_dts_jest_runtime_.snapshot(5)); });
+
+test(_dts_jest_runtime_.description(7), function () { console.log(_dts_jest_runtime_.snapshot(7)); });
+
+test.skip(_dts_jest_runtime_.description(9), function () { expect(_dts_jest_runtime_.snapshot(9)).toMatchSnapshot(); });
+
+test.skip(_dts_jest_runtime_.description(11), function () { expect(_dts_jest_runtime_.snapshot(11)).toMatchSnapshot(); });
+
+test.only(_dts_jest_runtime_.description(13), function () { expect(_dts_jest_runtime_.snapshot(13)).toMatchSnapshot(); });
+
+test.only(_dts_jest_runtime_.description(15), function () { expect(_dts_jest_runtime_.snapshot(15)).toMatchSnapshot(); });
+"
+`;
