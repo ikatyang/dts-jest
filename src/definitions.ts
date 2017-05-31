@@ -1,7 +1,3 @@
-import * as ts from 'typescript';
-
-export const package_name = 'dts-jest';
-export const config_namespace = '_dts_jest_';
 export const runtime_namespace = '_dts_jest_runtime_';
 
 export const trigger_regex = /^\s*\/\/\s*@dts-jest\b(:?\S*)\s*(.+)?\s*$/;
@@ -15,11 +11,12 @@ export enum TriggerFlag {
 }
 export interface Trigger {
   /**
-   * 1-based
+   * 0-based
    */
   line: number;
   flag: TriggerFlag;
   method: TestMethod;
+  expression: string;
   description?: string;
 }
 export interface TriggerDescriptions {

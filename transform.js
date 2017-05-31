@@ -1,1 +1,1 @@
-module.exports = require('./lib/index').transform;
+exports.process = require('./lib/index').transform;
