@@ -84,8 +84,9 @@ export class Server {
     this.last_reset = current;
 
     setImmediate(() => {
-      this.program = ts.createProgram(filenames, this.compiler_options, undefined, old_program);
+      const program = ts.createProgram(filenames, this.compiler_options, undefined, old_program);
       if (this.last_reset === current) {
+        this.program = program;
         this.reseting = false;
         while (this.callbacks.length !== 0) {
           const callback = this.callbacks.pop();
