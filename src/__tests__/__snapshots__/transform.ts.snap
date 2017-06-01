@@ -10,34 +10,34 @@ exports[`should throw error with unattachable trigger(s) 1`] = `
 `;
 
 exports[`should transform correctly 1`] = `
-"var _dts_jest_runtime_;beforeAll(function (done) {require(\\"dts-jest\\").setup(module.filename, [2,5,8,11,14,17,20,23,27], function () {_dts_jest_runtime_ = arguments[0];done();});});
+"var _dts_jest_runtime_;beforeAll(function (done) {require(\\"dts-jest\\").setup(module, (function () {try {return _dts_jest_;} catch (e) {return {};}})(), {\\"2\\":\\"T.none()\\",\\"5\\":\\"T.none()\\",\\"8\\":\\"T.show()\\",\\"11\\":\\"T.show()\\",\\"14\\":\\"T.skip()\\",\\"17\\":\\"T.skip()\\",\\"20\\":\\"T.only()\\",\\"23\\":\\"T.only()\\",\\"27\\":\\"T.in_block()\\"}, function () {_dts_jest_runtime_ = arguments[0];done();});});
 
-test(\\"T.none();\\", function () {expect(_dts_jest_runtime_.snapshot(2)).toMatchSnapshot();});
+test(\\"T.none()\\", function () {expect(_dts_jest_runtime_.snapshot(2)).toMatchSnapshot();});
 
 
 test(\\"description-none\\", function () {expect(_dts_jest_runtime_.snapshot(5)).toMatchSnapshot();});
 
 
-test(\\"T.show();\\", function () {console.log(_dts_jest_runtime_.snapshot(8));});
+test(\\"T.show()\\", function () {console.log(_dts_jest_runtime_.report(8));});
 
 
-test(\\"description-show\\", function () {console.log(_dts_jest_runtime_.snapshot(11));});
+test(\\"description-show\\", function () {console.log(_dts_jest_runtime_.report(11));});
 
 
-test.skip(\\"T.skip();\\", function () {expect(_dts_jest_runtime_.snapshot(14)).toMatchSnapshot();});
+test.skip(\\"T.skip()\\", function () {expect(_dts_jest_runtime_.snapshot(14)).toMatchSnapshot();});
 
 
 test.skip(\\"description-skip\\", function () {expect(_dts_jest_runtime_.snapshot(17)).toMatchSnapshot();});
 
 
-test.only(\\"T.only();\\", function () {expect(_dts_jest_runtime_.snapshot(20)).toMatchSnapshot();});
+test.only(\\"T.only()\\", function () {expect(_dts_jest_runtime_.snapshot(20)).toMatchSnapshot();});
 
 
 test.only(\\"description-only\\", function () {expect(_dts_jest_runtime_.snapshot(23)).toMatchSnapshot();});
 
 
 
-test(\\"T.in_block();\\", function () {expect(_dts_jest_runtime_.snapshot(27)).toMatchSnapshot();});
+test(\\"T.in_block()\\", function () {expect(_dts_jest_runtime_.snapshot(27)).toMatchSnapshot();});
 
 
 

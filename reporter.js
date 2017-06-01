@@ -1,1 +1,1 @@
-module.exports = require('./lib/index').reporter;
+module.exports = require('./lib/index').Reporter;

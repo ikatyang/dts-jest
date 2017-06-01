@@ -10,6 +10,15 @@ All changes to this project will be documented in this file.
 > - 🏠 [Internal]
 > - 💅 [Polish]
 
+## Unreleased
+
+#### 💥 Breaking Change
+- setup a server for initializing TS source file at once
+- remove useless config `type_detail`, `type_format`, `snapshot_formatter`
+
+#### 🚀 New Feature
+- allow to use `<rootDir>` in config `tsconfig`
+
 ## v20.0.2 (2017-05-16)
 
 #### 🐛 Bug Fix

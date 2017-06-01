@@ -5,7 +5,7 @@ import {transform} from '../transform';
 const transform_fixture = (relative_path: string) => {
   const source_filename = path.resolve(__dirname, relative_path);
   const source_text = fs.readFileSync(source_filename, 'utf8');
-  return transform(source_text, source_filename); // TODO
+  return transform(source_text, source_filename);
 };
 
 it('should transform correctly', () => {

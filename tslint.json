@@ -1,3 +1,7 @@
 {
-  "extends": ["tslint-config-ikatyang"]
+  "extends": "tslint-config-ikatyang",
+  "rules": {
+    "no-magic-numbers": false,
+    "no-non-null-assertion": false
+  }
 }

@@ -17,7 +17,7 @@ This project uses the same MAJOR.MINOR version as Jest.
 using npm
 
 ```sh
-npm install --save--dev jest dts-jest
+npm install --save-dev jest dts-jest
 ```
 
 using yarn
@@ -35,17 +35,28 @@ Modify your [Jest config](https://facebook.github.io/jest/docs/en/configuration.
 ```json
 {
   "scripts": {
-    "test": "jest"
+    "test": "dts-jest & jest"
   },
   "jest": {
-    "transform": {"/dts-jest/.+\\.ts$": "dts-jest"},
+    "moduleFileExtensions": ["ts", "js"],
     "testRegex": "/dts-jest/.+\\.ts$",
-    "moduleFileExtensions": ["ts", "js"]
+    "transform": {"/dts-jest/.+\\.ts$": "dts-jest/transform"},
+    "reporters": ["default", "dts-jest/reporter"]
   }
 }
 ```
 
 This setup allow you to test files `**/dts-jest/**/*.ts` via dts-jest.
+
+**NOTE** If you want to use the `--config jest.json` option, make sure passing the same argument to `dts-jest` too, for example:
+
+```sh
+# pass --config option to dts-jest too
+dts-jest --config ./jest.json & jest --config ./jest.json
+
+# you don't have to pass other options
+dts-jest --config ./jest.json & jest --config ./jest.json --watch
+```
 
 ## Writing Tests
 
@@ -116,22 +127,14 @@ Configs are in `_dts_jest_` field of Jest config `globals`.
 There are several options
 
 - tsconfig
-  - default: `{}`
+  - default: `<rootDir>/tsconfig.json`
   - specify which *path of `tsconfig.json` (string)* or *compilerOptions (object)* to use
-- reporter
-  - default: `"\nInferred\n\n{{expression,2}}\n\nto be\n\n{{snapshot,2}}"`
-  - specify template of log message for `:show` flag
-    - `{{kind,spaces}}`
-      - kind: `expression` | `snapshot`
-      - spaces: how many spaces to be used as indentation
-- snapshot_formatter
-  - default: `(snapshot: string) => snapshot`
-  - specify a path to a module used as snapshot formatter
-  - `module.exports = (snapshot: string, kind: 'type' | 'error') => string` ( [example](https://github.com/ikatyang/dts-jest/blob/master/fixtures/setup/snapshot-formatter/snapshot-formatter.ts) )
-- type_detail
+- server_port
+  - default: `10086`
+  - specify which port to use for the dts-jest server
+- debug
   - default: `false`
-- type_format
-  - default: `ts.TypeFormatFlags.NoTruncation`
+  - print some messages for debugging
 
 **NOTE**: paths are relative to `process.cwd()`
 
