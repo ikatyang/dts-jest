@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`#report() should return correctly 1`] = `
+"
+Inferred
+
+  expression 1
+
+to be
+
+  snapshot 1
+"
+`;

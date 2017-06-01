@@ -4,7 +4,14 @@ import * as request from 'request';
 import * as ts from 'typescript';
 import {get_debug, get_server_port, get_tsconfig} from './config';
 import {package_name, JestConfig, Snapshots, TriggerLines} from './definitions';
-import {traverse_node} from './utils';
+import {get_snapshots, request_server} from './utils';
+
+export enum ServerPage {
+  Snapshots = '/snapshots',
+  Close = '/close',
+  PID = '/pid',
+  Reset = '/reset',
+}
 
 export class Server {
 
@@ -31,17 +38,21 @@ export class Server {
     this.log(`listening on port ${port}`);
   }
 
+  public static request_close(port: number) {
+    return request_server(port, ServerPage.Close);
+  }
+
+  public static request_reset_mark(port: number) {
+    return request_server(port, ServerPage.Reset);
+  }
+
+  public static request_reset_start(port: number, filenames: string[]) {
+    return request_server(port, ServerPage.Reset, {filename: filenames});
+  }
+
   public static request_pid(port: number, callback: (pid: number) => void) {
-    request.get(`http://127.0.0.1:${port}/pid`, (error, response, body) => {
-      if (error || response.statusCode !== 200) {
-        throw new Error(`Cannot get PID: ${
-          error
-            ? error
-            : response.statusCode
-        }`);
-      } else {
-        callback(+body);
-      }
+    return request_server(port, ServerPage.PID, undefined, body => {
+      callback(+body);
     });
   }
 
@@ -50,38 +61,17 @@ export class Server {
       filename: string,
       trigger_lines: TriggerLines,
       callback: (snapshots: Snapshots) => void) {
-    request.get(
-      `http://127.0.0.1:${port}/snapshots`,
+    request_server(
+      port,
+      ServerPage.Snapshots,
       {
-        qs: {
-          filename,
-          lines: trigger_lines.join(','),
-        },
+        filename,
+        lines: trigger_lines.join(','),
       },
-      (error, response, body) => {
-        if (error || response.statusCode !== 200) {
-          callback({});
-        } else {
-          callback(JSON.parse(body));
-        }
+      body => {
+        callback(JSON.parse(body));
       },
     );
-  }
-
-  public static request_close(port: number) {
-    request.get(`http://127.0.0.1:${port}/close`);
-  }
-
-  public static request_reset_mark(port: number) {
-    request.get(`http://127.0.0.1:${port}/reset`);
-  }
-
-  public static request_reset_start(port: number, filenames: string[]) {
-    request.get(`http://127.0.0.1:${port}/reset`, {
-      qs: {
-        filename: filenames,
-      },
-    });
   }
 
   public reset_program(filenames: string[]) {
@@ -106,7 +96,7 @@ export class Server {
   }
 
   public init_app() {
-    this.app.get('/snapshots', (request, response) => {
+    this.app.get(ServerPage.Snapshots, (request, response) => {
       const filename = (request.query.filename as string);
       const lines = (request.query.lines as string).split(',').map(str => +str);
       const callback = () => {
@@ -119,13 +109,13 @@ export class Server {
         callback();
       }
     });
-    this.app.get('/pid', (_, response) => {
+    this.app.get(ServerPage.PID, (_, response) => {
       response.send(process.pid.toString());
     });
-    this.app.get('/close', () => {
+    this.app.get(ServerPage.Close, () => {
       this.close();
     });
-    this.app.get('/reset', request => {
+    this.app.get(ServerPage.Reset, request => {
       const filename: undefined | string | string[] = request.query.filename;
       if (filename === undefined) {
         this.reseting = true;
@@ -145,7 +135,7 @@ export class Server {
     process.exit(0);
   }
 
-  private log(message: string) {
+  public log(message: string) {
     if (this.debug) {
       // tslint:disable-next-line:no-console
       console.log(`[${package_name}] ${message}`);
@@ -156,41 +146,3 @@ export class Server {
 
 export const create_server = (config: JestConfig) =>
   new Server(config);
-
-function get_snapshots(program: ts.Program, source_filename: string, lines: number[]) {
-  const source_file = program.getSourceFile(source_filename);
-  const snapshots: Snapshots = {};
-
-  const rest_lines = lines.slice();
-
-  const diagnostics = ts.getPreEmitDiagnostics(program, source_file);
-  for (const diagnostic of diagnostics) {
-    // tslint:disable-next-line:no-unnecessary-type-assertion
-    const position = diagnostic.start!;
-    const {line: error_line} = source_file.getLineAndCharacterOfPosition(position);
-    const trigger_line = error_line - 1;
-
-    const line_index = rest_lines.indexOf(trigger_line);
-    if (line_index !== -1) {
-      snapshots[trigger_line] = ts.flattenDiagnosticMessageText(diagnostic.messageText, '\n');
-      rest_lines.splice(line_index, 1);
-    }
-  }
-
-  const checker = program.getTypeChecker();
-  traverse_node(source_file, node => {
-    const position = node.getStart(source_file);
-    const {line: expression_line} = source_file.getLineAndCharacterOfPosition(position);
-    const trigger_line = expression_line - 1;
-
-    const line_index = rest_lines.indexOf(trigger_line);
-    if (line_index !== -1) {
-      const target_node = node.getChildAt(0);
-      const type = checker.getTypeAtLocation(target_node);
-      snapshots[trigger_line] = checker.typeToString(type, node, ts.TypeFormatFlags.NoTruncation);
-      rest_lines.splice(line_index, 1);
-    }
-  });
-
-  return snapshots;
-}
