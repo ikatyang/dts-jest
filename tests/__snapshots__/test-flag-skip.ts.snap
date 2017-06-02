@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test_flag_skip(1) 1`] = `"{ result: any; }"`;
+
+exports[`test_flag_skip(3) 1`] = `"{ result: any; }"`;

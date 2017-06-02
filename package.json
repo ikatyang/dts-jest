@@ -25,7 +25,7 @@
     "test": "jest --config ./jest.json --no-cache",
     "pretest-coverage": "rm -rf ./coverage",
     "test-coverage": "yarn run test -- --coverage",
-    "test-integration": "jest --config ./tests/jest.json --no-cache --verbose"
+    "test-integration": "node ./bin/cli.js --config ./jest.json & jest --config ./tests/jest.json --no-cache --verbose"
   },
   "dependencies": {
     "express": "^4.15.3",
