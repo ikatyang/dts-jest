@@ -136,8 +136,6 @@ There are several options
   - default: `false`
   - print some messages for debugging
 
-**NOTE**: paths are relative to `process.cwd()`
-
 For example:
 
 (./package.json)
