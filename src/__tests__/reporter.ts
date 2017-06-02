@@ -20,6 +20,8 @@ import {transformer_filename} from '../definitions';
 import {Reporter} from '../reporter';
 import {Server} from '../server';
 
+// tslint:disable:no-unbound-method
+
 const process_on = process.on;
 const process_argv = process.argv;
 const process_exit = process.exit;
@@ -73,6 +75,7 @@ it('should setup process event corretly while watch is true and counter is 0', (
 });
 
 it('should not setup process event twice while watch is false or counter is not 0', () => {
+  // tslint:disable-next-line:no-unused-variable
   const reporter = new Reporter({watch: false}, undefined);
   expect(process.on).toHaveBeenCalledTimes(1);
 });

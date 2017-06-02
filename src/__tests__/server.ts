@@ -27,7 +27,8 @@ jest.mock('../helpers', () => ({
 import * as ts from 'typescript';
 import {create_snapshots} from '../helpers';
 import {create_server, Server} from '../server';
-import {request_server} from '../utils';
+
+// tslint:disable:no-unbound-method
 
 const port = 10086;
 
@@ -57,19 +58,29 @@ test('Server.request_reset_start() should request correctly', () => {
     3: 'snapshot 3',
   });
   expect(Server.request_snapshots(port, 'f1.ts', [1, 2, 3], snapshots => {
-    expect(snapshots).toMatchSnapshot();
+    expect(snapshots).toMatchSnapshot(); // tslint:disable-line:no-void-expression
   })).toMatchSnapshot();
 });
 
 describe('server', () => {
   const exit = process.exit;
   const log = console.log;
+
   beforeAll(() => {
     Object.defineProperty(process, 'exit', {
       value: jest.fn(),
     });
     Object.defineProperty(console, 'log', {
       value: jest.fn(),
+    });
+  });
+
+  afterAll(() => {
+    Object.defineProperty(process, 'exit', {
+      value: exit,
+    });
+    Object.defineProperty(console, 'log', {
+      value: log,
     });
   });
 
@@ -125,12 +136,6 @@ describe('server', () => {
       expect(callback).not.toBeCalled();
       expect(server.program).toBe(origin_program);
       done();
-    });
-  });
-
-  afterAll(() => {
-    Object.defineProperty(console, 'log', {
-      value: log,
     });
   });
 });
@@ -194,16 +199,19 @@ describe('server events', () => {
     it('should set reseting while filename is undefined', () => {
       const [event, callback]: EventReturn = Server.prototype.init_event_reset.call(server);
       callback({query: {filename: undefined}}, undefined);
+      expect(event).toMatchSnapshot();
       expect(server.reseting).toBe(true);
     });
     it('should reset program while filename is string', () => {
       const [event, callback]: EventReturn = Server.prototype.init_event_reset.call(server);
       callback({query: {filename}}, undefined);
+      expect(event).toMatchSnapshot();
       expect(server.reset_program).toBeCalledWith([filename]);
     });
     it('should reset program while filename is string[]', () => {
       const [event, callback]: EventReturn = Server.prototype.init_event_reset.call(server);
       callback({query: {filename: [filename]}}, undefined);
+      expect(event).toMatchSnapshot();
       expect(server.reset_program).toBeCalledWith([filename]);
     });
   });

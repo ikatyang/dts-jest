@@ -1,6 +1,6 @@
 import * as express from 'express';
 import * as http from 'http';
-import * as request from 'request';
+import * as request from 'request'; // tslint:disable-line:no-unused-variable
 import * as ts from 'typescript';
 import {get_debug, get_server_port, get_tsconfig} from './config';
 import {package_name, JestConfig, Snapshots, TriggerLines} from './definitions';

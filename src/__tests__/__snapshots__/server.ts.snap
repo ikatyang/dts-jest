@@ -59,6 +59,12 @@ exports[`server events Server#init_event_close() should setup correctly 1`] = `"
 
 exports[`server events Server#init_event_pid() should setup correctly 1`] = `"/pid"`;
 
+exports[`server events Server#init_event_reset() should reset program while filename is string 1`] = `"/reset"`;
+
+exports[`server events Server#init_event_reset() should reset program while filename is string[] 1`] = `"/reset"`;
+
+exports[`server events Server#init_event_reset() should set reseting while filename is undefined 1`] = `"/reset"`;
+
 exports[`server events Server#init_event_snapshots() should call callback while reseting is false 1`] = `"/snapshots"`;
 
 exports[`server events Server#init_event_snapshots() should push callback to callbacks while reseting is true 1`] = `"/snapshots"`;
