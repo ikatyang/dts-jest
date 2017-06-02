@@ -2,7 +2,7 @@
 
 exports[`Reporter#get_filenames() should return correctly 1`] = `
 Array [
-  "/Users/ikatyang/Documents/GitHub/dts-jest/fixtures/find-files/a1.ts",
-  "/Users/ikatyang/Documents/GitHub/dts-jest/fixtures/find-files/matched/a1.ts",
+  "a1.ts",
+  "matched/a1.ts",
 ]
 `;

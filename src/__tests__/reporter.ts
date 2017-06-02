@@ -116,6 +116,9 @@ test('Reporter#get_filenames() should return correctly', done => {
   let match_results: string[];
   let regex_results: string[];
 
+  const relativize = (filenames: string[]) =>
+    filenames.map(filename => path.relative(config.rootDir, filename));
+
   const check_if_done = () => {
     if (++counter === 2) {
       expect(match_results).toEqual(regex_results);
@@ -129,7 +132,7 @@ test('Reporter#get_filenames() should return correctly', done => {
       config: {...config, testMatch},
     },
     (filenames: string[]) => {
-      match_results = filenames;
+      match_results = relativize(filenames);
       check_if_done();
     },
   );
@@ -139,7 +142,7 @@ test('Reporter#get_filenames() should return correctly', done => {
       config: {...config, testRegex},
     },
     (filenames: string[]) => {
-      regex_results = filenames;
+      regex_results = relativize(filenames);
       check_if_done();
     },
   );
