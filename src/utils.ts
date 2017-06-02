@@ -25,6 +25,7 @@ export const request_server = (port: number, page: ServerPage, args?: {}, callba
       qs: args,
     },
     (error, response, body) => {
+      // istanbul ignore next
       if (error || response.statusCode !== 200) {
         throw new Error(`Error: url=${url} args=${args} -> ${
           error

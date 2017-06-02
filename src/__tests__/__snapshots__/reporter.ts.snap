@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Reporter#get_filenames() should return correctly 1`] = `
+Array [
+  "/Users/ikatyang/Documents/GitHub/dts-jest/fixtures/find-files/a1.ts",
+  "/Users/ikatyang/Documents/GitHub/dts-jest/fixtures/find-files/matched/a1.ts",
+]
+`;

@@ -53,12 +53,12 @@ Object {
 
 exports[`Server.request_reset_start() should request correctly 3`] = `undefined`;
 
-exports[`server #log() should log if debug = true 1`] = `"[dts-jest] message"`;
+exports[`server Server#log() should log if debug = true 1`] = `"[dts-jest] message"`;
 
-exports[`server events server#init_event_close() should setup correctly 1`] = `"/close"`;
+exports[`server events Server#init_event_close() should setup correctly 1`] = `"/close"`;
 
-exports[`server events server#init_event_pid() should setup correctly 1`] = `"/pid"`;
+exports[`server events Server#init_event_pid() should setup correctly 1`] = `"/pid"`;
 
-exports[`server events server#init_event_snapshots() should call callback while reseting is false 1`] = `"/snapshots"`;
+exports[`server events Server#init_event_snapshots() should call callback while reseting is false 1`] = `"/snapshots"`;
 
-exports[`server events server#init_event_snapshots() should push callback to callbacks while reseting is true 1`] = `"/snapshots"`;
+exports[`server events Server#init_event_snapshots() should push callback to callbacks while reseting is true 1`] = `"/snapshots"`;

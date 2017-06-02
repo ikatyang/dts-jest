@@ -14,6 +14,9 @@ export class Reporter {
   public global_config: JestGlobalConfig;
   public port: number;
 
+  public server_pid: number | undefined;
+  public exiting: boolean = false;
+
   constructor(global_config: JestGlobalConfig, _options: any) {
     const {config} = get_jest_configs(process.argv.slice(2));
     this.port = get_server_port(config);
@@ -21,29 +24,30 @@ export class Reporter {
     this.global_config = global_config;
 
     if (global_config.watch && counter++ === 0) {
-      let server_pid: number | undefined;
-      let exiting = false;
-
-      const exit = () => {
-        process.kill(server_pid!);
-        process.exit();
-      };
-
-      Server.request_pid(this.port, pid => {
-        server_pid = pid;
-        if (exiting) {
-          exit();
-        }
-      });
-
-      process.on('exit', () => {
-        if (server_pid === undefined) {
-          exiting = true;
-        } else {
-          exit();
-        }
-      });
+      this.init_process_event();
     }
+  }
+
+  public init_process_event() {
+    Server.request_pid(this.port, pid => {
+      this.server_pid = pid;
+      if (this.exiting) {
+        this.exit_process();
+      }
+    });
+
+    process.on('exit', () => {
+      if (this.server_pid === undefined) {
+        this.exiting = true;
+      } else {
+        this.exit_process();
+      }
+    });
+  }
+
+  public exit_process() {
+    process.kill(this.server_pid!);
+    process.exit();
   }
 
   public onRunStart() {
@@ -86,7 +90,11 @@ export class Reporter {
       },
       this.config.rootDir,
       (error: any, vfiles: VFile[]) => {
-        const filenames = error ? [] : vfiles.map(vfile => vfile.path);
+        // istanbul ignore next
+        if (error) {
+          throw new Error(error);
+        }
+        const filenames = vfiles.map(vfile => vfile.path);
         callback(filenames);
       },
     );
@@ -96,10 +104,12 @@ export class Reporter {
 
 function create_ignore_matcher(patterns: string[]) {
   const pattern = patterns.join('|');
+  // istanbul ignore next
+  if (pattern === '') {
+    return () => false;
+  }
   const regex = create_matcher_regex(pattern);
-  return (pattern === '')
-    ? () => false
-    : (filename: string) => regex.test(filename);
+  return (filename: string) => regex.test(filename);
 }
 
 function create_transform_matcher(transform: JestConfig['transform']) {

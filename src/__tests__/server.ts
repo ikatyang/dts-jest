@@ -85,18 +85,18 @@ describe('server', () => {
     } as any);
   });
 
-  test('#close() should close server and exit process', () => {
+  test('Server#close() should close server and exit process', () => {
     server.close();
     expect(server.server.close).toBeCalled();
     expect(process.exit).toBeCalled();
   });
 
-  test('#log() should log if debug = true', () => {
+  test('Server#log() should log if debug = true', () => {
     Server.prototype.log.call({debug: true}, 'message');
     expect((console.log as any as jest.MockInstance<any>).mock.calls[0][0]).toMatchSnapshot();
   });
 
-  test('#reset_program() should reset program and execute callbacks if exist', done => {
+  test('Server#reset_program() should reset program and execute callbacks if exist', done => {
     const origin_program = server.program;
     server.reset_program([]);
 
@@ -111,7 +111,7 @@ describe('server', () => {
     });
   });
 
-  test('#reset_program() should not reset program and while it is not the last reseting', done => {
+  test('Server#reset_program() should not reset program and while it is not the last reseting', done => {
     const origin_program = server.program;
     server.reset_program([]);
 
@@ -140,7 +140,7 @@ describe('server events', () => {
 
   const app = {get: (...args: any[]) => args};
 
-  describe('server#init_event_snapshots()', () => {
+  describe('Server#init_event_snapshots()', () => {
     const request = {query: {filename: 'path/to/somewhere', lines: '1,2,3'}};
 
     let response: {send(): void};
@@ -166,7 +166,7 @@ describe('server events', () => {
     });
   });
 
-  test('server#init_event_pid() should setup correctly', () => {
+  test('Server#init_event_pid() should setup correctly', () => {
     const server = {app};
     const [event, callback]: EventReturn = Server.prototype.init_event_pid.call(server);
     const response = {send: jest.fn()};
@@ -175,7 +175,7 @@ describe('server events', () => {
     expect(response.send).toBeCalledWith(process.pid.toString());
   });
 
-  test('server#init_event_close() should setup correctly', () => {
+  test('Server#init_event_close() should setup correctly', () => {
     const server = {app, close: jest.fn()};
     const [event, callback]: EventReturn = Server.prototype.init_event_close.call(server);
     callback(undefined, undefined);
@@ -183,7 +183,7 @@ describe('server events', () => {
     expect(server.close).toBeCalled();
   });
 
-  describe('server#init_event_reset()', () => {
+  describe('Server#init_event_reset()', () => {
     let server: {app: any, reset_program: any, reseting: any};
     beforeEach(() => {
       server = {app, reset_program: jest.fn(), reseting: false};
