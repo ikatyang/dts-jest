@@ -4,7 +4,8 @@ import * as request from 'request';
 import * as ts from 'typescript';
 import {get_debug, get_server_port, get_tsconfig} from './config';
 import {package_name, JestConfig, Snapshots, TriggerLines} from './definitions';
-import {get_snapshots, request_server} from './utils';
+import {create_snapshots} from './helpers';
+import {request_server} from './utils';
 
 export enum ServerPage {
   Snapshots = '/snapshots',
@@ -27,7 +28,7 @@ export class Server {
 
   constructor(config: JestConfig) {
     this.app = express();
-    this.init_app();
+    this.init_events();
 
     const port = get_server_port(config);
     this.server = this.app.listen(port);
@@ -96,12 +97,19 @@ export class Server {
     });
   }
 
-  public init_app() {
-    this.app.get(ServerPage.Snapshots, (request, response) => {
+  public init_events() {
+    this.init_event_snapshots();
+    this.init_event_pid();
+    this.init_event_close();
+    this.init_event_reset();
+  }
+
+  public init_event_snapshots() {
+    return this.app.get(ServerPage.Snapshots, (request, response) => {
       const filename = (request.query.filename as string);
       const lines = (request.query.lines as string).split(',').map(str => +str);
       const callback = () => {
-        const snapshots = get_snapshots(this.program, filename, lines);
+        const snapshots = create_snapshots(this.program, filename, lines);
         response.send(JSON.stringify(snapshots));
       };
       if (this.reseting) {
@@ -110,13 +118,22 @@ export class Server {
         callback();
       }
     });
-    this.app.get(ServerPage.PID, (_, response) => {
+  }
+
+  public init_event_pid() {
+    return this.app.get(ServerPage.PID, (_, response) => {
       response.send(process.pid.toString());
     });
-    this.app.get(ServerPage.Close, () => {
+  }
+
+  public init_event_close() {
+    return this.app.get(ServerPage.Close, () => {
       this.close();
     });
-    this.app.get(ServerPage.Reset, request => {
+  }
+
+  public init_event_reset() {
+    return this.app.get(ServerPage.Reset, request => {
       const filename: undefined | string | string[] = request.query.filename;
       if (filename === undefined) {
         this.reseting = true;
