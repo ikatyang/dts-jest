@@ -17,17 +17,23 @@ export const defaults = <T>(value: undefined | T, default_value: T): T =>
     ? default_value
     : value;
 
-export const request_server = (port: number, page: ServerPage, args?: {}, callback?: (body: string) => void) => {
+export const request_server = (
+    method: 'GET' | 'POST',
+    port: number,
+    page: ServerPage,
+    args?: {},
+    callback?: (body: string) => void) => {
   const url = `http://127.0.0.1:${port}${page}`;
-  return request.get(
+  return request(
     url,
     {
+      method,
       qs: args,
     },
     (error, response, body) => {
       // istanbul ignore next
       if (error || response.statusCode !== 200) {
-        throw new Error(`Error: url=${url} args=${args} -> ${
+        throw new Error(`Error: url=${url} method=${method} args=${JSON.stringify(args)} -> ${
           error
             ? error
             : `status=${response.statusCode}`

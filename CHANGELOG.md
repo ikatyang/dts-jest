@@ -10,6 +10,14 @@ All changes to this project will be documented in this file.
 > - 🏠 [Internal]
 > - 💅 [Polish]
 
+## Unreleased
+
+#### 🐛 Bug Fix
+- Fix unexpected filenames
+
+#### 🏠 Internal
+- Use POST for modification actions
+
 ## v20.0.3 (2017-06-03)
 
 #### 💥 Breaking Change

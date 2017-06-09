@@ -40,19 +40,19 @@ export class Server {
   }
 
   public static request_close(port: number) {
-    return request_server(port, ServerPage.Close);
+    return request_server('POST', port, ServerPage.Close);
   }
 
   public static request_reset_mark(port: number) {
-    return request_server(port, ServerPage.Reset);
+    return request_server('POST', port, ServerPage.Reset);
   }
 
   public static request_reset_start(port: number, filenames: string[]) {
-    return request_server(port, ServerPage.Reset, {filename: filenames});
+    return request_server('POST', port, ServerPage.Reset, {filenames: JSON.stringify(filenames)});
   }
 
   public static request_pid(port: number, callback: (pid: number) => void) {
-    return request_server(port, ServerPage.PID, undefined, body => {
+    return request_server('GET', port, ServerPage.PID, undefined, body => {
       callback(+body);
     });
   }
@@ -63,6 +63,7 @@ export class Server {
       trigger_lines: TriggerLines,
       callback: (snapshots: Snapshots) => void) {
     request_server(
+      'GET',
       port,
       ServerPage.Snapshots,
       {
@@ -127,22 +128,18 @@ export class Server {
   }
 
   public init_event_close() {
-    return this.app.get(ServerPage.Close, () => {
+    return this.app.post(ServerPage.Close, () => {
       this.close();
     });
   }
 
   public init_event_reset() {
-    return this.app.get(ServerPage.Reset, request => {
-      const filename: undefined | string | string[] = request.query.filename;
-      if (filename === undefined) {
+    return this.app.post(ServerPage.Reset, request => {
+      const filenames: undefined | string = request.query.filenames;
+      if (filenames === undefined) {
         this.reseting = true;
       } else {
-        if (typeof filename === 'string') {
-          this.reset_program([filename]);
-        } else {
-          this.reset_program(filename);
-        }
+        this.reset_program(JSON.parse(filenames));
       }
     });
   }

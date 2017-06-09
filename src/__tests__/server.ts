@@ -2,18 +2,19 @@ import {RequestCallback} from 'request';
 
 let body: string;
 
-jest.mock('request', () => ({
-  get: (url: string, options: any, callback: RequestCallback) => {
+jest.mock('request', () =>
+  (url: string, options: any, callback: RequestCallback) => {
     callback(null, {statusCode: 200} as any, body);
     return [url, options];
   },
-}));
+);
 
 jest.mock('express', () => () => ({
   listen: () => ({
     close: jest.fn(),
   }),
   get: jest.fn(),
+  post: jest.fn(),
 }));
 
 jest.mock('typescript', () => ({
@@ -143,7 +144,10 @@ describe('server', () => {
 describe('server events', () => {
   type EventReturn = [string, (request: any, response: any) => void];
 
-  const app = {get: (...args: any[]) => args};
+  const app = {
+    get: (...args: any[]) => args,
+    post: (...args: any[]) => args,
+  };
 
   describe('Server#init_event_snapshots()', () => {
     const request = {query: {filename: 'path/to/somewhere', lines: '1,2,3'}};
@@ -198,19 +202,13 @@ describe('server events', () => {
 
     it('should set reseting while filename is undefined', () => {
       const [event, callback]: EventReturn = Server.prototype.init_event_reset.call(server);
-      callback({query: {filename: undefined}}, undefined);
+      callback({query: {filenames: undefined}}, undefined);
       expect(event).toMatchSnapshot();
       expect(server.reseting).toBe(true);
     });
     it('should reset program while filename is string', () => {
       const [event, callback]: EventReturn = Server.prototype.init_event_reset.call(server);
-      callback({query: {filename}}, undefined);
-      expect(event).toMatchSnapshot();
-      expect(server.reset_program).toBeCalledWith([filename]);
-    });
-    it('should reset program while filename is string[]', () => {
-      const [event, callback]: EventReturn = Server.prototype.init_event_reset.call(server);
-      callback({query: {filename: [filename]}}, undefined);
+      callback({query: {filenames: JSON.stringify([filename])}}, undefined);
       expect(event).toMatchSnapshot();
       expect(server.reset_program).toBeCalledWith([filename]);
     });

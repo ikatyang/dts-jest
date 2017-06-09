@@ -4,6 +4,7 @@ exports[`Server.request_close() should request correctly 1`] = `
 Array [
   "http://127.0.0.1:10086/close",
   Object {
+    "method": "POST",
     "qs": undefined,
   },
 ]
@@ -15,6 +16,7 @@ exports[`Server.request_pid() should request correctly 2`] = `
 Array [
   "http://127.0.0.1:10086/pid",
   Object {
+    "method": "GET",
     "qs": undefined,
   },
 ]
@@ -24,6 +26,7 @@ exports[`Server.request_reset_mark() should request correctly 1`] = `
 Array [
   "http://127.0.0.1:10086/reset",
   Object {
+    "method": "POST",
     "qs": undefined,
   },
 ]
@@ -33,11 +36,9 @@ exports[`Server.request_reset_start() should request correctly 1`] = `
 Array [
   "http://127.0.0.1:10086/reset",
   Object {
+    "method": "POST",
     "qs": Object {
-      "filename": Array [
-        "f1.ts",
-        "f2.ts",
-      ],
+      "filenames": "[\\"f1.ts\\",\\"f2.ts\\"]",
     },
   },
 ]
@@ -60,8 +61,6 @@ exports[`server events Server#init_event_close() should setup correctly 1`] = `"
 exports[`server events Server#init_event_pid() should setup correctly 1`] = `"/pid"`;
 
 exports[`server events Server#init_event_reset() should reset program while filename is string 1`] = `"/reset"`;
-
-exports[`server events Server#init_event_reset() should reset program while filename is string[] 1`] = `"/reset"`;
 
 exports[`server events Server#init_event_reset() should set reseting while filename is undefined 1`] = `"/reset"`;
 
