@@ -44,3 +44,26 @@ export const request_server = (
     },
   );
 };
+
+// https://github.com/eslint/typescript-eslint-parser/blob/f5fcc87/lib/node-utils.js#L305
+function is_token(node: ts.Node) {
+  return node.kind >= ts.SyntaxKind.FirstToken && node.kind <= ts.SyntaxKind.LastToken;
+}
+
+// https://github.com/eslint/typescript-eslint-parser/blob/f5fcc87/lib/node-utils.js#L646
+export function get_node_container(source_file: ts.SourceFile, start: number, end: number) {
+  let container: null | ts.Node = null;
+  (function walk(node: ts.Node) {
+    const nodeStart = node.pos;
+    const nodeEnd = node.end;
+    if (start >= nodeStart && end <= nodeEnd) {
+      if (is_token(node)) {
+        container = node;
+      } else {
+        ts.forEachChild(node, walk);
+      }
+    }
+  })(source_file);
+
+  return container;
+}

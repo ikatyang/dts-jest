@@ -46,9 +46,33 @@ test(\\"T.in_block()\\", function () {expect(_dts_jest_runtime_.snapshot(29)).to
 `;
 
 exports[`should transform correctly with template token 1`] = `
-"var _dts_jest_runtime_;beforeAll(function (done) {require(\\"dts-jest\\").setup(module, (function () {try {return _dts_jest_;} catch (e) {return {};}})(), {\\"2\\":\\"console.log(x)\\"}, function () {_dts_jest_runtime_ = arguments[0];done();});});
+"var _dts_jest_runtime_;beforeAll(function (done) {require(\\"dts-jest\\").setup(module, (function () {try {return _dts_jest_;} catch (e) {return {};}})(), {\\"4\\":\\"R.keysIn(f)\\",\\"10\\":\\"R.keysIn(f)\\",\\"26\\":\\"R.toString(new Point(1, 2))\\"}, function () {_dts_jest_runtime_ = arguments[0];done();});});
 
-test(\\"console.log(x)\\", function () {expect(_dts_jest_runtime_.snapshot(2)).toMatchSnapshot();});
+
+
+test(\\"R.keysIn(f)\\", function () {expect(_dts_jest_runtime_.snapshot(4)).toMatchSnapshot();});
+
+
+
+
+
+test(\\"R.keysIn(f)\\", function () {expect(_dts_jest_runtime_.snapshot(10)).toMatchSnapshot();});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+test(\\"R.toString(new Point(1, 2))\\", function () {expect(_dts_jest_runtime_.snapshot(26)).toMatchSnapshot();});
 
 "
 `;

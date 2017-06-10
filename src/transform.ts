@@ -13,7 +13,7 @@ import {
   TriggerMatchArray,
   TriggerMatchIndex,
 } from './definitions';
-import {defaults, remove_spaces, traverse_node} from './utils';
+import {defaults, get_node_container, remove_spaces, traverse_node} from './utils';
 
 export const transform = (source_text: string, source_filename: string, _jest_config?: any) => {
   const source_file = ts.createSourceFile(source_filename, source_text, ts.ScriptTarget.Latest, false);
@@ -49,30 +49,48 @@ function create_triggers(source_file: ts.SourceFile): Trigger[] {
   type PartialTrigger = Pick<Trigger, 'flag' | 'method' | 'description'>;
   const partial_triggers: {[line: number]: PartialTrigger} = {};
 
-  while (scanner.scan() !== ts.SyntaxKind.EndOfFileToken) {
-    let token = scanner.getToken();
-    if (token === ts.SyntaxKind.CloseBraceToken) {
-      token = scanner.reScanTemplateToken();
-    }
-    if (token === ts.SyntaxKind.SingleLineCommentTrivia) {
-      const comment = scanner.getTokenText();
-      const match = comment.match(trigger_regex);
-      if (match !== null) {
-        const trigger_match = match as TriggerMatchArray;
+  // https://github.com/eslint/typescript-eslint-parser/blob/f5fcc87/lib/convert-comments.js#L95
+  let token = scanner.scan();
+  while (token !== ts.SyntaxKind.EndOfFileToken) {
+    const start = scanner.getTokenPos();
+    const end = scanner.getTextPos();
 
-        const {flag, method} = get_flag_and_method(trigger_match[TriggerMatchIndex.Flag]);
-        const description = trigger_match[TriggerMatchIndex.Description];
+    let container: ts.Node | null = null;
+    switch (token) {
+      case ts.SyntaxKind.SingleLineCommentTrivia: {
+        const comment = scanner.getTokenText();
+        const match = comment.match(trigger_regex);
+        if (match !== null) {
+          const trigger_match = match as TriggerMatchArray;
 
-        const position = scanner.getTokenPos();
-        const {line} = source_file.getLineAndCharacterOfPosition(position);
+          const {flag, method} = get_flag_and_method(trigger_match[TriggerMatchIndex.Flag]);
+          const description = trigger_match[TriggerMatchIndex.Description];
 
-        partial_triggers[line] = {
-          flag,
-          method,
-          description,
-        };
+          const position = scanner.getTokenPos();
+          const {line} = source_file.getLineAndCharacterOfPosition(position);
+
+          partial_triggers[line] = {
+            flag,
+            method,
+            description,
+          };
+        }
+        break;
       }
+      case ts.SyntaxKind.CloseBraceToken:
+        container = get_node_container(source_file, start, end);
+        if (container && (
+            container.kind === ts.SyntaxKind.TemplateMiddle ||
+            container.kind === ts.SyntaxKind.TemplateTail
+          )) {
+          token = scanner.reScanTemplateToken();
+          continue;
+        }
+        break;
+      default:
+        break;
     }
+    token = scanner.scan();
   }
 
   const triggers: Trigger[] = [];
