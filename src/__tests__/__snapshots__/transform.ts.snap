@@ -10,36 +10,36 @@ exports[`should throw error with unattachable trigger(s) 1`] = `
 `;
 
 exports[`should transform correctly 1`] = `
-"var _dts_jest_runtime_;beforeAll(function (done) {require(\\"dts-jest\\").setup(module, (function () {try {return _dts_jest_;} catch (e) {return {};}})(), {\\"2\\":\\"T.none()\\",\\"5\\":\\"T.none()\\",\\"8\\":\\"T.show()\\",\\"11\\":\\"T.show()\\",\\"14\\":\\"T.skip()\\",\\"17\\":\\"T.skip()\\",\\"20\\":\\"T.only()\\",\\"23\\":\\"T.only()\\",\\"27\\":\\"T.in_block()\\"}, function () {_dts_jest_runtime_ = arguments[0];done();});});
-
-test(\\"T.none()\\", function () {expect(_dts_jest_runtime_.snapshot(2)).toMatchSnapshot();});
-
-
-test(\\"description-none\\", function () {expect(_dts_jest_runtime_.snapshot(5)).toMatchSnapshot();});
-
-
-test(\\"T.show()\\", function () {console.log(_dts_jest_runtime_.report(8));});
-
-
-test(\\"description-show\\", function () {console.log(_dts_jest_runtime_.report(11));});
-
-
-test.skip(\\"T.skip()\\", function () {expect(_dts_jest_runtime_.snapshot(14)).toMatchSnapshot();});
-
-
-test.skip(\\"description-skip\\", function () {expect(_dts_jest_runtime_.snapshot(17)).toMatchSnapshot();});
-
-
-test.only(\\"T.only()\\", function () {expect(_dts_jest_runtime_.snapshot(20)).toMatchSnapshot();});
-
-
-test.only(\\"description-only\\", function () {expect(_dts_jest_runtime_.snapshot(23)).toMatchSnapshot();});
+"var _dts_jest_runtime_;beforeAll(function (done) {require(\\"dts-jest\\").setup(module, (function () {try {return _dts_jest_;} catch (e) {return {};}})(), {\\"4\\":\\"T.none()\\",\\"7\\":\\"T.none()\\",\\"10\\":\\"T.show()\\",\\"13\\":\\"T.show()\\",\\"16\\":\\"T.skip()\\",\\"19\\":\\"T.skip()\\",\\"22\\":\\"T.only()\\",\\"25\\":\\"T.only()\\",\\"29\\":\\"T.in_block()\\"}, function () {_dts_jest_runtime_ = arguments[0];done();});});
 
 
 
-test(\\"T.in_block()\\", function () {expect(_dts_jest_runtime_.snapshot(27)).toMatchSnapshot();});
+test(\\"T.none()\\", function () {expect(_dts_jest_runtime_.snapshot(4)).toMatchSnapshot();});
 
 
+test(\\"description-none\\", function () {expect(_dts_jest_runtime_.snapshot(7)).toMatchSnapshot();});
+
+
+test(\\"T.show()\\", function () {console.log(_dts_jest_runtime_.report(10));});
+
+
+test(\\"description-show\\", function () {console.log(_dts_jest_runtime_.report(13));});
+
+
+test.skip(\\"T.skip()\\", function () {expect(_dts_jest_runtime_.snapshot(16)).toMatchSnapshot();});
+
+
+test.skip(\\"description-skip\\", function () {expect(_dts_jest_runtime_.snapshot(19)).toMatchSnapshot();});
+
+
+test.only(\\"T.only()\\", function () {expect(_dts_jest_runtime_.snapshot(22)).toMatchSnapshot();});
+
+
+test.only(\\"description-only\\", function () {expect(_dts_jest_runtime_.snapshot(25)).toMatchSnapshot();});
+
+
+
+test(\\"T.in_block()\\", function () {expect(_dts_jest_runtime_.snapshot(29)).toMatchSnapshot();});
 
 
 "

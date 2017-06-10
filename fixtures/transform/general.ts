@@ -1,5 +1,7 @@
 declare const T: any;
 
+// other-comment
+
 // @dts-jest
 T.none();
 
@@ -28,5 +30,3 @@ T.only();
   // @dts-jest
   T.in_block();
 }
-
-// other-comments
