@@ -10,7 +10,7 @@ All changes to this project will be documented in this file.
 > - 🏠 [Internal]
 > - 💅 [Polish]
 
-## Unreleased
+## v20.0.6 (2017-06-10)
 
 #### 🐛 Bug Fix
 - Fix transforming for template token
