@@ -50,7 +50,10 @@ function create_triggers(source_file: ts.SourceFile): Trigger[] {
   const partial_triggers: {[line: number]: PartialTrigger} = {};
 
   while (scanner.scan() !== ts.SyntaxKind.EndOfFileToken) {
-    const token = scanner.getToken();
+    let token = scanner.getToken();
+    if (token === ts.SyntaxKind.CloseBraceToken) {
+      token = scanner.reScanTemplateToken();
+    }
     if (token === ts.SyntaxKind.SingleLineCommentTrivia) {
       const comment = scanner.getTokenText();
       const match = comment.match(trigger_regex);
