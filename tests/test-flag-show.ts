@@ -6,5 +6,5 @@ test_flag_show(1);
 // @dts-jest:show
 test_flag_show(2);
 
-// @dts-jest
+// @dts-jest:show optional-description
 test_flag_show(3);
