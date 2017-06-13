@@ -129,6 +129,9 @@ There are several options
 - tsconfig
   - default: `{}`
   - specify which *path of `tsconfig.json` (string)* or *compilerOptions (object)* to use
+- type_format
+  - default: `ts.TypeFormatFlags.NoTruncation`
+  - specify type format
 
 For example:
 

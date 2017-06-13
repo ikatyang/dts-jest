@@ -40,4 +40,5 @@ export enum TestMethod {
 
 export interface RawConfig {
   tsconfig?: string | ts.CompilerOptions;
+  type_format?: ts.TypeFormatFlags;
 }

@@ -15,6 +15,9 @@ All changes to this project will be documented in this file.
 #### 💥 Breaking Change
 - Remove server since tests should be separated
 
+#### 🚀 New Feature
+- Add config `type_format`
+
 ## v20.0.6 (2017-06-10)
 
 #### 🐛 Bug Fix
