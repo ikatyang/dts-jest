@@ -17,6 +17,7 @@ All changes to this project will be documented in this file.
 
 #### 🚀 New Feature
 - Add config `type_format`
+- Display description in `:show`
 
 ## v20.0.6 (2017-06-10)
 

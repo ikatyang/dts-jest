@@ -9,27 +9,39 @@ export const runtime_namespace = '_dts_jest_runtime_';
 export const trigger_regex = /^\s*\/\/\s*@dts-jest\b(:?\S*)\s*(.+)?\s*$/;
 export enum TriggerMatchIndex {Input, Flag, Description}
 export type TriggerMatchArray = [string, string, string | undefined];
+
 export enum TriggerFlag {
   None = '',
   Show = ':show',
   Skip = ':skip',
   Only = ':only',
 }
-export interface Trigger {
+
+export interface Target {
   /**
    * 0-based
    */
   line: number;
-  flag: TriggerFlag;
-  method: TestMethod;
   expression: string;
   description?: string;
 }
+export interface Trigger extends Target {
+  flag: TriggerFlag;
+  method: TestMethod;
+}
+
 export interface Snapshots {
   [line: number]: string;
 }
 export interface Expressions {
   [line: number]: string;
+}
+
+export interface Result extends Target {
+  snapshot: string;
+}
+export interface Results {
+  [line: number]: Result;
 }
 
 export enum TestMethod {

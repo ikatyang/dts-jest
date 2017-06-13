@@ -1,22 +1,24 @@
-import {Expressions, Snapshots} from './definitions';
+import {Results} from './definitions';
 import {indent} from './utils/indent';
 
 export class Runtime {
 
-  public snapshots: Snapshots;
-  public expressions: Expressions;
+  public results: Results;
 
-  constructor(expressions: Expressions, snapshots: Snapshots) {
-    this.expressions = expressions;
-    this.snapshots = snapshots;
+  constructor(results: Results) {
+    this.results = results;
   }
 
   public snapshot(line: number) {
-    return this.snapshots[line];
+    return this.results[line].snapshot;
   }
 
   public report(line: number) {
-    return `\nInferred\n\n${indent(this.expressions[line], 2)}\n\nto be\n\n${indent(this.snapshots[line], 2)}\n`;
+    const result = this.results[line];
+    const description = (result.description === undefined)
+      ? ''
+      : `\n${result.description}\n`;
+    return `${description}\nInferred\n\n${indent(result.expression, 2)}\n\nto be\n\n${indent(result.snapshot, 2)}\n`;
   }
 
 }

@@ -4,12 +4,26 @@ exports[`#report() should return correctly 1`] = `
 "
 Inferred
 
-  expression
+  expression 0
 
 to be
 
-  snapshot
+  snapshot 0
 "
 `;
 
-exports[`#snapshot() should return correctly 1`] = `"snapshot"`;
+exports[`#report() should return correctly with description 1`] = `
+"
+description 1
+
+Inferred
+
+  expression 1
+
+to be
+
+  snapshot 1
+"
+`;
+
+exports[`#snapshot() should return correctly 1`] = `"snapshot 0"`;

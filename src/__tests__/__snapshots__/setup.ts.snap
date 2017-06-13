@@ -2,26 +2,34 @@
 
 exports[`should setup correctly 1`] = `
 Runtime {
-  "expressions": Object {
-    "0": "first",
-    "3": "second",
-  },
-  "snapshots": Object {
-    "0": "string",
-    "3": "Expected 0 arguments, but got 1.",
+  "results": Object {
+    "0": Object {
+      "expression": "first",
+      "line": 0,
+      "snapshot": "string",
+    },
+    "3": Object {
+      "expression": "second",
+      "line": 3,
+      "snapshot": "Expected 0 arguments, but got 1.",
+    },
   },
 }
 `;
 
 exports[`should setup correctly with specified tsconfig 1`] = `
 Runtime {
-  "expressions": Object {
-    "0": "first",
-    "3": "second",
-  },
-  "snapshots": Object {
-    "0": "string | undefined",
-    "3": "Expected 0 arguments, but got 1.",
+  "results": Object {
+    "0": Object {
+      "expression": "first",
+      "line": 0,
+      "snapshot": "string | undefined",
+    },
+    "3": Object {
+      "expression": "second",
+      "line": 3,
+      "snapshot": "Expected 0 arguments, but got 1.",
+    },
   },
 }
 `;

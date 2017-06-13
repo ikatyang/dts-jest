@@ -10,7 +10,7 @@ exports[`should throw error with unattachable trigger(s) 1`] = `
 `;
 
 exports[`should transform correctly 1`] = `
-"var _dts_jest_runtime_;beforeAll(function () {_dts_jest_runtime_ = require(\\"dts-jest\\").setup(module.filename, (function () {try {return _dts_jest_;} catch (e) {return {};}})(), {\\"4\\":\\"T.none()\\",\\"7\\":\\"T.none()\\",\\"10\\":\\"T.show()\\",\\"13\\":\\"T.show()\\",\\"16\\":\\"T.skip()\\",\\"19\\":\\"T.skip()\\",\\"22\\":\\"T.only()\\",\\"25\\":\\"T.only()\\",\\"29\\":\\"T.in_block()\\"});});;
+"var _dts_jest_runtime_;beforeAll(function () {_dts_jest_runtime_ = require(\\"dts-jest\\").setup(module.filename, (function () {try {return _dts_jest_;} catch (e) {return {};}})(), [{\\"line\\":4,\\"expression\\":\\"T.none()\\"},{\\"line\\":7,\\"description\\":\\"description-none\\",\\"expression\\":\\"T.none()\\"},{\\"line\\":10,\\"expression\\":\\"T.show()\\"},{\\"line\\":13,\\"description\\":\\"description-show\\",\\"expression\\":\\"T.show()\\"},{\\"line\\":16,\\"expression\\":\\"T.skip()\\"},{\\"line\\":19,\\"description\\":\\"description-skip\\",\\"expression\\":\\"T.skip()\\"},{\\"line\\":22,\\"expression\\":\\"T.only()\\"},{\\"line\\":25,\\"description\\":\\"description-only\\",\\"expression\\":\\"T.only()\\"},{\\"line\\":29,\\"expression\\":\\"T.in_block()\\"}]);});
 
 
 
@@ -46,7 +46,7 @@ test(\\"T.in_block()\\", function () {expect(_dts_jest_runtime_.snapshot(29)).to
 `;
 
 exports[`should transform correctly with template token 1`] = `
-"var _dts_jest_runtime_;beforeAll(function () {_dts_jest_runtime_ = require(\\"dts-jest\\").setup(module.filename, (function () {try {return _dts_jest_;} catch (e) {return {};}})(), {\\"4\\":\\"R.keysIn(f)\\",\\"10\\":\\"R.keysIn(f)\\",\\"26\\":\\"R.toString(new Point(1, 2))\\"});});;
+"var _dts_jest_runtime_;beforeAll(function () {_dts_jest_runtime_ = require(\\"dts-jest\\").setup(module.filename, (function () {try {return _dts_jest_;} catch (e) {return {};}})(), [{\\"line\\":4,\\"expression\\":\\"R.keysIn(f)\\"},{\\"line\\":10,\\"expression\\":\\"R.keysIn(f)\\"},{\\"line\\":26,\\"expression\\":\\"R.toString(new Point(1, 2))\\"}]);});
 
 
 
