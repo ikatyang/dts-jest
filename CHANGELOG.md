@@ -10,9 +10,10 @@ All changes to this project will be documented in this file.
 > - 🏠 [Internal]
 > - 💅 [Polish]
 
-## Unreleased
+## v20.1.0 (2017-06-13)
 
 #### 💥 Breaking Change
+- Use same MAJOR version as Jest
 - Remove server since tests should be separated
 
 #### 🚀 New Feature

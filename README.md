@@ -10,7 +10,7 @@ A preprocessor for [Jest](https://facebook.github.io/jest/) to snapshot test [Ty
 
 ## Version
 
-This project uses the same MAJOR.MINOR version as Jest.
+This project uses the same MAJOR version as Jest.
 
 ## Installation
 
