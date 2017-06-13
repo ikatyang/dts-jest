@@ -35,28 +35,17 @@ Modify your [Jest config](https://facebook.github.io/jest/docs/en/configuration.
 ```json
 {
   "scripts": {
-    "test": "dts-jest & jest"
+    "test": "jest"
   },
   "jest": {
-    "moduleFileExtensions": ["ts", "js"],
+    "moduleFileExtensions": ["ts", "js", "json"],
     "testRegex": "/dts-jest/.+\\.ts$",
-    "transform": {"/dts-jest/.+\\.ts$": "dts-jest/transform"},
-    "reporters": ["default", "dts-jest/reporter"]
+    "transform": {"/dts-jest/.+\\.ts$": "dts-jest/transform"}
   }
 }
 ```
 
-This setup allow you to test files `**/dts-jest/**/*.ts` via dts-jest.
-
-**NOTE** If you want to use the `--config jest.json` option, make sure passing the same argument to `dts-jest` too, for example:
-
-```sh
-# pass --config option to dts-jest too
-dts-jest --config ./jest.json & jest --config ./jest.json
-
-# you don't have to pass other options
-dts-jest --config ./jest.json & jest --config ./jest.json --watch
-```
+This setup allow you to test files `**/dts-jest/**/*.ts` via `dts-jest`.
 
 ## Writing Tests
 
