@@ -1,33 +1,17 @@
-const line = 1;
-const snapshot = 'snapshot 1';
-const expression = 'expression 1';
-
-jest.mock('../server', () => ({
-  Server: {
-    request_snapshots: (_0: any, _1: any, _2: any, callback: (snapshots: Snapshots) => void) => {
-      callback({
-        [line]: snapshot,
-      });
-    },
-  },
-}));
-
-import {Snapshots} from '../definitions';
-import {create_runtime, Runtime} from '../runtime';
+import {Expressions, Snapshots} from '../definitions';
+import {Runtime} from '../runtime';
 
 let runtime: Runtime;
-
-beforeAll(done => {
-  create_runtime({filename: ''}, {}, {[line]: expression}, the_runtime => {
-    runtime = the_runtime;
-    done();
-  });
+beforeAll(() => {
+  const snapshots: Snapshots = {0: 'snapshot'};
+  const expressions: Expressions = {0: 'expression'};
+  runtime = new Runtime(expressions, snapshots);
 });
 
 test('#snapshot() should return correctly', () => {
-  expect(runtime.snapshot(line)).toBe(snapshot);
+  expect(runtime.snapshot(0)).toMatchSnapshot();
 });
 
 test('#report() should return correctly', () => {
-  expect(runtime.report(line)).toMatchSnapshot();
+  expect(runtime.report(0)).toMatchSnapshot();
 });

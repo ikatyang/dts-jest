@@ -4,10 +4,12 @@ exports[`#report() should return correctly 1`] = `
 "
 Inferred
 
-  expression 1
+  expression
 
 to be
 
-  snapshot 1
+  snapshot
 "
 `;
+
+exports[`#snapshot() should return correctly 1`] = `"snapshot"`;

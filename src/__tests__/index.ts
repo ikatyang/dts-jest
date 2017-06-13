@@ -7,7 +7,3 @@ it('should has transform', () => {
 it('should has setup', () => {
   expect(dts).toHaveProperty('setup');
 });
-
-it('should has Reporter', () => {
-  expect(dts).toHaveProperty('Reporter');
-});

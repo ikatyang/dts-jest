@@ -127,14 +127,8 @@ Configs are in `_dts_jest_` field of Jest config `globals`.
 There are several options
 
 - tsconfig
-  - default: `<rootDir>/tsconfig.json`
+  - default: `{}`
   - specify which *path of `tsconfig.json` (string)* or *compilerOptions (object)* to use
-- server_port
-  - default: `10086`
-  - specify which port to use for the dts-jest server
-- debug
-  - default: `false`
-  - print some messages for debugging
 
 For example:
 

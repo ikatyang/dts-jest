@@ -1,6 +1,6 @@
 import * as ts from 'typescript';
-import {Snapshots} from './definitions';
-import {traverse_node} from './utils';
+import {Snapshots} from '../definitions';
+import {traverse_node} from './traverse-node';
 
 export const create_snapshots = (program: ts.Program, source_filename: string, lines: number[]) => {
   const source_file = program.getSourceFile(source_filename);

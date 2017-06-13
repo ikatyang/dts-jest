@@ -10,7 +10,7 @@ exports[`should throw error with unattachable trigger(s) 1`] = `
 `;
 
 exports[`should transform correctly 1`] = `
-"var _dts_jest_runtime_;beforeAll(function (done) {require(\\"dts-jest\\").setup(module, (function () {try {return _dts_jest_;} catch (e) {return {};}})(), {\\"4\\":\\"T.none()\\",\\"7\\":\\"T.none()\\",\\"10\\":\\"T.show()\\",\\"13\\":\\"T.show()\\",\\"16\\":\\"T.skip()\\",\\"19\\":\\"T.skip()\\",\\"22\\":\\"T.only()\\",\\"25\\":\\"T.only()\\",\\"29\\":\\"T.in_block()\\"}, function () {_dts_jest_runtime_ = arguments[0];done();});});
+"var _dts_jest_runtime_;beforeAll(function () {_dts_jest_runtime_ = require(\\"dts-jest\\").setup(module.filename, (function () {try {return _dts_jest_;} catch (e) {return {};}})(), {\\"4\\":\\"T.none()\\",\\"7\\":\\"T.none()\\",\\"10\\":\\"T.show()\\",\\"13\\":\\"T.show()\\",\\"16\\":\\"T.skip()\\",\\"19\\":\\"T.skip()\\",\\"22\\":\\"T.only()\\",\\"25\\":\\"T.only()\\",\\"29\\":\\"T.in_block()\\"});});;
 
 
 
@@ -46,7 +46,7 @@ test(\\"T.in_block()\\", function () {expect(_dts_jest_runtime_.snapshot(29)).to
 `;
 
 exports[`should transform correctly with template token 1`] = `
-"var _dts_jest_runtime_;beforeAll(function (done) {require(\\"dts-jest\\").setup(module, (function () {try {return _dts_jest_;} catch (e) {return {};}})(), {\\"4\\":\\"R.keysIn(f)\\",\\"10\\":\\"R.keysIn(f)\\",\\"26\\":\\"R.toString(new Point(1, 2))\\"}, function () {_dts_jest_runtime_ = arguments[0];done();});});
+"var _dts_jest_runtime_;beforeAll(function () {_dts_jest_runtime_ = require(\\"dts-jest\\").setup(module.filename, (function () {try {return _dts_jest_;} catch (e) {return {};}})(), {\\"4\\":\\"R.keysIn(f)\\",\\"10\\":\\"R.keysIn(f)\\",\\"26\\":\\"R.toString(new Point(1, 2))\\"});});;
 
 
 

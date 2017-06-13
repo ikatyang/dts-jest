@@ -1,8 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Reporter#get_filenames() should return correctly 1`] = `
-Array [
-  "a1.ts",
-  "matched/a1.ts",
-]
-`;

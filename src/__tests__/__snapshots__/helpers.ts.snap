@@ -1,8 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`create_snapshots() should return correctly 1`] = `
-Object {
-  "0": "string",
-  "3": "Argument of type '\\"str\\"' is not assignable to parameter of type 'number'.",
-}
-`;

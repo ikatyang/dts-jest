@@ -1,7 +1,7 @@
 // @dts-jest
-String.fromCharCode();
+[''].pop();
 
 // @dts-jest
-String.fromCharCode('str');
+[''].pop(123);
 
 String.fromCharCode('str');
