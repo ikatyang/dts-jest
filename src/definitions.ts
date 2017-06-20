@@ -12,9 +12,13 @@ export type TriggerMatchArray = [string, string, string | undefined];
 
 export enum TriggerFlag {
   None = '',
-  Show = ':show',
-  Skip = ':skip',
+  Pass = ':pass',
+  Fail = ':fail',
   Only = ':only',
+  OnlyPass = ':only:pass',
+  OnlyFail = ':only:fail',
+  Skip = ':skip',
+  Show = ':show',
 }
 
 export interface Target {
@@ -30,19 +34,12 @@ export interface Trigger extends Target {
   method: TestMethod;
 }
 
-export interface Snapshots {
-  [line: number]: string;
-}
-export interface Expressions {
-  [line: number]: string;
+export interface Snapshot {
+  inference?: string;
+  diagnostic?: string;
 }
 
-export interface Result extends Target {
-  snapshot: string;
-}
-export interface Results {
-  [line: number]: Result;
-}
+export interface Result extends Target, Snapshot {}
 
 export enum TestMethod {
   Test = 'test',

@@ -5,13 +5,13 @@ Runtime {
   "results": Object {
     "0": Object {
       "expression": "first",
+      "inference": "string",
       "line": 0,
-      "snapshot": "string",
     },
     "3": Object {
+      "diagnostic": "Expected 0 arguments, but got 1.",
       "expression": "second",
       "line": 3,
-      "snapshot": "Expected 0 arguments, but got 1.",
     },
   },
 }
@@ -22,13 +22,13 @@ Runtime {
   "results": Object {
     "0": Object {
       "expression": "first",
+      "inference": "string | undefined",
       "line": 0,
-      "snapshot": "string | undefined",
     },
     "3": Object {
+      "diagnostic": "Expected 0 arguments, but got 1.",
       "expression": "second",
       "line": 3,
-      "snapshot": "Expected 0 arguments, but got 1.",
     },
   },
 }

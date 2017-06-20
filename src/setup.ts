@@ -1,5 +1,5 @@
 import * as ts from 'typescript';
-import {RawConfig, Results, Target} from './definitions';
+import {RawConfig, Result, Target} from './definitions';
 import {Runtime} from './runtime';
 import {create_snapshots} from './utils/create-snapshots';
 import {default_to} from './utils/default-to';
@@ -12,12 +12,12 @@ export const setup = (filename: string, raw_config: RawConfig, targets: Target[]
   const program = ts.createProgram([filename], get_tsconfig(raw_config));
 
   const snapshots = create_snapshots(program, filename, lines, flag);
-  const results = targets.reduce<Results>(
+  const results = targets.reduce<{[line: number]: Result}>(
     (current_results, target) => ({
       ...current_results,
       [target.line]: {
         ...target,
-        snapshot: snapshots[target.line],
+        ...snapshots[target.line],
       },
     }),
     {},

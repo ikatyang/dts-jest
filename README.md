@@ -77,8 +77,12 @@ expression
 
 - flags
   - default (aka [test](https://facebook.github.io/jest/docs/en/api.html#testname-fn))
-  - `:skip` (aka [test.skip](https://facebook.github.io/jest/docs/en/api.html#testskipname-fn))
+  - `:pass` (same as default, but assert its result to be passed)
+  - `:fail` (same as default, but assert its result to be failed)
   - `:only` (aka [test.only](https://facebook.github.io/jest/docs/en/api.html#testonlyname-fn))
+  - `:only:pass` (same as `:only`, but assert its result to be passed)
+  - `:only:fail` (same as `:only`, but assert its result to be failed)
+  - `:skip` (aka [test.skip](https://facebook.github.io/jest/docs/en/api.html#testskipname-fn))
   - `:show` (aka `console.log`)
 - description
   - default = expression

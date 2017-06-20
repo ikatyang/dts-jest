@@ -10,6 +10,11 @@ All changes to this project will be documented in this file.
 > - 🏠 [Internal]
 > - 💅 [Polish]
 
+## Unreleased
+
+#### 🚀 New Feature
+- Add flags ( `:pass`, `:fail`, `:only:pass`, `:only:fail` ) to assert its result
+
 ## v20.1.0 (2017-06-13)
 
 #### 💥 Breaking Change

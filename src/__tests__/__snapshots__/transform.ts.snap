@@ -10,14 +10,14 @@ exports[`should throw error with unattachable trigger(s) 1`] = `
 `;
 
 exports[`should transform correctly 1`] = `
-"var _dts_jest_runtime_;beforeAll(function () {_dts_jest_runtime_ = require(\\"dts-jest\\").setup(module.filename, (function () {try {return _dts_jest_;} catch (e) {return {};}})(), [{\\"line\\":4,\\"expression\\":\\"T.none()\\"},{\\"line\\":7,\\"description\\":\\"description-none\\",\\"expression\\":\\"T.none()\\"},{\\"line\\":10,\\"expression\\":\\"T.show()\\"},{\\"line\\":13,\\"description\\":\\"description-show\\",\\"expression\\":\\"T.show()\\"},{\\"line\\":16,\\"expression\\":\\"T.skip()\\"},{\\"line\\":19,\\"description\\":\\"description-skip\\",\\"expression\\":\\"T.skip()\\"},{\\"line\\":22,\\"expression\\":\\"T.only()\\"},{\\"line\\":25,\\"description\\":\\"description-only\\",\\"expression\\":\\"T.only()\\"},{\\"line\\":29,\\"expression\\":\\"T.in_block()\\"}]);});
+"var _dts_jest_runtime_;beforeAll(function () {_dts_jest_runtime_ = require(\\"dts-jest\\").setup(module.filename, (function () {try {return _dts_jest_;} catch (e) {return {};}})(), [{\\"line\\":4,\\"expression\\":\\"T.none()\\"},{\\"line\\":7,\\"description\\":\\"description-none\\",\\"expression\\":\\"T.none()\\"},{\\"line\\":10,\\"expression\\":\\"T.show()\\"},{\\"line\\":13,\\"description\\":\\"description-show\\",\\"expression\\":\\"T.show()\\"},{\\"line\\":16,\\"expression\\":\\"T.skip()\\"},{\\"line\\":19,\\"description\\":\\"description-skip\\",\\"expression\\":\\"T.skip()\\"},{\\"line\\":22,\\"expression\\":\\"T.only()\\"},{\\"line\\":25,\\"description\\":\\"description-only\\",\\"expression\\":\\"T.only()\\"},{\\"line\\":29,\\"expression\\":\\"T.in_block()\\"},{\\"line\\":33,\\"expression\\":\\"Math.abs(123)\\"},{\\"line\\":36,\\"expression\\":\\"Math.abs('abc')\\"}]);});
 
 
 
-test(\\"T.none()\\", function () {expect(_dts_jest_runtime_.snapshot(4)).toMatchSnapshot();});
+test(\\"T.none()\\", function () {expect(_dts_jest_runtime_.safe_snapshot(4)).toMatchSnapshot();});
 
 
-test(\\"description-none\\", function () {expect(_dts_jest_runtime_.snapshot(7)).toMatchSnapshot();});
+test(\\"description-none\\", function () {expect(_dts_jest_runtime_.safe_snapshot(7)).toMatchSnapshot();});
 
 
 test(\\"T.show()\\", function () {console.log(_dts_jest_runtime_.report(10));});
@@ -26,21 +26,27 @@ test(\\"T.show()\\", function () {console.log(_dts_jest_runtime_.report(10));});
 test(\\"description-show\\", function () {console.log(_dts_jest_runtime_.report(13));});
 
 
-test.skip(\\"T.skip()\\", function () {expect(_dts_jest_runtime_.snapshot(16)).toMatchSnapshot();});
+test.skip(\\"T.skip()\\", function () {expect(_dts_jest_runtime_.safe_snapshot(16)).toMatchSnapshot();});
 
 
-test.skip(\\"description-skip\\", function () {expect(_dts_jest_runtime_.snapshot(19)).toMatchSnapshot();});
+test.skip(\\"description-skip\\", function () {expect(_dts_jest_runtime_.safe_snapshot(19)).toMatchSnapshot();});
 
 
-test.only(\\"T.only()\\", function () {expect(_dts_jest_runtime_.snapshot(22)).toMatchSnapshot();});
+test.only(\\"T.only()\\", function () {expect(_dts_jest_runtime_.safe_snapshot(22)).toMatchSnapshot();});
 
 
-test.only(\\"description-only\\", function () {expect(_dts_jest_runtime_.snapshot(25)).toMatchSnapshot();});
+test.only(\\"description-only\\", function () {expect(_dts_jest_runtime_.safe_snapshot(25)).toMatchSnapshot();});
 
 
 
-test(\\"T.in_block()\\", function () {expect(_dts_jest_runtime_.snapshot(29)).toMatchSnapshot();});
+test(\\"T.in_block()\\", function () {expect(_dts_jest_runtime_.safe_snapshot(29)).toMatchSnapshot();});
 
+
+
+test(\\"Math.abs(123)\\", function () {expect(_dts_jest_runtime_.snapshot(33)).toMatchSnapshot();});
+
+
+test(\\"Math.abs('abc')\\", function () {expect(function () { return _dts_jest_runtime_.snapshot(36); }).toThrowErrorMatchingSnapshot();});
 
 "
 `;
@@ -50,19 +56,13 @@ exports[`should transform correctly with template token 1`] = `
 
 
 
-test(\\"R.keysIn(f)\\", function () {expect(_dts_jest_runtime_.snapshot(4)).toMatchSnapshot();});
+test(\\"R.keysIn(f)\\", function () {expect(_dts_jest_runtime_.safe_snapshot(4)).toMatchSnapshot();});
 
 
 
 
 
-test(\\"R.keysIn(f)\\", function () {expect(_dts_jest_runtime_.snapshot(10)).toMatchSnapshot();});
-
-
-
-
-
-
+test(\\"R.keysIn(f)\\", function () {expect(_dts_jest_runtime_.safe_snapshot(10)).toMatchSnapshot();});
 
 
 
@@ -72,7 +72,13 @@ test(\\"R.keysIn(f)\\", function () {expect(_dts_jest_runtime_.snapshot(10)).toM
 
 
 
-test(\\"R.toString(new Point(1, 2))\\", function () {expect(_dts_jest_runtime_.snapshot(26)).toMatchSnapshot();});
+
+
+
+
+
+
+test(\\"R.toString(new Point(1, 2))\\", function () {expect(_dts_jest_runtime_.safe_snapshot(26)).toMatchSnapshot();});
 
 "
 `;

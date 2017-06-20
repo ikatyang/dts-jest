@@ -1,11 +1,11 @@
 import * as ts from 'typescript';
-import {Snapshots} from '../definitions';
+import {Snapshot} from '../definitions';
 import {traverse_node} from './traverse-node';
 
 export const create_snapshots = (
     program: ts.Program, source_filename: string, lines: number[], flag: ts.TypeFormatFlags) => {
   const source_file = program.getSourceFile(source_filename);
-  const snapshots: Snapshots = {};
+  const snapshots: {[line: number]: Snapshot} = {};
 
   const rest_lines = lines.slice();
 
@@ -18,7 +18,7 @@ export const create_snapshots = (
 
     const line_index = rest_lines.indexOf(trigger_line);
     if (line_index !== -1) {
-      snapshots[trigger_line] = ts.flattenDiagnosticMessageText(diagnostic.messageText, '\n');
+      snapshots[trigger_line] = {diagnostic: ts.flattenDiagnosticMessageText(diagnostic.messageText, '\n')};
       rest_lines.splice(line_index, 1);
     }
   }
@@ -33,7 +33,7 @@ export const create_snapshots = (
     if (line_index !== -1) {
       const target_node = node.getChildAt(0);
       const type = checker.getTypeAtLocation(target_node);
-      snapshots[trigger_line] = checker.typeToString(type, node, flag);
+      snapshots[trigger_line] = {inference: checker.typeToString(type, node, flag)};
       rest_lines.splice(line_index, 1);
     }
   });

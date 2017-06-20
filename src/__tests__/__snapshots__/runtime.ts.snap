@@ -4,26 +4,32 @@ exports[`#report() should return correctly 1`] = `
 "
 Inferred
 
-  expression 0
+  expression
 
 to be
 
-  snapshot 0
+  inference
 "
 `;
 
 exports[`#report() should return correctly with description 1`] = `
 "
-description 1
+description
 
 Inferred
 
-  expression 1
+  expression
 
 to be
 
-  snapshot 1
+  inference
 "
 `;
 
-exports[`#snapshot() should return correctly 1`] = `"snapshot 0"`;
+exports[`#safe_snapshot() should return correctly with diagnostic 1`] = `"diagnostic"`;
+
+exports[`#safe_snapshot() should return correctly with inference 1`] = `"inference"`;
+
+exports[`#snapshot() should return correctly with diagnostic 1`] = `"diagnostic"`;
+
+exports[`#snapshot() should return correctly with inference 1`] = `"inference"`;

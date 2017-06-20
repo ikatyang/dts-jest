@@ -30,3 +30,9 @@ T.only();
   // @dts-jest
   T.in_block();
 }
+
+// @dts-jest:pass
+Math.abs(123);
+
+// @dts-jest:fail
+Math.abs('abc');
