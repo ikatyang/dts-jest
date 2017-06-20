@@ -1,3 +1,5 @@
+export {};
+
 declare const unattachable_trigger: () => any;
 
 // @dts-jest

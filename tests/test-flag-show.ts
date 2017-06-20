@@ -1,10 +1,9 @@
-declare const test_flag_show: (v: any) => {result: any};
+export {};
 
-// @dts-jest
-test_flag_show(1);
+declare const number_to_string: (v: number) => string;
 
 // @dts-jest:show
-test_flag_show(2);
+number_to_string(1);
 
 // @dts-jest:show optional-description
-test_flag_show(3);
+number_to_string(2);

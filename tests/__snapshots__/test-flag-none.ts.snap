@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`test_flag_none(1) 1`] = `"{ result: any; }"`;
+exports[`number_to_string('x') 1`] = `"Argument of type '\\"x\\"' is not assignable to parameter of type 'number'."`;
 
-exports[`test_flag_none(2) 1`] = `"{ result: any; }"`;
+exports[`number_to_string(1) 1`] = `"string"`;
 
-exports[`test_flag_none(3) 1`] = `"{ result: any; }"`;
+exports[`number_to_string(2) 1`] = `"string"`;

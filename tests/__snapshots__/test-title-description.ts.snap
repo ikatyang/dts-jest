@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`optional-description 1`] = `"{ result: symbol; }"`;
+exports[`optional-description 1`] = `"string"`;
 
-exports[`test_title_description_1(
+exports[`void_to_string(
     
-    ) 1`] = `"{ result: string; }"`;
+    ) 1`] = `"string"`;
 
-exports[`test_title_description_2() 1`] = `"{ result: number; }"`;
+exports[`void_to_string() 1`] = `"string"`;

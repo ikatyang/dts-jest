@@ -1,10 +1,12 @@
-declare const test_flag_only: (v: any) => {result: any};
+export {};
+
+declare const number_to_string: (v: number) => string;
 
 // @dts-jest
-test_flag_only(1);
+number_to_string(1);
 
 // @dts-jest:only
-test_flag_only(2);
+number_to_string(2);
 
 // @dts-jest
-test_flag_only(3);
+number_to_string(3);

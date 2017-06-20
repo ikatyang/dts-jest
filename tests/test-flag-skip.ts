@@ -1,10 +1,12 @@
-declare const test_flag_skip: (v: any) => {result: any};
+export {};
+
+declare const number_to_string: (v: number) => string;
 
 // @dts-jest
-test_flag_skip(1);
+number_to_string(1);
 
 // @dts-jest:skip
-test_flag_skip(2);
+number_to_string(2);
 
 // @dts-jest
-test_flag_skip(3);
+number_to_string(3);

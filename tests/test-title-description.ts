@@ -1,14 +1,14 @@
-declare const test_title_description_1: () => {result: string};
-declare const test_title_description_2: () => {result: number};
-declare const test_title_description_3: () => {result: symbol};
+export {};
+
+declare const void_to_string: () => string;
 
 // @dts-jest
-test_title_description_1(
+void_to_string(
 
 );
 
 // @dts-jest
-test_title_description_2();
+void_to_string();
 
 // @dts-jest optional-description
-test_title_description_3();
+void_to_string();
