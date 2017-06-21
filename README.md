@@ -92,6 +92,8 @@ expression
 
 #### Grouping
 
+Test cases after this pattern will be marked as that group.
+
 ```ts
 // @dts-jest:group[flags] [title]
 ```
