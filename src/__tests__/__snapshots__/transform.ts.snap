@@ -66,6 +66,34 @@ test.only(\\"description-only-show\\", function () {console.log(_dts_jest_runtim
 "
 `;
 
+exports[`should transform correctly with group flag 1`] = `
+"var _dts_jest_runtime_;beforeAll(function () {_dts_jest_runtime_ = require(\\"dts-jest\\").setup(module.filename, (function () {try {return _dts_jest_;} catch (e) {return {};}})(), [{\\"line\\":2,\\"expression\\":\\"G.normal()\\"},{\\"line\\":7,\\"expression\\":\\"G.in_named_group()\\"},{\\"line\\":12,\\"expression\\":\\"G.in_unnamed_group()\\"},{\\"line\\":17,\\"expression\\":\\"G.in_only_group()\\"},{\\"line\\":22,\\"expression\\":\\"G.in_skip_group()\\"}]);});
+
+test(\\"G.normal()\\", function () {expect(_dts_jest_runtime_.safe_snapshot(2)).toMatchSnapshot();});
+
+
+
+
+describe(\\"NamedGroup\\", function () {test(\\"G.in_named_group()\\", function () {expect(_dts_jest_runtime_.safe_snapshot(7)).toMatchSnapshot();});
+
+
+
+
+});describe(\\"untitled\\", function () {test(\\"G.in_unnamed_group()\\", function () {expect(_dts_jest_runtime_.safe_snapshot(12)).toMatchSnapshot();});
+
+
+
+
+});describe.only(\\"OnlyGroup\\", function () {test(\\"G.in_only_group()\\", function () {expect(_dts_jest_runtime_.safe_snapshot(17)).toMatchSnapshot();});
+
+
+
+
+});describe.skip(\\"OnlyGroup\\", function () {test(\\"G.in_skip_group()\\", function () {expect(_dts_jest_runtime_.safe_snapshot(22)).toMatchSnapshot();});});
+
+"
+`;
+
 exports[`should transform correctly with indented expression 1`] = `
 "var _dts_jest_runtime_;beforeAll(function () {_dts_jest_runtime_ = require(\\"dts-jest\\").setup(module.filename, (function () {try {return _dts_jest_;} catch (e) {return {};}})(), [{\\"line\\":4,\\"expression\\":\\"[].map(\\\\n  () => '',\\\\n)\\"},{\\"line\\":10,\\"expression\\":\\"[].map(\\\\n() => '',\\\\n)\\"},{\\"line\\":16,\\"expression\\":\\"[].map(\\\\n\\\\n\\\\n  () => '',\\\\n\\\\n\\\\n)\\"}]);});
 

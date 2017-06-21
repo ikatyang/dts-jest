@@ -10,21 +10,27 @@ export const trigger_regex = /^\s*\/\/\s*@dts-jest\b(:?\S*)\s*(.+)?\s*$/;
 export enum TriggerMatchIndex {Input, Flags, Description}
 export type TriggerMatchArray = [string, string, string | undefined];
 
-export enum TestMethod {
-  Test = 'test',
-  Skip = 'test.skip',
-  Only = 'test.only',
+export enum AssertionFlag {
+  Shot = ':shot',
+  Show = ':show',
+  Pass = ':pass',
+  Fail = ':fail',
 }
 export enum TestFlag {
   Test = ':test',
   Only = ':only',
   Skip = ':skip',
 }
-export enum AssertionFlag {
-  Shot = ':shot',
-  Show = ':show',
-  Pass = ':pass',
-  Fail = ':fail',
+export enum TestMethod {
+  Test = 'test',
+  Only = 'test.only',
+  Skip = 'test.skip',
+}
+export const group_flag = ':group';
+export enum GroupMethod {
+  Test = 'describe',
+  Only = 'describe.only',
+  Skip = 'describe.skip',
 }
 
 export interface Target {
@@ -34,11 +40,25 @@ export interface Target {
   line: number;
   expression: string;
   description?: string;
+  group?: Group;
 }
-export interface Trigger extends Target {
+
+export interface TriggerInfo {
   flag: AssertionFlag;
   method: TestMethod;
 }
+export interface Trigger extends Target, TriggerInfo {}
+
+export interface GroupInfo {
+  method: GroupMethod;
+}
+export interface Group extends GroupInfo {
+  title: string;
+}
+
+export type TriggerOrGroupInfo =
+  | ({is_group: false} & TriggerInfo)
+  | ({is_group: true} & GroupInfo);
 
 export interface Snapshot {
   inference?: string;

@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OnlyGroup G.in_only_group() 1`] = `"any"`;

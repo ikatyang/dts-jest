@@ -20,6 +20,10 @@ it('should transform correctly with indented expression', () => {
   expect(transform_fixture('../../fixtures/transform/indented-expression.ts')).toMatchSnapshot();
 });
 
+it('should transform correctly with group flag', () => {
+  expect(transform_fixture('../../fixtures/transform/group-flag.ts')).toMatchSnapshot();
+});
+
 it('should throw error with unexpected flag', () => {
   expect(() => transform_fixture('../../fixtures/transform/unexpected.ts')).toThrowError();
 });

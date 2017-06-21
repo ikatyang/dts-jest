@@ -1,32 +1,46 @@
 import * as path from 'path';
 import * as ts_comment from 'ts-comment';
 import * as ts from 'typescript';
-import {trigger_regex, Trigger, TriggerMatchArray, TriggerMatchIndex} from '../definitions';
+import {trigger_regex, Group, Trigger, TriggerMatchArray, TriggerMatchIndex} from '../definitions';
 import {default_to} from './default-to';
-import {get_flag_and_method} from './get-flag-and-method';
+import {get_trigger_of_group_info} from './get-trigger-or-group-info';
 import {repeat} from './repeat';
 import {traverse_node} from './traverse-node';
 
 export const create_triggers = (source_file: ts.SourceFile): Trigger[] => {
-  type PartialTrigger = Pick<Trigger, 'flag' | 'method' | 'description'>;
+  type PartialTrigger = Pick<Trigger, 'flag' | 'method' | 'description' | 'group'>;
   const partial_triggers: {[line: number]: PartialTrigger} = {};
 
+  let last_group: Group | undefined;
   ts_comment.for_each(source_file, (comment, scanner) => {
     const match = comment.match(trigger_regex);
     if (match !== null) {
       const trigger_match = match as TriggerMatchArray;
 
-      const {flag, method} = get_flag_and_method(trigger_match[TriggerMatchIndex.Flags]);
       const description = trigger_match[TriggerMatchIndex.Description];
+      const info = get_trigger_of_group_info(trigger_match[TriggerMatchIndex.Flags]);
 
-      const position = scanner.getTokenPos();
-      const {line} = source_file.getLineAndCharacterOfPosition(position);
+      if (info.is_group) {
 
-      partial_triggers[line] = {
-        flag,
-        method,
-        description,
-      };
+        const {method} = info;
+        last_group = {
+          method,
+          title: default_to(description, 'untitled'),
+        };
+
+      } else {
+
+        const {flag, method} = info;
+        const position = scanner.getTokenPos();
+        const {line} = source_file.getLineAndCharacterOfPosition(position);
+
+        partial_triggers[line] = {
+          flag,
+          method,
+          description,
+          group: last_group,
+        };
+      }
     }
   });
 

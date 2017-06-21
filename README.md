@@ -68,6 +68,8 @@ arrayify(0);
 
 ## Patterns
 
+#### Testing
+
 ```ts
 // @dts-jest[flags] [description]
 expression
@@ -87,6 +89,20 @@ expression
     - `:show`: aka `console.log`
     - `:pass`: aka [`toMatchSnapshot`](https://facebook.github.io/jest/docs/en/expect.html#tomatchsnapshotoptionalstring)
     - `:fail`: aka [`toThrowErrorMatchingSnapshot`](https://facebook.github.io/jest/docs/en/expect.html#tothrowerrormatchingsnapshot)
+
+#### Grouping
+
+```ts
+// @dts-jest:group[flags] [title]
+```
+
+- title
+  - default: `'untitled'`
+- flag
+  - default: `:test`
+  - `:test`: aka [`describe`](https://facebook.github.io/jest/docs/en/api.html#describename-fn)
+  - `:only`: aka [`describe.only`](https://facebook.github.io/jest/docs/en/api.html#describeonlyname-fn)
+  - `:skip`: aka [`describe.skip`](https://facebook.github.io/jest/docs/en/api.html#describeskipname-fn)
 
 ## Testing
 
