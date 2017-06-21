@@ -95,7 +95,7 @@ describe(\\"NamedGroup\\", function () {test(\\"G.in_named_group()\\", function 
 `;
 
 exports[`should transform correctly with indented expression 1`] = `
-"var _dts_jest_runtime_;beforeAll(function () {_dts_jest_runtime_ = require(\\"dts-jest\\").setup(module.filename, (function () {try {return _dts_jest_;} catch (e) {return {};}})(), [{\\"line\\":4,\\"expression\\":\\"[].map(\\\\n  () => '',\\\\n)\\"},{\\"line\\":10,\\"expression\\":\\"[].map(\\\\n() => '',\\\\n)\\"},{\\"line\\":16,\\"expression\\":\\"[].map(\\\\n\\\\n\\\\n  () => '',\\\\n\\\\n\\\\n)\\"}]);});
+"var _dts_jest_runtime_;beforeAll(function () {_dts_jest_runtime_ = require(\\"dts-jest\\").setup(module.filename, (function () {try {return _dts_jest_;} catch (e) {return {};}})(), [{\\"line\\":4,\\"expression\\":\\"[].map(\\\\n  () => '',\\\\n)\\"},{\\"line\\":10,\\"expression\\":\\"[].map(\\\\n() => '',\\\\n)\\"},{\\"line\\":16,\\"expression\\":\\"[].map(\\\\n\\\\n\\\\n  () => '',\\\\n\\\\n\\\\n)\\"},{\\"line\\":27,\\"expression\\":\\"[].map(\\\\n  () => '',\\\\n)\\"}]);});
 
 
 
@@ -116,6 +116,13 @@ test(\\"[].map(\\\\n    \\\\n    \\\\n      () => '',\\\\n    \\\\n    \\\\n    
 
 
 
+
+
+
+
+
+
+describe(\\"untitled\\", function () {test(\\"[].map(\\\\n        () => '',\\\\n      )\\", function () {expect(_dts_jest_runtime_.safe_snapshot(27)).toMatchSnapshot();});});
 
 
 

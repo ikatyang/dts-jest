@@ -15,3 +15,7 @@ exports[`[].map(
 exports[`[].map(
     () => '',
     ) 1`] = `"string[]"`;
+
+exports[`untitled [].map(
+        () => '',
+      ) 1`] = `"string[]"`;
