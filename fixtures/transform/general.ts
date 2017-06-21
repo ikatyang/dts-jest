@@ -36,3 +36,18 @@ Math.abs(123);
 
 // @dts-jest:fail
 Math.abs('abc');
+
+// @dts-jest:test
+T.test();
+
+// @dts-jest:test description-test
+T.test();
+
+// @dts-jest:shot
+T.shot();
+
+// @dts-jest:shot description-shot
+T.shot();
+
+// @dts-jest:only:show description-only-show
+T.only.show();

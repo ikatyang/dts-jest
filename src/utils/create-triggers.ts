@@ -16,7 +16,7 @@ export const create_triggers = (source_file: ts.SourceFile): Trigger[] => {
     if (match !== null) {
       const trigger_match = match as TriggerMatchArray;
 
-      const {flag, method} = get_flag_and_method(trigger_match[TriggerMatchIndex.Flag]);
+      const {flag, method} = get_flag_and_method(trigger_match[TriggerMatchIndex.Flags]);
       const description = trigger_match[TriggerMatchIndex.Description];
 
       const position = scanner.getTokenPos();

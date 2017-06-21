@@ -7,18 +7,24 @@ export const config_namespace = '_dts_jest_';
 export const runtime_namespace = '_dts_jest_runtime_';
 
 export const trigger_regex = /^\s*\/\/\s*@dts-jest\b(:?\S*)\s*(.+)?\s*$/;
-export enum TriggerMatchIndex {Input, Flag, Description}
+export enum TriggerMatchIndex {Input, Flags, Description}
 export type TriggerMatchArray = [string, string, string | undefined];
 
-export enum TriggerFlag {
-  None = '',
+export enum TestMethod {
+  Test = 'test',
+  Skip = 'test.skip',
+  Only = 'test.only',
+}
+export enum TestFlag {
+  Test = ':test',
+  Only = ':only',
+  Skip = ':skip',
+}
+export enum AssertionFlag {
+  Shot = ':shot',
+  Show = ':show',
   Pass = ':pass',
   Fail = ':fail',
-  Only = ':only',
-  OnlyPass = ':only:pass',
-  OnlyFail = ':only:fail',
-  Skip = ':skip',
-  Show = ':show',
 }
 
 export interface Target {
@@ -30,7 +36,7 @@ export interface Target {
   description?: string;
 }
 export interface Trigger extends Target {
-  flag: TriggerFlag;
+  flag: AssertionFlag;
   method: TestMethod;
 }
 
@@ -40,12 +46,6 @@ export interface Snapshot {
 }
 
 export interface Result extends Target, Snapshot {}
-
-export enum TestMethod {
-  Test = 'test',
-  Skip = 'test.skip',
-  Only = 'test.only',
-}
 
 export interface RawConfig {
   tsconfig?: string | ts.CompilerOptions;

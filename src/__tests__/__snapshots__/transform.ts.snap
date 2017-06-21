@@ -10,7 +10,7 @@ exports[`should throw error with unattachable trigger(s) 1`] = `
 `;
 
 exports[`should transform correctly 1`] = `
-"var _dts_jest_runtime_;beforeAll(function () {_dts_jest_runtime_ = require(\\"dts-jest\\").setup(module.filename, (function () {try {return _dts_jest_;} catch (e) {return {};}})(), [{\\"line\\":4,\\"expression\\":\\"T.none()\\"},{\\"line\\":7,\\"description\\":\\"description-none\\",\\"expression\\":\\"T.none()\\"},{\\"line\\":10,\\"expression\\":\\"T.show()\\"},{\\"line\\":13,\\"description\\":\\"description-show\\",\\"expression\\":\\"T.show()\\"},{\\"line\\":16,\\"expression\\":\\"T.skip()\\"},{\\"line\\":19,\\"description\\":\\"description-skip\\",\\"expression\\":\\"T.skip()\\"},{\\"line\\":22,\\"expression\\":\\"T.only()\\"},{\\"line\\":25,\\"description\\":\\"description-only\\",\\"expression\\":\\"T.only()\\"},{\\"line\\":29,\\"expression\\":\\"T.in_block()\\"},{\\"line\\":33,\\"expression\\":\\"Math.abs(123)\\"},{\\"line\\":36,\\"expression\\":\\"Math.abs('abc')\\"}]);});
+"var _dts_jest_runtime_;beforeAll(function () {_dts_jest_runtime_ = require(\\"dts-jest\\").setup(module.filename, (function () {try {return _dts_jest_;} catch (e) {return {};}})(), [{\\"line\\":4,\\"expression\\":\\"T.none()\\"},{\\"line\\":7,\\"description\\":\\"description-none\\",\\"expression\\":\\"T.none()\\"},{\\"line\\":10,\\"expression\\":\\"T.show()\\"},{\\"line\\":13,\\"description\\":\\"description-show\\",\\"expression\\":\\"T.show()\\"},{\\"line\\":16,\\"expression\\":\\"T.skip()\\"},{\\"line\\":19,\\"description\\":\\"description-skip\\",\\"expression\\":\\"T.skip()\\"},{\\"line\\":22,\\"expression\\":\\"T.only()\\"},{\\"line\\":25,\\"description\\":\\"description-only\\",\\"expression\\":\\"T.only()\\"},{\\"line\\":29,\\"expression\\":\\"T.in_block()\\"},{\\"line\\":33,\\"expression\\":\\"Math.abs(123)\\"},{\\"line\\":36,\\"expression\\":\\"Math.abs('abc')\\"},{\\"line\\":39,\\"expression\\":\\"T.test()\\"},{\\"line\\":42,\\"description\\":\\"description-test\\",\\"expression\\":\\"T.test()\\"},{\\"line\\":45,\\"expression\\":\\"T.shot()\\"},{\\"line\\":48,\\"description\\":\\"description-shot\\",\\"expression\\":\\"T.shot()\\"},{\\"line\\":51,\\"description\\":\\"description-only-show\\",\\"expression\\":\\"T.only.show()\\"}]);});
 
 
 
@@ -47,6 +47,21 @@ test(\\"Math.abs(123)\\", function () {expect(_dts_jest_runtime_.snapshot(33)).t
 
 
 test(\\"Math.abs('abc')\\", function () {expect(function () { return _dts_jest_runtime_.snapshot(36); }).toThrowErrorMatchingSnapshot();});
+
+
+test(\\"T.test()\\", function () {expect(_dts_jest_runtime_.safe_snapshot(39)).toMatchSnapshot();});
+
+
+test(\\"description-test\\", function () {expect(_dts_jest_runtime_.safe_snapshot(42)).toMatchSnapshot();});
+
+
+test(\\"T.shot()\\", function () {expect(_dts_jest_runtime_.safe_snapshot(45)).toMatchSnapshot();});
+
+
+test(\\"description-shot\\", function () {expect(_dts_jest_runtime_.safe_snapshot(48)).toMatchSnapshot();});
+
+
+test.only(\\"description-only-show\\", function () {console.log(_dts_jest_runtime_.report(51));});
 
 "
 `;

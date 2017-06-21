@@ -51,8 +51,6 @@ This setup allow you to test files `**/dts-jest/**/*.ts` via `dts-jest`.
 
 The test cases must start with `// @dts-jest`, and the second line should be an expression that you want to test its type.
 
-**NOTE**: While testing, expression with error will snapshot its error message instead of its type.
-
 (./dts-jest/example.ts)
 
 ```ts
@@ -71,21 +69,24 @@ arrayify(0);
 ## Patterns
 
 ```ts
-// @dts-jest[:flag] [description]
+// @dts-jest[flags] [description]
 expression
 ```
 
-- flags
-  - default (aka [test](https://facebook.github.io/jest/docs/en/api.html#testname-fn))
-  - `:pass` (same as default, but assert its result to be passed)
-  - `:fail` (same as default, but assert its result to be failed)
-  - `:only` (aka [test.only](https://facebook.github.io/jest/docs/en/api.html#testonlyname-fn))
-  - `:only:pass` (same as `:only`, but assert its result to be passed)
-  - `:only:fail` (same as `:only`, but assert its result to be failed)
-  - `:skip` (aka [test.skip](https://facebook.github.io/jest/docs/en/api.html#testskipname-fn))
-  - `:show` (aka `console.log`)
 - description
-  - default = expression
+  - default: expression
+- flag
+  - for test
+    - default: `:test`
+    - `:test`: aka [`test`](https://facebook.github.io/jest/docs/en/api.html#testname-fn)
+    - `:only`: aka [`test.only`](https://facebook.github.io/jest/docs/en/api.html#testonlyname-fn)
+    - `:skip`: aka [`test.skip`](https://facebook.github.io/jest/docs/en/api.html#testskipname-fn)
+  - for assertion
+    - default: `:shot`
+    - `:shot`: aka `:pass` + `:fail`, snapshot its inferenced type or diagnostic message
+    - `:show`: aka `console.log`
+    - `:pass`: aka [`toMatchSnapshot`](https://facebook.github.io/jest/docs/en/expect.html#tomatchsnapshotoptionalstring)
+    - `:fail`: aka [`toThrowErrorMatchingSnapshot`](https://facebook.github.io/jest/docs/en/expect.html#tothrowerrormatchingsnapshot)
 
 ## Testing
 
