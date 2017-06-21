@@ -150,9 +150,9 @@ For example:
 yarn run test
 
 # test with coverage
-yarn run test-coverage
+yarn run test -- --coverage
 
-# test actual behavior
+# try actual behavior
 yarn run test-integration
 
 # build
