@@ -51,6 +51,38 @@ test(\\"Math.abs('abc')\\", function () {expect(function () { return _dts_jest_r
 "
 `;
 
+exports[`should transform correctly with indented expression 1`] = `
+"var _dts_jest_runtime_;beforeAll(function () {_dts_jest_runtime_ = require(\\"dts-jest\\").setup(module.filename, (function () {try {return _dts_jest_;} catch (e) {return {};}})(), [{\\"line\\":4,\\"expression\\":\\"[].map(\\\\n  () => '',\\\\n)\\"},{\\"line\\":10,\\"expression\\":\\"[].map(\\\\n() => '',\\\\n)\\"},{\\"line\\":16,\\"expression\\":\\"[].map(\\\\n\\\\n\\\\n  () => '',\\\\n\\\\n\\\\n)\\"}]);});
+
+
+
+test(\\"[].map(\\\\n      () => '',\\\\n    )\\", function () {expect(_dts_jest_runtime_.safe_snapshot(4)).toMatchSnapshot();});
+
+
+
+
+
+test(\\"[].map(\\\\n    () => '',\\\\n    )\\", function () {expect(_dts_jest_runtime_.safe_snapshot(10)).toMatchSnapshot();});
+
+
+
+
+
+test(\\"[].map(\\\\n    \\\\n    \\\\n      () => '',\\\\n    \\\\n    \\\\n    )\\", function () {expect(_dts_jest_runtime_.safe_snapshot(16)).toMatchSnapshot();});
+
+
+
+
+
+
+
+
+
+
+
+"
+`;
+
 exports[`should transform correctly with template token 1`] = `
 "var _dts_jest_runtime_;beforeAll(function () {_dts_jest_runtime_ = require(\\"dts-jest\\").setup(module.filename, (function () {try {return _dts_jest_;} catch (e) {return {};}})(), [{\\"line\\":4,\\"expression\\":\\"R.keysIn(f)\\"},{\\"line\\":10,\\"expression\\":\\"R.keysIn(f)\\"},{\\"line\\":26,\\"expression\\":\\"R.toString(new Point(1, 2))\\"}]);});
 

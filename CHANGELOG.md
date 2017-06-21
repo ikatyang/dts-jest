@@ -10,6 +10,11 @@ All changes to this project will be documented in this file.
 > - 🏠 [Internal]
 > - 💅 [Polish]
 
+## Unreleased
+
+#### 🐛 Bug Fix
+- Remove unnecessary leading spaces in expressions (dedent)
+
 ## v20.2.0 (2017-06-20)
 
 #### 🚀 New Feature

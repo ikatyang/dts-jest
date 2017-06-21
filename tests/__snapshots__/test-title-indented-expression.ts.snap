@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[].map(
+    
+    
+      () => '',
+    
+    
+    ) 1`] = `"string[]"`;
+
+exports[`[].map(
+      () => '',
+    ) 1`] = `"string[]"`;
+
+exports[`[].map(
+    () => '',
+    ) 1`] = `"string[]"`;

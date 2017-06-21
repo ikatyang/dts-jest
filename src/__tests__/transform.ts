@@ -16,6 +16,10 @@ it('should transform correctly with template token', () => {
   expect(transform_fixture('../../fixtures/transform/template-token.ts')).toMatchSnapshot();
 });
 
+it('should transform correctly with indented expression', () => {
+  expect(transform_fixture('../../fixtures/transform/indented-expression.ts')).toMatchSnapshot();
+});
+
 it('should throw error with unexpected flag', () => {
   expect(() => transform_fixture('../../fixtures/transform/unexpected.ts')).toThrowError();
 });

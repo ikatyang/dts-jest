@@ -4,6 +4,7 @@ import * as ts from 'typescript';
 import {trigger_regex, Trigger, TriggerMatchArray, TriggerMatchIndex} from '../definitions';
 import {default_to} from './default-to';
 import {get_flag_and_method} from './get-flag-and-method';
+import {repeat} from './repeat';
 import {traverse_node} from './traverse-node';
 
 export const create_triggers = (source_file: ts.SourceFile): Trigger[] => {
@@ -30,6 +31,7 @@ export const create_triggers = (source_file: ts.SourceFile): Trigger[] => {
   });
 
   const triggers: Trigger[] = [];
+  const line_starts = source_file.getLineStarts();
 
   traverse_node(source_file, node => {
     const position = node.getStart(source_file);
@@ -38,7 +40,12 @@ export const create_triggers = (source_file: ts.SourceFile): Trigger[] => {
 
     if (trigger_line in partial_triggers) {
       try {
-        const expression = node.getText(source_file).replace(/\s*;?\s*$/, '');
+        const leading_space_width = node.getStart(source_file) - line_starts[expression_line];
+        const expression = node.getText(source_file)
+          .replace(/\s*;?\s*$/, '')
+          .replace(/^ */mg, spaces =>
+            repeat(' ', Math.max(0, spaces.length - leading_space_width)),
+          );
 
         const partial_trigger = partial_triggers[trigger_line];
         delete partial_triggers[trigger_line];
