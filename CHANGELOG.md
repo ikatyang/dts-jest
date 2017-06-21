@@ -14,7 +14,7 @@ All changes to this project will be documented in this file.
 
 #### 🚀 New Feature
 - Add group flag to categorize test cases
-- Add default flags ( `:test`, `:shot` ) to show its explicit type
+- Add default flags ( `:test`, `:shot` ) to show its explicit flag
 - Allow to set flags with any order, e.g. `:show:only`, `:only:show`
 
 #### 🐛 Bug Fix
