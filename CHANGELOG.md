@@ -10,7 +10,7 @@ All changes to this project will be documented in this file.
 > - 🏠 [Internal]
 > - 💅 [Polish]
 
-## Unreleased
+## v20.3.1 (2017-06-21)
 
 #### 🐛 Bug Fix
 - Fix indentation for description of grouped test
