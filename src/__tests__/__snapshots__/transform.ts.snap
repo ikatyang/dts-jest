@@ -89,7 +89,7 @@ describe(\\"NamedGroup\\", function () {test(\\"G.in_named_group()\\", function 
 
 
 
-});describe.skip(\\"OnlyGroup\\", function () {test(\\"G.in_skip_group()\\", function () {expect(_dts_jest_runtime_.safe_snapshot(22)).toMatchSnapshot();});});
+});describe.skip(\\"SkipGroup\\", function () {test(\\"G.in_skip_group()\\", function () {expect(_dts_jest_runtime_.safe_snapshot(22)).toMatchSnapshot();});});
 
 "
 `;

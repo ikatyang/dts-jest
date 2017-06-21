@@ -19,7 +19,7 @@ G.in_unnamed_group();
 // @dts-jest
 G.in_only_group();
 
-// @dts-jest:group:skip OnlyGroup
+// @dts-jest:group:skip SkipGroup
 
 // @dts-jest
 G.in_skip_group();
