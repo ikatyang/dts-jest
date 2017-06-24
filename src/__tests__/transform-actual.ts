@@ -27,7 +27,7 @@ it('should transform correctly with group-only', () => {
   expect(transform_fixture('../../fixtures/transform-actual/group-only.ts')).toMatchSnapshot();
 });
 
-describe.only('es6', () => {
+describe('es6', () => {
   it('should transform correctly', () => {
     expect(transform_fixture('../../fixtures/transform-actual/es6.ts')).toMatchSnapshot();
   });
