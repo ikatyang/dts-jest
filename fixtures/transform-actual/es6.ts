@@ -1,2 +1,4 @@
+import * as path from 'path';
+
 // @dts-jest
-[].map(x => 123); //=> []
+['path/to/abc.ts'].map(x => path.basename(x)); //=> ['abc.ts']

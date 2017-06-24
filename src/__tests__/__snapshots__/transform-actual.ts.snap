@@ -1,21 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`es6 should transform correctly 1`] = `
-"// @dts-jest
-test(\\"[].map(x => 123)\\", function () { expect(function () { return [].map(x => 123); }).not.toThrowError(); }) //=> []
+"import * as path from 'path';
+
+// @dts-jest
+test(\\"['path/to/abc.ts'].map(x => path.basename(x))\\", function () { expect(function () { return ['path/to/abc.ts'].map(x => path.basename(x)); }).not.toThrowError(); }) //=> ['abc.ts']
 "
 `;
 
-exports[`es6 should transform correctly for ts.transpile with source map 1`] = `
-"// @dts-jest
-test(\\"[].map(x => 123)\\", function () { expect(function () { return [].map(function (x) { return 123; }); }).not.toThrowError(); }); //=> []
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZXM2LmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiZXM2LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLFlBQVk7QUFDWixJQUFJLENBQUMsa0JBQWtCLEVBQUUsY0FBYyxNQUFNLENBQUMsY0FBYyxNQUFNLENBQUMsRUFBRSxDQUFDLEdBQUcsQ0FBQyxVQUFBLENBQUMsSUFBSSxPQUFBLEdBQUcsRUFBSCxDQUFHLENBQUMsQ0FBQyxDQUFDLENBQUMsQ0FBQyxDQUFDLEdBQUcsQ0FBQyxZQUFZLEVBQUUsQ0FBQyxDQUFDLENBQUMsQ0FBQyxDQUFBLENBQUMsT0FBTyJ9"
-`;
-
-exports[`es6 should transform correctly for ts.transpile with tsconfig 1`] = `
-"// @dts-jest
-test(\\"[].map(x => 123)\\", function () { expect(function () { return [].map(x => 123); }).not.toThrowError(); }) //=> []
-"
+exports[`es6 should transform correctly for ts.transpile 1`] = `
+"\\"use strict\\";
+Object.defineProperty(exports, \\"__esModule\\", { value: true });
+var path = require(\\"path\\");
+// @dts-jest
+test(\\"['path/to/abc.ts'].map(x => path.basename(x))\\", function () { expect(function () { return ['path/to/abc.ts'].map(function (x) { return path.basename(x); }); }).not.toThrowError(); }); //=> ['abc.ts']
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZXM2LmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiZXM2LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQUEsMkJBQTZCO0FBRTdCLFlBQVk7QUFDWixJQUFJLENBQUMsK0NBQStDLEVBQUUsY0FBYyxNQUFNLENBQUMsY0FBYyxNQUFNLENBQUMsQ0FBQyxnQkFBZ0IsQ0FBQyxDQUFDLEdBQUcsQ0FBQyxVQUFBLENBQUMsSUFBSSxPQUFBLElBQUksQ0FBQyxRQUFRLENBQUMsQ0FBQyxDQUFDLEVBQWhCLENBQWdCLENBQUMsQ0FBQyxDQUFDLENBQUMsQ0FBQyxDQUFDLEdBQUcsQ0FBQyxZQUFZLEVBQUUsQ0FBQyxDQUFDLENBQUMsQ0FBQyxDQUFBLENBQUMsZUFBZSJ9"
 `;
 
 exports[`should throw error with unattachable expected-comment 1`] = `
