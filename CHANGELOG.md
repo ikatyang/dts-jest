@@ -10,7 +10,7 @@ All changes to this project will be documented in this file.
 > - 🏠 [Internal]
 > - 💅 [Polish]
 
-## Unreleased
+## v20.4.0 (2017-06-24)
 
 #### 🚀 New Feature
 - Add actual test transformer (`dts-jest/transform-actual`) with `//=> value` comment
