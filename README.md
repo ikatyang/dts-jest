@@ -8,11 +8,21 @@ A preprocessor for [Jest](https://facebook.github.io/jest/) to snapshot test [Ty
 
 [Changelog](https://github.com/ikatyang/dts-jest/blob/master/CHANGELOG.md)
 
+- [Version](#version)
+- [Install](#install)
+- [Usage](#usage)
+- [Writing tests](#writing-tests)
+- [Patterns](#patterns)
+- [Testing](#testing)
+- [Configs](#configs)
+- [Developement](#development)
+- [Related](#related)
+
 ## Version
 
 This project uses the same MAJOR version as Jest.
 
-## Installation
+## Install
 
 using npm
 
