@@ -54,7 +54,8 @@ export const create_triggers = (source_file: ts.SourceFile): Trigger[] => {
 
     if (trigger_line in partial_triggers) {
       try {
-        const leading_space_width = node.getStart(source_file) - line_starts[expression_line];
+        const start = node.getStart(source_file);
+        const leading_space_width = start - line_starts[expression_line];
         const expression = node.getText(source_file)
           .replace(/\s*;?\s*$/, '')
           .replace(/^ */mg, spaces =>
@@ -65,6 +66,8 @@ export const create_triggers = (source_file: ts.SourceFile): Trigger[] => {
         delete partial_triggers[trigger_line];
 
         triggers.push({
+          start,
+          end: node.getEnd(),
           expression,
           line: trigger_line,
           ...partial_trigger,

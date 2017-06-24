@@ -15,6 +15,7 @@ A preprocessor for [Jest](https://facebook.github.io/jest/) to snapshot test [Ty
 - [Patterns](#patterns)
 - [Testing](#testing)
 - [Configs](#configs)
+- [Actual Tests](#acutal-tests)
 - [Developement](#development)
 - [Related](#related)
 
@@ -169,6 +170,47 @@ For example:
     }
   }
 }
+```
+
+## Actual Tests
+
+You can use `dts-jest/transform-actual` to test its actual results, for example:
+
+(./package.json)
+
+```json
+{
+  "scripts": {
+    "test": "jest"
+  },
+  "jest": {
+    "moduleFileExtensions": ["ts", "js", "json"],
+    "testRegex": "/dts-jest/.+\\.ts$",
+    "transform": {"/dts-jest/.+\\.ts$": "dts-jest/transform-actual"}
+  }
+}
+```
+
+This transformer allows you to test its value via `//=> value` coment, the comment should be put on the end line of the expression.
+
+```ts
+// @dts-jest
+Math.max(1, 2, 3); //=> 3
+
+// @dts-jest
+Math.max(
+  1,
+  2,
+  3,
+); //=> 3
+
+const result = 3;
+// @dts-jest
+Math.max(
+  1,
+  2,
+  3,
+); //=> result
 ```
 
 ## Development

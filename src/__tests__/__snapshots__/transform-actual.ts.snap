@@ -1,0 +1,184 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`es6 should transform correctly 1`] = `
+"// @dts-jest
+test(\\"[].map(x => 123)\\", function () { expect(function () { return [].map(x => 123); }).not.toThrowError(); }) //=> []
+"
+`;
+
+exports[`es6 should transform correctly for ts.transpile with source map 1`] = `
+"// @dts-jest
+test(\\"[].map(x => 123)\\", function () { expect(function () { return [].map(function (x) { return 123; }); }).not.toThrowError(); }); //=> []
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZXM2LmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiZXM2LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLFlBQVk7QUFDWixJQUFJLENBQUMsa0JBQWtCLEVBQUUsY0FBYyxNQUFNLENBQUMsY0FBYyxNQUFNLENBQUMsRUFBRSxDQUFDLEdBQUcsQ0FBQyxVQUFBLENBQUMsSUFBSSxPQUFBLEdBQUcsRUFBSCxDQUFHLENBQUMsQ0FBQyxDQUFDLENBQUMsQ0FBQyxDQUFDLEdBQUcsQ0FBQyxZQUFZLEVBQUUsQ0FBQyxDQUFDLENBQUMsQ0FBQyxDQUFBLENBQUMsT0FBTyJ9"
+`;
+
+exports[`es6 should transform correctly for ts.transpile with tsconfig 1`] = `
+"// @dts-jest
+test(\\"[].map(x => 123)\\", function () { expect(function () { return [].map(x => 123); }).not.toThrowError(); }) //=> []
+"
+`;
+
+exports[`should throw error with unattachable expected-comment 1`] = `
+"Unattachable expected-value(s) detected:
+
+  fixtures/transform-actual/unattachable.ts:1
+  fixtures/transform-actual/unattachable.ts:3
+  fixtures/transform-actual/unattachable.ts:5
+  fixtures/transform-actual/unattachable.ts:7
+  fixtures/transform-actual/unattachable.ts:9"
+`;
+
+exports[`should throw error with unattachable expected-comment 2`] = `
+"Unattachable expected-value(s) detected:
+
+  fixtures/transform-actual/unattachable-mix.ts:1
+  fixtures/transform-actual/unattachable-mix.ts:3
+  fixtures/transform-actual/unattachable-mix.ts:7
+  fixtures/transform-actual/unattachable-mix.ts:9
+  fixtures/transform-actual/unattachable-mix.ts:11
+  fixtures/transform-actual/unattachable-mix.ts:13"
+`;
+
+exports[`should transform correctly 1`] = `
+"// @dts-jest
+test.skip(\\"Math.max(1, 2, 3)\\", function () { expect(function () { return Math.max(1, 2, 3); }).not.toThrowError(); }) //=> 3
+
+// @dts-jest description-none
+test.skip(\\"description-none\\", function () { expect(function () { return Math.max(1, 2, 3); }).not.toThrowError(); }) //=> 3
+
+// @dts-jest:show
+test.skip(\\"Math.min(1, 2, 3)\\", function () { console.log(Math.min(1, 2, 3)); }) //=> 1
+
+// @dts-jest:show description-show
+test.skip(\\"description-show\\", function () { console.log(Math.min(1, 2, 3)); }) //=> 1
+
+// @dts-jest:skip
+test.skip(\\"Math.abs(-1)\\", function () { expect(function () { return Math.abs(-1); }).not.toThrowError(); }) //=> 1
+
+// @dts-jest:skip description-skip
+test.skip(\\"description-skip\\", function () { expect(function () { return Math.abs(-1); }).not.toThrowError(); }) //=> 1
+
+// @dts-jest:only
+test(\\"Math.floor(1.2)\\", function () { expect(function () { return Math.floor(1.2); }).not.toThrowError(); }) //=> 1
+
+// @dts-jest:only description-only
+test.skip(\\"description-only\\", function () { expect(function () { return Math.floor(1.2); }).not.toThrowError(); }) //=> 1
+
+// @dts-jest:pass
+test.skip(\\"Math.abs(-2)\\", function () { expect(Math.abs(-2)).toEqual(2); }) //=> 2
+
+// @dts-jest:pass description-pass
+test.skip(\\"description-pass\\", function () { expect(Math.abs(-2)).toEqual(2); }) //=> 2
+
+// @dts-jest:fail
+test.skip(\\"Math.round(1.8)\\", function () { expect(function () { return Math.round(1.8); }).toThrowError(); }) //=> 2
+
+// @dts-jest:fail description-fail
+test.skip(\\"description-fail\\", function () { expect(function () { return Math.round(1.8); }).toThrowError(); }) //=> 2
+
+// @dts-jest
+test.skip(\\"Math.max(\\\\n      1,\\\\n      2,\\\\n      3,\\\\n    )\\", function () { expect(function () { return Math.max(
+  1,
+  2,
+  3,
+); }).not.toThrowError(); }) //=> 3
+"
+`;
+
+exports[`should transform correctly with group 1`] = `
+"// @dts-jest:group A
+
+// @dts-jest:show
+test(\\"Math.min(1, 2, 3)\\", function () { console.log(Math.min(1, 2, 3)); }) //=> 1
+
+// @dts-jest:show description-show
+test(\\"description-show\\", function () { console.log(Math.min(1, 2, 3)); }) //=> 1
+
+// @dts-jest:skip
+test.skip(\\"Math.abs(-1)\\", function () { expect(function () { return Math.abs(-1); }).not.toThrowError(); }) //=> 1
+
+// @dts-jest:skip description-skip
+test.skip(\\"description-skip\\", function () { expect(function () { return Math.abs(-1); }).not.toThrowError(); }) //=> 1
+
+// @dts-jest:group:skip B
+
+// @dts-jest:only
+test.skip(\\"Math.floor(1.2)\\", function () { expect(function () { return Math.floor(1.2); }).not.toThrowError(); }) //=> 1
+
+// @dts-jest:only description-only
+test.skip(\\"description-only\\", function () { expect(function () { return Math.floor(1.2); }).not.toThrowError(); }) //=> 1
+
+// @dts-jest:pass
+test.skip(\\"Math.abs(-2)\\", function () { expect(Math.abs(-2)).toEqual(2); }) //=> 2
+
+// @dts-jest:group C
+
+// @dts-jest:pass description-pass
+test(\\"description-pass\\", function () { expect(Math.abs(-2)).toEqual(2); }) //=> 2
+
+// @dts-jest:fail
+test(\\"Math.round(1.8)\\", function () { expect(function () { return Math.round(1.8); }).toThrowError(); }) //=> 2
+
+// @dts-jest:fail description-fail
+test(\\"description-fail\\", function () { expect(function () { return Math.round(1.8); }).toThrowError(); }) //=> 2
+
+// @dts-jest
+test(\\"Math.max(\\\\n      1,\\\\n      2,\\\\n      3,\\\\n    )\\", function () { expect(function () { return Math.max(
+  1,
+  2,
+  3,
+); }).not.toThrowError(); }) //=> 3
+"
+`;
+
+exports[`should transform correctly with group-only 1`] = `
+"// @dts-jest
+test.skip(\\"Math.max(1, 2, 3)\\", function () { expect(function () { return Math.max(1, 2, 3); }).not.toThrowError(); }) //=> 3
+
+// @dts-jest description-none
+test.skip(\\"description-none\\", function () { expect(function () { return Math.max(1, 2, 3); }).not.toThrowError(); }) //=> 3
+
+// @dts-jest:group A
+
+// @dts-jest:show
+test.skip(\\"Math.min(1, 2, 3)\\", function () { console.log(Math.min(1, 2, 3)); }) //=> 1
+
+// @dts-jest:show description-show
+test.skip(\\"description-show\\", function () { console.log(Math.min(1, 2, 3)); }) //=> 1
+
+// @dts-jest:skip
+test.skip(\\"Math.abs(-1)\\", function () { expect(function () { return Math.abs(-1); }).not.toThrowError(); }) //=> 1
+
+// @dts-jest:only description-skip
+test.skip(\\"description-skip\\", function () { expect(function () { return Math.abs(-1); }).not.toThrowError(); }) //=> 1
+
+// @dts-jest:group:only B
+
+// @dts-jest:only
+test(\\"Math.floor(1.2)\\", function () { expect(function () { return Math.floor(1.2); }).not.toThrowError(); }) //=> 1
+
+// @dts-jest:only description-only
+test.skip(\\"description-only\\", function () { expect(function () { return Math.floor(1.2); }).not.toThrowError(); }) //=> 1
+
+// @dts-jest:pass
+test.skip(\\"Math.abs(-2)\\", function () { expect(Math.abs(-2)).toEqual(2); }) //=> 2
+
+// @dts-jest:group C
+
+// @dts-jest:pass description-pass
+test.skip(\\"description-pass\\", function () { expect(Math.abs(-2)).toEqual(2); }) //=> 2
+
+// @dts-jest:fail
+test.skip(\\"Math.round(1.8)\\", function () { expect(function () { return Math.round(1.8); }).toThrowError(); }) //=> 2
+
+// @dts-jest:fail description-fail
+test.skip(\\"description-fail\\", function () { expect(function () { return Math.round(1.8); }).toThrowError(); }) //=> 2
+
+// @dts-jest
+test.skip(\\"Math.max(\\\\n      1,\\\\n      2,\\\\n      3,\\\\n    )\\", function () { expect(function () { return Math.max(
+  1,
+  2,
+  3,
+); }).not.toThrowError(); }) //=> 3
+"
+`;

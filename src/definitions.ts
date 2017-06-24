@@ -47,7 +47,10 @@ export interface TriggerInfo {
   flag: AssertionFlag;
   method: TestMethod;
 }
-export interface Trigger extends Target, TriggerInfo {}
+export interface Trigger extends Target, TriggerInfo {
+  start: number;
+  end: number;
+}
 
 export interface GroupInfo {
   method: GroupMethod;
@@ -64,8 +67,17 @@ export interface Snapshot {
   inference?: string;
   diagnostic?: string;
 }
+export interface Expected extends Trigger {
+  value: string;
+}
 
 export interface Result extends Target, Snapshot {}
+
+export interface JestConfig {
+  globals: {
+    [K in typeof config_namespace]?: RawConfig;
+  };
+}
 
 export interface RawConfig {
   tsconfig?: string | ts.CompilerOptions;

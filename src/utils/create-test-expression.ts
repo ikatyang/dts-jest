@@ -1,21 +1,9 @@
 import {runtime_namespace, AssertionFlag, Trigger} from '../definitions';
-import {default_to} from './default-to';
+import {get_formatted_description} from './get-formatted-description';
 import {remove_spaces} from './remove-spaces';
-import {repeat} from './repeat';
-
-const jest_title_leading_spaces_count = 4;
-const jest_grouped_title_leading_spaces_count = 6;
 
 export const create_test_expression = (trigger: Trigger) => {
-  const description = default_to(trigger.description, trigger.expression)
-    .replace(/\n/g, `\n${
-      repeat(
-        ' ',
-        (trigger.group === undefined)
-          ? jest_title_leading_spaces_count
-          : jest_grouped_title_leading_spaces_count,
-        )
-    }`);
+  const description = get_formatted_description(trigger, false);
   const stringified_description = JSON.stringify(description);
 
   const report_expression = `${runtime_namespace}.report(${trigger.line})`;
