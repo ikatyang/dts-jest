@@ -11,8 +11,6 @@ export const transform_actual = (
     source_text: string,
     source_filename: string,
     jest_config: JestConfig,
-    // istanbul ignore next
-    debug = false,
     ) => {
   const source_file = ts.createSourceFile(source_filename, source_text, ts.ScriptTarget.Latest, false);
   const triggers = create_triggers(source_file);
@@ -36,7 +34,7 @@ export const transform_actual = (
     }${transformed.slice(expected.end)}`;
   });
 
-  if (debug) {
+  if (jest_config._dts_jest_debug_ === true) {
     return transformed;
   } else {
     const tsconfig: ts.CompilerOptions = {

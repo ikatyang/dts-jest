@@ -77,6 +77,7 @@ export interface JestConfig {
   globals: {
     [K in typeof config_namespace]?: RawConfig;
   };
+  _dts_jest_debug_?: boolean;
 }
 
 export interface RawConfig {

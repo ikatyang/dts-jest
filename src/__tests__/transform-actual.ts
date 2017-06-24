@@ -1,13 +1,17 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as ts from 'typescript';
+import {JestConfig} from '../definitions';
 import {transform_actual} from '../transform-actual';
 
 const transform_fixture = (relative_path: string, tsconfig: ts.CompilerOptions = {}, debug = true) => {
   const source_filename = path.resolve(__dirname, relative_path);
   const source_text = fs.readFileSync(source_filename, 'utf8');
-  const jest_config = {globals: {_dts_jest_: {tsconfig}}};
-  return transform_actual(source_text, source_filename, jest_config, debug);
+  const jest_config: JestConfig = {
+    globals: {_dts_jest_: {tsconfig}},
+    _dts_jest_debug_: debug,
+  };
+  return transform_actual(source_text, source_filename, jest_config);
 };
 
 it('should transform correctly', () => {
