@@ -1,5 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`string_to_any('') 1`] = `"any"`;
-
-exports[`string_to_any(0) 1`] = `"Argument of type '0' is not assignable to parameter of type 'string'."`;
