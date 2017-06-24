@@ -10,7 +10,7 @@ All changes to this project will be documented in this file.
 > - 🏠 [Internal]
 > - 💅 [Polish]
 
-## Unreleased
+## v20.4.1 (2017-06-24)
 
 #### 🐛 Bug Fix
 - Fix transpile error for actual test
