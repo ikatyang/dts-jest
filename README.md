@@ -15,7 +15,7 @@ A preprocessor for [Jest](https://facebook.github.io/jest/) to snapshot test [Ty
 - [Patterns](#patterns)
 - [Testing](#testing)
 - [Configs](#configs)
-- [Actual Tests](#acutal-tests)
+- [Actual Tests](#actual-tests)
 - [Developement](#development)
 - [Related](#related)
 
