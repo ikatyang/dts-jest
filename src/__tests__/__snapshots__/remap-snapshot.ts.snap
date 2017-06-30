@@ -1,6 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should remap correctly 1`] = `
+exports[`should remap correctl with snapshot-content object 1`] = `
+"
+    // @dts-jest -> number
+    Math.max(1, 2, 3);
+  "
+`;
+
+exports[`should remap correctly with snapshot-content string 1`] = `
 "import * as R from '../ramda/dist/index';
 
 // tslint:disable max-file-line-count comment-format

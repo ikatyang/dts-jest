@@ -7,8 +7,13 @@ import {get_formatted_description} from './utils/get-formatted-description';
 // tslint:disable-next-line:no-require-imports no-var-requires
 const require_from_string = require('require-from-string');
 
-export const remap_snapshot = (snapshot_content: string, source_content: string) => {
-  const snapshot_data: Record<string, string> = require_from_string(snapshot_content);
+export const remap_snapshot = (
+    snapshot_content: string | Record<string, string>,
+    source_content: string,
+    ) => {
+  const snapshot_data = (typeof snapshot_content === 'string')
+    ? require_from_string(snapshot_content) as Record<string, string>
+    : snapshot_content;
 
   const source_file = ts.createSourceFile('', source_content, ts.ScriptTarget.Latest, false);
   const triggers = create_triggers(source_file);
