@@ -1,4 +1,4 @@
 {
   "extends": "./tsconfig.json",
-  "include": ["src/index.ts", "src/cli.ts"]
+  "include": ["src/index.ts", "src/remap-snapshot-cli.ts"]
 }

@@ -11,6 +11,9 @@
   ],
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "bin": {
+    "dts-jest-remap-snapshot": "bin/remap-snapshot.js"
+  },
   "repository": "https://github.com/ikatyang/dts-jest",
   "homepage": "https://github.com/ikatyang/dts-jest#readme",
   "author": "ikatyang",
@@ -25,6 +28,7 @@
     "test-integration": "jest --config ./tests/jest.json --no-cache --verbose"
   },
   "dependencies": {
+    "require-from-string": "^1.2.1",
     "ts-comment": "^1.0.1",
     "tsconfig-extends": "^1.0.1",
     "typescript": "^2.4.0"
@@ -45,6 +49,7 @@
     "node": ">= 4"
   },
   "files": [
+    "/bin/**/*",
     "/lib/**/*",
     "/*.js"
   ]

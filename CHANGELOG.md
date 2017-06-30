@@ -10,6 +10,11 @@ All changes to this project will be documented in this file.
 > - 🏠 [Internal]
 > - 💅 [Polish]
 
+## Unreleased
+
+#### 🚀 New Feature
+- Add `remap-snapshot` to generate diff-friendly snapshots
+
 ## v20.4.1 (2017-06-24)
 
 #### 🐛 Bug Fix
