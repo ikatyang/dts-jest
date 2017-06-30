@@ -10,7 +10,7 @@ All changes to this project will be documented in this file.
 > - 🏠 [Internal]
 > - 💅 [Polish]
 
-## Unreleased
+## v20.5.1 (2017-06-30)
 
 #### 🚀 New Feature
 - allow using snapshot-content object for `remap-snapshot`
