@@ -14,6 +14,7 @@ All changes to this project will be documented in this file.
 
 #### 🚀 New Feature
 - allow using snapshot-content object for `remap-snapshot`
+- allow specifying snapshot filename for `remap-snapshot` so as to handle cache
 
 ## v20.5.0 (2017-06-30)
 

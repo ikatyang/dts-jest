@@ -10,9 +10,10 @@ const require_from_string = require('require-from-string');
 export const remap_snapshot = (
     snapshot_content: string | Record<string, string>,
     source_content: string,
+    snapshot_filename?: string,
     ) => {
   const snapshot_data = (typeof snapshot_content === 'string')
-    ? require_from_string(snapshot_content) as Record<string, string>
+    ? require_from_string(snapshot_content, snapshot_filename) as Record<string, string>
     : snapshot_content;
 
   const source_file = ts.createSourceFile('', source_content, ts.ScriptTarget.Latest, false);
