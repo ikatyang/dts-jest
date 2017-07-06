@@ -1,29 +1,29 @@
 language: node_js
 
 node_js:
-  - 4
-  - 6
-  - stable
+- 4
+- 6
+- stable
 
 before_install:
-  - yarn global add greenkeeper-lockfile@1
-  - yarn global add codecov
+- yarn global add greenkeeper-lockfile@1
+- yarn global add codecov
 
 script:
-  - yarn run lint
-  - yarn run test -- --coverage --verbose
+- yarn run lint
+- yarn run test -- --coverage --verbose
 
 after_script:
-  - greenkeeper-lockfile-upload
-  - codecov
+- greenkeeper-lockfile-upload
+- codecov
 
 after_success:
-  - yarn run test-integration
+- yarn run test-integration
 
 cache:
   yarn: true
   directories:
-    - node_modules
+  - node_modules
 
 matrix:
   fast_finish: true
