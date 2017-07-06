@@ -1,5 +1,7 @@
 # dts-jest
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/ikatyang/dts-jest.svg)](https://greenkeeper.io/)
+
 [![npm](https://img.shields.io/npm/v/dts-jest.svg)](https://www.npmjs.com/package/dts-jest)
 [![build](https://img.shields.io/travis/ikatyang/dts-jest/master.svg)](https://travis-ci.org/ikatyang/dts-jest/builds)
 [![coverage](https://img.shields.io/codecov/c/github/ikatyang/dts-jest.svg)](https://codecov.io/gh/ikatyang/dts-jest)
