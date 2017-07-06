@@ -8,6 +8,7 @@ env:
   - JOB=test
 
 before_install:
+  - yarn global add greenkeeper-lockfile@1
   - yarn global add codecov
 
 script:
@@ -16,6 +17,7 @@ script:
   - if [ "$JOB" = "test-coverage" ]; then yarn run test -- --coverage --verbose; fi
 
 after_script:
+  - greenkeeper-lockfile-upload
   - codecov
 
 after_success:
