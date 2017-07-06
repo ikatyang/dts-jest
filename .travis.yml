@@ -7,10 +7,16 @@ node_js:
 env:
   - JOB=test
 
+before_install:
+  - yarn global add codecov
+
 script:
   - if [ "$JOB" = "lint" ]; then yarn run lint; fi
   - if [ "$JOB" = "test" ]; then yarn run test -- --verbose; fi
   - if [ "$JOB" = "test-coverage" ]; then yarn run test -- --coverage --verbose; fi
+
+after_script:
+  - codecov
 
 after_success:
   - if [ "$JOB" != "lint" ]; then yarn run test-integration; fi
