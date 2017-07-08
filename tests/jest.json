@@ -1,9 +1,10 @@
 {
   "testEnvironment": "node",
   "moduleFileExtensions": ["ts", "js", "json"],
-  "testMatch": ["<rootDir>/../tests/**/*.ts"],
+  "rootDir": "..",
+  "testMatch": ["<rootDir>/tests/**/*.ts"],
   "transform": {
-    "\\.tsfm\\.ts$": "dts-jest/transform",
-    "\\.tsfm-act\\.ts$": "dts-jest/transform-actual"
+    "\\.tsfm\\.ts$": "<rootDir>/transform",
+    "\\.tsfm-act\\.ts$": "<rootDir>/transform-actual"
   }
 }
