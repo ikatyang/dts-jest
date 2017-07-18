@@ -4,7 +4,7 @@
     "module": "commonjs",
     "outDir": "lib",
     "strict": true,
-    "target": "es5"
+    "lib": ["es6"]
   },
   "include": ["src/**/*.ts"]
 }
