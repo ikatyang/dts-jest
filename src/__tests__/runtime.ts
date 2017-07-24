@@ -1,8 +1,8 @@
-import {Runtime} from '../runtime';
+import { Runtime } from '../runtime';
 
 // tslint:disable:no-bitwise
 
-enum Line {
+const enum Line {
   Inference = 1 << 0,
   Description = 1 << 1,
   Diagnostic = 1 << 2,
@@ -35,7 +35,9 @@ test('#snapshot() should return correctly with inference', () => {
 });
 
 test('#snapshot() should return correctly with diagnostic', () => {
-  expect(() => runtime.snapshot(Line.Diagnostic)).toThrowErrorMatchingSnapshot();
+  expect(() =>
+    runtime.snapshot(Line.Diagnostic),
+  ).toThrowErrorMatchingSnapshot();
 });
 
 test('#safe_snapshot() should return correctly with inference', () => {

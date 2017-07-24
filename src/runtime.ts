@@ -1,11 +1,10 @@
-import {Result} from './definitions';
-import {indent} from './utils/indent';
+import { Result } from './definitions';
+import { indent } from './utils/indent';
 
 export class Runtime {
+  public results: { [line: number]: Result };
 
-  public results: {[line: number]: Result};
-
-  constructor(results: {[line: number]: Result}) {
+  constructor(results: { [line: number]: Result }) {
     this.results = results;
   }
 
@@ -26,14 +25,11 @@ export class Runtime {
 
   public report(line: number) {
     const result = this.results[line];
-    const description = (result.description === undefined)
-      ? ''
-      : `\n${result.description}\n`;
-    return `${description}\nInferred\n\n${
-      indent(result.expression, 2)
-    }\n\nto be\n\n${
-      indent(this.safe_snapshot(line), 2)
-    }\n`;
+    const description =
+      result.description === undefined ? '' : `\n${result.description}\n`;
+    return `${description}\nInferred\n\n${indent(
+      result.expression,
+      2,
+    )}\n\nto be\n\n${indent(this.safe_snapshot(line), 2)}\n`;
   }
-
 }
