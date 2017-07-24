@@ -14,37 +14,42 @@ export const create_expecteds = (
 
   ts_comment.for_each(source_file, (comment, scanner) => {
     const match = comment.match(/^\/\/=>(.+)/);
-    if (match !== null) {
-      const position = scanner.getTokenPos();
-      const { line: comment_line } = source_file.getLineAndCharacterOfPosition(
-        position,
+    if (match === null) {
+      return;
+    }
+    const position = scanner.getTokenPos();
+    const { line: comment_line } = source_file.getLineAndCharacterOfPosition(
+      position,
+    );
+
+    if (current_triggers.length === 0) {
+      unmatched_comment_lines.push(comment_line);
+    }
+
+    while (current_triggers.length !== 0) {
+      const trigger = current_triggers[0];
+      const expression_end_line = get_expression_end_line(
+        trigger,
+        comment_line,
       );
 
-      if (current_triggers.length === 0) {
+      if (comment_line < expression_end_line) {
         unmatched_comment_lines.push(comment_line);
+        break;
       }
 
-      while (current_triggers.length !== 0) {
-        const trigger = current_triggers[0];
-        const expression_end_line = get_expression_end_line(
-          trigger,
-          comment_line,
-        );
-        if (comment_line < expression_end_line) {
-          unmatched_comment_lines.push(comment_line);
-          break;
-        } else {
-          current_triggers.shift();
-          if (comment_line === expression_end_line) {
-            const [, value] = match;
-            expecteds.push({
-              ...trigger,
-              value: value.trim(),
-            });
-            break;
-          }
-        }
+      current_triggers.shift();
+
+      if (comment_line !== expression_end_line) {
+        continue;
       }
+
+      const [, value] = match;
+      expecteds.push({
+        ...trigger,
+        value: value.trim(),
+      });
+      break;
     }
   });
 
@@ -63,7 +68,7 @@ export const create_expecteds = (
 
   return expecteds;
 
-  function get_expression_end_line(trigger: Trigger, comment_line: number) {
+  function get_expression_end_line(trigger: Trigger, _comment_line: number) {
     const expression_line_count = trigger.expression.split('\n').length;
     return trigger.line + expression_line_count;
   }

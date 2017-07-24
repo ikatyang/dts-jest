@@ -38,20 +38,16 @@ export const transform = (
           str + (trailing_semicolon ? ';' : '');
       }
       function write_group_open_if_preset(value: boolean) {
-        if (value) {
-          write(
-            create_group_expression(trigger.group!, { type: 'open' }),
-            false,
-          );
+        if (!value) {
+          return;
         }
+        write(create_group_expression(trigger.group!, { type: 'open' }), false);
       }
       function write_group_close_if_preset(value: boolean) {
-        if (value) {
-          write(
-            create_group_expression(trigger.group!, { type: 'close' }),
-            true,
-          );
+        if (!value) {
+          return;
         }
+        write(create_group_expression(trigger.group!, { type: 'close' }), true);
       }
     }, source_text.split('\n').map((_, index) => (index !== 0 ? '' : `${create_setup_expression(triggers)};`)))
     .join('\n');

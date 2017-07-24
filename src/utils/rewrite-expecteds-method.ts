@@ -57,12 +57,15 @@ export const rewrite_expecteds_method = (
       expecteds,
       expected => expected.method === TestMethod.Only,
     );
-    if (only_test_index !== -1) {
-      expecteds[only_test_index].method = TestMethod.Test;
-      skipify_expecteds(
-        expecteds.filter((_, index) => index !== only_test_index),
-      );
+
+    if (only_test_index === -1) {
+      return;
     }
+
+    expecteds[only_test_index].method = TestMethod.Test;
+    skipify_expecteds(
+      expecteds.filter((_, index) => index !== only_test_index),
+    );
   }
   function skipify_expecteds(expecteds: Expected[]) {
     expecteds.forEach(expected => {

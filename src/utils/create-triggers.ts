@@ -23,32 +23,35 @@ export const create_triggers = (source_file: ts.SourceFile): Trigger[] => {
   let last_group: Group | undefined;
   ts_comment.for_each(source_file, (comment, scanner) => {
     const match = comment.match(trigger_regex);
-    if (match !== null) {
-      const trigger_match = match as TriggerMatchArray;
 
-      const description = trigger_match[TriggerMatchIndex.Description];
-      const info = get_trigger_of_group_info(
-        trigger_match[TriggerMatchIndex.Flags],
-      );
+    if (match === null) {
+      return;
+    }
 
-      if (info.is_group) {
-        const { method } = info;
-        last_group = {
-          method,
-          title: default_to(description, 'untitled'),
-        };
-      } else {
-        const { flag, method } = info;
-        const position = scanner.getTokenPos();
-        const { line } = source_file.getLineAndCharacterOfPosition(position);
+    const trigger_match = match as TriggerMatchArray;
 
-        partial_triggers[line] = {
-          flag,
-          method,
-          description,
-          group: last_group,
-        };
-      }
+    const description = trigger_match[TriggerMatchIndex.Description];
+    const info = get_trigger_of_group_info(
+      trigger_match[TriggerMatchIndex.Flags],
+    );
+
+    if (info.is_group) {
+      const { method } = info;
+      last_group = {
+        method,
+        title: default_to(description, 'untitled'),
+      };
+    } else {
+      const { flag, method } = info;
+      const position = scanner.getTokenPos();
+      const { line } = source_file.getLineAndCharacterOfPosition(position);
+
+      partial_triggers[line] = {
+        flag,
+        method,
+        description,
+        group: last_group,
+      };
     }
   });
 
@@ -62,30 +65,32 @@ export const create_triggers = (source_file: ts.SourceFile): Trigger[] => {
     );
     const trigger_line = expression_line - 1;
 
-    if (trigger_line in partial_triggers) {
-      try {
-        const start = node.getStart(source_file);
-        const leading_space_width = start - line_starts[expression_line];
-        const expression = node
-          .getText(source_file)
-          .replace(/\s*;?\s*$/, '')
-          .replace(/^ */gm, spaces =>
-            repeat(' ', Math.max(0, spaces.length - leading_space_width)),
-          );
+    if (!(trigger_line in partial_triggers)) {
+      return;
+    }
 
-        const partial_trigger = partial_triggers[trigger_line];
-        delete partial_triggers[trigger_line];
+    try {
+      const start = node.getStart(source_file);
+      const leading_space_width = start - line_starts[expression_line];
+      const expression = node
+        .getText(source_file)
+        .replace(/\s*;?\s*$/, '')
+        .replace(/^ */gm, spaces =>
+          repeat(' ', Math.max(0, spaces.length - leading_space_width)),
+        );
 
-        triggers.push({
-          start,
-          end: node.getEnd(),
-          expression,
-          line: trigger_line,
-          ...partial_trigger,
-        });
-      } catch (e) {
-        // do nothing
-      }
+      const partial_trigger = partial_triggers[trigger_line];
+      delete partial_triggers[trigger_line];
+
+      triggers.push({
+        start,
+        end: node.getEnd(),
+        expression,
+        line: trigger_line,
+        ...partial_trigger,
+      });
+    } catch (e) {
+      // do nothing
     }
   });
 

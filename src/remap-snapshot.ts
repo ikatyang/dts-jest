@@ -37,15 +37,18 @@ export const remap_snapshot = (
       default_to<number>(counters[title], 0) + 1);
 
     const description = `${title} ${counter}`;
-    if (description in snapshot_data) {
-      const { line } = trigger;
-      let snapshot = snapshot_data[description].trim();
-      const breakline = snapshot.indexOf('\n');
-      if (breakline !== -1) {
-        snapshot = `"${snapshot.slice(1, breakline)}"`;
-      }
-      source_content_lines[line] += ` -> ${JSON.parse(snapshot)}`;
+
+    if (!(description in snapshot_data)) {
+      return;
     }
+
+    const { line } = trigger;
+    let snapshot = snapshot_data[description].trim();
+    const breakline = snapshot.indexOf('\n');
+    if (breakline !== -1) {
+      snapshot = `"${snapshot.slice(1, breakline)}"`;
+    }
+    source_content_lines[line] += ` -> ${JSON.parse(snapshot)}`;
   });
 
   return source_content_lines.join('\n');

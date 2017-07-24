@@ -46,11 +46,11 @@ export const transform_actual = (
 
   if (jest_config._dts_jest_debug_ === true) {
     return transformed;
-  } else {
-    const tsconfig: ts.CompilerOptions = {
-      ...get_tsconfig(default_to(jest_config.globals._dts_jest_, {})),
-      inlineSourceMap: true,
-    };
-    return ts.transpile(transformed, tsconfig, source_filename);
   }
+
+  const tsconfig: ts.CompilerOptions = {
+    ...get_tsconfig(default_to(jest_config.globals._dts_jest_, {})),
+    inlineSourceMap: true,
+  };
+  return ts.transpile(transformed, tsconfig, source_filename);
 };

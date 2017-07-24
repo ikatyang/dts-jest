@@ -23,15 +23,13 @@ export const create_snapshots = (
     const trigger_line = error_line - 1;
 
     const line_index = rest_lines.indexOf(trigger_line);
-    if (line_index !== -1) {
-      snapshots[trigger_line] = {
-        diagnostic: ts.flattenDiagnosticMessageText(
-          diagnostic.messageText,
-          '\n',
-        ),
-      };
-      rest_lines.splice(line_index, 1);
+    if (line_index === -1) {
+      continue;
     }
+    snapshots[trigger_line] = {
+      diagnostic: ts.flattenDiagnosticMessageText(diagnostic.messageText, '\n'),
+    };
+    rest_lines.splice(line_index, 1);
   }
 
   const checker = program.getTypeChecker();
@@ -43,14 +41,16 @@ export const create_snapshots = (
     const trigger_line = expression_line - 1;
 
     const line_index = rest_lines.indexOf(trigger_line);
-    if (line_index !== -1) {
-      const target_node = node.getChildAt(0);
-      const type = checker.getTypeAtLocation(target_node);
-      snapshots[trigger_line] = {
-        inference: checker.typeToString(type, node, flag),
-      };
-      rest_lines.splice(line_index, 1);
+    if (line_index === -1) {
+      return;
     }
+
+    const target_node = node.getChildAt(0);
+    const type = checker.getTypeAtLocation(target_node);
+    snapshots[trigger_line] = {
+      inference: checker.typeToString(type, node, flag),
+    };
+    rest_lines.splice(line_index, 1);
   });
 
   return snapshots;
