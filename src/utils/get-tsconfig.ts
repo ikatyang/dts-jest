@@ -4,7 +4,10 @@ import { RawConfig } from '../definitions';
 import { default_to } from './default-to';
 
 export const get_tsconfig = (raw_config: RawConfig): ts.CompilerOptions => {
-  const raw_tsconfig = default_to(raw_config.tsconfig, {});
+  const raw_tsconfig = default_to<string | ts.CompilerOptions>(
+    raw_config.tsconfig,
+    {},
+  );
   return typeof raw_tsconfig === 'string'
     ? tsconfig_extends.load_file_sync(
         raw_tsconfig.replace('<cwd>', process.cwd()),

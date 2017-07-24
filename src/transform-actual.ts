@@ -1,5 +1,5 @@
 import * as ts from 'typescript';
-import { AssertionFlag, JestConfig } from './definitions';
+import { AssertionFlag, JestConfig, RawConfig } from './definitions';
 import { create_expecteds } from './utils/create-expecteds';
 import { create_triggers } from './utils/create-triggers';
 import { default_to } from './utils/default-to';
@@ -49,7 +49,7 @@ export const transform_actual = (
   }
 
   const tsconfig: ts.CompilerOptions = {
-    ...get_tsconfig(default_to(jest_config.globals._dts_jest_, {})),
+    ...get_tsconfig(default_to<RawConfig>(jest_config.globals._dts_jest_, {})),
     inlineSourceMap: true,
   };
   return ts.transpile(transformed, tsconfig, source_filename);
