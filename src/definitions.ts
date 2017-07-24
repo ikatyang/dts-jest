@@ -7,7 +7,11 @@ export const config_namespace = '_dts_jest_';
 export const runtime_namespace = '_dts_jest_runtime_';
 
 export const trigger_regex = /^\s*\/\/\s*@dts-jest\b(:?\S*)\s*(.+)?\s*$/;
-export enum TriggerMatchIndex {Input, Flags, Description}
+export enum TriggerMatchIndex {
+  Input,
+  Flags,
+  Description,
+}
 export type TriggerMatchArray = [string, string, string | undefined];
 
 export enum AssertionFlag {
@@ -60,8 +64,8 @@ export interface Group extends GroupInfo {
 }
 
 export type TriggerOrGroupInfo =
-  | ({is_group: false} & TriggerInfo)
-  | ({is_group: true} & GroupInfo);
+  | ({ is_group: false } & TriggerInfo)
+  | ({ is_group: true } & GroupInfo);
 
 export interface Snapshot {
   inference?: string;
@@ -74,9 +78,7 @@ export interface Expected extends Trigger {
 export interface Result extends Target, Snapshot {}
 
 export interface JestConfig {
-  globals: {
-    [K in typeof config_namespace]?: RawConfig;
-  };
+  globals: { [K in typeof config_namespace]?: RawConfig };
   _dts_jest_debug_?: boolean;
 }
 

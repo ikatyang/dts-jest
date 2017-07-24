@@ -1,6 +1,15 @@
-import {group_flag, AssertionFlag, GroupMethod, TestFlag, TestMethod, TriggerOrGroupInfo} from '../definitions';
+import {
+  group_flag,
+  AssertionFlag,
+  GroupMethod,
+  TestFlag,
+  TestMethod,
+  TriggerOrGroupInfo,
+} from '../definitions';
 
-export const get_trigger_of_group_info = (flags_str: string): TriggerOrGroupInfo => {
+export const get_trigger_of_group_info = (
+  flags_str: string,
+): TriggerOrGroupInfo => {
   const flags = flags_str.split(/(?=:)/g).filter(str => str.length !== 0);
 
   let is_group = false;
@@ -15,9 +24,18 @@ export const get_trigger_of_group_info = (flags_str: string): TriggerOrGroupInfo
         is_group = true;
         break;
 
-      case TestFlag.Test: test_method = TestMethod.Test; group_method = GroupMethod.Test; break;
-      case TestFlag.Only: test_method = TestMethod.Only; group_method = GroupMethod.Only; break;
-      case TestFlag.Skip: test_method = TestMethod.Skip; group_method = GroupMethod.Skip; break;
+      case TestFlag.Test:
+        test_method = TestMethod.Test;
+        group_method = GroupMethod.Test;
+        break;
+      case TestFlag.Only:
+        test_method = TestMethod.Only;
+        group_method = GroupMethod.Only;
+        break;
+      case TestFlag.Skip:
+        test_method = TestMethod.Skip;
+        group_method = GroupMethod.Skip;
+        break;
 
       case AssertionFlag.Shot:
       case AssertionFlag.Show:
@@ -32,6 +50,6 @@ export const get_trigger_of_group_info = (flags_str: string): TriggerOrGroupInfo
   });
 
   return is_group
-    ? {is_group, method: group_method}
-    : {is_group, method: test_method, flag: assertion_flag};
+    ? { is_group, method: group_method }
+    : { is_group, method: test_method, flag: assertion_flag };
 };

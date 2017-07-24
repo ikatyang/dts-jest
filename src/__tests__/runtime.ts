@@ -1,4 +1,4 @@
-import {Runtime} from '../runtime';
+import { Runtime } from '../runtime';
 
 // tslint:disable:no-bitwise
 
@@ -35,7 +35,9 @@ test('#snapshot() should return correctly with inference', () => {
 });
 
 test('#snapshot() should return correctly with diagnostic', () => {
-  expect(() => runtime.snapshot(Line.Diagnostic)).toThrowErrorMatchingSnapshot();
+  expect(() =>
+    runtime.snapshot(Line.Diagnostic),
+  ).toThrowErrorMatchingSnapshot();
 });
 
 test('#safe_snapshot() should return correctly with inference', () => {

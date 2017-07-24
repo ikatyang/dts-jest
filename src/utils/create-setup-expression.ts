@@ -1,10 +1,18 @@
-import {config_namespace, package_name, runtime_namespace, Target, Trigger} from '../definitions';
-import {remove_spaces} from './remove-spaces';
+import {
+  config_namespace,
+  package_name,
+  runtime_namespace,
+  Target,
+  Trigger,
+} from '../definitions';
+import { remove_spaces } from './remove-spaces';
 
 export const create_setup_expression = (triggers: Trigger[]) => {
   const targets = triggers.reduce<Target[]>(
-    (current_targets, {line, description, expression}) =>
-      ([...current_targets, {line, description, expression}]),
+    (current_targets, { line, description, expression }) => [
+      ...current_targets,
+      { line, description, expression },
+    ],
     [],
   );
 

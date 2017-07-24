@@ -1,10 +1,12 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import {remap_snapshot} from './remap-snapshot';
+import { remap_snapshot } from './remap-snapshot';
 
 export = (args: string[]) => {
   if (args.length !== 1) {
-    throw new Error('Usage: dts-jest-remap-snapshot <path/to/__snapshots__/target.ts.snap>');
+    throw new Error(
+      'Usage: dts-jest-remap-snapshot <path/to/__snapshots__/target.ts.snap>',
+    );
   }
   const snapshot_filename = args[0];
   const snapshot_content = fs.readFileSync(snapshot_filename, 'utf8');
