@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "@types/jest": "20.0.5",
-    "@types/node": "8.0.18",
+    "@types/node": "8.0.19",
     "jest": "20.0.4",
     "prettier": "1.5.3",
     "prettier-config-ikatyang": "1.1.1",
