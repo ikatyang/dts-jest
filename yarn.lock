@@ -2120,9 +2120,9 @@ ts-comment@^1.0.1:
   dependencies:
     typescript "^2.4.0"
 
-ts-jest@20.0.8:
-  version "20.0.8"
-  resolved "https://registry.yarnpkg.com/ts-jest/-/ts-jest-20.0.8.tgz#d135ce43d72e811f89af2eb7c0176eba0f5568c2"
+ts-jest@20.0.9:
+  version "20.0.9"
+  resolved "https://registry.yarnpkg.com/ts-jest/-/ts-jest-20.0.9.tgz#b09a3060f18bc9206e0c5ebc7b0af6dc010e2dc4"
   dependencies:
     "@types/babel-core" "^6.7.14"
     babel-core "^6.24.1"
