@@ -29,13 +29,13 @@ This project uses the same MAJOR version as Jest.
 using npm
 
 ```sh
-npm install --save-dev jest dts-jest
+npm install --save-dev dts-jest jest typescript
 ```
 
 using yarn
 
 ```sh
-yarn add --dev jest dts-jest
+yarn add --dev dts-jest jest typescript
 ```
 
 ## Usage
