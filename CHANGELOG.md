@@ -1,14 +1,22 @@
 # Change Log
 
-All changes to this project will be documented in this file.
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-> **Tags:**
-> - 💥 [Breaking Change]
-> - 🚀 [New Feature]
-> - 🐛 [Bug Fix]
-> - 📝 [Documentation]
-> - 🏠 [Internal]
-> - 💅 [Polish]
+<a name="21.0.0"></a>
+# [21.0.0](https://github.com/ikatyang/dts-jest/compare/v20.5.1...v21.0.0) (2017-08-18)
+
+
+### Features
+
+* **deps:** move typescript to peerDependecies ([#38](https://github.com/ikatyang/dts-jest/issues/38)) ([e9800f1](https://github.com/ikatyang/dts-jest/commit/e9800f1))
+
+
+### BREAKING CHANGES
+
+* **deps:** TypeScript now has to be installed manually so that you can choose which version to use
+
+* **version:** This project now **DOES NOT** use the same versioning as Jest
+
 
 ## v20.5.1 (2017-06-30)
 

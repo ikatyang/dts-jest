@@ -20,10 +20,6 @@ A preprocessor for [Jest](https://facebook.github.io/jest/) to snapshot test [Ty
 - [Developement](#development)
 - [Related](#related)
 
-## Version
-
-This project uses the same MAJOR version as Jest.
-
 ## Install
 
 using npm
