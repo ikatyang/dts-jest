@@ -9,7 +9,9 @@ it(
       (_error, stdout, stderr) => {
         expect(
           remove_timestamps(
-            `${remove_stack_tracing(sort_stderr(stderr))}\n${stdout}`,
+            `${remove_stack_tracing(sort_stderr(stderr))}\n${sort_stdout(
+              stdout,
+            )}`,
           ),
         ).toMatchSnapshot();
         done();
@@ -29,6 +31,10 @@ function remove_stack_tracing(str: string) {
   return str.replace(/^\s+at[\s\S]+?\n\n/gm, '\n');
 }
 
+function sort_stdout(str: string) {
+  return sort_results(str, /( *console.log *(.+))/);
+}
+
 function sort_stderr(str: string) {
   const title_summary_failing = 'Summary of all failing tests\n';
   const title_summary = 'Test Suites:';
@@ -42,17 +48,19 @@ function sort_stderr(str: string) {
     offset_summary,
   );
 
+  const regex = /( *(?:PASS|FAIL) *(.+))/;
+
   return (
-    sort_results(results_1) +
+    sort_results(results_1, regex) +
     title_summary_failing +
-    sort_results(results_2) +
+    sort_results(results_2, regex) +
     str.slice(offset_summary)
   );
 }
 
-function sort_results(str: string) {
+function sort_results(str: string, regex: RegExp) {
   return str
-    .split(/( (?:PASS|FAIL) *(.+))/)
+    .split(regex)
     .slice(1)
     .reduce<[string, string][]>((reduced, current, index, array) => {
       if (index % 3 !== 2) {

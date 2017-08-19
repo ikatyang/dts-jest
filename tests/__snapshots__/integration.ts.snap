@@ -191,6 +191,12 @@ Snapshots:   18 passed, 18 total
 Time:        unknown
 Ran all test suites.
 
+  console.log fixtures/integration/flag-show.tsfm-act.ts:2
+    a
+
+  console.log fixtures/integration/flag-show.tsfm-act.ts:4
+    b
+
   console.log fixtures/integration/flag-show.tsfm.ts:5
     
     Inferred
@@ -200,7 +206,6 @@ Ran all test suites.
     to be
     
       string
-    
 
   console.log fixtures/integration/flag-show.tsfm.ts:8
     
@@ -213,13 +218,6 @@ Ran all test suites.
     to be
     
       string
-    
-
-  console.log fixtures/integration/flag-show.tsfm-act.ts:2
-    a
-
-  console.log fixtures/integration/flag-show.tsfm-act.ts:4
-    b
 
 "
 `;
