@@ -68,9 +68,6 @@ exports[`should integrate correctly 1`] = `
       fixtures/integration/unattachable-trigger.tsfm.ts:5
       fixtures/integration/unattachable-trigger.tsfm.ts:9 optional description
       fixtures/integration/unattachable-trigger.tsfm.ts:14
-      
-      at Object.exports.create_triggers (lib/utils/create-triggers.js:77:15)
-      at Object.exports.transform [as process] (lib/transform.js:11:38)
 
  PASS  fixtures/integration/flag-show.tsfm.ts
   ✓ number_to_string(1)
@@ -87,10 +84,6 @@ exports[`should integrate correctly 1`] = `
     
     Expected the function to throw an error.
     But it didn't throw anything.
-      
-      at Object.<anonymous> (fixtures/integration/flag-fail.tsfm.ts:5:103)
-          at Promise (<anonymous>)
-          at <anonymous>
 
   ✕ string_to_any('')
   ✓ string_to_any(0)
@@ -99,11 +92,6 @@ exports[`should integrate correctly 1`] = `
   ● string_to_any(0)
 
     Argument of type '0' is not assignable to parameter of type 'string'.
-      
-      at Runtime.Object.<anonymous>.Runtime.snapshot (lib/runtime.js:10:19)
-      at Object.<anonymous> (fixtures/integration/flag-pass.tsfm.ts:8:65)
-          at Promise (<anonymous>)
-          at <anonymous>
 
   ✓ string_to_any('')
   ✕ string_to_any(0)
@@ -119,9 +107,6 @@ exports[`should integrate correctly 1`] = `
       fixtures/integration/unattachable-expected.tsfm-act.ts:9
       fixtures/integration/unattachable-expected.tsfm-act.ts:11
       fixtures/integration/unattachable-expected.tsfm-act.ts:13
-      
-      at Object.exports.create_expecteds (lib/utils/create-expecteds.js:45:15)
-      at Object.exports.transform_actual [as process] (lib/transform-actual.js:22:40)
 
  PASS  fixtures/integration/flag-only-pass.tsfm-act.ts
   ✓ 'b'
@@ -153,10 +138,6 @@ exports[`should integrate correctly 1`] = `
   ● a
 
     ReferenceError: a is not defined
-      
-      at Object.<anonymous> (fixtures/integration/flag-pass.tsfm-act.ts:2:32)
-          at Promise (<anonymous>)
-          at <anonymous>
 
   ✕ a
   ✓ 'b'
@@ -173,9 +154,6 @@ Summary of all failing tests
       fixtures/integration/unattachable-trigger.tsfm.ts:5
       fixtures/integration/unattachable-trigger.tsfm.ts:9 optional description
       fixtures/integration/unattachable-trigger.tsfm.ts:14
-      
-      at Object.exports.create_triggers (lib/utils/create-triggers.js:77:15)
-      at Object.exports.transform [as process] (lib/transform.js:11:38)
 
  FAIL  fixtures/integration/flag-fail.tsfm.ts
   ● string_to_any('')
@@ -184,20 +162,11 @@ Summary of all failing tests
     
     Expected the function to throw an error.
     But it didn't throw anything.
-      
-      at Object.<anonymous> (fixtures/integration/flag-fail.tsfm.ts:5:103)
-          at Promise (<anonymous>)
-          at <anonymous>
 
  FAIL  fixtures/integration/flag-pass.tsfm.ts
   ● string_to_any(0)
 
     Argument of type '0' is not assignable to parameter of type 'string'.
-      
-      at Runtime.Object.<anonymous>.Runtime.snapshot (lib/runtime.js:10:19)
-      at Object.<anonymous> (fixtures/integration/flag-pass.tsfm.ts:8:65)
-          at Promise (<anonymous>)
-          at <anonymous>
 
  FAIL  fixtures/integration/unattachable-expected.tsfm-act.ts
   ● Test suite failed to run
@@ -210,18 +179,11 @@ Summary of all failing tests
       fixtures/integration/unattachable-expected.tsfm-act.ts:9
       fixtures/integration/unattachable-expected.tsfm-act.ts:11
       fixtures/integration/unattachable-expected.tsfm-act.ts:13
-      
-      at Object.exports.create_expecteds (lib/utils/create-expecteds.js:45:15)
-      at Object.exports.transform_actual [as process] (lib/transform-actual.js:22:40)
 
  FAIL  fixtures/integration/flag-pass.tsfm-act.ts
   ● a
 
     ReferenceError: a is not defined
-      
-      at Object.<anonymous> (fixtures/integration/flag-pass.tsfm-act.ts:2:32)
-          at Promise (<anonymous>)
-          at <anonymous>
 
 
 Test Suites: 5 failed, 17 passed, 22 total

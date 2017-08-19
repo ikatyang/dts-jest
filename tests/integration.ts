@@ -20,5 +20,6 @@ it(
 function remove_timestamps(str: string) {
   return str
     .replace(/ \([0-9]+ms\)/g, '')
-    .replace(/(Time: +)[0-9]+\.[0-9]+s/g, '$1unknown');
+    .replace(/(Time: +)[0-9]+\.[0-9]+s/g, '$1unknown')
+    .replace(/^\s+at[\s\S]+?\n\n/gm, '\n');
 }
