@@ -70,7 +70,10 @@ function sort_results(str: string, regex: RegExp) {
       const separator = array[index - 2];
       return [...reduced, [filename, separator + current]];
     }, [])
-    .sort(([filename1], [filename2]) => filename1.localeCompare(filename2))
+    .sort(
+      ([filename1], [filename2]) =>
+        filename1 < filename2 ? -1 : filename1 > filename2 ? 1 : 0,
+    )
     .map(([, content]) => content.replace(/\s+$/, '\n\n'))
     .join('');
 }
