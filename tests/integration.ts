@@ -18,7 +18,7 @@ it(
       },
     );
   },
-  60000,
+  120000,
 );
 
 function remove_timestamps(str: string) {
