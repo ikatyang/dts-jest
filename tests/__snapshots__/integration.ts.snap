@@ -1,0 +1,223 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should integrate correctly 1`] = `
+" PASS  fixtures/integration/flag-fail.tsfm-act.ts
+  ✓ a.b.c
+
+ FAIL  fixtures/integration/flag-fail.tsfm.ts
+  ● string_to_any('')
+
+    expect(() => {}).toThrowErrorMatchingSnapshot()
+    
+    Expected the function to throw an error.
+    But it didn't throw anything.
+
+  ✕ string_to_any('')
+  ✓ string_to_any(0)
+
+ PASS  fixtures/integration/flag-group.tsfm-act.ts
+  ✓ 'in_only_group'
+  ○ skipped 4 tests
+
+ PASS  fixtures/integration/flag-group.tsfm.ts
+  ○ skipped 1 test
+  NamedGroup
+    ○ skipped 1 test
+  untitled
+    ○ skipped 1 test
+  OnlyGroup
+    ✓ G.in_only_group()
+  SkipGroup
+    ○ skipped 1 test
+
+ PASS  fixtures/integration/flag-none.tsfm-act.ts
+  ✓ 'a'
+  ✓ 'b'
+  ✓ 'c'
+
+ PASS  fixtures/integration/flag-none.tsfm.ts
+  ✓ number_to_string(1)
+  ✓ number_to_string(2)
+  ✓ number_to_string('x')
+
+ PASS  fixtures/integration/flag-only-fail.tsfm-act.ts
+  ✓ b
+  ○ skipped 2 tests
+
+ PASS  fixtures/integration/flag-only-fail.tsfm.ts
+  ✓ string_to_any(2)
+  ○ skipped 2 tests
+
+ PASS  fixtures/integration/flag-only-pass.tsfm-act.ts
+  ✓ 'b'
+  ○ skipped 2 tests
+
+ PASS  fixtures/integration/flag-only-pass.tsfm.ts
+  ✓ string_to_any('b')
+  ○ skipped 2 tests
+
+ PASS  fixtures/integration/flag-only.tsfm-act.ts
+  ✓ 'b'
+  ○ skipped 2 tests
+
+ PASS  fixtures/integration/flag-only.tsfm.ts
+  ✓ number_to_string(2)
+  ○ skipped 2 tests
+
+ FAIL  fixtures/integration/flag-pass.tsfm-act.ts
+  ● a
+
+    ReferenceError: a is not defined
+
+  ✕ a
+  ✓ 'b'
+
+ FAIL  fixtures/integration/flag-pass.tsfm.ts
+  ● string_to_any(0)
+
+    Argument of type '0' is not assignable to parameter of type 'string'.
+
+  ✓ string_to_any('')
+  ✕ string_to_any(0)
+
+ PASS  fixtures/integration/flag-show.tsfm-act.ts
+  ✓ 'a'
+  ✓ optional-description
+
+ PASS  fixtures/integration/flag-show.tsfm.ts
+  ✓ number_to_string(1)
+  ✓ optional-description
+
+ PASS  fixtures/integration/flag-skip.tsfm-act.ts
+  ✓ 'a'
+  ✓ 'c'
+  ○ skipped 1 test
+
+ PASS  fixtures/integration/flag-skip.tsfm.ts
+  ✓ number_to_string(1)
+  ✓ number_to_string(3)
+  ○ skipped 1 test
+
+ PASS  fixtures/integration/title-description.tsfm.ts
+  ✓ void_to_string(
+    
+    )
+  ✓ void_to_string()
+  ✓ optional-description
+
+ PASS  fixtures/integration/title-indented-expression.tsfm.ts
+  ✓ [].map(
+      () => '',
+    )
+  ✓ [].map(
+    () => '',
+    )
+  ✓ [].map(
+    
+    
+      () => '',
+    
+    
+    )
+  untitled
+    ✓ [].map(
+        () => '',
+      )
+
+ FAIL  fixtures/integration/unattachable-expected.tsfm-act.ts
+  ● Test suite failed to run
+
+    Unattachable expected-value(s) detected:
+    
+      fixtures/integration/unattachable-expected.tsfm-act.ts:1
+      fixtures/integration/unattachable-expected.tsfm-act.ts:3
+      fixtures/integration/unattachable-expected.tsfm-act.ts:7
+      fixtures/integration/unattachable-expected.tsfm-act.ts:9
+      fixtures/integration/unattachable-expected.tsfm-act.ts:11
+      fixtures/integration/unattachable-expected.tsfm-act.ts:13
+
+ FAIL  fixtures/integration/unattachable-trigger.tsfm.ts
+  ● Test suite failed to run
+
+    Unattachable trigger(s) detected:
+    
+      fixtures/integration/unattachable-trigger.tsfm.ts:5
+      fixtures/integration/unattachable-trigger.tsfm.ts:9 optional description
+      fixtures/integration/unattachable-trigger.tsfm.ts:14
+
+Summary of all failing tests
+ FAIL  fixtures/integration/flag-fail.tsfm.ts
+  ● string_to_any('')
+
+    expect(() => {}).toThrowErrorMatchingSnapshot()
+    
+    Expected the function to throw an error.
+    But it didn't throw anything.
+
+ FAIL  fixtures/integration/flag-pass.tsfm-act.ts
+  ● a
+
+    ReferenceError: a is not defined
+
+ FAIL  fixtures/integration/flag-pass.tsfm.ts
+  ● string_to_any(0)
+
+    Argument of type '0' is not assignable to parameter of type 'string'.
+
+ FAIL  fixtures/integration/unattachable-expected.tsfm-act.ts
+  ● Test suite failed to run
+
+    Unattachable expected-value(s) detected:
+    
+      fixtures/integration/unattachable-expected.tsfm-act.ts:1
+      fixtures/integration/unattachable-expected.tsfm-act.ts:3
+      fixtures/integration/unattachable-expected.tsfm-act.ts:7
+      fixtures/integration/unattachable-expected.tsfm-act.ts:9
+      fixtures/integration/unattachable-expected.tsfm-act.ts:11
+      fixtures/integration/unattachable-expected.tsfm-act.ts:13
+
+ FAIL  fixtures/integration/unattachable-trigger.tsfm.ts
+  ● Test suite failed to run
+
+    Unattachable trigger(s) detected:
+    
+      fixtures/integration/unattachable-trigger.tsfm.ts:5
+      fixtures/integration/unattachable-trigger.tsfm.ts:9 optional description
+      fixtures/integration/unattachable-trigger.tsfm.ts:14
+
+Test Suites: 5 failed, 17 passed, 22 total
+Tests:       3 failed, 22 skipped, 33 passed, 58 total
+Snapshots:   18 passed, 18 total
+Time:        unknown
+Ran all test suites.
+
+  console.log fixtures/integration/flag-show.tsfm-act.ts:2
+    a
+
+  console.log fixtures/integration/flag-show.tsfm-act.ts:4
+    b
+
+  console.log fixtures/integration/flag-show.tsfm.ts:5
+    
+    Inferred
+    
+      number_to_string(1)
+    
+    to be
+    
+      string
+
+  console.log fixtures/integration/flag-show.tsfm.ts:8
+    
+    optional-description
+    
+    Inferred
+    
+      number_to_string(2)
+    
+    to be
+    
+      string
+
+"
+`;
