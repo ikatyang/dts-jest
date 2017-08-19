@@ -21,9 +21,9 @@
   "scripts": {
     "prepublish": "yarn run build",
     "lint": "tslint --type-check -p ./tsconfig.json",
-    "build": "rm -rf ./lib && tsc -p ./tsconfig.build.json",
+    "prebuild": "rm -rf ./lib",
+    "build": "tsc -p ./tsconfig.build.json",
     "test": "jest -c ./jest.json --no-cache",
-    "test-integration": "jest --config ./tests/jest.json --no-cache --verbose",
     "release": "standard-version"
   },
   "dependencies": {

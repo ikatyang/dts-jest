@@ -244,20 +244,14 @@ Math.max(1, 2, 3);
 ## Development
 
 ```sh
+# lint
+yarn run lint
+
 # test
 yarn run test
 
-# test with coverage
-yarn run test -- --coverage
-
-# try actual behavior
-yarn run test-integration
-
 # build
 yarn run build
-
-# lint
-yarn run lint
 ```
 
 ## Related
