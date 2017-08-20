@@ -10,7 +10,6 @@ import {
 } from '../definitions';
 import { default_to } from './default-to';
 import { get_trigger_of_group_info } from './get-trigger-or-group-info';
-import { repeat } from './repeat';
 import { traverse_node } from './traverse-node';
 
 export const create_triggers = (source_file: ts.SourceFile): Trigger[] => {
@@ -76,7 +75,7 @@ export const create_triggers = (source_file: ts.SourceFile): Trigger[] => {
         .getText(source_file)
         .replace(/\s*;?\s*$/, '')
         .replace(/^ */gm, spaces =>
-          repeat(' ', Math.max(0, spaces.length - leading_space_width)),
+          ' '.repeat(Math.max(0, spaces.length - leading_space_width)),
         );
 
       const partial_trigger = partial_triggers[trigger_line];
