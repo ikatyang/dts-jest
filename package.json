@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "require-from-string": "^1.2.1",
-    "ts-comment": "^1.0.1",
+    "ts-comment": "^1.1.0",
     "tsconfig-extends": "^1.0.1"
   },
   "devDependencies": {
