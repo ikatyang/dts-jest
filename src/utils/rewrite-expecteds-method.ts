@@ -11,7 +11,7 @@ export const rewrite_expecteds_method = (
     if (expected.group === undefined) {
       safe_push(-1);
     } else {
-      const index = find_index(groups, group => group === expected.group);
+      const index = groups.findIndex(group => group === expected.group);
       safe_push(index === -1 ? groups.push(expected.group) - 1 : index);
     }
 
@@ -26,8 +26,7 @@ export const rewrite_expecteds_method = (
     }
   }, {});
 
-  const only_group_index = find_index(
-    groups,
+  const only_group_index = groups.findIndex(
     group => group.method === GroupMethod.Only,
   );
   if (only_group_index !== -1) {
@@ -53,8 +52,7 @@ export const rewrite_expecteds_method = (
   });
 
   function rewrite_expecteds(expecteds: Expected[]) {
-    const only_test_index = find_index(
-      expecteds,
+    const only_test_index = expecteds.findIndex(
       expected => expected.method === TestMethod.Only,
     );
 
@@ -71,13 +69,5 @@ export const rewrite_expecteds_method = (
     expecteds.forEach(expected => {
       expected.method = TestMethod.Skip;
     });
-  }
-  function find_index<T>(targets: T[], predicate: (value: T) => boolean) {
-    for (let i = 0; i < targets.length; i++) {
-      if (predicate(targets[i])) {
-        return i;
-      }
-    }
-    return -1;
   }
 };
