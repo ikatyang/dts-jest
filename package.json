@@ -29,7 +29,8 @@
   "dependencies": {
     "require-from-string": "^1.2.1",
     "ts-comment": "^1.1.0",
-    "tsconfig-extends": "^1.0.1"
+    "tsconfig-extends": "^1.0.1",
+    "tslib": "^1.7.1"
   },
   "devDependencies": {
     "@types/jest": "20.0.7",
