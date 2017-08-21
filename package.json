@@ -19,7 +19,8 @@
   "author": "ikatyang",
   "license": "MIT",
   "scripts": {
-    "prepublish": "yarn run build",
+    "prepublish": "yarn run link && yarn run build",
+    "link": "ln -sf $PWD/types/* $PWD/node_modules/@types",
     "lint": "tslint --type-check -p ./tsconfig.json",
     "prebuild": "rm -rf ./lib",
     "build": "tsc -p ./tsconfig.build.json",
@@ -29,7 +30,8 @@
   "dependencies": {
     "require-from-string": "^1.2.1",
     "ts-comment": "^1.1.0",
-    "tsconfig-extends": "^1.0.1"
+    "tsconfig-extends": "^1.0.1",
+    "tslib": "^1.7.1"
   },
   "devDependencies": {
     "@types/jest": "20.0.7",

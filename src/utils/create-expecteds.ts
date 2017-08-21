@@ -2,6 +2,7 @@ import * as path from 'path';
 import * as ts_comment from 'ts-comment';
 import * as ts from 'typescript';
 import { Expected, Trigger } from '../definitions';
+import { get_expression_end_line } from './get-expression-end-line';
 
 export const create_expecteds = (
   triggers: Trigger[],
@@ -28,10 +29,7 @@ export const create_expecteds = (
 
     while (current_triggers.length !== 0) {
       const trigger = current_triggers[0];
-      const expression_end_line = get_expression_end_line(
-        trigger,
-        comment_line,
-      );
+      const expression_end_line = get_expression_end_line(trigger);
 
       if (comment_line < expression_end_line) {
         unmatched_comment_lines.push(comment_line);
@@ -67,9 +65,4 @@ export const create_expecteds = (
   }
 
   return expecteds;
-
-  function get_expression_end_line(trigger: Trigger, _comment_line: number) {
-    const expression_line_count = trigger.expression.split('\n').length;
-    return trigger.line + expression_line_count;
-  }
 };

@@ -1,6 +1,4 @@
 import * as path from 'path';
-
-// tslint:disable-next-line:no-require-imports
 import cli = require('../remap-snapshot-cli');
 
 const original_stdout = process.stdout;
