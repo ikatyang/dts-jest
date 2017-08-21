@@ -1,6 +1,6 @@
 import * as ts from 'typescript';
 
-// tslint:disable-next-line:no-require-imports no-var-requires
+// tslint:disable-next-line:no-var-requires
 export const package_name = require('../package.json').name;
 
 export const config_namespace = '_dts_jest_';

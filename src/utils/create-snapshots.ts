@@ -15,7 +15,6 @@ export const create_snapshots = (
 
   const diagnostics = ts.getPreEmitDiagnostics(program, source_file);
   for (const diagnostic of diagnostics) {
-    // tslint:disable-next-line:no-unnecessary-type-assertion
     const position = diagnostic.start!;
     const { line: error_line } = source_file.getLineAndCharacterOfPosition(
       position,
