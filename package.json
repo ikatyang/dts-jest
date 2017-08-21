@@ -19,7 +19,8 @@
   "author": "ikatyang",
   "license": "MIT",
   "scripts": {
-    "prepublish": "yarn run build",
+    "prepublish": "yarn run link && yarn run build",
+    "link": "ln -sf $PWD/types/* $PWD/node_modules/@types",
     "lint": "tslint --type-check -p ./tsconfig.json",
     "prebuild": "rm -rf ./lib",
     "build": "tsc -p ./tsconfig.build.json",

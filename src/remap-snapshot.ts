@@ -1,11 +1,9 @@
+import require_from_string = require('require-from-string');
 import * as ts from 'typescript';
 import { Trigger } from './definitions';
 import { create_triggers } from './utils/create-triggers';
 import { default_to } from './utils/default-to';
 import { get_formatted_description } from './utils/get-formatted-description';
-
-// tslint:disable-next-line:no-require-imports no-var-requires
-const require_from_string = require('require-from-string');
 
 export const remap_snapshot = (
   snapshot_content: string | Record<string, string>,
