@@ -1,26 +1,29 @@
-import * as ts from 'typescript';
-import { AssertionFlag, JestConfig, RawConfig } from './definitions';
+import { config_namespace, AssertionFlag, JestConfig } from './definitions';
 import { create_expecteds } from './utils/create-expecteds';
 import { create_triggers } from './utils/create-triggers';
-import { default_to } from './utils/default-to';
+import { get_config } from './utils/get-config';
 import { get_formatted_description } from './utils/get-formatted-description';
-import { get_tsconfig } from './utils/get-tsconfig';
 import { rewrite_expecteds_method } from './utils/rewrite-expecteds-method';
 
-export const transform_actual = (
-  source_text: string,
-  source_filename: string,
+export const transform_actual: jest.Transformer['process'] = (
+  source_text,
+  source_filename,
   jest_config: JestConfig,
 ) => {
+  const { typescript: ts, tsconfig } = get_config(
+    jest_config.globals[config_namespace],
+    jest_config.rootDir,
+  );
+
   const source_file = ts.createSourceFile(
     source_filename,
     source_text,
     ts.ScriptTarget.Latest,
     false,
   );
-  const triggers = create_triggers(source_file);
+  const triggers = create_triggers(source_file, ts);
 
-  const expecteds = create_expecteds(triggers, source_file);
+  const expecteds = create_expecteds(triggers, source_file, ts);
   rewrite_expecteds_method(expecteds);
 
   let transformed = source_text;
@@ -44,13 +47,16 @@ export const transform_actual = (
     )}`;
   });
 
-  if (jest_config._dts_jest_debug_ === true) {
+  if (jest_config._dts_jest_internal_test_ === true) {
     return transformed;
   }
 
-  const tsconfig: ts.CompilerOptions = {
-    ...get_tsconfig(default_to<RawConfig>(jest_config.globals._dts_jest_, {})),
-    inlineSourceMap: true,
-  };
-  return ts.transpile(transformed, tsconfig, source_filename);
+  return ts.transpile(
+    transformed,
+    {
+      ...tsconfig,
+      inlineSourceMap: true,
+    },
+    source_filename,
+  );
 };

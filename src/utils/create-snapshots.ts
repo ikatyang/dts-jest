@@ -1,12 +1,13 @@
-import * as ts from 'typescript';
+import * as _ts from 'typescript';
 import { Snapshot } from '../definitions';
 import { traverse_node } from './traverse-node';
 
 export const create_snapshots = (
-  program: ts.Program,
+  program: _ts.Program,
   source_filename: string,
   lines: number[],
-  flag: ts.TypeFormatFlags,
+  flag: _ts.TypeFormatFlags,
+  ts: typeof _ts,
 ) => {
   const source_file = program.getSourceFile(source_filename);
   const snapshots: { [line: number]: Snapshot } = {};
@@ -32,25 +33,29 @@ export const create_snapshots = (
   }
 
   const checker = program.getTypeChecker();
-  traverse_node(source_file, node => {
-    const position = node.getStart(source_file);
-    const { line: expression_line } = source_file.getLineAndCharacterOfPosition(
-      position,
-    );
-    const trigger_line = expression_line - 1;
+  traverse_node(
+    source_file,
+    node => {
+      const position = node.getStart(source_file);
+      const {
+        line: expression_line,
+      } = source_file.getLineAndCharacterOfPosition(position);
+      const trigger_line = expression_line - 1;
 
-    const line_index = rest_lines.indexOf(trigger_line);
-    if (line_index === -1) {
-      return;
-    }
+      const line_index = rest_lines.indexOf(trigger_line);
+      if (line_index === -1) {
+        return;
+      }
 
-    const target_node = node.getChildAt(0);
-    const type = checker.getTypeAtLocation(target_node);
-    snapshots[trigger_line] = {
-      inference: checker.typeToString(type, node, flag),
-    };
-    rest_lines.splice(line_index, 1);
-  });
+      const target_node = node.getChildAt(0);
+      const type = checker.getTypeAtLocation(target_node);
+      snapshots[trigger_line] = {
+        inference: checker.typeToString(type, node, flag),
+      };
+      rest_lines.splice(line_index, 1);
+    },
+    ts,
+  );
 
   return snapshots;
 };

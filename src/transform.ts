@@ -1,15 +1,23 @@
-import * as ts from 'typescript';
-import { Group } from './definitions';
+import { config_namespace, Group, JestConfig } from './definitions';
 import { create_group_expression } from './utils/create-group-expression';
 import { create_setup_expression } from './utils/create-setup-expression';
 import { create_test_expression } from './utils/create-test-expression';
 import { create_triggers } from './utils/create-triggers';
+import { get_config } from './utils/get-config';
+import { set_root_dir } from './utils/root-dir';
 
-export const transform = (
-  source_text: string,
-  source_filename: string,
-  _jest_config?: any,
+export const transform: jest.Transformer['process'] = (
+  source_text,
+  source_filename,
+  jest_config: JestConfig,
 ) => {
+  const { typescript: ts } = get_config(
+    jest_config.globals[config_namespace],
+    jest_config.rootDir,
+  );
+
+  set_root_dir(jest_config.rootDir);
+
   const source_file = ts.createSourceFile(
     source_filename,
     source_text,
@@ -18,7 +26,7 @@ export const transform = (
   );
 
   let last_group: Group | undefined;
-  const triggers = create_triggers(source_file);
+  const triggers = create_triggers(source_file, ts);
   return triggers
     .reduce<string[]>((transformed_line_texts, trigger, index) => {
       const is_diff_group = trigger.group !== last_group;

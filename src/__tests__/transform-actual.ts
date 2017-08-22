@@ -12,10 +12,11 @@ const transform_fixture = (
   const source_filename = path.resolve(__dirname, relative_path);
   const source_text = fs.readFileSync(source_filename, 'utf8');
   const jest_config: JestConfig = {
+    rootDir: process.cwd(),
     globals: { _dts_jest_: { tsconfig } },
-    _dts_jest_debug_: debug,
+    _dts_jest_internal_test_: debug,
   };
-  return transform_actual(source_text, source_filename, jest_config);
+  return transform_actual(source_text, source_filename, jest_config as any);
 };
 
 it('should transform correctly', () => {

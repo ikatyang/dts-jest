@@ -1,10 +1,12 @@
-import * as ts from 'typescript';
+import * as _ts from 'typescript';
 
 // tslint:disable-next-line:no-var-requires
 export const package_name = require('../package.json').name;
 
 export const config_namespace = '_dts_jest_';
 export const runtime_namespace = '_dts_jest_runtime_';
+
+export const env_root_dir = 'DTS_JEST_ROOT_DIR';
 
 export const trigger_regex = /^\s*\/\/\s*@dts-jest\b(:?\S*)\s*(.+)?\s*$/;
 export enum TriggerMatchIndex {
@@ -78,11 +80,20 @@ export interface Expected extends Trigger {
 export interface Result extends Target, Snapshot {}
 
 export interface JestConfig {
+  rootDir: string;
   globals: { [K in typeof config_namespace]?: RawConfig };
-  _dts_jest_debug_?: boolean;
+  _dts_jest_internal_test_?: boolean;
 }
 
 export interface RawConfig {
-  tsconfig?: string | ts.CompilerOptions;
-  type_format?: ts.TypeFormatFlags;
+  tsconfig?: string | _ts.CompilerOptions;
+  type_format?: _ts.TypeFormatFlags;
+  typescript?: string;
+}
+
+export interface FormattedConfig {
+  tsconfig: _ts.CompilerOptions;
+  type_format: _ts.TypeFormatFlags;
+  typescript: typeof _ts;
+  typescript_path: string;
 }

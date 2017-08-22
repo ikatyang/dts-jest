@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import * as ts from 'typescript';
 import { remap_snapshot } from './remap-snapshot';
 
 export = (args: string[]) => {
@@ -17,5 +18,7 @@ export = (args: string[]) => {
     ),
     'utf8',
   );
-  process.stdout.write(remap_snapshot(snapshot_content, source_content));
+  process.stdout.write(
+    remap_snapshot(snapshot_content, source_content, undefined, ts),
+  );
 };
