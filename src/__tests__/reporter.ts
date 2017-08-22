@@ -13,7 +13,7 @@ afterAll(() => {
 });
 
 it('should report correctly', () => {
-  const reporter = new Reporter();
+  const reporter = new Reporter(create_config());
   reporter.onRunComplete(new Set([create_context()]));
   expect(get_write_content()).toMatchSnapshot();
 });
@@ -24,6 +24,12 @@ function create_context(): jest.Context {
       rootDir: process.cwd(),
       globals: {},
     },
+  } as any;
+}
+
+function create_config(): jest.GlobalConfig {
+  return {
+    useStderr: false,
   } as any;
 }
 

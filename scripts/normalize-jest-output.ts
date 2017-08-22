@@ -8,9 +8,15 @@ stdin.on('data', chunk => {
 
 stdin.on('end', () => {
   process.stdout.write(
-    sort_data(remove_timestamps(remove_control_characters(data))),
+    replace_path_cwd(
+      sort_data(remove_timestamps(remove_control_characters(data))),
+    ),
   );
 });
+
+function replace_path_cwd(str: string) {
+  return str.replace(new RegExp(process.cwd(), 'g'), '<cwd>');
+}
 
 function remove_control_characters(str: string) {
   return str.replace(/.\[[0-9]*[a-z]/gi, '');

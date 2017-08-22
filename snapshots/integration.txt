@@ -233,4 +233,7 @@ Tests:       3 failed, 22 skipped, 33 passed, 58 total
 Snapshots:   18 passed, 18 total
 Time:        unknown
 Ran all test suites.
+
+[dts-jest] using TypeScript v2.4.2 from <cwd>/node_modules/typescript/lib/typescript.js
+
 error Command failed with exit code 1.
