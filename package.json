@@ -28,7 +28,7 @@
     "test-integration": "jest -c ./tests/jest.json --no-cache",
     "snap-integration": "( yarn run test-integration -- --verbose --useStderr --no-color --noStackTrace 3>&1 1>&2- 2>&3- ) | (ts-node ./scripts/normalize-jest-output.ts) > ./snapshots/integration.txt",
     "release": "standard-version",
-    "check-diff": "git diff --quiet"
+    "check-diff": "git diff --exit-code"
   },
   "dependencies": {
     "require-from-string": "^1.2.1",
