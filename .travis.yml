@@ -11,12 +11,11 @@ before_install:
 script:
 - yarn run lint
 - yarn run test -- --coverage --verbose
+- yarn run snap-integration
+- yarn run check-diff
 
 after_script:
 - codecov
-
-after_success:
-- yarn run test-integration
 
 cache:
   yarn: true

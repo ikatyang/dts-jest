@@ -1,7 +1,7 @@
 {
   "testEnvironment": "node",
   "moduleFileExtensions": ["ts", "js", "json"],
-  "testMatch": ["**/{tests,__tests__}/*.ts"],
+  "testMatch": ["**/__tests__/*.ts"],
   "transform": {"\\.ts$": "ts-jest/preprocessor"},
   "mapCoverage": true,
   "coverageReporters": ["lcov", "text-summary"],

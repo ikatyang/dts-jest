@@ -25,7 +25,10 @@
     "prebuild": "rm -rf ./lib",
     "build": "tsc -p ./tsconfig.build.json",
     "test": "jest -c ./jest.json --no-cache",
-    "release": "standard-version"
+    "test-integration": "jest -c ./tests/jest.json --no-cache",
+    "snap-integration": "( yarn run test-integration -- --verbose --useStderr --no-color --noStackTrace 3>&1 1>&2- 2>&3- ) | (ts-node ./scripts/normalize-jest-output.ts) > ./snapshots/integration.txt",
+    "release": "standard-version",
+    "check-diff": "git diff --quiet"
   },
   "dependencies": {
     "require-from-string": "^1.2.1",
@@ -41,6 +44,7 @@
     "prettier-config-ikatyang": "1.1.1",
     "standard-version": "4.2.0",
     "ts-jest": "20.0.10",
+    "ts-node": "3.3.0",
     "tslint": "5.6.0",
     "tslint-config-ikatyang": "2.2.0",
     "tslint-config-prettier-ext": "1.5.0",
