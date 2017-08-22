@@ -26,7 +26,7 @@
     "build": "tsc -p ./tsconfig.build.json",
     "test": "jest -c ./jest.json --no-cache",
     "test-integration": "jest -c ./tests/jest.json --no-cache",
-    "snap-integration": "( yarn run test-integration -- --verbose --useStderr --no-color --noStackTrace 3>&1 1>&2- 2>&3- ) | (ts-node ./scripts/normalize-jest-output.ts) > ./snapshots/integration.txt",
+    "snap-integration": "yarn run test-integration -- --verbose --useStderr --no-color --noStackTrace 2>&1 >/dev/null | (ts-node ./scripts/normalize-jest-output.ts) > ./snapshots/integration.txt",
     "release": "standard-version",
     "check-diff": "git diff --exit-code"
   },
