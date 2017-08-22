@@ -6,5 +6,9 @@
   "transform": {
     "\\.tsfm\\.ts$": "<rootDir>/transform",
     "\\.tsfm-act\\.ts$": "<rootDir>/transform-actual"
-  }
+  },
+  "reporters": [
+    "default",
+    "<rootDir>/reporter"
+  ]
 }
