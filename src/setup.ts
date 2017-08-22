@@ -1,16 +1,19 @@
-import { RawConfig, Result, Target } from './definitions';
+import { env_root_dir, RawConfig, Result, Target } from './definitions';
 import { Runtime } from './runtime';
 import { create_snapshots } from './utils/create-snapshots';
 import { default_to } from './utils/default-to';
+import { get_env_variable } from './utils/env-variable';
 import { get_config } from './utils/get-config';
-import { get_root_dir } from './utils/root-dir';
 
 export const setup = (
   filename: string,
   raw_config: RawConfig,
   targets: Target[],
 ) => {
-  const { typescript: ts, tsconfig } = get_config(raw_config, get_root_dir());
+  const { typescript: ts, tsconfig } = get_config(
+    raw_config,
+    get_env_variable(env_root_dir)!,
+  );
 
   const lines = targets.map(target => target.line);
 

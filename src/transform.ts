@@ -1,10 +1,15 @@
-import { config_namespace, Group, JestConfig } from './definitions';
+import {
+  config_namespace,
+  env_root_dir,
+  Group,
+  JestConfig,
+} from './definitions';
 import { create_group_expression } from './utils/create-group-expression';
 import { create_setup_expression } from './utils/create-setup-expression';
 import { create_test_expression } from './utils/create-test-expression';
 import { create_triggers } from './utils/create-triggers';
+import { set_env_variable } from './utils/env-variable';
 import { get_config } from './utils/get-config';
-import { set_root_dir } from './utils/root-dir';
 
 export const transform: jest.Transformer['process'] = (
   source_text,
@@ -16,7 +21,7 @@ export const transform: jest.Transformer['process'] = (
     jest_config.rootDir,
   );
 
-  set_root_dir(jest_config.rootDir);
+  set_env_variable(env_root_dir, jest_config.rootDir);
 
   const source_file = ts.createSourceFile(
     source_filename,
