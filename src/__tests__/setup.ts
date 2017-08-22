@@ -8,7 +8,9 @@ const original_root_dir = get_env_variable(env_root_dir);
 beforeAll(() => set_env_variable(env_root_dir, process.cwd()));
 afterAll(() => set_env_variable(env_root_dir, original_root_dir));
 
-const filename = path.resolve(__dirname, '../../fixtures/snapshots/example.ts');
+const get_filename = (filename: string) =>
+  path.resolve(__dirname, `../../fixtures/snapshots/${filename}.ts`);
+
 const targets: Target[] = [
   { line: 0, expression: 'first' },
   { line: 3, expression: 'second' },
@@ -16,12 +18,19 @@ const targets: Target[] = [
 
 it('should setup correctly', () => {
   const raw_config: RawConfig = {};
-  expect(setup(filename, raw_config, targets)).toMatchSnapshot();
+  expect(setup(get_filename('example'), raw_config, targets)).toMatchSnapshot();
+});
+
+it('should throw error if unmatched-diagnostic exist', () => {
+  const raw_config: RawConfig = {};
+  expect(() =>
+    setup(get_filename('unmatched'), raw_config, targets),
+  ).toThrowErrorMatchingSnapshot();
 });
 
 it('should setup correctly with specified tsconfig', () => {
   const raw_config: RawConfig = {
     tsconfig: '<rootDir>/fixtures/snapshots/tsconfig.json',
   };
-  expect(setup(filename, raw_config, targets)).toMatchSnapshot();
+  expect(setup(get_filename('example'), raw_config, targets)).toMatchSnapshot();
 });
