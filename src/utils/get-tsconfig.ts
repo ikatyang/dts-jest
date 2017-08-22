@@ -1,16 +1,12 @@
 import * as tsconfig_extends from 'tsconfig-extends';
-import * as ts from 'typescript';
+import * as _ts from 'typescript';
 import { RawConfig } from '../definitions';
-import { default_to } from './default-to';
+import { replace_root_dir } from './replace-root-dir';
 
-export const get_tsconfig = (raw_config: RawConfig): ts.CompilerOptions => {
-  const raw_tsconfig = default_to<string | ts.CompilerOptions>(
-    raw_config.tsconfig,
-    {},
-  );
-  return typeof raw_tsconfig === 'string'
-    ? tsconfig_extends.load_file_sync(
-        raw_tsconfig.replace('<cwd>', process.cwd()),
-      )
+export const get_tsconfig = (
+  raw_tsconfig: RawConfig['tsconfig'] = {},
+  root_dir: string,
+): _ts.CompilerOptions =>
+  typeof raw_tsconfig === 'string'
+    ? tsconfig_extends.load_file_sync(replace_root_dir(raw_tsconfig, root_dir))
     : raw_tsconfig;
-};

@@ -1,5 +1,5 @@
 import require_from_string = require('require-from-string');
-import * as ts from 'typescript';
+import * as _ts from 'typescript';
 import { Trigger } from './definitions';
 import { create_triggers } from './utils/create-triggers';
 import { default_to } from './utils/default-to';
@@ -8,7 +8,8 @@ import { get_formatted_description } from './utils/get-formatted-description';
 export const remap_snapshot = (
   snapshot_content: string | Record<string, string>,
   source_content: string,
-  snapshot_filename?: string,
+  snapshot_filename: string | undefined,
+  ts: typeof _ts,
 ) => {
   const snapshot_data =
     typeof snapshot_content === 'string'
@@ -24,7 +25,7 @@ export const remap_snapshot = (
     ts.ScriptTarget.Latest,
     false,
   );
-  const triggers = create_triggers(source_file);
+  const triggers = create_triggers(source_file, ts);
 
   const source_content_lines = source_content.split('\n');
 

@@ -15,7 +15,7 @@ it('should setup correctly', () => {
 
 it('should setup correctly with specified tsconfig', () => {
   const raw_config: RawConfig = {
-    tsconfig: '<cwd>/fixtures/snapshots/tsconfig.json',
+    tsconfig: '<rootDir>/fixtures/snapshots/tsconfig.json',
   };
   expect(setup(filename, raw_config, targets)).toMatchSnapshot();
 });

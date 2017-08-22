@@ -1,11 +1,16 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import { JestConfig } from '../definitions';
 import { transform } from '../transform';
 
 const transform_fixture = (relative_path: string) => {
   const source_filename = path.resolve(__dirname, relative_path);
   const source_text = fs.readFileSync(source_filename, 'utf8');
-  return transform(source_text, source_filename);
+  const jest_config: JestConfig = {
+    rootDir: process.cwd(),
+    globals: {},
+  };
+  return transform(source_text, source_filename, jest_config as any);
 };
 
 it('should transform correctly', () => {
