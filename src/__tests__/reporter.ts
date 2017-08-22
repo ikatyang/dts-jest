@@ -29,7 +29,7 @@ function create_context(): jest.Context {
 function get_write_content() {
   const mocked_write: jest.MockInstance<any> = process.stdout.write as any;
   return mocked_write.mock.calls
-    .map(x => x.join())
-    .join()
+    .map(x => x.join(''))
+    .join('')
     .replace(process.cwd(), '<cwd>');
 }

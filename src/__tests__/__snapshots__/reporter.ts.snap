@@ -2,7 +2,7 @@
 
 exports[`should report correctly 1`] = `
 "
-,[dts-jest] using TypeScript v2.4.2 from <cwd>/node_modules/typescript/lib/typescript.js
-,
+[dts-jest] using TypeScript v2.4.2 from <cwd>/node_modules/typescript/lib/typescript.js
+
 "
 `;
