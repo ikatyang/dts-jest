@@ -1,5 +1,5 @@
 import * as path from 'path';
-import { config_namespace, env_root_dir, JestConfig } from './definitions';
+import { config_namespace, JestConfig } from './definitions';
 import { get_config } from './utils/get-config';
 
 export class Reporter implements jest.Reporter {

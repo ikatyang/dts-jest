@@ -1,10 +1,11 @@
-import { config_namespace } from '../definitions';
 import { Reporter } from '../reporter';
 
+// tslint:disable-next-line:no-unbound-method
 const original_stdout_write = process.stdout.write;
+let mocked_stdout_write: jest.MockInstance<any>;
 
 beforeEach(() => {
-  process.stdout.write = jest.fn();
+  mocked_stdout_write = process.stdout.write = jest.fn();
 });
 
 afterAll(() => {
@@ -27,8 +28,7 @@ function create_context(): jest.Context {
 }
 
 function get_write_content() {
-  const mocked_write: jest.MockInstance<any> = process.stdout.write as any;
-  return mocked_write.mock.calls
+  return mocked_stdout_write.mock.calls
     .map(x => x.join(''))
     .join('')
     .replace(process.cwd(), '<cwd>');
