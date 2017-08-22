@@ -170,6 +170,15 @@ FAIL  tests/unattachable-trigger.tsfm.ts
       tests/unattachable-trigger.tsfm.ts:9 optional description
       tests/unattachable-trigger.tsfm.ts:14
 
+FAIL  tests/unmatched-diagnostic.tsfm.ts
+  ● Test suite failed to run
+
+    Unmatched diagnostic(s) detected:
+    
+      tests/unmatched-diagnostic.tsfm.ts:1 Type '1' is not assignable to type 'string'.
+      tests/unmatched-diagnostic.tsfm.ts:3 Type '2' is not assignable to type 'string'.
+      tests/unmatched-diagnostic.tsfm.ts:5 Type '3' is not assignable to type 'string'.
+
 Summary of all failing tests
 FAIL  tests/flag-fail.tsfm.ts
   ● string_to_any('')
@@ -210,7 +219,16 @@ FAIL  tests/unattachable-trigger.tsfm.ts
       tests/unattachable-trigger.tsfm.ts:9 optional description
       tests/unattachable-trigger.tsfm.ts:14
 
-Test Suites: 5 failed, 17 passed, 22 total
+FAIL  tests/unmatched-diagnostic.tsfm.ts
+  ● Test suite failed to run
+
+    Unmatched diagnostic(s) detected:
+    
+      tests/unmatched-diagnostic.tsfm.ts:1 Type '1' is not assignable to type 'string'.
+      tests/unmatched-diagnostic.tsfm.ts:3 Type '2' is not assignable to type 'string'.
+      tests/unmatched-diagnostic.tsfm.ts:5 Type '3' is not assignable to type 'string'.
+
+Test Suites: 6 failed, 17 passed, 23 total
 Tests:       3 failed, 22 skipped, 33 passed, 58 total
 Snapshots:   18 passed, 18 total
 Time:        unknown

@@ -33,3 +33,10 @@ Runtime {
   },
 }
 `;
+
+exports[`should throw error if unmatched-diagnostic exist 1`] = `
+"Unmatched diagnostic(s) detected:
+
+  fixtures/snapshots/unmatched.ts:7 Argument of type '\\"str\\"' is not assignable to parameter of type 'number'.
+  fixtures/snapshots/unmatched.ts:9 Type '{ a: { b: {}; }; }' is not assignable to type '{ a: { b: { c: any; }; }; }'."
+`;

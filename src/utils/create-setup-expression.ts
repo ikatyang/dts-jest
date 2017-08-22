@@ -30,10 +30,7 @@ export const create_setup_expression = (triggers: Trigger[]) => {
   `);
 
   return remove_spaces(`
-    var ${runtime_namespace};
-    beforeAll(function () {
-      ${runtime_namespace} = require(${stringified_package_name})
-        .setup(module.filename, ${config_expression}, ${stringified_targets});
-    })
+    var ${runtime_namespace} = require(${stringified_package_name})
+      .setup(module.filename, ${config_expression}, ${stringified_targets});
   `);
 };
