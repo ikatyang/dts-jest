@@ -4,6 +4,7 @@ import {
   AssertionFlag,
   JestConfig,
 } from './definitions';
+import { create_actual_setup_expression } from './utils/create-actual-setup-expression';
 import { create_actual_test_expression } from './utils/create-actual-test-expression';
 import { create_actual_triggers } from './utils/create-actual-triggers';
 import { create_triggers } from './utils/create-triggers';
@@ -42,6 +43,8 @@ export const transform_actual: jest.Transformer['process'] = (
 
     transformed = `${prev_content}${test_expression}${next_content}`;
   });
+
+  transformed = create_actual_setup_expression(actual_triggers) + transformed;
 
   if (jest_config._dts_jest_internal_test_ === true) {
     return transformed;

@@ -1,5 +1,6 @@
-import { Result } from './definitions';
+import { runtime_indent_spaces, Result } from './definitions';
 import { indent } from './utils/indent';
+import { safe_snapshot } from './utils/safe-snapshot';
 
 export class Runtime {
   public results: { [line: number]: Result };
@@ -16,20 +17,17 @@ export class Runtime {
   }
 
   public safe_snapshot(line: number) {
-    try {
-      return this.snapshot(line);
-    } catch (error) {
-      return (error as Error).message;
-    }
+    return safe_snapshot(() => this.snapshot(line));
   }
 
   public report(line: number) {
     const result = this.results[line];
     const description =
       result.description === undefined ? '' : `\n${result.description}\n`;
-    return `${description}\nInferred\n\n${indent(
-      result.expression,
-      2,
-    )}\n\nto be\n\n${indent(this.safe_snapshot(line), 2)}\n`;
+
+    const expression = indent(result.expression, runtime_indent_spaces);
+    const snapshot = indent(this.safe_snapshot(line), runtime_indent_spaces);
+
+    return `${description}\nInferred\n\n${expression}\n\nto be\n\n${snapshot}\n`;
   }
 }

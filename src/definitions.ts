@@ -8,6 +8,8 @@ export const runtime_namespace = '_dts_jest_runtime_';
 
 export const env_root_dir = 'DTS_JEST_ROOT_DIR';
 
+export const runtime_indent_spaces = 2;
+
 export const trigger_regex = /^\s*\/\/\s*@dts-jest\b(:?\S*)\s*(.+)?\s*$/;
 export enum TriggerMatchIndex {
   Input,
@@ -84,6 +86,7 @@ export interface Expected {
 }
 
 export interface Result extends Target, Snapshot {}
+export interface ActualResult extends Target, Expected {}
 
 export interface JestConfig {
   rootDir: string;

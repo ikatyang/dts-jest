@@ -1,4 +1,5 @@
 import {
+  runtime_namespace,
   ActualAssertionFlag,
   ActualTrigger,
   AssertionFlag,
@@ -8,27 +9,18 @@ import { remove_spaces } from './remove-spaces';
 
 export const create_actual_test_expression = (trigger: ActualTrigger) => {
   const assertion_expressions: string[] = [];
+  const getter_expression = `function () { return ${trigger.expression}; }`;
 
   if (trigger.flags.indexOf(AssertionFlag.Show) !== -1) {
-    const safe_expression = `
-      (function () {
-        try {
-          return ${trigger.expression};
-        } catch (error) {
-          return error.message;
-        }
-      })()
-    `;
-    assertion_expressions.push(`console.log(${safe_expression})`);
+    const report_expression = `${runtime_namespace}.report(${trigger.line}, ${getter_expression})`;
+    assertion_expressions.push(`console.log(${report_expression})`);
   }
 
   if (trigger.value === ActualAssertionFlag.Error) {
-    assertion_expressions.push(
-      `expect(function () { return ${trigger.expression}; }).toThrowError()`,
-    );
+    assertion_expressions.push(`expect(${getter_expression}).toThrowError()`);
   } else if (trigger.value === ActualAssertionFlag.NoError) {
     assertion_expressions.push(
-      `expect(function () { return ${trigger.expression}; }).not.toThrowError()`,
+      `expect(${getter_expression}).not.toThrowError()`,
     );
   } else {
     assertion_expressions.push(
