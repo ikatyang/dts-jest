@@ -17,7 +17,8 @@ export const create_actual_triggers = (
   for_each_comment(
     source_file,
     (comment, scanner) => {
-      const match = comment.match(/^\/\/=>(.*)/);
+      const match =
+        comment.match(/^\/\/=>(.*)$/) || comment.match(/^\/\*=>([\s\S]*)\*\/$/);
       if (match === null) {
         return;
       }
