@@ -41,7 +41,7 @@ export const transform_actual: jest.Transformer['process'] = (
     const next_content = transformed.slice(trigger.end);
     const test_expression = create_actual_test_expression(trigger);
 
-    transformed = `${prev_content}${test_expression}${next_content}`;
+    transformed = `${prev_content}${test_expression};${next_content}`;
   });
 
   transformed = create_actual_setup_expression(actual_triggers) + transformed;
