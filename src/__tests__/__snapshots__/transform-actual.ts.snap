@@ -182,3 +182,26 @@ test.skip(\\"Math.max(\\\\n      1,\\\\n      2,\\\\n      3,\\\\n    )\\", func
 ); }).not.toThrowError(); }); //=> :no-error
 "
 `;
+
+exports[`should transform correctly with multiline-comment 1`] = `
+"var _dts_jest_runtime_ = require(\\"dts-jest\\").setup_actual([{\\"line\\":0,\\"expression\\":\\"({ a: 123 })\\",\\"value\\":\\"{\\\\n    a: 123\\\\n  }\\"},{\\"line\\":7,\\"expression\\":\\"({\\\\n  a: 123,\\\\n})\\",\\"value\\":\\"{\\\\n            a: 123\\\\n          }\\"}]);// @dts-jest
+test(\\"({ a: 123 })\\", function () { expect(({ a: 123 })).toEqual({
+    a: 123
+  }); }); /*=>
+  {
+    a: 123
+  }
+*/
+
+// @dts-jest
+test(\\"({\\\\n      a: 123,\\\\n    })\\", function () { expect(({
+  a: 123,
+})).toEqual({
+            a: 123
+          }); }); /*=>
+          {
+            a: 123
+          }
+*/
+"
+`;

@@ -149,6 +149,12 @@ PASS  tests/flag-skip.tsfm.ts
   ✓ number_to_string(3)
   ○ skipped 1 test
 
+PASS  tests/multiline-comment.tsfm-act.ts
+  ✓ ({ a: 123 })
+  ✓ ({
+              a: 123,
+    })
+
 PASS  tests/title-description.tsfm.ts
   ✓ void_to_string(
     
@@ -265,8 +271,8 @@ FAIL  tests/unmatched-diagnostic.tsfm.ts
       tests/unmatched-diagnostic.tsfm.ts:3 Type '2' is not assignable to type 'string'.
       tests/unmatched-diagnostic.tsfm.ts:5 Type '3' is not assignable to type 'string'.
 
-Test Suites: 7 failed, 16 passed, 23 total
-Tests:       4 failed, 22 skipped, 32 passed, 58 total
+Test Suites: 7 failed, 17 passed, 24 total
+Tests:       4 failed, 22 skipped, 34 passed, 60 total
 Snapshots:   17 passed, 17 total
 Time:        unknown
 Ran all test suites.
