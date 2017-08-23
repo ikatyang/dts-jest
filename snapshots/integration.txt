@@ -32,9 +32,15 @@ PASS  tests/flag-none.tsfm-act.ts
   ✓ 'b'
   ✓ 'c'
 
-PASS  tests/flag-none.tsfm.ts
+FAIL  tests/flag-none.tsfm.ts
+  ● number_to_string(2)
+
+    expect.hasAssertions()
+    
+    Expected at least one assertion to be called but received none.
+
   ✓ number_to_string(1)
-  ✓ number_to_string(2)
+  ✕ number_to_string(2)
   ✓ number_to_string('x')
 
 PASS  tests/flag-only-fail.tsfm-act.ts
@@ -208,6 +214,13 @@ FAIL  tests/flag-fail.tsfm.ts
     Expected the function to throw an error.
     But it didn't throw anything.
 
+FAIL  tests/flag-none.tsfm.ts
+  ● number_to_string(2)
+
+    expect.hasAssertions()
+    
+    Expected at least one assertion to be called but received none.
+
 FAIL  tests/flag-pass.tsfm-act.ts
   ● a
 
@@ -252,9 +265,9 @@ FAIL  tests/unmatched-diagnostic.tsfm.ts
       tests/unmatched-diagnostic.tsfm.ts:3 Type '2' is not assignable to type 'string'.
       tests/unmatched-diagnostic.tsfm.ts:5 Type '3' is not assignable to type 'string'.
 
-Test Suites: 6 failed, 17 passed, 23 total
-Tests:       3 failed, 22 skipped, 33 passed, 58 total
-Snapshots:   18 passed, 18 total
+Test Suites: 7 failed, 16 passed, 23 total
+Tests:       4 failed, 22 skipped, 32 passed, 58 total
+Snapshots:   17 passed, 17 total
 Time:        unknown
 Ran all test suites.
 

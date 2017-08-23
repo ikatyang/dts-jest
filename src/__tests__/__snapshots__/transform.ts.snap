@@ -14,10 +14,10 @@ exports[`should transform correctly 1`] = `
 
 
 
-test(\\"T.none()\\", function () {expect(_dts_jest_runtime_.safe_snapshot(4)).toMatchSnapshot();});
+test(\\"T.none()\\", function () {expect.hasAssertions();});
 
 
-test(\\"description-none\\", function () {expect(_dts_jest_runtime_.safe_snapshot(7)).toMatchSnapshot();});
+test(\\"description-none\\", function () {expect.hasAssertions();});
 
 
 test(\\"T.show()\\", function () {console.log(_dts_jest_runtime_.report(10));});

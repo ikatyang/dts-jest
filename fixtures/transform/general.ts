@@ -2,10 +2,10 @@ declare const T: any;
 
 // other-comment
 
-// @dts-jest:snapshot
+// @dts-jest
 T.none();
 
-// @dts-jest:snapshot description-none
+// @dts-jest description-none
 T.none();
 
 // @dts-jest:show
