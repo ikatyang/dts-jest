@@ -6,7 +6,7 @@ import { transform_actual } from '../transform-actual';
 
 const transform_fixture = (
   relative_path: string,
-  tsconfig: ts.CompilerOptions = {},
+  tsconfig: Record<string, ts.CompilerOptionsValue> = {},
   debug = true,
 ) => {
   const source_filename = path.resolve(__dirname, relative_path);
@@ -61,8 +61,8 @@ describe('es6', () => {
 
   it('should transform correctly for ts.transpile', () => {
     const tsconfig = {
-      module: ts.ModuleKind.CommonJS,
-      target: ts.ScriptTarget.ES5,
+      module: 'commonjs',
+      target: 'es5',
     };
     expect(
       transform_fixture(
