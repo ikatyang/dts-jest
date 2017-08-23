@@ -62,6 +62,7 @@ export interface Trigger extends Target, TriggerInfo {
   start: number;
   end: number;
 }
+export interface ActualTrigger extends Trigger, Expected {}
 
 export interface GroupInfo {
   method: GroupMethod;
@@ -78,7 +79,7 @@ export interface Snapshot {
   inference?: string;
   diagnostic?: string;
 }
-export interface Expected extends Trigger {
+export interface Expected {
   value: string;
 }
 

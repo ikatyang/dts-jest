@@ -4,12 +4,12 @@ import {
   AssertionFlag,
   JestConfig,
 } from './definitions';
-import { create_expecteds } from './utils/create-expecteds';
+import { create_actual_triggers } from './utils/create-actual-triggers';
 import { create_triggers } from './utils/create-triggers';
 import { get_config } from './utils/get-config';
 import { get_formatted_description } from './utils/get-formatted-description';
 import { remove_spaces } from './utils/remove-spaces';
-import { rewrite_expecteds_method } from './utils/rewrite-expecteds-method';
+import { rewrite_actual_triggers_method } from './utils/rewrite-actual-triggers-method';
 
 export const transform_actual: jest.Transformer['process'] = (
   source_text,
@@ -29,19 +29,19 @@ export const transform_actual: jest.Transformer['process'] = (
   );
   const triggers = create_triggers(source_file, ts);
 
-  const expecteds = create_expecteds(triggers, source_file, ts);
-  rewrite_expecteds_method(expecteds);
+  const actual_triggers = create_actual_triggers(triggers, source_file, ts);
+  rewrite_actual_triggers_method(actual_triggers);
 
   let transformed = source_text;
 
-  expecteds.slice().reverse().forEach(expected => {
+  actual_triggers.slice().reverse().forEach(trigger => {
     const assertion_expressions: string[] = [];
 
-    if (expected.flags.indexOf(AssertionFlag.Show) !== -1) {
+    if (trigger.flags.indexOf(AssertionFlag.Show) !== -1) {
       const safe_expression = remove_spaces(`
         (function () {
           try {
-            return ${expected.expression};
+            return ${trigger.expression};
           } catch (error) {
             return error.message;
           }
@@ -50,28 +50,28 @@ export const transform_actual: jest.Transformer['process'] = (
       assertion_expressions.push(`console.log(${safe_expression})`);
     }
 
-    if (expected.value === ActualAssertionFlag.Error) {
+    if (trigger.value === ActualAssertionFlag.Error) {
       assertion_expressions.push(
-        `expect(function () { return ${expected.expression}; }).toThrowError()`,
+        `expect(function () { return ${trigger.expression}; }).toThrowError()`,
       );
-    } else if (expected.value === ActualAssertionFlag.NoError) {
+    } else if (trigger.value === ActualAssertionFlag.NoError) {
       assertion_expressions.push(
-        `expect(function () { return ${expected.expression}; }).not.toThrowError()`,
+        `expect(function () { return ${trigger.expression}; }).not.toThrowError()`,
       );
     } else {
       assertion_expressions.push(
-        `expect(${expected.expression}).toEqual(${expected.value})`,
+        `expect(${trigger.expression}).toEqual(${trigger.value})`,
       );
     }
 
     const description = JSON.stringify(
-      get_formatted_description(expected, true),
+      get_formatted_description(trigger, true),
     );
     const assertion_expression = assertion_expressions.join(';');
 
-    const prev_content = transformed.slice(0, expected.start);
-    const next_content = transformed.slice(expected.end);
-    const current_content = `${expected.method}(${description}, function () { ${assertion_expression}; })`;
+    const prev_content = transformed.slice(0, trigger.start);
+    const next_content = transformed.slice(trigger.end);
+    const current_content = `${trigger.method}(${description}, function () { ${assertion_expression}; })`;
 
     transformed = `${prev_content}${current_content}${next_content}`;
   });
