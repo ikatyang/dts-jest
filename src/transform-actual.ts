@@ -4,6 +4,7 @@ import {
   AssertionFlag,
   JestConfig,
 } from './definitions';
+import { create_actual_test_expression } from './utils/create-actual-test-expression';
 import { create_actual_triggers } from './utils/create-actual-triggers';
 import { create_triggers } from './utils/create-triggers';
 import { get_config } from './utils/get-config';
@@ -35,45 +36,11 @@ export const transform_actual: jest.Transformer['process'] = (
   let transformed = source_text;
 
   actual_triggers.slice().reverse().forEach(trigger => {
-    const assertion_expressions: string[] = [];
-
-    if (trigger.flags.indexOf(AssertionFlag.Show) !== -1) {
-      const safe_expression = remove_spaces(`
-        (function () {
-          try {
-            return ${trigger.expression};
-          } catch (error) {
-            return error.message;
-          }
-        })()
-      `);
-      assertion_expressions.push(`console.log(${safe_expression})`);
-    }
-
-    if (trigger.value === ActualAssertionFlag.Error) {
-      assertion_expressions.push(
-        `expect(function () { return ${trigger.expression}; }).toThrowError()`,
-      );
-    } else if (trigger.value === ActualAssertionFlag.NoError) {
-      assertion_expressions.push(
-        `expect(function () { return ${trigger.expression}; }).not.toThrowError()`,
-      );
-    } else {
-      assertion_expressions.push(
-        `expect(${trigger.expression}).toEqual(${trigger.value})`,
-      );
-    }
-
-    const description = JSON.stringify(
-      get_formatted_description(trigger, true),
-    );
-    const assertion_expression = assertion_expressions.join(';');
-
     const prev_content = transformed.slice(0, trigger.start);
     const next_content = transformed.slice(trigger.end);
-    const current_content = `${trigger.method}(${description}, function () { ${assertion_expression}; })`;
+    const test_expression = create_actual_test_expression(trigger);
 
-    transformed = `${prev_content}${current_content}${next_content}`;
+    transformed = `${prev_content}${test_expression}${next_content}`;
   });
 
   if (jest_config._dts_jest_internal_test_ === true) {
