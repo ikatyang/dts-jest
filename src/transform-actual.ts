@@ -1,4 +1,9 @@
-import { config_namespace, AssertionFlag, JestConfig } from './definitions';
+import {
+  config_namespace,
+  ActualAssertionFlag,
+  AssertionFlag,
+  JestConfig,
+} from './definitions';
 import { create_expecteds } from './utils/create-expecteds';
 import { create_triggers } from './utils/create-triggers';
 import { get_config } from './utils/get-config';
@@ -45,13 +50,17 @@ export const transform_actual: jest.Transformer['process'] = (
       assertion_expressions.push(`console.log(${safe_expression})`);
     }
 
-    if (expected.flags.indexOf(AssertionFlag.Pass) !== -1) {
-      assertion_expressions.push(
-        `expect(${expected.expression}).toEqual(${expected.value})`,
-      );
-    } else if (expected.flags.indexOf(AssertionFlag.Fail) !== -1) {
+    if (expected.value === ActualAssertionFlag.Error) {
       assertion_expressions.push(
         `expect(function () { return ${expected.expression}; }).toThrowError()`,
+      );
+    } else if (expected.value === ActualAssertionFlag.NoError) {
+      assertion_expressions.push(
+        `expect(function () { return ${expected.expression}; }).not.toThrowError()`,
+      );
+    } else {
+      assertion_expressions.push(
+        `expect(${expected.expression}).toEqual(${expected.value})`,
       );
     }
 

@@ -17,7 +17,7 @@ export const create_expecteds = (
   for_each_comment(
     source_file,
     (comment, scanner) => {
-      const match = comment.match(/^\/\/=>(.+)/);
+      const match = comment.match(/^\/\/=>(.*)/);
       if (match === null) {
         return;
       }

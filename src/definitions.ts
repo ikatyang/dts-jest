@@ -22,6 +22,11 @@ export enum AssertionFlag {
   Pass = ':pass',
   Fail = ':fail',
 }
+export enum ActualAssertionFlag {
+  Error = ':error',
+  NoError = ':no-error',
+}
+
 export enum TestFlag {
   Test = ':test',
   Only = ':only',
