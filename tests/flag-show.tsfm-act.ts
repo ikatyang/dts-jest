@@ -1,5 +1,5 @@
-// @dts-jest:show
-'a'; //=> 'a'
+// @dts-jest
+'a'; //=> ?
 
-// @dts-jest:show optional-description
-'b'; //=> 'b'
+// @dts-jest optional-description
+'b'; //=> ?

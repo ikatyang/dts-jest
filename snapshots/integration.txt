@@ -4,7 +4,7 @@ PASS  tests/flag-fail.tsfm-act.ts
 FAIL  tests/flag-fail.tsfm.ts
   ● string_to_any('')
 
-    expect(() => {}).toThrowErrorMatchingSnapshot()
+    expect(function).toThrowError(undefined)
     
     Expected the function to throw an error.
     But it didn't throw anything.
@@ -72,7 +72,11 @@ FAIL  tests/flag-pass.tsfm-act.ts
 FAIL  tests/flag-pass.tsfm.ts
   ● string_to_any(0)
 
-    Argument of type '0' is not assignable to parameter of type 'string'.
+    expect(function).not.toThrowError()
+    
+    Expected the function not to throw an error.
+    Instead, it threw:
+      Argument of type '0' is not assignable to parameter of type 'string'.      
 
   ✓ string_to_any('')
   ✕ string_to_any(0)
@@ -82,10 +86,26 @@ PASS  tests/flag-show.tsfm-act.ts
   ✓ optional-description
 
 console.log tests/flag-show.tsfm-act.ts:2
-    a
+    
+    Evaluated
+    
+      'a'
+    
+    to be
+    
+      "a"
 
 console.log tests/flag-show.tsfm-act.ts:4
-    b
+    
+    optional-description
+    
+    Evaluated
+    
+      'b'
+    
+    to be
+    
+      "b"
 
 PASS  tests/flag-show.tsfm.ts
   ✓ number_to_string(1)
@@ -183,7 +203,7 @@ Summary of all failing tests
 FAIL  tests/flag-fail.tsfm.ts
   ● string_to_any('')
 
-    expect(() => {}).toThrowErrorMatchingSnapshot()
+    expect(function).toThrowError(undefined)
     
     Expected the function to throw an error.
     But it didn't throw anything.
@@ -196,7 +216,11 @@ FAIL  tests/flag-pass.tsfm-act.ts
 FAIL  tests/flag-pass.tsfm.ts
   ● string_to_any(0)
 
-    Argument of type '0' is not assignable to parameter of type 'string'.
+    expect(function).not.toThrowError()
+    
+    Expected the function not to throw an error.
+    Instead, it threw:
+      Argument of type '0' is not assignable to parameter of type 'string'.
 
 FAIL  tests/unattachable-expected.tsfm-act.ts
   ● Test suite failed to run
