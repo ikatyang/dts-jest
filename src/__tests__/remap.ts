@@ -10,22 +10,46 @@ const load_content = (relative_path: string) =>
   );
 
 it('should remap correctly with snapshot-content string', () => {
-  const source_content = load_content('example.ts');
-  const snapshot_content = load_content('__snapshots__/example.ts.snap');
+  const source_content = load_content('general.ts');
+  const snapshot_content = load_content('__snapshots__/general.ts.snap');
   expect(
-    remap(snapshot_content, source_content, undefined, ts),
+    remap(source_content, snapshot_content, { typescript: ts }),
   ).toMatchSnapshot();
 });
 
 it('should remap correctl with snapshot-content object', () => {
   const source_content = `
-    // @dts-jest
+    // @dts-jest:snapshot
     Math.max(1, 2, 3);
   `;
   const snapshot_content = {
     'Math.max(1, 2, 3) 1': '"number"',
   };
   expect(
-    remap(snapshot_content, source_content, undefined, ts),
+    remap(source_content, snapshot_content, { typescript: ts }),
+  ).toMatchSnapshot();
+});
+
+it('should throw error if snapshot is unmatched', () => {
+  const source_content = load_content('unmatched.ts');
+  const snapshot_content = load_content('__snapshots__/unmatched.ts.snap');
+  expect(() =>
+    remap(source_content, snapshot_content, { typescript: ts }),
+  ).toThrowErrorMatchingSnapshot();
+});
+
+it('should remap correctly for :skip flag', () => {
+  const source_content = load_content('skip.ts');
+  const snapshot_content = load_content('__snapshots__/skip.ts.snap');
+  expect(
+    remap(source_content, snapshot_content, { typescript: ts }),
+  ).toMatchSnapshot();
+});
+
+it('should remap correctly for :only flag', () => {
+  const source_content = load_content('only.ts');
+  const snapshot_content = load_content('__snapshots__/only.ts.snap');
+  expect(
+    remap(source_content, snapshot_content, { typescript: ts }),
   ).toMatchSnapshot();
 });

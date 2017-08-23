@@ -18,5 +18,7 @@ export const remap_cli = (args: string[]) => {
     ),
     'utf8',
   );
-  process.stdout.write(remap(snapshot_content, source_content, undefined, ts));
+  process.stdout.write(
+    remap(source_content, snapshot_content, { typescript: ts }),
+  );
 };

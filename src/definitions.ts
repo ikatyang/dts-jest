@@ -107,3 +107,5 @@ export interface FormattedConfig {
   typescript: typeof _ts;
   typescript_path: string;
 }
+
+export type JestSnapshot = Record<string, string>;

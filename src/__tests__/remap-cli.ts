@@ -14,7 +14,7 @@ afterAll(() => {
 it('should remap correctly', () => {
   const filename = path.resolve(
     __dirname,
-    '../../fixtures/remap/__snapshots__/example.ts.snap',
+    '../../fixtures/remap/__snapshots__/general.ts.snap',
   );
   remap_cli([filename]);
   // tslint:disable-next-line:no-unbound-method
