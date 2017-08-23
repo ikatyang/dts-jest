@@ -2,13 +2,13 @@ export {};
 
 declare const void_to_string: () => string;
 
-// @dts-jest
+// @dts-jest:snapshot
 void_to_string(
 
 );
 
-// @dts-jest
+// @dts-jest:snapshot
 void_to_string();
 
-// @dts-jest optional-description
+// @dts-jest:snapshot optional-description
 void_to_string();

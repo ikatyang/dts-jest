@@ -1,23 +1,24 @@
 import * as path from 'path';
 import * as _ts from 'typescript';
-import { Expected, Trigger } from '../definitions';
+import { ActualTrigger, Trigger } from '../definitions';
 import { for_each_comment } from './for-each-comment';
 import { get_expression_end_line } from './get-expression-end-line';
 
-export const create_expecteds = (
+export const create_actual_triggers = (
   triggers: Trigger[],
   source_file: _ts.SourceFile,
   ts: typeof _ts,
 ) => {
   const current_triggers = triggers.slice();
 
-  const expecteds: Expected[] = [];
+  const actual_triggers: ActualTrigger[] = [];
   const unmatched_comment_lines: number[] = [];
 
   for_each_comment(
     source_file,
     (comment, scanner) => {
-      const match = comment.match(/^\/\/=>(.+)/);
+      const match =
+        comment.match(/^\/\/=>(.*)$/) || comment.match(/^\/\*=>([\s\S]*)\*\/$/);
       if (match === null) {
         return;
       }
@@ -46,7 +47,7 @@ export const create_expecteds = (
         }
 
         const [, value] = match;
-        expecteds.push({
+        actual_triggers.push({
           ...trigger,
           value: value.trim(),
         });
@@ -69,5 +70,5 @@ export const create_expecteds = (
     );
   }
 
-  return expecteds;
+  return actual_triggers;
 };

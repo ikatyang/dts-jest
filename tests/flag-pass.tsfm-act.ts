@@ -1,5 +1,5 @@
-// @dts-jest:pass
+// @dts-jest
 a; //=> 'a'
 
-// @dts-jest:pass
+// @dts-jest
 'b'; //=> 'b'

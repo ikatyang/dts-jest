@@ -1,2 +1,2 @@
-// @dts-jest:fail
-a.b.c; //=> error
+// @dts-jest
+a.b.c; //=> :error

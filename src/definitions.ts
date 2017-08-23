@@ -8,6 +8,8 @@ export const runtime_namespace = '_dts_jest_runtime_';
 
 export const env_root_dir = 'DTS_JEST_ROOT_DIR';
 
+export const runtime_indent_spaces = 2;
+
 export const trigger_regex = /^\s*\/\/\s*@dts-jest\b(:?\S*)\s*(.+)?\s*$/;
 export enum TriggerMatchIndex {
   Input,
@@ -17,11 +19,17 @@ export enum TriggerMatchIndex {
 export type TriggerMatchArray = [string, string, string | undefined];
 
 export enum AssertionFlag {
-  Shot = ':shot',
+  Snapshot = ':snapshot',
   Show = ':show',
   Pass = ':pass',
   Fail = ':fail',
 }
+export enum ActualAssertionFlag {
+  Error = ':error',
+  NoError = ':no-error',
+  Question = '?',
+}
+
 export enum TestFlag {
   Test = ':test',
   Only = ':only',
@@ -49,14 +57,23 @@ export interface Target {
   group?: Group;
 }
 
+export interface Snapshot {
+  inference?: string;
+  diagnostic?: string;
+}
+export interface Expected {
+  value: string;
+}
+
 export interface TriggerInfo {
-  flag: AssertionFlag;
+  flags: AssertionFlag[];
   method: TestMethod;
 }
 export interface Trigger extends Target, TriggerInfo {
   start: number;
   end: number;
 }
+export interface ActualTrigger extends Trigger, Expected {}
 
 export interface GroupInfo {
   method: GroupMethod;
@@ -69,15 +86,8 @@ export type TriggerOrGroupInfo =
   | ({ is_group: false } & TriggerInfo)
   | ({ is_group: true } & GroupInfo);
 
-export interface Snapshot {
-  inference?: string;
-  diagnostic?: string;
-}
-export interface Expected extends Trigger {
-  value: string;
-}
-
 export interface Result extends Target, Snapshot {}
+export interface ActualResult extends Target, Expected {}
 
 export interface JestConfig {
   rootDir: string;

@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should setup correctly 1`] = `
+ActualRuntime {
+  "results": Object {
+    "0": Object {
+      "expression": "first",
+      "line": 0,
+      "value": "123",
+    },
+    "3": Object {
+      "expression": "second",
+      "line": 3,
+      "value": "456",
+    },
+  },
+}
+`;

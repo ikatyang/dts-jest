@@ -2,13 +2,13 @@ import * as R from 'ramda';
 
 {
   const f = {x: 'X', y: 'Y'};
-  // @dts-jest
+  // @dts-jest:snapshot
   R.keysIn(f); // => ['x', 'y']
 }
 
 {
   const f = {x: 'X', y: 'Y'};
-  // @dts-jest
+  // @dts-jest:snapshot
   R.keysIn(f); // => ['x', 'y']
 }
 
@@ -24,5 +24,5 @@ class Point {
   }
 }
 
-// @dts-jest
+// @dts-jest:snapshot
 R.toString(new Point(1, 2)); // => 'new Point(1, 2)'

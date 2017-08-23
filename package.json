@@ -31,6 +31,7 @@
     "check-diff": "git diff --exit-code"
   },
   "dependencies": {
+    "pretty-format": "^20.0.3",
     "require-from-string": "^1.2.1",
     "ts-comment": "^1.1.0",
     "tsconfig-extends": "^1.0.1",

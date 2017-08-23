@@ -1,8 +1,8 @@
 // @dts-jest
-'a'; //=> 'a'
+'a'; //=> :no-error
 
 // @dts-jest:only
-'b'; //=> 'b'
+'b'; //=> :no-error
 
 // @dts-jest
-'c'; //=> 'c'
+'c'; //=> :no-error

@@ -14,39 +14,39 @@ T.show();
 // @dts-jest:show description-show
 T.show();
 
-// @dts-jest:skip
+// @dts-jest:skip:snapshot
 T.skip();
 
-// @dts-jest:skip description-skip
+// @dts-jest:skip:snapshot description-skip
 T.skip();
 
-// @dts-jest:only
+// @dts-jest:only:snapshot
 T.only();
 
-// @dts-jest:only description-only
+// @dts-jest:only:snapshot description-only
 T.only();
 
 {
-  // @dts-jest
+  // @dts-jest:snapshot
   T.in_block();
 }
 
-// @dts-jest:pass
+// @dts-jest:pass:snapshot
 Math.abs(123);
 
-// @dts-jest:fail
+// @dts-jest:fail:snapshot
 Math.abs('abc');
 
-// @dts-jest:test
+// @dts-jest:test:snapshot
 T.test();
 
-// @dts-jest:test description-test
+// @dts-jest:test:snapshot description-test
 T.test();
 
-// @dts-jest:shot
+// @dts-jest:snapshot
 T.shot();
 
-// @dts-jest:shot description-shot
+// @dts-jest:snapshot description-shot
 T.shot();
 
 // @dts-jest:only:show description-only-show

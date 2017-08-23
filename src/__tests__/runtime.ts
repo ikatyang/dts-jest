@@ -9,7 +9,7 @@ const enum Line {
 }
 
 let runtime: Runtime;
-beforeAll(() => {
+beforeEach(() => {
   runtime = new Runtime({
     [Line.Inference]: {
       line: Line.Inference,

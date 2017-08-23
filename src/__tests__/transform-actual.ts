@@ -46,6 +46,12 @@ it('should transform correctly with group-only', () => {
   ).toMatchSnapshot();
 });
 
+it('should transform correctly with multiline-comment', () => {
+  expect(
+    transform_fixture('../../fixtures/transform-actual/multiline-comment.ts'),
+  ).toMatchSnapshot();
+});
+
 describe('es6', () => {
   it('should transform correctly', () => {
     expect(

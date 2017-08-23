@@ -10,18 +10,35 @@ export const create_test_expression = (trigger: Trigger) => {
   const snapshot_expression = `${runtime_namespace}.snapshot(${trigger.line})`;
   const safe_snapshot_expression = `${runtime_namespace}.safe_snapshot(${trigger.line})`;
 
-  const assertion_expression =
-    trigger.flag === AssertionFlag.Show
-      ? `console.log(${report_expression})`
-      : trigger.flag === AssertionFlag.Fail
-        ? `expect(function () { return ${snapshot_expression}; }).toThrowErrorMatchingSnapshot()`
-        : trigger.flag === AssertionFlag.Pass
-          ? `expect(${snapshot_expression}).toMatchSnapshot()`
-          : `expect(${safe_snapshot_expression}).toMatchSnapshot()`;
+  const assertion_expressions: string[] = [];
+
+  if (trigger.flags.indexOf(AssertionFlag.Show) !== -1) {
+    assertion_expressions.push(`console.log(${report_expression})`);
+  }
+
+  if (trigger.flags.indexOf(AssertionFlag.Pass) !== -1) {
+    assertion_expressions.push(
+      `expect(function () { return ${snapshot_expression}; }).not.toThrowError()`,
+    );
+  } else if (trigger.flags.indexOf(AssertionFlag.Fail) !== -1) {
+    assertion_expressions.push(
+      `expect(function () { return ${snapshot_expression}; }).toThrowError()`,
+    );
+  }
+
+  if (trigger.flags.indexOf(AssertionFlag.Snapshot) !== -1) {
+    assertion_expressions.push(
+      `expect(${safe_snapshot_expression}).toMatchSnapshot()`,
+    );
+  }
+
+  if (assertion_expressions.length === 0) {
+    assertion_expressions.push(`expect.hasAssertions()`);
+  }
 
   return remove_spaces(`
     ${trigger.method}(${stringified_description}, function () {
-      ${assertion_expression};
+      ${assertion_expressions.join(';')};
     })
   `);
 };

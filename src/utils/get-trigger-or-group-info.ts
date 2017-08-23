@@ -14,7 +14,8 @@ export const get_trigger_of_group_info = (
 
   let is_group = false;
 
-  let assertion_flag = AssertionFlag.Shot;
+  const assertion_flags: AssertionFlag[] = [];
+
   let test_method = TestMethod.Test;
   let group_method = GroupMethod.Test;
 
@@ -37,11 +38,11 @@ export const get_trigger_of_group_info = (
         group_method = GroupMethod.Skip;
         break;
 
-      case AssertionFlag.Shot:
+      case AssertionFlag.Snapshot:
       case AssertionFlag.Show:
       case AssertionFlag.Pass:
       case AssertionFlag.Fail:
-        assertion_flag = flag_str;
+        assertion_flags.push(flag_str);
         break;
 
       default:
@@ -51,5 +52,9 @@ export const get_trigger_of_group_info = (
 
   return is_group
     ? { is_group, method: group_method }
-    : { is_group, method: test_method, flag: assertion_flag };
+    : {
+        is_group,
+        method: test_method,
+        flags: assertion_flags,
+      };
 };

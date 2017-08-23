@@ -18,7 +18,7 @@ export const create_triggers = (
 ): Trigger[] => {
   type PartialTrigger = Pick<
     Trigger,
-    'flag' | 'method' | 'description' | 'group'
+    'flags' | 'method' | 'description' | 'group'
   >;
   const partial_triggers: { [line: number]: PartialTrigger } = {};
 
@@ -46,12 +46,12 @@ export const create_triggers = (
           title: default_to(description, 'untitled'),
         };
       } else {
-        const { flag, method } = info;
+        const { flags, method } = info;
         const position = scanner.getTokenPos();
         const { line } = source_file.getLineAndCharacterOfPosition(position);
 
         partial_triggers[line] = {
-          flag,
+          flags,
           method,
           description,
           group: last_group,
