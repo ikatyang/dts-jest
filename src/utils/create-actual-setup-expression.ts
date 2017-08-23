@@ -20,6 +20,6 @@ export const create_actual_setup_expression = (triggers: ActualTrigger[]) => {
 
   return remove_spaces(`
     var ${runtime_namespace} = require(${stringified_package_name})
-      .setup(${stringified_results});
+      .setup_actual(${stringified_results});
   `);
 };
