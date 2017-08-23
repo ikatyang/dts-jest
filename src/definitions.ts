@@ -17,7 +17,7 @@ export enum TriggerMatchIndex {
 export type TriggerMatchArray = [string, string, string | undefined];
 
 export enum AssertionFlag {
-  Shot = ':shot',
+  Snapshot = ':snapshot',
   Show = ':show',
   Pass = ':pass',
   Fail = ':fail',
@@ -50,7 +50,7 @@ export interface Target {
 }
 
 export interface TriggerInfo {
-  flag: AssertionFlag;
+  flags: AssertionFlag[];
   method: TestMethod;
 }
 export interface Trigger extends Target, TriggerInfo {
