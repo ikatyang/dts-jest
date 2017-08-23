@@ -27,6 +27,7 @@ export enum AssertionFlag {
 export enum ActualAssertionFlag {
   Error = ':error',
   NoError = ':no-error',
+  Question = '?',
 }
 
 export enum TestFlag {
