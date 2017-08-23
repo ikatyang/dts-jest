@@ -96,7 +96,7 @@ export interface JestConfig {
 }
 
 export interface RawConfig {
-  tsconfig?: string | _ts.CompilerOptions;
+  tsconfig?: string | Record<string, _ts.CompilerOptionsValue>;
   type_format?: _ts.TypeFormatFlags;
   typescript?: string;
 }

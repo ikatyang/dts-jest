@@ -9,7 +9,7 @@ export const get_config = (
 ): FormattedConfig => {
   const { ts, ts_path } = get_typescript(raw_config.typescript, root_dir);
   return {
-    tsconfig: get_tsconfig(raw_config.tsconfig, root_dir),
+    tsconfig: get_tsconfig(raw_config.tsconfig, root_dir, ts),
     type_format: default_to(
       raw_config.type_format,
       ts.TypeFormatFlags.NoTruncation,
