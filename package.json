@@ -12,7 +12,7 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "bin": {
-    "dts-jest-remap-snapshot": "bin/remap-snapshot.js"
+    "dts-jest-remap": "bin/dts-jest-remap.js"
   },
   "repository": "https://github.com/ikatyang/dts-jest",
   "homepage": "https://github.com/ikatyang/dts-jest#readme",

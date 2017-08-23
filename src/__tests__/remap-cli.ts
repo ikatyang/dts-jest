@@ -1,5 +1,5 @@
 import * as path from 'path';
-import cli = require('../remap-snapshot-cli');
+import { remap_cli } from '../remap-cli';
 
 const original_stdout = process.stdout;
 
@@ -14,14 +14,14 @@ afterAll(() => {
 it('should remap correctly', () => {
   const filename = path.resolve(
     __dirname,
-    '../../fixtures/remap-snapshot/__snapshots__/example.ts.snap',
+    '../../fixtures/remap/__snapshots__/example.ts.snap',
   );
-  cli([filename]);
+  remap_cli([filename]);
   // tslint:disable-next-line:no-unbound-method
   const mocked_write: jest.Mock<any> = process.stdout.write as any;
   expect(mocked_write.mock.calls[0]).toMatchSnapshot();
 });
 
 it('should throw error if args.length !== 1', () => {
-  expect(() => cli([])).toThrowError();
+  expect(() => remap_cli([])).toThrowError();
 });

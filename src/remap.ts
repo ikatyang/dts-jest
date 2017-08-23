@@ -5,7 +5,7 @@ import { create_triggers } from './utils/create-triggers';
 import { default_to } from './utils/default-to';
 import { get_formatted_description } from './utils/get-formatted-description';
 
-export const remap_snapshot = (
+export const remap = (
   snapshot_content: string | Record<string, string>,
   source_content: string,
   snapshot_filename: string | undefined,

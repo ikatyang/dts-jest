@@ -1,9 +1,9 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as ts from 'typescript';
-import { remap_snapshot } from './remap-snapshot';
+import { remap } from './remap';
 
-export = (args: string[]) => {
+export const remap_cli = (args: string[]) => {
   if (args.length !== 1) {
     throw new Error(
       'Usage: dts-jest-remap-snapshot <path/to/__snapshots__/target.ts.snap>',
@@ -18,7 +18,5 @@ export = (args: string[]) => {
     ),
     'utf8',
   );
-  process.stdout.write(
-    remap_snapshot(snapshot_content, source_content, undefined, ts),
-  );
+  process.stdout.write(remap(snapshot_content, source_content, undefined, ts));
 };
