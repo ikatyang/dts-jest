@@ -1,7 +1,6 @@
 import { env_root_dir, RawConfig, Result, Target } from './definitions';
 import { Runtime } from './runtime';
 import { create_snapshots } from './utils/create-snapshots';
-import { default_to } from './utils/default-to';
 import { get_env_variable } from './utils/env-variable';
 import { get_config } from './utils/get-config';
 

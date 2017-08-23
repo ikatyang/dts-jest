@@ -2,7 +2,6 @@ import {
   runtime_namespace,
   ActualAssertionFlag,
   ActualTrigger,
-  AssertionFlag,
 } from '../definitions';
 import { get_formatted_description } from './get-formatted-description';
 

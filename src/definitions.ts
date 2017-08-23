@@ -57,6 +57,14 @@ export interface Target {
   group?: Group;
 }
 
+export interface Snapshot {
+  inference?: string;
+  diagnostic?: string;
+}
+export interface Expected {
+  value: string;
+}
+
 export interface TriggerInfo {
   flags: AssertionFlag[];
   method: TestMethod;
@@ -77,14 +85,6 @@ export interface Group extends GroupInfo {
 export type TriggerOrGroupInfo =
   | ({ is_group: false } & TriggerInfo)
   | ({ is_group: true } & GroupInfo);
-
-export interface Snapshot {
-  inference?: string;
-  diagnostic?: string;
-}
-export interface Expected {
-  value: string;
-}
 
 export interface Result extends Target, Snapshot {}
 export interface ActualResult extends Target, Expected {}

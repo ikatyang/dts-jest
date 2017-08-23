@@ -1,16 +1,9 @@
-import {
-  config_namespace,
-  ActualAssertionFlag,
-  AssertionFlag,
-  JestConfig,
-} from './definitions';
+import { config_namespace, JestConfig } from './definitions';
 import { create_actual_setup_expression } from './utils/create-actual-setup-expression';
 import { create_actual_test_expression } from './utils/create-actual-test-expression';
 import { create_actual_triggers } from './utils/create-actual-triggers';
 import { create_triggers } from './utils/create-triggers';
 import { get_config } from './utils/get-config';
-import { get_formatted_description } from './utils/get-formatted-description';
-import { remove_spaces } from './utils/remove-spaces';
 import { rewrite_actual_triggers_method } from './utils/rewrite-actual-triggers-method';
 
 export const transform_actual: jest.Transformer['process'] = (
