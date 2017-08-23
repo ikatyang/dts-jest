@@ -1,20 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`es6 should transform correctly 1`] = `
-"import * as path from 'path';
+"var _dts_jest_runtime_ = require(\\"dts-jest\\").setup([{\\"line\\":2,\\"expression\\":\\"['path/to/abc.ts'].map(x => path.basename(x))\\",\\"value\\":\\":no-error\\"}]);import * as path from 'path';
 
 // @dts-jest
-test(\\"['path/to/abc.ts'].map(x => path.basename(x))\\", function () { expect(function () { return ['path/to/abc.ts'].map(x => path.basename(x)); }).not.toThrowError(); }) //=> ['abc.ts']
+test(\\"['path/to/abc.ts'].map(x => path.basename(x))\\", function () { expect(function () { return ['path/to/abc.ts'].map(x => path.basename(x)); }).not.toThrowError(); }); //=> :no-error
 "
 `;
 
 exports[`es6 should transform correctly for ts.transpile 1`] = `
 "\\"use strict\\";
 Object.defineProperty(exports, \\"__esModule\\", { value: true });
+var _dts_jest_runtime_ = require(\\"dts-jest\\").setup([{ \\"line\\": 2, \\"expression\\": \\"['path/to/abc.ts'].map(x => path.basename(x))\\", \\"value\\": \\":no-error\\" }]);
 var path = require(\\"path\\");
 // @dts-jest
-test(\\"['path/to/abc.ts'].map(x => path.basename(x))\\", function () { expect(function () { return ['path/to/abc.ts'].map(function (x) { return path.basename(x); }); }).not.toThrowError(); }); //=> ['abc.ts']
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZXM2LmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiZXM2LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQUEsMkJBQTZCO0FBRTdCLFlBQVk7QUFDWixJQUFJLENBQUMsK0NBQStDLEVBQUUsY0FBYyxNQUFNLENBQUMsY0FBYyxNQUFNLENBQUMsQ0FBQyxnQkFBZ0IsQ0FBQyxDQUFDLEdBQUcsQ0FBQyxVQUFBLENBQUMsSUFBSSxPQUFBLElBQUksQ0FBQyxRQUFRLENBQUMsQ0FBQyxDQUFDLEVBQWhCLENBQWdCLENBQUMsQ0FBQyxDQUFDLENBQUMsQ0FBQyxDQUFDLEdBQUcsQ0FBQyxZQUFZLEVBQUUsQ0FBQyxDQUFDLENBQUMsQ0FBQyxDQUFBLENBQUMsZUFBZSJ9"
+test(\\"['path/to/abc.ts'].map(x => path.basename(x))\\", function () { expect(function () { return ['path/to/abc.ts'].map(function (x) { return path.basename(x); }); }).not.toThrowError(); }); //=> :no-error
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZXM2LmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiZXM2LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQUEsSUFBSSxrQkFBa0IsR0FBRyxPQUFPLENBQUMsVUFBVSxDQUFDLENBQUMsS0FBSyxDQUFDLENBQUMsRUFBQyxNQUFNLEVBQUMsQ0FBQyxFQUFDLFlBQVksRUFBQywrQ0FBK0MsRUFBQyxPQUFPLEVBQUMsV0FBVyxFQUFDLENBQUMsQ0FBQyxDQUFDO0FBQUEsMkJBQTZCO0FBRS9LLFlBQVk7QUFDWixJQUFJLENBQUMsK0NBQStDLEVBQUUsY0FBYyxNQUFNLENBQUMsY0FBYyxNQUFNLENBQUMsQ0FBQyxnQkFBZ0IsQ0FBQyxDQUFDLEdBQUcsQ0FBQyxVQUFBLENBQUMsSUFBSSxPQUFBLElBQUksQ0FBQyxRQUFRLENBQUMsQ0FBQyxDQUFDLEVBQWhCLENBQWdCLENBQUMsQ0FBQyxDQUFDLENBQUMsQ0FBQyxDQUFDLEdBQUcsQ0FBQyxZQUFZLEVBQUUsQ0FBQyxDQUFDLENBQUMsQ0FBQyxDQUFDLENBQUMsY0FBYyJ9"
 `;
 
 exports[`should throw error with unattachable expected-comment 1`] = `
@@ -39,145 +40,145 @@ exports[`should throw error with unattachable expected-comment 2`] = `
 `;
 
 exports[`should transform correctly 1`] = `
-"// @dts-jest
-test.skip(\\"Math.max(1, 2, 3)\\", function () { expect(function () { return Math.max(1, 2, 3); }).not.toThrowError(); }) //=> 3
+"var _dts_jest_runtime_ = require(\\"dts-jest\\").setup([{\\"line\\":0,\\"expression\\":\\"Math.max(1, 2, 3)\\",\\"value\\":\\":no-error\\"},{\\"line\\":3,\\"description\\":\\"description-none\\",\\"expression\\":\\"Math.max(1, 2, 3)\\",\\"value\\":\\":no-error\\"},{\\"line\\":6,\\"expression\\":\\"Math.min(1, 2, 3)\\",\\"value\\":\\"?\\"},{\\"line\\":9,\\"description\\":\\"description-show\\",\\"expression\\":\\"Math.min(1, 2, 3)\\",\\"value\\":\\"?\\"},{\\"line\\":12,\\"expression\\":\\"Math.abs(-1)\\",\\"value\\":\\":no-error\\"},{\\"line\\":15,\\"description\\":\\"description-skip\\",\\"expression\\":\\"Math.abs(-1)\\",\\"value\\":\\":no-error\\"},{\\"line\\":18,\\"expression\\":\\"Math.floor(1.2)\\",\\"value\\":\\":no-error\\"},{\\"line\\":21,\\"description\\":\\"description-only\\",\\"expression\\":\\"Math.floor(1.2)\\",\\"value\\":\\":no-error\\"},{\\"line\\":24,\\"expression\\":\\"Math.abs(-2)\\",\\"value\\":\\"2\\"},{\\"line\\":27,\\"description\\":\\"description-pass\\",\\"expression\\":\\"Math.abs(-2)\\",\\"value\\":\\"2\\"},{\\"line\\":30,\\"expression\\":\\"Math.round(1.8)\\",\\"value\\":\\":error\\"},{\\"line\\":33,\\"description\\":\\"description-fail\\",\\"expression\\":\\"Math.round(1.8)\\",\\"value\\":\\":error\\"},{\\"line\\":36,\\"expression\\":\\"Math.max(\\\\n  1,\\\\n  2,\\\\n  3,\\\\n)\\",\\"value\\":\\":no-error\\"}]);// @dts-jest
+test.skip(\\"Math.max(1, 2, 3)\\", function () { expect(function () { return Math.max(1, 2, 3); }).not.toThrowError(); }); //=> :no-error
 
 // @dts-jest description-none
-test.skip(\\"description-none\\", function () { expect(function () { return Math.max(1, 2, 3); }).not.toThrowError(); }) //=> 3
+test.skip(\\"description-none\\", function () { expect(function () { return Math.max(1, 2, 3); }).not.toThrowError(); }); //=> :no-error
 
-// @dts-jest:show
-test.skip(\\"Math.min(1, 2, 3)\\", function () { console.log(Math.min(1, 2, 3)); }) //=> 1
+// @dts-jest
+test.skip(\\"Math.min(1, 2, 3)\\", function () { console.log(_dts_jest_runtime_.report(6, function () { return Math.min(1, 2, 3); })); }); //=> ?
 
-// @dts-jest:show description-show
-test.skip(\\"description-show\\", function () { console.log(Math.min(1, 2, 3)); }) //=> 1
+// @dts-jest description-show
+test.skip(\\"description-show\\", function () { console.log(_dts_jest_runtime_.report(9, function () { return Math.min(1, 2, 3); })); }); //=> ?
 
 // @dts-jest:skip
-test.skip(\\"Math.abs(-1)\\", function () { expect(function () { return Math.abs(-1); }).not.toThrowError(); }) //=> 1
+test.skip(\\"Math.abs(-1)\\", function () { expect(function () { return Math.abs(-1); }).not.toThrowError(); }); //=> :no-error
 
 // @dts-jest:skip description-skip
-test.skip(\\"description-skip\\", function () { expect(function () { return Math.abs(-1); }).not.toThrowError(); }) //=> 1
+test.skip(\\"description-skip\\", function () { expect(function () { return Math.abs(-1); }).not.toThrowError(); }); //=> :no-error
 
 // @dts-jest:only
-test(\\"Math.floor(1.2)\\", function () { expect(function () { return Math.floor(1.2); }).not.toThrowError(); }) //=> 1
+test(\\"Math.floor(1.2)\\", function () { expect(function () { return Math.floor(1.2); }).not.toThrowError(); }); //=> :no-error
 
 // @dts-jest:only description-only
-test.skip(\\"description-only\\", function () { expect(function () { return Math.floor(1.2); }).not.toThrowError(); }) //=> 1
+test.skip(\\"description-only\\", function () { expect(function () { return Math.floor(1.2); }).not.toThrowError(); }); //=> :no-error
 
-// @dts-jest:pass
-test.skip(\\"Math.abs(-2)\\", function () { expect(Math.abs(-2)).toEqual(2); }) //=> 2
+// @dts-jest
+test.skip(\\"Math.abs(-2)\\", function () { expect(Math.abs(-2)).toEqual(2); }); //=> 2
 
-// @dts-jest:pass description-pass
-test.skip(\\"description-pass\\", function () { expect(Math.abs(-2)).toEqual(2); }) //=> 2
+// @dts-jest description-pass
+test.skip(\\"description-pass\\", function () { expect(Math.abs(-2)).toEqual(2); }); //=> 2
 
-// @dts-jest:fail
-test.skip(\\"Math.round(1.8)\\", function () { expect(function () { return Math.round(1.8); }).toThrowError(); }) //=> 2
+// @dts-jest
+test.skip(\\"Math.round(1.8)\\", function () { expect(function () { return Math.round(1.8); }).toThrowError(); }); //=> :error
 
-// @dts-jest:fail description-fail
-test.skip(\\"description-fail\\", function () { expect(function () { return Math.round(1.8); }).toThrowError(); }) //=> 2
+// @dts-jest description-fail
+test.skip(\\"description-fail\\", function () { expect(function () { return Math.round(1.8); }).toThrowError(); }); //=> :error
 
 // @dts-jest
 test.skip(\\"Math.max(\\\\n      1,\\\\n      2,\\\\n      3,\\\\n    )\\", function () { expect(function () { return Math.max(
   1,
   2,
   3,
-); }).not.toThrowError(); }) //=> 3
+); }).not.toThrowError(); }); //=> :no-error
 "
 `;
 
 exports[`should transform correctly with group 1`] = `
-"// @dts-jest:group A
+"var _dts_jest_runtime_ = require(\\"dts-jest\\").setup([{\\"line\\":2,\\"expression\\":\\"Math.min(1, 2, 3)\\",\\"value\\":\\"?\\"},{\\"line\\":5,\\"description\\":\\"description-show\\",\\"expression\\":\\"Math.min(1, 2, 3)\\",\\"value\\":\\"?\\"},{\\"line\\":8,\\"expression\\":\\"Math.abs(-1)\\",\\"value\\":\\":no-error\\"},{\\"line\\":11,\\"description\\":\\"description-skip\\",\\"expression\\":\\"Math.abs(-1)\\",\\"value\\":\\":no-error\\"},{\\"line\\":16,\\"expression\\":\\"Math.floor(1.2)\\",\\"value\\":\\":no-error\\"},{\\"line\\":19,\\"description\\":\\"description-only\\",\\"expression\\":\\"Math.floor(1.2)\\",\\"value\\":\\":no-error\\"},{\\"line\\":22,\\"expression\\":\\"Math.abs(-2)\\",\\"value\\":\\"2\\"},{\\"line\\":27,\\"description\\":\\"description-pass\\",\\"expression\\":\\"Math.abs(-2)\\",\\"value\\":\\"2\\"},{\\"line\\":30,\\"expression\\":\\"Math.round(1.8)\\",\\"value\\":\\":error\\"},{\\"line\\":33,\\"description\\":\\"description-fail\\",\\"expression\\":\\"Math.round(1.8)\\",\\"value\\":\\":error\\"},{\\"line\\":36,\\"expression\\":\\"Math.max(\\\\n  1,\\\\n  2,\\\\n  3,\\\\n)\\",\\"value\\":\\":no-error\\"}]);// @dts-jest:group A
 
-// @dts-jest:show
-test(\\"Math.min(1, 2, 3)\\", function () { console.log(Math.min(1, 2, 3)); }) //=> 1
+// @dts-jest
+test(\\"Math.min(1, 2, 3)\\", function () { console.log(_dts_jest_runtime_.report(2, function () { return Math.min(1, 2, 3); })); }); //=> ?
 
-// @dts-jest:show description-show
-test(\\"description-show\\", function () { console.log(Math.min(1, 2, 3)); }) //=> 1
+// @dts-jest description-show
+test(\\"description-show\\", function () { console.log(_dts_jest_runtime_.report(5, function () { return Math.min(1, 2, 3); })); }); //=> ?
 
 // @dts-jest:skip
-test.skip(\\"Math.abs(-1)\\", function () { expect(function () { return Math.abs(-1); }).not.toThrowError(); }) //=> 1
+test.skip(\\"Math.abs(-1)\\", function () { expect(function () { return Math.abs(-1); }).not.toThrowError(); }); //=> :no-error
 
 // @dts-jest:skip description-skip
-test.skip(\\"description-skip\\", function () { expect(function () { return Math.abs(-1); }).not.toThrowError(); }) //=> 1
+test.skip(\\"description-skip\\", function () { expect(function () { return Math.abs(-1); }).not.toThrowError(); }); //=> :no-error
 
 // @dts-jest:group:skip B
 
 // @dts-jest:only
-test.skip(\\"Math.floor(1.2)\\", function () { expect(function () { return Math.floor(1.2); }).not.toThrowError(); }) //=> 1
+test.skip(\\"Math.floor(1.2)\\", function () { expect(function () { return Math.floor(1.2); }).not.toThrowError(); }); //=> :no-error
 
 // @dts-jest:only description-only
-test.skip(\\"description-only\\", function () { expect(function () { return Math.floor(1.2); }).not.toThrowError(); }) //=> 1
+test.skip(\\"description-only\\", function () { expect(function () { return Math.floor(1.2); }).not.toThrowError(); }); //=> :no-error
 
 // @dts-jest:pass
-test.skip(\\"Math.abs(-2)\\", function () { expect(Math.abs(-2)).toEqual(2); }) //=> 2
+test.skip(\\"Math.abs(-2)\\", function () { expect(Math.abs(-2)).toEqual(2); }); //=> 2
 
 // @dts-jest:group C
 
-// @dts-jest:pass description-pass
-test(\\"description-pass\\", function () { expect(Math.abs(-2)).toEqual(2); }) //=> 2
+// @dts-jest description-pass
+test(\\"description-pass\\", function () { expect(Math.abs(-2)).toEqual(2); }); //=> 2
 
-// @dts-jest:fail
-test(\\"Math.round(1.8)\\", function () { expect(function () { return Math.round(1.8); }).toThrowError(); }) //=> 2
+// @dts-jest
+test(\\"Math.round(1.8)\\", function () { expect(function () { return Math.round(1.8); }).toThrowError(); }); //=> :error
 
-// @dts-jest:fail description-fail
-test(\\"description-fail\\", function () { expect(function () { return Math.round(1.8); }).toThrowError(); }) //=> 2
+// @dts-jest description-fail
+test(\\"description-fail\\", function () { expect(function () { return Math.round(1.8); }).toThrowError(); }); //=> :error
 
 // @dts-jest
 test(\\"Math.max(\\\\n      1,\\\\n      2,\\\\n      3,\\\\n    )\\", function () { expect(function () { return Math.max(
   1,
   2,
   3,
-); }).not.toThrowError(); }) //=> 3
+); }).not.toThrowError(); }); //=> :no-error
 "
 `;
 
 exports[`should transform correctly with group-only 1`] = `
-"// @dts-jest
-test.skip(\\"Math.max(1, 2, 3)\\", function () { expect(function () { return Math.max(1, 2, 3); }).not.toThrowError(); }) //=> 3
+"var _dts_jest_runtime_ = require(\\"dts-jest\\").setup([{\\"line\\":0,\\"expression\\":\\"Math.max(1, 2, 3)\\",\\"value\\":\\":no-error\\"},{\\"line\\":3,\\"description\\":\\"description-none\\",\\"expression\\":\\"Math.max(1, 2, 3)\\",\\"value\\":\\":no-error\\"},{\\"line\\":8,\\"expression\\":\\"Math.min(1, 2, 3)\\",\\"value\\":\\"?\\"},{\\"line\\":11,\\"description\\":\\"description-show\\",\\"expression\\":\\"Math.min(1, 2, 3)\\",\\"value\\":\\"?\\"},{\\"line\\":14,\\"expression\\":\\"Math.abs(-1)\\",\\"value\\":\\":no-error\\"},{\\"line\\":17,\\"description\\":\\"description-skip\\",\\"expression\\":\\"Math.abs(-1)\\",\\"value\\":\\":no-error\\"},{\\"line\\":22,\\"expression\\":\\"Math.floor(1.2)\\",\\"value\\":\\":no-error\\"},{\\"line\\":25,\\"description\\":\\"description-only\\",\\"expression\\":\\"Math.floor(1.2)\\",\\"value\\":\\":no-error\\"},{\\"line\\":28,\\"expression\\":\\"Math.abs(-2)\\",\\"value\\":\\"2\\"},{\\"line\\":33,\\"description\\":\\"description-pass\\",\\"expression\\":\\"Math.abs(-2)\\",\\"value\\":\\"2\\"},{\\"line\\":36,\\"expression\\":\\"Math.round(1.8)\\",\\"value\\":\\":error\\"},{\\"line\\":39,\\"description\\":\\"description-fail\\",\\"expression\\":\\"Math.round(1.8)\\",\\"value\\":\\":error\\"},{\\"line\\":42,\\"expression\\":\\"Math.max(\\\\n  1,\\\\n  2,\\\\n  3,\\\\n)\\",\\"value\\":\\":no-error\\"}]);// @dts-jest
+test.skip(\\"Math.max(1, 2, 3)\\", function () { expect(function () { return Math.max(1, 2, 3); }).not.toThrowError(); }); //=> :no-error
 
 // @dts-jest description-none
-test.skip(\\"description-none\\", function () { expect(function () { return Math.max(1, 2, 3); }).not.toThrowError(); }) //=> 3
+test.skip(\\"description-none\\", function () { expect(function () { return Math.max(1, 2, 3); }).not.toThrowError(); }); //=> :no-error
 
 // @dts-jest:group A
 
-// @dts-jest:show
-test.skip(\\"Math.min(1, 2, 3)\\", function () { console.log(Math.min(1, 2, 3)); }) //=> 1
+// @dts-jest
+test.skip(\\"Math.min(1, 2, 3)\\", function () { console.log(_dts_jest_runtime_.report(8, function () { return Math.min(1, 2, 3); })); }); //=> ?
 
-// @dts-jest:show description-show
-test.skip(\\"description-show\\", function () { console.log(Math.min(1, 2, 3)); }) //=> 1
+// @dts-jest description-show
+test.skip(\\"description-show\\", function () { console.log(_dts_jest_runtime_.report(11, function () { return Math.min(1, 2, 3); })); }); //=> ?
 
 // @dts-jest:skip
-test.skip(\\"Math.abs(-1)\\", function () { expect(function () { return Math.abs(-1); }).not.toThrowError(); }) //=> 1
+test.skip(\\"Math.abs(-1)\\", function () { expect(function () { return Math.abs(-1); }).not.toThrowError(); }); //=> :no-error
 
 // @dts-jest:only description-skip
-test.skip(\\"description-skip\\", function () { expect(function () { return Math.abs(-1); }).not.toThrowError(); }) //=> 1
+test.skip(\\"description-skip\\", function () { expect(function () { return Math.abs(-1); }).not.toThrowError(); }); //=> :no-error
 
 // @dts-jest:group:only B
 
 // @dts-jest:only
-test(\\"Math.floor(1.2)\\", function () { expect(function () { return Math.floor(1.2); }).not.toThrowError(); }) //=> 1
+test(\\"Math.floor(1.2)\\", function () { expect(function () { return Math.floor(1.2); }).not.toThrowError(); }); //=> :no-error
 
 // @dts-jest:only description-only
-test.skip(\\"description-only\\", function () { expect(function () { return Math.floor(1.2); }).not.toThrowError(); }) //=> 1
+test.skip(\\"description-only\\", function () { expect(function () { return Math.floor(1.2); }).not.toThrowError(); }); //=> :no-error
 
-// @dts-jest:pass
-test.skip(\\"Math.abs(-2)\\", function () { expect(Math.abs(-2)).toEqual(2); }) //=> 2
+// @dts-jest
+test.skip(\\"Math.abs(-2)\\", function () { expect(Math.abs(-2)).toEqual(2); }); //=> 2
 
 // @dts-jest:group C
 
-// @dts-jest:pass description-pass
-test.skip(\\"description-pass\\", function () { expect(Math.abs(-2)).toEqual(2); }) //=> 2
+// @dts-jest description-pass
+test.skip(\\"description-pass\\", function () { expect(Math.abs(-2)).toEqual(2); }); //=> 2
 
-// @dts-jest:fail
-test.skip(\\"Math.round(1.8)\\", function () { expect(function () { return Math.round(1.8); }).toThrowError(); }) //=> 2
+// @dts-jest
+test.skip(\\"Math.round(1.8)\\", function () { expect(function () { return Math.round(1.8); }).toThrowError(); }); //=> :error
 
 // @dts-jest:fail description-fail
-test.skip(\\"description-fail\\", function () { expect(function () { return Math.round(1.8); }).toThrowError(); }) //=> 2
+test.skip(\\"description-fail\\", function () { expect(function () { return Math.round(1.8); }).toThrowError(); }); //=> :error
 
 // @dts-jest
 test.skip(\\"Math.max(\\\\n      1,\\\\n      2,\\\\n      3,\\\\n    )\\", function () { expect(function () { return Math.max(
   1,
   2,
   3,
-); }).not.toThrowError(); }) //=> 3
+); }).not.toThrowError(); }); //=> :no-error
 "
 `;

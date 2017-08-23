@@ -43,10 +43,10 @@ test(\\"T.in_block()\\", function () {expect(_dts_jest_runtime_.safe_snapshot(29
 
 
 
-test(\\"Math.abs(123)\\", function () {expect(_dts_jest_runtime_.snapshot(33)).toMatchSnapshot();});
+test(\\"Math.abs(123)\\", function () {expect(function () { return _dts_jest_runtime_.snapshot(33); }).not.toThrowError();expect(_dts_jest_runtime_.safe_snapshot(33)).toMatchSnapshot();});
 
 
-test(\\"Math.abs('abc')\\", function () {expect(function () { return _dts_jest_runtime_.snapshot(36); }).toThrowErrorMatchingSnapshot();});
+test(\\"Math.abs('abc')\\", function () {expect(function () { return _dts_jest_runtime_.snapshot(36); }).toThrowError();expect(_dts_jest_runtime_.safe_snapshot(36)).toMatchSnapshot();});
 
 
 test(\\"T.test()\\", function () {expect(_dts_jest_runtime_.safe_snapshot(39)).toMatchSnapshot();});

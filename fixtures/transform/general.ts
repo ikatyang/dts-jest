@@ -31,10 +31,10 @@ T.only();
   T.in_block();
 }
 
-// @dts-jest:pass
+// @dts-jest:pass:snapshot
 Math.abs(123);
 
-// @dts-jest:fail
+// @dts-jest:fail:snapshot
 Math.abs('abc');
 
 // @dts-jest:test
@@ -43,10 +43,10 @@ T.test();
 // @dts-jest:test description-test
 T.test();
 
-// @dts-jest:shot
+// @dts-jest:snapshot
 T.shot();
 
-// @dts-jest:shot description-shot
+// @dts-jest:snapshot description-shot
 T.shot();
 
 // @dts-jest:only:show description-only-show
