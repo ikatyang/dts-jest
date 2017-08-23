@@ -5,7 +5,6 @@ import {
   AssertionFlag,
 } from '../definitions';
 import { get_formatted_description } from './get-formatted-description';
-import { remove_spaces } from './remove-spaces';
 
 export const create_actual_test_expression = (trigger: ActualTrigger) => {
   const assertion_expressions: string[] = [];
@@ -30,10 +29,7 @@ export const create_actual_test_expression = (trigger: ActualTrigger) => {
 
   const description = get_formatted_description(trigger, true);
   const stringified_description = JSON.stringify(description);
+  const assertion_expression = assertion_expressions.join(';');
 
-  return remove_spaces(`
-    ${trigger.method}(${stringified_description}, function () {
-      ${assertion_expressions.join(';')};
-    })
-  `);
+  return `${trigger.method}(${stringified_description}, function () { ${assertion_expression}; })`;
 };
