@@ -2,7 +2,7 @@
 
 //=> unknown
 
-// @dts-jest
+// @dts-jest:snapshot
 [];
 //=> []
 
@@ -12,5 +12,5 @@
 
 //=> unknown
 
-// @dts-jest
+// @dts-jest:snapshot
 []; //=> []

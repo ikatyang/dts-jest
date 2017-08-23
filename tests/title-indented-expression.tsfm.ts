@@ -2,19 +2,19 @@
   {
     {
       {
-        // @dts-jest
+        // @dts-jest:snapshot
         [].map(
           () => '',
         );
       }
       {
-        // @dts-jest
+        // @dts-jest:snapshot
         [].map(
       () => '',
         );
       }
       {
-        // @dts-jest
+        // @dts-jest:snapshot
         [].map(
 
 
@@ -25,7 +25,7 @@
       }
       {
         // @dts-jest:group
-        // @dts-jest
+        // @dts-jest:snapshot
         [].map(
           () => '',
         );

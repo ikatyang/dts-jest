@@ -55,9 +55,6 @@ export const get_trigger_of_group_info = (
     : {
         is_group,
         method: test_method,
-        flags:
-          assertion_flags.length === 0
-            ? [AssertionFlag.Snapshot]
-            : assertion_flags,
+        flags: assertion_flags,
       };
 };

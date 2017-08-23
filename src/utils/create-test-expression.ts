@@ -32,6 +32,10 @@ export const create_test_expression = (trigger: Trigger) => {
     );
   }
 
+  if (assertion_expressions.length === 0) {
+    assertion_expressions.push(`expect.hasAssertions()`);
+  }
+
   return remove_spaces(`
     ${trigger.method}(${stringified_description}, function () {
       ${assertion_expressions.join(';')};

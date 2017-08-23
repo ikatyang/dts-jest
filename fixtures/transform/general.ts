@@ -2,10 +2,10 @@ declare const T: any;
 
 // other-comment
 
-// @dts-jest
+// @dts-jest:snapshot
 T.none();
 
-// @dts-jest description-none
+// @dts-jest:snapshot description-none
 T.none();
 
 // @dts-jest:show
@@ -14,20 +14,20 @@ T.show();
 // @dts-jest:show description-show
 T.show();
 
-// @dts-jest:skip
+// @dts-jest:skip:snapshot
 T.skip();
 
-// @dts-jest:skip description-skip
+// @dts-jest:skip:snapshot description-skip
 T.skip();
 
-// @dts-jest:only
+// @dts-jest:only:snapshot
 T.only();
 
-// @dts-jest:only description-only
+// @dts-jest:only:snapshot description-only
 T.only();
 
 {
-  // @dts-jest
+  // @dts-jest:snapshot
   T.in_block();
 }
 
@@ -37,10 +37,10 @@ Math.abs(123);
 // @dts-jest:fail:snapshot
 Math.abs('abc');
 
-// @dts-jest:test
+// @dts-jest:test:snapshot
 T.test();
 
-// @dts-jest:test description-test
+// @dts-jest:test:snapshot description-test
 T.test();
 
 // @dts-jest:snapshot

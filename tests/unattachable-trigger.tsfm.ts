@@ -2,13 +2,13 @@ export {};
 
 declare const unattachable_trigger: () => any;
 
-// @dts-jest
+// @dts-jest:snapshot
 
 unattachable_trigger();
 
-// @dts-jest optional description
+// @dts-jest:snapshot optional description
 
 unattachable_trigger();
 
 
-// @dts-jest
+// @dts-jest:snapshot
