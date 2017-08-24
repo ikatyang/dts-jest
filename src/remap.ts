@@ -20,6 +20,7 @@ export interface RemapOptions {
 export const remap = (
   source_content: string,
   snapshot_content: string | JestSnapshot,
+  // istanbul ignore next
   options: RemapOptions = {},
 ) => {
   const {

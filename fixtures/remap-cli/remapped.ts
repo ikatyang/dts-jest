@@ -1,16 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`should log diff filenames correctly with --listDiff 1`] = `
-"Using TypeScript v2.4.2 from <cwd>/node_modules/typescript/lib/typescript.js
-<cwd>/fixtures/remap-cli/empty.ts"
-`;
-
-exports[`should log typescript information 1`] = `"Using TypeScript v2.4.2 from <cwd>/node_modules/typescript/lib/typescript.js"`;
-
-exports[`should log warning if there is no matched file 1`] = `"There is no matched file."`;
-
-exports[`should remap correctly 1`] = `
-"import * as R from '../ramda/dist/index';
+import * as R from '../ramda/dist/index';
 
 // tslint:disable max-file-line-count comment-format
 
@@ -83,7 +71,7 @@ Math.abs(-1);
 
     // @dts-jest:pass:snapshot -> {}
     reduceIndexed(
-      (acc: string, val: string, idx: number) => \`\${acc},\${idx}-\${val}\`,
+      (acc: string, val: string, idx: number) => `${acc},${idx}-${val}`,
       '',
       ['f', 'o', 'o', 'b', 'a', 'r'],
     ); //=> ',0-f,1-o,2-o,3-b,4-a,5-r'
@@ -107,37 +95,3 @@ Math.abs(-1);
   // @dts-jest:fail:snapshot -> Argument of type '{ x: string; }' is not assignable to parameter of type '{ x: number; }'.
   R.minBy(cmp, d, e);
 })();
-"
-`;
-
-exports[`should throw error if differences exist with --check 1`] = `"Difference(s) detected"`;
-
-exports[`should throw error if input and output file are the same 1`] = `
-"Input and output filename cannot be the same:
-
-  <cwd>/fixtures/remap-cli/general.ts
-
-Consider adjusting option: --outDir or --rename"
-`;
-
-exports[`should throw error if there is no input 1`] = `
-"Usage: dts-jest-remap [--outDir <path>] [--rename <template>] <TestFileGlob> ...
-
-Options:
-  --check, -c       Throw error if target is different with output     [boolean]
-  --help, -h        Show help                                          [boolean]
-  --listDiff, -l    Print filename if target is different with output  [boolean]
-  --outDir, -o      Redirect output structure to the directory          [string]
-  --rename, -r      Rename output filename using template {{variable}},
-                    available variable: filename, basename, extname     [string]
-  --typescript, -t  Specify which TypeScript source to use              [string]
-  --version, -v     Show version number                                [boolean]
-
-Documentation: https://github.com/ikatyang/dts-jest#readme
-
-Not enough non-option arguments: got 0, need at least 1"
-`;
-
-exports[`should write path correctly with --outDir 1`] = `"<cwd>/snapshots/general.ts"`;
-
-exports[`should write path correctly with --rename 1`] = `"<cwd>/fixtures/remap-cli/general.snap.ts"`;
