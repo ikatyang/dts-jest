@@ -1,0 +1,143 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should log diff filenames correctly with --listDiff 1`] = `
+"Using TypeScript v2.4.2 from <cwd>/node_modules/typescript/lib/typescript.js
+<cwd>/fixtures/remap-cli/empty.ts"
+`;
+
+exports[`should log typescript information 1`] = `"Using TypeScript v2.4.2 from <cwd>/node_modules/typescript/lib/typescript.js"`;
+
+exports[`should log warning if there is no matched file 1`] = `"There is no matched file."`;
+
+exports[`should remap correctly 1`] = `
+"import * as R from '../ramda/dist/index';
+
+// tslint:disable max-file-line-count comment-format
+
+// @dts-jest:snapshot -> number
+Math.abs(-1);
+
+// @dts-jest:group __
+(() => {
+  const greet = R.replace('{name}', R.__, 'Hello, {name}!');
+  // @dts-jest:pass:snapshot -> string
+  greet('Alice'); //=> 'Hello, Alice!'
+})();
+
+// @dts-jest:group add
+(() => {
+  // @dts-jest:pass:snapshot -> number
+  R.add(2, 3); //=> 5
+  // @dts-jest:pass:snapshot -> number
+  R.add(7)(10); //=> 17
+})();
+
+// @dts-jest:group addIndex
+(() => {
+  (() => {
+    const lastTwo = (val: number, idx: number, list: number[]) => list.length - idx <= 2;
+    const filterIndexed = R.addIndex<number, boolean, number[], number[]>(R.filter);
+
+    // @dts-jest:pass:snapshot -> number[]
+    filterIndexed(lastTwo, [8, 6, 7, 5, 3, 0, 9]); //=> [0, 9]
+    // @dts-jest:pass:snapshot -> number[]
+    filterIndexed(lastTwo)([8, 6, 7, 5, 3, 0, 9]); //=> [0, 9]
+  })();
+  (() => {
+    const plusFive = (num: number, idx: number, list: number[]) => { list[idx] = num + 5; };
+
+    // @dts-jest:pass:snapshot -> number[]
+    R.addIndex<number, void, number[], number[]>(R.forEach)(plusFive)([1, 2, 3]); //=> [6, 7, 8]
+  })();
+  (() => {
+    const squareEnds = (elt: number, idx: number, list: number[]) =>
+      (idx === 0 || idx === list.length - 1)
+        ? elt * elt
+        : elt;
+
+    // @dts-jest:pass:snapshot -> number[]
+    R.addIndex<number, number, number[], number[]>(R.map)(squareEnds, [8, 5, 3, 0, 9]); //=> [64, 5, 3, 0, 81]
+    // @dts-jest:pass:snapshot -> number[]
+    R.addIndex<number, number, number[], number[]>(R.map)(squareEnds)([8, 5, 3, 0, 9]); //=> [64, 5, 3, 0, 81]
+  })();
+  (() => {
+    const reduceIndexed = R.addIndex<
+      Record<string, number>, string, Record<string, number>,
+      Record<string, number>,
+      string[],
+      Record<string, number>>(R.reduce);
+    const objectify = (accObject: Record<string, number>, elem: string, idx: number, list: string[]) => {
+      accObject[elem] = idx;
+      return accObject;
+    };
+
+    // @dts-jest:pass:snapshot -> Record<string, number>
+    reduceIndexed(objectify, {}, ['a', 'b', 'c']); //=> {a: 0, b: 1, c: 2}
+    // @dts-jest:pass:snapshot -> Record<string, number>
+    reduceIndexed(objectify)({}, ['a', 'b', 'c']); //=> {a: 0, b: 1, c: 2}
+    // @dts-jest:pass:snapshot -> Record<string, number>
+    reduceIndexed(objectify, {})(['a', 'b', 'c']); //=> {a: 0, b: 1, c: 2}
+  })();
+  (() => {
+    const reduceIndexed = R.addIndex<'1', 'v2x1'>()(R.reduce<'111'>());
+
+    // @dts-jest:pass:snapshot -> {}
+    reduceIndexed(
+      (acc: string, val: string, idx: number) => \`\${acc},\${idx}-\${val}\`,
+      '',
+      ['f', 'o', 'o', 'b', 'a', 'r'],
+    ); //=> ',0-f,1-o,2-o,3-b,4-a,5-r'
+  })();
+})();
+
+// @dts-jest:group minBy
+(() => {
+  function cmp(obj: { x: number }) { return obj.x; }
+  const a = {x: 1};
+  const b = {x: 2};
+  const c = {x: 3};
+  const d = {x: 'a'};
+  const e = {x: 'z'};
+  // @dts-jest:pass:snapshot -> { x: number; }
+  R.minBy(cmp, a, b); //=> {x: 1}
+  // @dts-jest:pass:snapshot -> { x: number; }
+  R.minBy(cmp)(a, b); //=> {x: 1}
+  // @dts-jest:pass:snapshot -> { x: number; }
+  R.minBy(cmp)(a)(c);
+  // @dts-jest:fail:snapshot -> Argument of type '{ x: string; }' is not assignable to parameter of type '{ x: number; }'.
+  R.minBy(cmp, d, e);
+})();
+"
+`;
+
+exports[`should throw error if differences exist with --check 1`] = `"Difference(s) detected"`;
+
+exports[`should throw error if input and output file are the same 1`] = `
+"Input and output filename cannot be the same:
+
+  <cwd>/fixtures/remap-cli/general.ts
+
+Consider adjusting option: --outDir or --rename"
+`;
+
+exports[`should throw error if there is no input 1`] = `
+"Usage: dts-jest-remap [--outDir <path>] [--rename <template>] <TestFileGlob> ...
+
+Options:
+  --check, -c       Throw error if target is different with output     [boolean]
+  --help, -h        Show help                                          [boolean]
+  --listDiff, -l    Print filename if target is different with output  [boolean]
+  --outDir, -o      Redirect output structure to the directory          [string]
+  --rename, -r      Rename output filename using template {{variable}},
+                    available variable: filename, basename, extname     [string]
+  --typescript, -t  Specify which TypeScript source to use              [string]
+  --version, -v     Show version number                                [boolean]
+
+Documentation: https://github.com/ikatyang/dts-jest#readme
+
+Not enough non-option arguments: got 0, need at least 1"
+`;
+
+exports[`should write path correctly with --outDir 1`] = `"<cwd>/snapshots/general.ts"`;
+
+exports[`should write path correctly with --rename 1`] = `"<cwd>/fixtures/remap-cli/general.snap.ts"`;

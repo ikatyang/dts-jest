@@ -1,7 +1,11 @@
 import * as _ts from 'typescript';
 
 // tslint:disable-next-line:no-var-requires
-export const package_name = require('../package.json').name;
+const package_json = require('../package.json');
+
+export const package_name = package_json.name;
+export const package_homepage = package_json.homepage;
+export const package_remap_bin = Object.keys(package_json.bin)[0];
 
 export const config_namespace = '_dts_jest_';
 export const runtime_namespace = '_dts_jest_runtime_';
@@ -107,3 +111,5 @@ export interface FormattedConfig {
   typescript: typeof _ts;
   typescript_path: string;
 }
+
+export type JestSnapshot = Record<string, string>;

@@ -1,35 +1,22 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`should remap correctl with snapshot-content object 1`] = `
-"
-    // @dts-jest -> number
-    Math.max(1, 2, 3);
-  "
-`;
-
-exports[`should remap correctly with snapshot-content string 1`] = `
-"import * as R from '../ramda/dist/index';
+import * as R from '../ramda/dist/index';
 
 // tslint:disable max-file-line-count comment-format
 
-// @dts-jest -> number
+// @dts-jest:snapshot
 Math.abs(-1);
-
-// @dts-jest this is not exist
-Math.max(1, 2, 3);
 
 // @dts-jest:group __
 (() => {
   const greet = R.replace('{name}', R.__, 'Hello, {name}!');
-  // @dts-jest:pass -> string
+  // @dts-jest:pass:snapshot
   greet('Alice'); //=> 'Hello, Alice!'
 })();
 
 // @dts-jest:group add
 (() => {
-  // @dts-jest:pass -> number
+  // @dts-jest:pass:snapshot
   R.add(2, 3); //=> 5
-  // @dts-jest:pass -> number
+  // @dts-jest:pass:snapshot
   R.add(7)(10); //=> 17
 })();
 
@@ -39,15 +26,15 @@ Math.max(1, 2, 3);
     const lastTwo = (val: number, idx: number, list: number[]) => list.length - idx <= 2;
     const filterIndexed = R.addIndex<number, boolean, number[], number[]>(R.filter);
 
-    // @dts-jest:pass -> number[]
+    // @dts-jest:pass:snapshot
     filterIndexed(lastTwo, [8, 6, 7, 5, 3, 0, 9]); //=> [0, 9]
-    // @dts-jest:pass -> number[]
+    // @dts-jest:pass:snapshot
     filterIndexed(lastTwo)([8, 6, 7, 5, 3, 0, 9]); //=> [0, 9]
   })();
   (() => {
     const plusFive = (num: number, idx: number, list: number[]) => { list[idx] = num + 5; };
 
-    // @dts-jest:pass -> number[]
+    // @dts-jest:pass:snapshot
     R.addIndex<number, void, number[], number[]>(R.forEach)(plusFive)([1, 2, 3]); //=> [6, 7, 8]
   })();
   (() => {
@@ -56,9 +43,9 @@ Math.max(1, 2, 3);
         ? elt * elt
         : elt;
 
-    // @dts-jest:pass -> number[]
+    // @dts-jest:pass:snapshot
     R.addIndex<number, number, number[], number[]>(R.map)(squareEnds, [8, 5, 3, 0, 9]); //=> [64, 5, 3, 0, 81]
-    // @dts-jest:pass -> number[]
+    // @dts-jest:pass:snapshot
     R.addIndex<number, number, number[], number[]>(R.map)(squareEnds)([8, 5, 3, 0, 9]); //=> [64, 5, 3, 0, 81]
   })();
   (() => {
@@ -72,19 +59,19 @@ Math.max(1, 2, 3);
       return accObject;
     };
 
-    // @dts-jest:pass -> Record<string, number>
+    // @dts-jest:pass:snapshot
     reduceIndexed(objectify, {}, ['a', 'b', 'c']); //=> {a: 0, b: 1, c: 2}
-    // @dts-jest:pass -> Record<string, number>
+    // @dts-jest:pass:snapshot
     reduceIndexed(objectify)({}, ['a', 'b', 'c']); //=> {a: 0, b: 1, c: 2}
-    // @dts-jest:pass -> Record<string, number>
+    // @dts-jest:pass:snapshot
     reduceIndexed(objectify, {})(['a', 'b', 'c']); //=> {a: 0, b: 1, c: 2}
   })();
   (() => {
     const reduceIndexed = R.addIndex<'1', 'v2x1'>()(R.reduce<'111'>());
 
-    // @dts-jest:pass -> {}
+    // @dts-jest:pass:snapshot
     reduceIndexed(
-      (acc: string, val: string, idx: number) => \`\${acc},\${idx}-\${val}\`,
+      (acc: string, val: string, idx: number) => `${acc},${idx}-${val}`,
       '',
       ['f', 'o', 'o', 'b', 'a', 'r'],
     ); //=> ',0-f,1-o,2-o,3-b,4-a,5-r'
@@ -99,14 +86,12 @@ Math.max(1, 2, 3);
   const c = {x: 3};
   const d = {x: 'a'};
   const e = {x: 'z'};
-  // @dts-jest:pass -> { x: number; }
+  // @dts-jest:pass:snapshot
   R.minBy(cmp, a, b); //=> {x: 1}
-  // @dts-jest:pass -> { x: number; }
+  // @dts-jest:pass:snapshot
   R.minBy(cmp)(a, b); //=> {x: 1}
-  // @dts-jest:pass -> { x: number; }
+  // @dts-jest:pass:snapshot
   R.minBy(cmp)(a)(c);
-  // @dts-jest:fail -> Argument of type '{ x: string; }' is not assignable to parameter of type '{ x: number; }'.
+  // @dts-jest:fail:snapshot
   R.minBy(cmp, d, e);
 })();
-"
-`;

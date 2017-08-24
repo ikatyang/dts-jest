@@ -1,12 +1,10 @@
-import { ActualTrigger, Group, GroupMethod, TestMethod } from '../definitions';
+import { Group, GroupMethod, TestMethod, Trigger } from '../definitions';
 import { default_to } from './default-to';
 
-export const rewrite_actual_triggers_method = (
-  triggeres: ActualTrigger[],
-): void => {
+export const skipify_triggers_method = (triggeres: Trigger[]): void => {
   const groups: Group[] = [];
   const grouped_triggers = triggeres.reduce<{
-    [index: number]: ActualTrigger[];
+    [index: number]: Trigger[];
   }>((current_grouped_triggers, trigger) => {
     if (trigger.group === undefined) {
       safe_push(-1);
@@ -20,7 +18,7 @@ export const rewrite_actual_triggers_method = (
     function safe_push(index: number) {
       current_grouped_triggers[index] = default_to(
         current_grouped_triggers[index],
-        [] as ActualTrigger[],
+        [] as Trigger[],
       );
       current_grouped_triggers[index].push(trigger);
     }
@@ -51,7 +49,7 @@ export const rewrite_actual_triggers_method = (
     }
   });
 
-  function rewrite_triggers(triggers: ActualTrigger[]) {
+  function rewrite_triggers(triggers: Trigger[]) {
     const only_test_index = triggers.findIndex(
       trigger => trigger.method === TestMethod.Only,
     );
@@ -64,7 +62,7 @@ export const rewrite_actual_triggers_method = (
     skipify_triggers(triggers.filter((_, index) => index !== only_test_index));
   }
 
-  function skipify_triggers(triggers: ActualTrigger[]) {
+  function skipify_triggers(triggers: Trigger[]) {
     triggers.forEach(trigger => {
       trigger.method = TestMethod.Skip;
     });

@@ -4,7 +4,7 @@ import { create_actual_test_expression } from './utils/create-actual-test-expres
 import { create_actual_triggers } from './utils/create-actual-triggers';
 import { create_triggers } from './utils/create-triggers';
 import { get_config } from './utils/get-config';
-import { rewrite_actual_triggers_method } from './utils/rewrite-actual-triggers-method';
+import { skipify_triggers_method } from './utils/skipify-triggers-method';
 
 export const transform_actual: jest.Transformer['process'] = (
   source_text,
@@ -25,7 +25,7 @@ export const transform_actual: jest.Transformer['process'] = (
   const triggers = create_triggers(source_file, ts);
 
   const actual_triggers = create_actual_triggers(triggers, source_file, ts);
-  rewrite_actual_triggers_method(actual_triggers);
+  skipify_triggers_method(actual_triggers);
 
   let transformed = source_text;
 
