@@ -1,12 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should remap correctl with snapshot-content object 1`] = `
-"
-    // @dts-jest:snapshot -> number
-    Math.max(1, 2, 3);
-  "
-`;
-
 exports[`should remap correctly for :only flag 1`] = `
 "// @dts-jest:snapshot
 Math.max(1, 2, 3);
@@ -29,6 +22,13 @@ Math.max(1, 2, 3);
 // @dts-jest:snapshot -> 2
 Math.max(1, 2, 3);
 "
+`;
+
+exports[`should remap correctly with snapshot-content object is Record<string, string> 1`] = `
+"
+    // @dts-jest:snapshot -> number
+    Math.max(1, 2, 3);
+  "
 `;
 
 exports[`should remap correctly with snapshot-content string 1`] = `
@@ -133,3 +133,5 @@ Math.abs(-1);
 `;
 
 exports[`should throw error if snapshot is unmatched 1`] = `"Unmatched snapshot title \`Math.max(4, 5, 6) 1\`"`;
+
+exports[`should throw error if snapshot-content object contains non-string value 1`] = `"Snapshot value should be a string, but got 123"`;

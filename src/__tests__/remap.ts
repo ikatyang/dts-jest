@@ -17,17 +17,30 @@ it('should remap correctly with snapshot-content string', () => {
   ).toMatchSnapshot();
 });
 
-it('should remap correctl with snapshot-content object', () => {
+it('should remap correctly with snapshot-content object is Record<string, string>', () => {
   const source_content = `
     // @dts-jest:snapshot
     Math.max(1, 2, 3);
   `;
   const snapshot_content = {
-    'Math.max(1, 2, 3) 1': '"number"',
+    'Math.max(1, 2, 3) 1': 'number',
   };
   expect(
     remap(source_content, snapshot_content, { typescript: ts }),
   ).toMatchSnapshot();
+});
+
+it('should throw error if snapshot-content object contains non-string value', () => {
+  const source_content = `
+    // @dts-jest:snapshot
+    Math.max(1, 2, 3);
+  `;
+  const snapshot_content = {
+    'Math.max(1, 2, 3) 1': 123,
+  };
+  expect(() =>
+    remap(source_content, snapshot_content, { typescript: ts }),
+  ).toThrowErrorMatchingSnapshot();
 });
 
 it('should throw error if snapshot is unmatched', () => {

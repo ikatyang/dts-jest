@@ -1,37 +1,30 @@
-import require_from_string = require('require-from-string');
+import * as jest_snapshot_parser from 'jest-snapshot-parser';
 import * as _ts from 'typescript';
-import {
-  AssertionFlag,
-  JestSnapshot,
-  TestMethod,
-  Trigger,
-} from './definitions';
+import { AssertionFlag, TestMethod, Trigger } from './definitions';
 import { create_triggers } from './utils/create-triggers';
 import { default_to } from './utils/default-to';
 import { get_formatted_description } from './utils/get-formatted-description';
 import { skipify_triggers_method } from './utils/skipify-triggers-method';
 
+// tslint:disable-next-line:no-duplicate-imports no-unused-variable
+import { Parsed } from 'jest-snapshot-parser';
+
 export interface RemapOptions {
   typescript?: typeof _ts;
   source_filename?: string;
-  snapshot_filename?: string;
 }
 
 export const remap = (
   source_content: string,
-  snapshot_content: string | JestSnapshot,
+  snapshot_content: string | jest_snapshot_parser.Parsed,
   // istanbul ignore next
   options: RemapOptions = {},
 ) => {
-  const {
-    typescript: ts = _ts,
-    source_filename = '',
-    snapshot_filename = '',
-  } = options;
+  const { typescript: ts = _ts, source_filename = '' } = options;
 
-  const jest_snapshot =
+  const parsed_snapshot =
     typeof snapshot_content === 'string'
-      ? require_from_string(snapshot_content, snapshot_filename) as JestSnapshot
+      ? jest_snapshot_parser.parse(snapshot_content)
       : snapshot_content;
 
   const source_file = ts.createSourceFile(
@@ -59,13 +52,22 @@ export const remap = (
 
       const title = `${base_title} ${counter}`;
 
-      if (!(title in jest_snapshot)) {
+      if (!(title in parsed_snapshot)) {
         throw new Error(`Unmatched snapshot title \`${title}\``);
       }
 
-      const snapshot_value = get_snapshot_value(jest_snapshot[title]);
+      const snapshot_value = parsed_snapshot[title];
 
-      source_line_contents[trigger.line] += ` -> ${snapshot_value}`;
+      if (typeof snapshot_value !== 'string') {
+        throw new Error(
+          `Snapshot value should be a string, but got ${JSON.stringify(
+            snapshot_value,
+          )}`,
+        );
+      }
+
+      const snapshot_value_first_line = snapshot_value.split('\n')[0];
+      source_line_contents[trigger.line] += ` -> ${snapshot_value_first_line}`;
     });
 
   return source_line_contents.join('\n');
@@ -76,30 +78,6 @@ export const remap = (
     return counter;
   }
 };
-
-/**
- * case 1 - single line string -> get entire string ("single-line")
- *
- *     exports[`description counter`] = `"single-line"`;
- *
- * case 2 - multiline string -> only get first-line string ("first-line")
- *
- *     exports[`description counter`] = `
- *     "first-line
- *     second-line
- *     third-line"
- *     `;
- */
-function get_snapshot_value(snapshot: string) {
-  let value = snapshot.trim();
-
-  const breakline = value.indexOf('\n');
-  if (breakline !== -1) {
-    value = `"${value.slice(1, breakline)}"`;
-  }
-
-  return JSON.parse(value) as string;
-}
 
 function get_snapshot_base_title(trigger: Trigger) {
   const title = get_formatted_description(trigger, false);
