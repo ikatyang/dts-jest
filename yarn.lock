@@ -43,6 +43,10 @@
   version "8.0.24"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.24.tgz#06c580084d9add1fb40c1510ef0b448961246fb1"
 
+"@types/pretty-format@20.0.0":
+  version "20.0.0"
+  resolved "https://registry.yarnpkg.com/@types/pretty-format/-/pretty-format-20.0.0.tgz#67bdc5c060614f93f0ee63e45a45dbcdea65c3ce"
+
 "@types/yargs@8.0.2":
   version "8.0.2"
   resolved "https://registry.yarnpkg.com/@types/yargs/-/yargs-8.0.2.tgz#0f9c7b236e2d78cd8f4b6502de15d0728aa29385"
