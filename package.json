@@ -19,8 +19,7 @@
   "author": "ikatyang",
   "license": "MIT",
   "scripts": {
-    "prepublish": "yarn run link && yarn run build",
-    "link": "ln -sf $PWD/types/* $PWD/node_modules/@types",
+    "prepublish": "yarn run build",
     "lint": "tslint --type-check -p ./tsconfig.json",
     "prebuild": "rm -rf ./lib",
     "build": "tsc -p ./tsconfig.build.json",
@@ -47,6 +46,7 @@
     "@types/lodash.intersection": "4.4.3",
     "@types/make-dir": "1.0.1",
     "@types/node": "8.0.24",
+    "@types/pretty-format": "20.0.0",
     "@types/yargs": "8.0.2",
     "jest": "20.0.4",
     "prettier": "1.5.3",
