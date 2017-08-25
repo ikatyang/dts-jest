@@ -77,6 +77,7 @@ export const remap_cli = (argv: string[]): void => {
     );
     const output_content = remap(source_content, snapshot_content, {
       typescript: ts,
+      source_filename: filepath,
     });
 
     if (check || list_diff) {
