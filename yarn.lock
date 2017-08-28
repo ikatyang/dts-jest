@@ -9,9 +9,9 @@
     "@types/minimatch" "*"
     "@types/node" "*"
 
-"@types/globby@0.6.0":
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/@types/globby/-/globby-0.6.0.tgz#38f1510501ff96407cd602934f1b2e8f1cba1ff8"
+"@types/globby@6.1.0":
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/@types/globby/-/globby-6.1.0.tgz#7c25b975512a89effea2a656ca8cf6db7fb29d11"
   dependencies:
     "@types/glob" "*"
 
