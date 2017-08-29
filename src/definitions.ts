@@ -14,6 +14,22 @@ export const env_root_dir = 'DTS_JEST_ROOT_DIR';
 
 export const runtime_indent_spaces = 2;
 
+export const docblock_option_regex = /@dts-jest((?: +[^:]+:[^ ]+)+)/;
+export enum DocblockOptionMatchIndex {
+  Input,
+  Options,
+}
+export enum DocblockOptionValue {
+  EnableTestType = 'enable:test-type',
+  EnableTestValue = 'enable:test-value',
+  DisableTestType = 'disable:test-type',
+  DisableTestValue = 'disable:test-value',
+}
+export interface DocblockOptions {
+  test_type?: boolean;
+  test_value?: boolean;
+}
+
 export const trigger_header_regex = /^\s*@dts-jest\b(:?\S*)\s*(.*)\s*$/;
 export enum TriggerHeaderMatchIndex {
   Input,
@@ -102,9 +118,7 @@ export interface JestConfig {
   globals: { [K in typeof config_namespace]?: RawConfig };
 }
 
-export interface RawConfig {
-  test_type?: boolean;
-  test_value?: boolean;
+export interface RawConfig extends DocblockOptions {
   compiler_options?: string | Record<string, any>;
   enclosing_declaration?: boolean;
   type_format_flags?: _ts.TypeFormatFlags;

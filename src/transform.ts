@@ -10,6 +10,7 @@ import { create_assertion_expression } from './utils/create-assertion-expression
 import { create_setup_expression } from './utils/create-setup-expression';
 import { create_source_file } from './utils/create-source-file';
 import { create_test_expression } from './utils/create-test-expression';
+import { find_docblock_options } from './utils/find-docblock-options';
 import { find_triggers } from './utils/find-triggers';
 import { get_trigger_groups } from './utils/get-trigger-groups';
 import { get_trigger_body_line } from './utils/get-trigger-line';
@@ -28,15 +29,19 @@ export const transform: jest.Transformer['process'] = (
     jest_config.rootDir,
   );
 
-  const { typescript: ts, test_type } = normalized_config;
+  const { typescript: ts } = normalized_config;
 
   const source_file = create_source_file(source_filename, source_text, ts);
   const triggers = find_triggers(source_file, ts);
   const groups = get_trigger_groups(triggers.map(trigger => trigger.header));
 
-  const test_value =
-    normalized_config.test_value &&
-    triggers.some(trigger => trigger.footer !== undefined);
+  const docblock_options = find_docblock_options(source_file, ts);
+  const { test_type = normalized_config.test_type } = docblock_options;
+  let { test_value = normalized_config.test_value } = docblock_options;
+
+  if (triggers.every(trigger => trigger.footer === undefined)) {
+    test_value = false;
+  }
 
   const is_fake_environment = !test_value;
 

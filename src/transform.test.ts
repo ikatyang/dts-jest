@@ -36,6 +36,17 @@ it('should transform to fake environment for no-footers even if test_value = tru
   ).toMatchSnapshot();
 });
 
+it('should respect docblock options', () => {
+  expect(
+    transform_fixture('all', { test_type: false, test_value: false }),
+  ).toEqual(
+    transform_fixture('docblock-disable-all', {
+      test_type: true,
+      test_value: true,
+    }),
+  );
+});
+
 function transform_fixture(id: string, raw_config: RawConfig) {
   const full_id = `transform/${id}.ts`;
   const filename = get_fixture_filename(full_id);
