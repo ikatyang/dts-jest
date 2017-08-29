@@ -1,5 +1,5 @@
 import * as ts from 'typescript';
-import { TestMethod, Trigger, TriggerHeader } from '../definitions';
+import { TestMethod, TriggerHeader } from '../definitions';
 import { load_fixture_source_file } from '../helpers/load-fixture';
 import { find_trigger_headers } from './find-trigger-headers';
 import { normalize_trigger_header_methods } from './normalize-trigger-header-methods';

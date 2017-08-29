@@ -1,4 +1,3 @@
-import * as _ts from 'typescript';
 import {
   NormalizedConfig,
   Snapshot,

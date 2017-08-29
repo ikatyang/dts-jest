@@ -64,8 +64,7 @@ export const remap = (
   return source_line_contents.join('\n');
 
   function get_increased_counter(title: string) {
-    return (counters[title] =
-      counters[title] === undefined ? 1 : counters[title] + 1);
+    return (counters[title] = title in counters ? counters[title] + 1 : 1);
   }
 };
 

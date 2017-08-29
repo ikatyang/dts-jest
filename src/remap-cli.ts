@@ -3,8 +3,6 @@ import globby = require('globby');
 import intersection = require('lodash.intersection');
 import make_dir = require('make-dir');
 import * as path from 'path';
-import yargs = require('yargs');
-import { package_homepage, package_remap_bin } from './definitions';
 import { remap } from './remap';
 import { create_message } from './utils/create-message';
 import { create_typescript_info } from './utils/create-typescript-info';
