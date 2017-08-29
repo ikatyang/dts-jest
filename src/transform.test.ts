@@ -40,17 +40,22 @@ it('should respect docblock options', () => {
   expect(
     transform_fixture('all', { test_type: false, test_value: false }),
   ).toEqual(
-    transform_fixture('docblock-disable-all', {
-      test_type: true,
-      test_value: true,
-    }),
+    transform_fixture(
+      'all',
+      { test_type: true, test_value: true },
+      x => `/** @dts-jest disable:test-type disable:test-value */${x}`,
+    ),
   );
 });
 
-function transform_fixture(id: string, raw_config: RawConfig) {
+function transform_fixture(
+  id: string,
+  raw_config: RawConfig,
+  preprocessor = (x: string) => x,
+) {
   const full_id = `transform/${id}.ts`;
   const filename = get_fixture_filename(full_id);
-  const source = load_fixture(full_id);
+  const source = preprocessor(load_fixture(full_id));
   const config: JestConfig = {
     rootDir: '',
     globals: { _dts_jest_: raw_config },
