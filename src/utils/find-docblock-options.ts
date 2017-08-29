@@ -4,7 +4,6 @@ import {
   DocblockOptions,
   DocblockOptionMatchIndex,
   DocblockOptionValue,
-  NormalizedConfig,
 } from '../definitions';
 import { for_each_comment } from './for-each-comment';
 
