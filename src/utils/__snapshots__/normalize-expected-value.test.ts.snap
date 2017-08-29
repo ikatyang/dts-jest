@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should remove comments correctly 1`] = `"\\"test\\""`;
+
+exports[`should remove newline correctly 1`] = `"(() => {    switch (x) {        case 0: return -1;        default: return 1;    }})()"`;
+
+exports[`should remove trailing semicolon correctly 1`] = `"123"`;
+
+exports[`should replace newline character with escaped newline correctly (template string) 1`] = `"\`123\\\\n456\\\\n789\`"`;
+
+exports[`should throw error if parsing error 1`] = `
+"Unexpected error(s) while parsing expected value:
+
+  (somewhere.ts:0)
+
+  ',' expected.
+  '=' expected.
+  '=>' expected."
+`;

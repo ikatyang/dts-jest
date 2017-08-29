@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should log diff filenames correctly with --listDifferent 1`] = `
+"Using TypeScript vX.Y.Z-mocked from <cwd>/node_modules/typescript/lib/typescript.js
+
+Listing files that their target content is different from output content:
+
+  <cwd>/fixtures/remap-cli/example.ts -> <cwd>/fixtures/remap-cli/empty.ts"
+`;
+
+exports[`should log diff filenames correctly with --listDifferent if there is no such output file 1`] = `
+"Using TypeScript vX.Y.Z-mocked from <cwd>/node_modules/typescript/lib/typescript.js
+
+Listing files that their target content is different from output content:
+
+  <cwd>/fixtures/remap-cli/example.ts -> <cwd>/fixtures/remap-cli/___not_exist___.ts"
+`;
+
+exports[`should log typescript information 1`] = `"Using TypeScript vX.Y.Z-mocked from <cwd>/node_modules/typescript/lib/typescript.js"`;
+
+exports[`should log warning if there is no matched file 1`] = `"There is no matched file."`;
+
+exports[`should remap correctly 1`] = `
+"// @dts-jest:snap -> (mocked max)
+Math.max(3, 2, 1);
+
+// @dts-jest:snap description-min -> (mocked min)
+Math.min(3, 2, 1);
+
+// @dts-jest:group A
+
+// @dts-jest:snap -> (mocked abs)
+Math.abs(3);
+
+// @dts-jest:snap description-sin -> (mocked sin)
+Math.sin(0);
+
+// @dts-jest:group B
+
+// @dts-jest:snap -> (mocked cos)
+Math.cos(0);
+
+// @dts-jest:snap -> (mocked tan 1)
+Math.tan(0);
+
+// @dts-jest:snap -> (mocked tan 2)
+Math.tan(0);
+"
+`;
+
+exports[`should throw error if differences exist with --check 1`] = `"Difference(s) detected"`;
+
+exports[`should throw error if input and output file are the same 1`] = `
+"Input and output filename cannot be the same:
+
+  <cwd>/fixtures/remap-cli/example.ts
+
+Consider adjusting option \`--outDir\` or \`--rename\` to redirect output"
+`;
+
+exports[`should throw error if there is no input 1`] = `
+"Usage: dts-jest-remap [--outDir <path>] [--rename <template>] <TestFileGlob> ...
+
+Options:
+  --check, -c          Throw error if target content is different from output
+                       content                                         [boolean]
+  --help, -h           Show help                                       [boolean]
+  --listDifferent, -l  Print the filenames of files that their target content is
+                       different from output content                   [boolean]
+  --outDir, -o         Redirect output structure to the directory       [string]
+  --rename, -r         Rename output filename using template {{variable}},
+                       available variable: filename, basename, extname  [string]
+  --typescript, -t     Specify which TypeScript source to use           [string]
+  --version, -v        Show version number                             [boolean]
+
+Documentation: https://github.com/ikatyang/dts-jest#readme
+
+Not enough non-option arguments: got 0, need at least 1"
+`;
+
+exports[`should throw error with differences if differences exist with --check and --listDifferent 1`] = `
+"Listing files that their target content is different from output content:
+
+  <cwd>/fixtures/remap-cli/example.ts -> <cwd>/fixtures/remap-cli/empty.ts
+
+Difference(s) detected"
+`;
+
+exports[`should write path correctly with --outDir 1`] = `"<cwd>/snapshots/example.ts"`;
+
+exports[`should write path correctly with --rename 1`] = `"<cwd>/fixtures/remap-cli/example.snap.ts"`;
