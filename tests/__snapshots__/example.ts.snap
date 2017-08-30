@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`A Math.max('123') 1`] = `"Argument of type '\\"123\\"' is not assignable to parameter of type 'number'."`;
+
+exports[`A Math.max(2) 1`] = `"number"`;

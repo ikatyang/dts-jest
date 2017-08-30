@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should return correctly 1`] = `
+Array [
+  Array [
+    "Math.max(1, 2, 3)",
+    Array [
+      "console.log(<get_type_report_expression>)",
+      "expect(function () { <get_type_inference_or_throw_diagnostic_expression> }).not.toThrowError()",
+      "expect(Math.max(1, 2, 3)).toEqual(3)",
+      "expect(<get_type_inference_or_diagnostic_expression>).toMatchSnapshot()",
+    ],
+  ],
+  Array [
+    "Math.abs(-1)",
+    Array [
+      "console.log(<get_value_report_expression>)",
+      "expect(function () { <get_type_inference_or_throw_diagnostic_expression> }).toThrowError()",
+    ],
+  ],
+  Array [
+    "Math.cos(Math.PI)",
+    Array [
+      "expect(function () { Math.cos(Math.PI) }).not.toThrowError()",
+    ],
+  ],
+  Array [
+    "Math.tan(Math.PI)",
+    Array [
+      "expect(function () { Math.tan(Math.PI) }).toThrowError()",
+    ],
+  ],
+  Array [
+    "Math.sin(Math.PI)",
+    Array [
+      "console.log(<get_type_report_expression>)",
+      "console.log(<get_value_report_expression>)",
+      "expect(function () { <get_type_inference_or_throw_diagnostic_expression> }).not.toThrowError()",
+      "expect(<get_type_inference_or_diagnostic_expression>).toMatchSnapshot()",
+    ],
+  ],
+  Array [
+    "Object.assign({ a: 1 }, { b: 2 }, { c: 3 })",
+    Array [
+      "expect(Object.assign({ a: 1 }, { b: 2 }, { c: 3 })).toEqual({    a: 1,    b: 2,    c: 3,})",
+      "expect(<get_type_inference_or_diagnostic_expression>).toMatchSnapshot()",
+    ],
+  ],
+  Array [
+    "Math.min(3, 2, 1)",
+    Array [
+      "expect.hasAssertions()",
+    ],
+  ],
+]
+`;

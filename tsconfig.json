@@ -2,10 +2,9 @@
   "compilerOptions": {
     "declaration": true,
     "module": "commonjs",
-    "outDir": "lib",
     "strict": true,
     "lib": ["es6"],
     "importHelpers": true
   },
-  "include": ["src/**/*.ts", "scripts/**/*.ts"]
+  "include": ["src/**/*.ts"]
 }

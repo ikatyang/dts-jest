@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should work correctly 1`] = `
+Array [
+  Object {
+    "kind": "ExpressionStatement",
+    "text": "Math.max(1, 2, 3);",
+  },
+  Object {
+    "kind": "CallExpression",
+    "text": "Math.max(1, 2, 3)",
+  },
+  Object {
+    "kind": "PropertyAccessExpression",
+    "text": "Math.max",
+  },
+  Object {
+    "kind": "Identifier",
+    "text": "Math",
+  },
+  Object {
+    "kind": "Identifier",
+    "text": "max",
+  },
+  Object {
+    "kind": "FirstLiteralToken",
+    "text": "1",
+  },
+  Object {
+    "kind": "FirstLiteralToken",
+    "text": "2",
+  },
+  Object {
+    "kind": "FirstLiteralToken",
+    "text": "3",
+  },
+  Object {
+    "kind": "FunctionDeclaration",
+    "text": "function abc() {
+  console.log('something');
+}",
+  },
+  Object {
+    "kind": "Identifier",
+    "text": "abc",
+  },
+  Object {
+    "kind": "Block",
+    "text": "{
+  console.log('something');
+}",
+  },
+  Object {
+    "kind": "ExpressionStatement",
+    "text": "console.log('something');",
+  },
+  Object {
+    "kind": "CallExpression",
+    "text": "console.log('something')",
+  },
+  Object {
+    "kind": "PropertyAccessExpression",
+    "text": "console.log",
+  },
+  Object {
+    "kind": "Identifier",
+    "text": "console",
+  },
+  Object {
+    "kind": "Identifier",
+    "text": "log",
+  },
+  Object {
+    "kind": "StringLiteral",
+    "text": "'something'",
+  },
+  Object {
+    "kind": "EndOfFileToken",
+    "text": "",
+  },
+]
+`;

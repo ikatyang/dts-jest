@@ -1,67 +1,112 @@
 import {
   config_namespace,
   env_root_dir,
-  Group,
+  runtime_namespace,
   JestConfig,
+  Trigger,
 } from './definitions';
-import { create_group_expression } from './utils/create-group-expression';
+import { apply_grouping } from './utils/apply-grouping';
+import { create_assertion_expression } from './utils/create-assertion-expression';
 import { create_setup_expression } from './utils/create-setup-expression';
+import { create_source_file } from './utils/create-source-file';
 import { create_test_expression } from './utils/create-test-expression';
-import { create_triggers } from './utils/create-triggers';
-import { set_env_variable } from './utils/env-variable';
-import { get_config } from './utils/get-config';
+import { find_docblock_options } from './utils/find-docblock-options';
+import { find_triggers } from './utils/find-triggers';
+import { get_trigger_groups } from './utils/get-trigger-groups';
+import { get_trigger_body_line } from './utils/get-trigger-line';
+import { normalize_config } from './utils/normalize-config';
 
 export const transform: jest.Transformer['process'] = (
   source_text,
   source_filename,
   jest_config: JestConfig,
 ) => {
-  const { typescript: ts } = get_config(
+  // set for setup.ts
+  process.env[env_root_dir] = jest_config.rootDir;
+
+  const normalized_config = normalize_config(
     jest_config.globals[config_namespace],
     jest_config.rootDir,
   );
 
-  set_env_variable(env_root_dir, jest_config.rootDir);
+  const { typescript: ts } = normalized_config;
 
-  const source_file = ts.createSourceFile(
-    source_filename,
-    source_text,
-    ts.ScriptTarget.Latest,
-    false,
-  );
+  const source_file = create_source_file(source_filename, source_text, ts);
+  const triggers = find_triggers(source_file, ts);
+  const groups = get_trigger_groups(triggers.map(trigger => trigger.header));
 
-  let last_group: Group | undefined;
-  const triggers = create_triggers(source_file, ts);
-  return triggers
-    .reduce<string[]>((transformed_line_texts, trigger, index) => {
-      const is_diff_group = trigger.group !== last_group;
+  const docblock_options = find_docblock_options(source_file, ts);
+  const { test_type = normalized_config.test_type } = docblock_options;
+  let { test_value = normalized_config.test_value } = docblock_options;
 
-      write_group_close_if_preset(is_diff_group && last_group !== undefined);
-      write_group_open_if_preset(is_diff_group);
-      write(create_test_expression(trigger), true);
-      write_group_close_if_preset(
-        trigger.group !== undefined && index === triggers.length - 1,
+  if (triggers.every(trigger => trigger.footer === undefined)) {
+    test_value = false;
+  }
+
+  const is_fake_environment = !test_value;
+
+  const setup_expression = create_setup_expression(triggers);
+  return `${setup_expression};${is_fake_environment
+    ? get_fake_environment_transformed_content()
+    : get_real_environment_transformed_content()}`;
+
+  function get_fake_environment_transformed_content() {
+    const transformed_line_contents = source_text.split('\n').map(() => '');
+
+    triggers.forEach(trigger => {
+      const test_expression = get_test_expression(
+        trigger,
+        test_type,
+        test_value,
       );
 
-      last_group = trigger.group;
-      return transformed_line_texts;
+      const body_line = get_trigger_body_line(trigger.header.line);
 
-      function write(str: string, trailing_semicolon: boolean) {
-        transformed_line_texts[trigger.line] +=
-          str + (trailing_semicolon ? ';' : '');
-      }
-      function write_group_open_if_preset(value: boolean) {
-        if (!value) {
-          return;
-        }
-        write(create_group_expression(trigger.group!, { type: 'open' }), false);
-      }
-      function write_group_close_if_preset(value: boolean) {
-        if (!value) {
-          return;
-        }
-        write(create_group_expression(trigger.group!, { type: 'close' }), true);
-      }
-    }, source_text.split('\n').map((_, index) => (index !== 0 ? '' : `${create_setup_expression(triggers)};`)))
-    .join('\n');
+      transformed_line_contents[body_line] += test_expression;
+    });
+
+    return apply_grouping(transformed_line_contents, groups).join('\n');
+  }
+
+  function get_real_environment_transformed_content() {
+    let transformed = source_text;
+
+    for (let i = triggers.length - 1; i >= 0; i--) {
+      const trigger = triggers[i];
+
+      const test_expression = get_test_expression(
+        trigger,
+        test_type,
+        test_value,
+      );
+
+      const { start, end } = trigger.body;
+
+      transformed =
+        transformed.slice(0, start) + test_expression + transformed.slice(end);
+    }
+
+    const transformed_line_contents = transformed.split('\n');
+    return apply_grouping(transformed_line_contents, groups).join('\n');
+  }
 };
+
+function get_test_expression(
+  trigger: Trigger,
+  test_type: boolean,
+  test_value: boolean,
+) {
+  const body_line = get_trigger_body_line(trigger.header.line);
+  const { body: { expression } } = trigger;
+
+  const assertion_expression = create_assertion_expression(trigger, {
+    test_type,
+    test_value,
+    get_type_inference_or_diagnostic_expression: `${runtime_namespace}.get_type_inference_or_diagnostic(${body_line})`,
+    get_type_inference_or_throw_diagnostic_expression: `${runtime_namespace}.get_type_inference_or_throw_diagnostic(${body_line})`,
+    get_type_report_expression: `${runtime_namespace}.get_type_report(${body_line})`,
+    get_value_report_expression: `${runtime_namespace}.get_value_report(${body_line}, function () { return ${expression} })`,
+  });
+
+  return create_test_expression(trigger, assertion_expression);
+}

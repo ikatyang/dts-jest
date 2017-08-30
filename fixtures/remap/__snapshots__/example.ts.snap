@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Math.max(3, 2, 1) 1`] = `"(mocked max)"`;
+
+exports[`description-min 1`] = `"(mocked min)"`;
+
+exports[`A Math.abs(3) 1`] = `"(mocked abs)"`;
+
+exports[`A description-sin 1`] = `"(mocked sin)"`;
+
+exports[`B Math.cos(0) 1`] = `"(mocked cos)"`;
+
+exports[`B Math.tan(0) 1`] = `"(mocked tan 1)"`;
+
+exports[`B Math.tan(0) 2`] = `"(mocked tan 2)"`;

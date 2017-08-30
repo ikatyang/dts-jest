@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should return correctly 1`] = `
+"my description
+
+  data 1
+  data 2
+  data 3"
+`;

@@ -1,8 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`should report correctly 1`] = `
-"
-[dts-jest] using TypeScript v2.4.2 from <cwd>/node_modules/typescript/lib/typescript.js
-
-"
-`;

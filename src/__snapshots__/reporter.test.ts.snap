@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should report correctly 1`] = `
+"
+[dts-jest] using TypeScript vX.Y.Z-mocked from <cwd>/node_modules/typescript/lib/typescript.js
+
+"
+`;

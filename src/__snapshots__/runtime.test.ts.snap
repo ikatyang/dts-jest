@@ -1,0 +1,117 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`#get_type_inference_or_diagnostic() should return diagnostic on fail line 1`] = `"Argument of type '\\"123\\"' is not assignable to parameter of type 'number'."`;
+
+exports[`#get_type_inference_or_diagnostic() should return inference on non-fail line 1`] = `"number"`;
+
+exports[`#get_type_inference_or_throw_diagnostic() should return inference on non-fail line 1`] = `"number"`;
+
+exports[`#get_type_inference_or_throw_diagnostic() should throw diagnostic on fail line 1`] = `"Argument of type '\\"123\\"' is not assignable to parameter of type 'number'."`;
+
+exports[`#get_type_report() should return diagnostic report on fail line 1`] = `
+"
+Inferring
+
+  Math.max('123')
+
+but throw
+
+  Argument of type '\\"123\\"' is not assignable to parameter of type 'number'.
+"
+`;
+
+exports[`#get_type_report() should return diagnostic report with description on fail line with description 1`] = `
+"
+description-fail
+
+Inferring
+
+  Math.max('123')
+
+but throw
+
+  Argument of type '\\"123\\"' is not assignable to parameter of type 'number'.
+"
+`;
+
+exports[`#get_type_report() should return inference report on non-fail line 1`] = `
+"
+Inferred
+
+  Math.min(3, 2, 1)
+
+to be
+
+  number
+"
+`;
+
+exports[`#get_type_report() should return inference report with description on non-fail line with description 1`] = `
+"
+description-pass
+
+Inferred
+
+  Math.min(3, 2, 1)
+
+to be
+
+  number
+"
+`;
+
+exports[`#get_value_report() should return error message report for fail getter 1`] = `
+"
+Evaluating
+
+  Math.max(1, 2, 3)
+
+but throw
+
+  Example Error
+"
+`;
+
+exports[`#get_value_report() should return error message report with description on desciption line for fail getter 1`] = `
+"
+Evaluating
+
+  Math.max(1, 2, 3)
+
+but throw
+
+  Example Error
+"
+`;
+
+exports[`#get_value_report() should return formatted value report for non-fail getter 1`] = `
+"
+description-value
+
+Evaluated
+
+  Math.max(1, 2, 3)
+
+to be
+
+  Object {
+    \\"example\\": \\"value\\",
+  }
+"
+`;
+
+exports[`#get_value_report() should return formatted value report with description on desciption for non-fail getter 1`] = `
+"
+description-value
+
+Evaluated
+
+  Math.max(1, 2, 3)
+
+to be
+
+  Object {
+    \\"example\\": \\"value\\",
+  }
+"
+`;

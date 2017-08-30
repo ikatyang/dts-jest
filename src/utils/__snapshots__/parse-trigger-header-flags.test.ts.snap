@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should parse correclty 1`] = `5`;
+
+exports[`should throw error if group flag and assertion flag appear simultaneously  1`] = `"AssertionFlag is not allowed to be used with flag ':group'"`;
+
+exports[`should throw error if pass flag and fail flag appear simultaneously  1`] = `":pass and :fail cannot be used simultaneously'"`;
+
+exports[`should throw error if there is a duplicate flag 1`] = `"Duplicate flag ':fail'"`;
+
+exports[`should throw error if there is an unexpected flag 1`] = `"Unexpected flag ':unexpected'"`;

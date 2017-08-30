@@ -1,86 +1,108 @@
-import * as path from 'path';
-import * as _ts from 'typescript';
-import { Snapshot } from '../definitions';
+import {
+  NormalizedConfig,
+  Snapshot,
+  Trigger,
+  TriggerHeaderFlags,
+} from '../definitions';
+import { create_message } from './create-message';
+import { get_diagnostic_message } from './get-diagnostic-message';
+import { get_display_line } from './get-display-line';
+import { get_trigger_body_line } from './get-trigger-line';
 import { traverse_node } from './traverse-node';
 
 export const create_snapshots = (
-  program: _ts.Program,
-  source_filename: string,
-  lines: number[],
-  flag: _ts.TypeFormatFlags,
-  ts: typeof _ts,
+  filename: string,
+  triggers: Trigger[],
+  normalized_config: NormalizedConfig,
 ) => {
-  const source_file = program.getSourceFile(source_filename);
-  const snapshots: { [line: number]: Snapshot } = {};
+  const {
+    typescript: ts,
+    compiler_options,
+    enclosing_declaration,
+    type_format_flags,
+  } = normalized_config;
 
-  const rest_lines = lines.slice();
+  const program = ts.createProgram([filename], compiler_options);
+  const source_file = program.getSourceFile(filename);
 
-  const unmatched_diagnostics: {
+  const body_line_map = new Map<number, Trigger>();
+  triggers.forEach(trigger => {
+    if (trigger.header.flags & TriggerHeaderFlags.Assertion) {
+      const body_line = get_trigger_body_line(trigger.header.line);
+      body_line_map.set(body_line, trigger);
+    }
+  });
+
+  interface UnmatchedDiagnostic {
     line: number;
-    content: string;
-  }[] = [];
+    message: string;
+  }
+  const unmatched_diagnostics: UnmatchedDiagnostic[] = [];
+
+  const snapshots: Snapshot[] = [];
 
   const diagnostics = ts.getPreEmitDiagnostics(program, source_file);
   for (const diagnostic of diagnostics) {
     const position = diagnostic.start!;
-    const { line: error_line } = source_file.getLineAndCharacterOfPosition(
-      position,
-    );
-    const trigger_line = error_line - 1;
+    const { line } = source_file.getLineAndCharacterOfPosition(position);
 
-    const line_index = rest_lines.indexOf(trigger_line);
-    if (line_index === -1) {
+    if (!body_line_map.has(line)) {
       unmatched_diagnostics.push({
-        line: error_line,
-        content: ts
-          .flattenDiagnosticMessageText(diagnostic.messageText, '\n')
-          .split('\n')[0],
+        line,
+        message: get_diagnostic_message(diagnostic),
       });
       continue;
     }
-    snapshots[trigger_line] = {
+
+    snapshots.push({
+      line,
       diagnostic: ts.flattenDiagnosticMessageText(diagnostic.messageText, '\n'),
-    };
-    rest_lines.splice(line_index, 1);
+    });
+
+    body_line_map.delete(line);
   }
 
-  if (unmatched_diagnostics.length > 0) {
-    const relative_filename = path.relative(
-      process.cwd(),
-      source_file.fileName,
-    );
+  if (unmatched_diagnostics.length !== 0) {
     throw new Error(
-      `Unmatched diagnostic(s) detected:\n\n${unmatched_diagnostics
-        .map(
-          ({ line, content }) =>
-            `  ${relative_filename}:${line + 1} ${content}`,
-        )
-        .join('\n')
-        .replace(/\s+$/gm, '')}`,
+      create_message(
+        'Unmatched diagnostic(s) detected:',
+        unmatched_diagnostics.map(
+          ({ line, message }) =>
+            `${source_file.fileName}:${get_display_line(line)} ${message}`,
+        ),
+      ),
     );
+  }
+
+  if (body_line_map.size === 0) {
+    return snapshots;
   }
 
   const checker = program.getTypeChecker();
   traverse_node(
     source_file,
     node => {
-      const position = node.getStart(source_file);
-      const {
-        line: expression_line,
-      } = source_file.getLineAndCharacterOfPosition(position);
-      const trigger_line = expression_line - 1;
+      const position = node.getStart();
+      const { line } = source_file.getLineAndCharacterOfPosition(position);
 
-      const line_index = rest_lines.indexOf(trigger_line);
-      if (line_index === -1) {
+      if (!body_line_map.has(line)) {
         return;
       }
 
       const target_node = node.getChildAt(0);
       const type = checker.getTypeAtLocation(target_node);
-      snapshots[trigger_line] = {
-        inference: checker.typeToString(type, node, flag),
-      };
-      rest_lines.splice(line_index, 1);
+
+      snapshots.push({
+        line,
+        inference: checker.typeToString(
+          type,
+          // istanbul ignore next
+          enclosing_declaration ? node : undefined,
+          type_format_flags,
+        ),
+      });
+
+      body_line_map.delete(line);
     },
     ts,
   );
