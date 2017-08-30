@@ -17,15 +17,14 @@ export const create_assertion_expression = (
 
   const { header, body, footer } = trigger;
 
-  // TODO: sort
   push_type_show_if_available();
-  push_value_show_if_available();
   push_type_pass_if_available();
   push_type_fail_if_available();
+  push_type_snap_if_available();
+  push_value_show_if_available();
   push_value_equal_if_available();
   push_value_error_if_available();
   push_value_no_error_if_available();
-  push_type_snap_if_available();
 
   return expressions.join(';');
 
