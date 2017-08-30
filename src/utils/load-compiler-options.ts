@@ -1,5 +1,4 @@
 import * as path from 'path';
-import * as tsconfig_extends from 'tsconfig-extends';
 import * as _ts from 'typescript';
 import { create_message } from './create-message';
 import { get_diagnostic_message } from './get-diagnostic-message';
