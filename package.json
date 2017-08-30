@@ -26,6 +26,8 @@
     "prepublish": "yarn run build",
     "lint": "tslint --type-check -p ./tsconfig.json",
     "test": "jest -c ./jest.json --no-cache",
+    "test-integration": "jest -c ./tests/jest.json --no-cache",
+    "remap-integration": "node ./bin/dts-jest-remap ./tests/example.ts --rename '{{basename}}.snap.{{extname}}'",
     "prebuild": "rm -rf ./lib",
     "build": "tsc -p ./tsconfig.build.json",
     "release": "standard-version"
