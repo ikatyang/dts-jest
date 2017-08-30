@@ -1,4 +1,5 @@
 import { TriggerGroup } from '../definitions';
+import { get_group_description } from './get-group-description';
 
 export const create_group_expression = (
   group: TriggerGroup,

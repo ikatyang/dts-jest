@@ -1,4 +1,6 @@
 import { Trigger, TriggerFooterFlag, TriggerHeaderFlags } from '../definitions';
+import { get_description_for_jest } from './get-description-for-jest';
+import { get_group_description } from './get-group-description';
 
 export interface CreateAssertionExpressionOptions {
   test_type: boolean;
@@ -64,10 +66,16 @@ export const create_assertion_expression = (
 
   function push_type_snap_if_available() {
     if (options.test_type && header.flags & TriggerHeaderFlags[':snap']) {
+      const test_description = get_description_for_jest(trigger);
+      const snapshot_description = JSON.stringify(
+        header.group === undefined
+          ? test_description
+          : `${get_group_description(header.group)} ${test_description}`,
+      );
       expressions.push(
         create_wrapper(
           '(type) should match snapshot',
-          `expect(${options.get_type_inference_or_diagnostic_expression}).toMatchSnapshot()`, // TODO: set snapshot name
+          `expect(${options.get_type_inference_or_diagnostic_expression}).toMatchSnapshot(${snapshot_description})`,
         ),
       );
     }
