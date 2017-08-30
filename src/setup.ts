@@ -14,5 +14,5 @@ export const setup = (
   const normalized_config = normalize_config(raw_config, root_dir);
   const snapshots = create_snapshots(filename, triggers, normalized_config);
 
-  return new Runtime(triggers, snapshots);
+  return new Runtime(filename, normalized_config, triggers, snapshots);
 };
