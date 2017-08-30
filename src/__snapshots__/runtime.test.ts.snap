@@ -46,6 +46,20 @@ to be
 "
 `;
 
+exports[`#get_type_report() should return inference report on non-fail line with line info while transpiled 1`] = `
+"
+(<cwd>/fixtures/runtime/example.ts:0)
+
+Inferred
+
+  Math.min(3, 2, 1)
+
+to be
+
+  number
+"
+`;
+
 exports[`#get_type_report() should return inference report with description on non-fail line with description 1`] = `
 "
 description-pass
@@ -86,6 +100,24 @@ but throw
 
 exports[`#get_value_report() should return formatted value report for non-fail getter 1`] = `
 "
+description-value
+
+Evaluated
+
+  Math.max(1, 2, 3)
+
+to be
+
+  Object {
+    \\"example\\": \\"value\\",
+  }
+"
+`;
+
+exports[`#get_value_report() should return formatted value report for non-fail getter with line info while transpiled 1`] = `
+"
+(<cwd>/fixtures/runtime/example.ts:16)
+
 description-value
 
 Evaluated

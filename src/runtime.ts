@@ -1,5 +1,10 @@
 import pretty_format = require('pretty-format');
-import { runtime_indent_spaces, Snapshot, Trigger } from './definitions';
+import {
+  runtime_indent_spaces,
+  NormalizedConfig,
+  Snapshot,
+  Trigger,
+} from './definitions';
 import { get_trigger_body_line } from './utils/get-trigger-line';
 import { indent } from './utils/indent';
 
@@ -10,8 +15,17 @@ interface RuntimeData {
 
 export class Runtime {
   private _data_map = new Map<number, RuntimeData>();
+  private _filename: string;
+  private _config: NormalizedConfig;
 
-  constructor(triggers: Trigger[], snapshots: Snapshot[]) {
+  constructor(
+    filename: string,
+    config: NormalizedConfig,
+    triggers: Trigger[],
+    snapshots: Snapshot[],
+  ) {
+    this._filename = filename;
+    this._config = config;
     triggers.forEach(trigger => {
       const body_line = get_trigger_body_line(trigger.header.line);
       this._data_map.set(body_line, { trigger });
@@ -43,14 +57,16 @@ export class Runtime {
     const { trigger } = this._data_map.get(body_line)!;
 
     try {
-      return create_report(
+      return this._create_report(
+        'type',
         trigger,
         'Inferred',
         'to be',
         this.get_type_inference_or_throw_diagnostic(body_line),
       );
     } catch (error) {
-      return create_report(
+      return this._create_report(
+        'type',
         trigger,
         'Inferring',
         'but throw',
@@ -63,14 +79,16 @@ export class Runtime {
     const { trigger } = this._data_map.get(body_line)!;
 
     try {
-      return create_report(
+      return this._create_report(
+        'value',
         trigger,
         'Evaluated',
         'to be',
         pretty_format(getter()),
       );
     } catch (error) {
-      return create_report(
+      return this._create_report(
+        'value',
         trigger,
         'Evaluating',
         'but throw',
@@ -78,20 +96,26 @@ export class Runtime {
       );
     }
   }
-}
 
-function create_report(
-  trigger: Trigger,
-  title1: string,
-  title2: string,
-  value: string,
-) {
-  const { header, body } = trigger;
-  const description =
-    header.description === undefined ? '' : `\n${header.description}\n`;
+  private _create_report(
+    kind: 'type' | 'value',
+    trigger: Trigger,
+    title1: string,
+    title2: string,
+    value: string,
+  ) {
+    const { header, body } = trigger;
+    const description =
+      header.description === undefined ? '' : `\n${header.description}\n`;
 
-  const indented_expression = indent(body.expression, runtime_indent_spaces);
-  const indented_value = indent(value, runtime_indent_spaces);
+    const indented_expression = indent(body.expression, runtime_indent_spaces);
+    const indented_value = indent(value, runtime_indent_spaces);
 
-  return `${description}\n${title1}\n\n${indented_expression}\n\n${title2}\n\n${indented_value}\n`;
+    const line = kind === 'type' ? header.line : trigger.footer!.line;
+    const line_info = this._config.transpile
+      ? `\n(${this._filename}:${line})\n`
+      : '';
+
+    return `${line_info}${description}\n${title1}\n\n${indented_expression}\n\n${title2}\n\n${indented_value}\n`;
+  }
 }

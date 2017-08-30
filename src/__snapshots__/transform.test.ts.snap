@@ -136,6 +136,15 @@ describe(\\"Object.assign({\\\\n        a: 1,\\\\n      }, {\\\\n        b: 2,\\
  });"
 `;
 
+exports[`should transform to commonjs if set 1`] = `
+"<create_setup_expression>;\\"use strict\\";
+exports.__esModule = true;
+var path = require(\\"path\\");
+// @dts-jest
+describe(\\"path.basename('path/to/somewhere')\\", function () { test(\\"(value) should equal to \\\\\\"somewhere\\\\\\"\\", function () { expect(path.basename('path/to/somewhere')).toEqual(\\"somewhere\\"); }); }); //=> 'somewhere'
+"
+`;
+
 exports[`should transform to fake environment for no-footers even if test_value = true 1`] = `
 "<create_setup_expression>;
 describe(\\"Math.max(1)\\", function () { test(\\"(type) should not throw error\\", function () { expect(function () { _dts_jest_runtime_.get_type_inference_or_throw_diagnostic(1) }).not.toThrowError() }) })

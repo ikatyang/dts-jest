@@ -13,6 +13,7 @@ export const normalize_config = (
     compiler_options: raw_compiler_options = {},
     enclosing_declaration = false,
     typescript: typescript_id = 'typescript',
+    transpile = true,
   } = raw_config;
 
   const { typescript, typescript_path } = load_typescript(
@@ -34,6 +35,7 @@ export const normalize_config = (
   );
 
   return {
+    transpile,
     test_type,
     test_value,
     compiler_options,
