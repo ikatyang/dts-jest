@@ -98,6 +98,7 @@ export const transform: jest.Transformer['process'] = (
       fileName: source_filename,
     });
 
+    // istanbul ignore next
     if (
       transpile_output.diagnostics !== undefined &&
       transpile_output.diagnostics.length !== 0
