@@ -18,7 +18,7 @@ test(\\"Math.max(3)\\", function () { expect.hasAssertions() })
 test(\\"Math.max(4)\\", function () { expect.hasAssertions() })
 
 
-test(\\"Object.assign({\\\\n      a: 1,\\\\n    }, {\\\\n      b: 2,\\\\n    }, {\\\\n      c: 3,\\\\n    })\\", function () { expect.hasAssertions() })
+test(\\"Object.assign({\\\\n        a: 1,\\\\n      }, {\\\\n        b: 2,\\\\n      }, {\\\\n        c: 3,\\\\n      })\\", function () { expect.hasAssertions() })
 
 
 
@@ -52,7 +52,7 @@ test(\\"Math.max(3)\\", function () { expect(Math.max(3)).toEqual(3) }) //=> 3
 test(\\"Math.max(4)\\", function () { console.log(_dts_jest_runtime_.get_value_report(14, function () { return Math.max(4) })) }) //=> ?
 
 // @dts-jest:pass
-test(\\"Object.assign({\\\\n      a: 1,\\\\n    }, {\\\\n      b: 2,\\\\n    }, {\\\\n      c: 3,\\\\n    })\\", function () { expect(Object.assign({
+test(\\"Object.assign({\\\\n        a: 1,\\\\n      }, {\\\\n        b: 2,\\\\n      }, {\\\\n        c: 3,\\\\n      })\\", function () { expect(Object.assign({
   a: 1,
 }, {
   b: 2,
@@ -86,7 +86,7 @@ test(\\"Math.max(3)\\", function () { expect(function () { _dts_jest_runtime_.ge
 test(\\"Math.max(4)\\", function () { console.log(_dts_jest_runtime_.get_type_report(14)) })
 
 
-test(\\"Object.assign({\\\\n      a: 1,\\\\n    }, {\\\\n      b: 2,\\\\n    }, {\\\\n      c: 3,\\\\n    })\\", function () { expect(function () { _dts_jest_runtime_.get_type_inference_or_throw_diagnostic(17) }).not.toThrowError() })
+test(\\"Object.assign({\\\\n        a: 1,\\\\n      }, {\\\\n        b: 2,\\\\n      }, {\\\\n        c: 3,\\\\n      })\\", function () { expect(function () { _dts_jest_runtime_.get_type_inference_or_throw_diagnostic(17) }).not.toThrowError() })
 
 
 
@@ -120,7 +120,7 @@ test(\\"Math.max(3)\\", function () { expect(function () { _dts_jest_runtime_.ge
 test(\\"Math.max(4)\\", function () { console.log(_dts_jest_runtime_.get_type_report(14));console.log(_dts_jest_runtime_.get_value_report(14, function () { return Math.max(4) })) }) //=> ?
 
 // @dts-jest:pass
-test(\\"Object.assign({\\\\n      a: 1,\\\\n    }, {\\\\n      b: 2,\\\\n    }, {\\\\n      c: 3,\\\\n    })\\", function () { expect(function () { _dts_jest_runtime_.get_type_inference_or_throw_diagnostic(17) }).not.toThrowError();expect(Object.assign({
+test(\\"Object.assign({\\\\n        a: 1,\\\\n      }, {\\\\n        b: 2,\\\\n      }, {\\\\n        c: 3,\\\\n      })\\", function () { expect(function () { _dts_jest_runtime_.get_type_inference_or_throw_diagnostic(17) }).not.toThrowError();expect(Object.assign({
   a: 1,
 }, {
   b: 2,
