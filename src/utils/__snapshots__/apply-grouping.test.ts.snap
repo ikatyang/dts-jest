@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should return correctly with groups (length = 0) 1`] = `
+Array [
+  "/* line 1 */",
+  "/* line 2 */",
+  "/* line 3 */",
+]
+`;
+
+exports[`should return correctly with groups (length = 1) 1`] = `
+Array [
+  "/* line 1 */",
+  "describe(\\"group L2\\", function () { /* line 2 */",
+  "/* line 3 */ });",
+]
+`;
+
+exports[`should return correctly with groups (length > 1) 1`] = `
+Array [
+  "/* line 1 */",
+  "/* line 2 */",
+  "describe(\\"group L3\\", function () { /* line 3 */",
+  "/* line 4 */",
+  " });describe(\\"group L5\\", function () { /* line 5 */",
+  "/* line 6 */",
+  "/* line 7 */",
+  " });describe(\\"group L8\\", function () { /* line 8 */",
+  "/* line 9 */ });",
+]
+`;

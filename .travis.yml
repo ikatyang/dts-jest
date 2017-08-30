@@ -10,9 +10,9 @@ before_install:
 
 script:
 - yarn run lint
-- yarn run test -- --coverage --verbose
-- yarn run snap-integration
-- yarn run check-diff
+- yarn run test -- --ci --verbose --coverage
+- yarn run test-integration -- --ci --verbose
+- yarn run remap-integration -- --check --list-different
 
 after_script:
 - codecov

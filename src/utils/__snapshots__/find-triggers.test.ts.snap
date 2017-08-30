@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should return correctly 1`] = `
+Array [
+  Object {
+    "body": Object {
+      "end": 63,
+      "expression": "Math.max(1, 2, 3)",
+      "start": 45,
+    },
+    "footer": Object {
+      "expected": "3",
+      "line": 3,
+    },
+    "header": Object {
+      "description": undefined,
+      "flag_literals": Array [
+        ":snap",
+        ":pass",
+      ],
+      "flags": 5,
+      "group": Object {
+        "description": "A",
+        "line": 0,
+        "method": "describe",
+      },
+      "line": 2,
+      "method": "test",
+    },
+  },
+  Object {
+    "body": Object {
+      "end": 103,
+      "expression": "Math.abs(-1)",
+      "start": 90,
+    },
+    "footer": Object {
+      "flag": "?",
+      "line": 6,
+    },
+    "header": Object {
+      "description": undefined,
+      "flag_literals": Array [
+        ":fail",
+      ],
+      "flags": 8,
+      "group": Object {
+        "description": "A",
+        "line": 0,
+        "method": "describe",
+      },
+      "line": 5,
+      "method": "test",
+    },
+  },
+  Object {
+    "body": Object {
+      "end": 165,
+      "expression": "Math.cos(Math.PI)",
+      "start": 147,
+    },
+    "footer": undefined,
+    "header": Object {
+      "description": undefined,
+      "flag_literals": Array [],
+      "flags": 0,
+      "group": Object {
+        "description": "B",
+        "line": 8,
+        "method": "describe",
+      },
+      "line": 10,
+      "method": "test",
+    },
+  },
+  Object {
+    "body": Object {
+      "end": 224,
+      "expression": "Object.assign({ a: 1 }, { b: 2 }, { c: 3 })",
+      "start": 180,
+    },
+    "footer": Object {
+      "expected": "{    a: 1,    b: 2,    c: 3,}",
+      "line": 14,
+    },
+    "header": Object {
+      "description": undefined,
+      "flag_literals": Array [],
+      "flags": 0,
+      "group": Object {
+        "description": "B",
+        "line": 8,
+        "method": "describe",
+      },
+      "line": 13,
+      "method": "test",
+    },
+  },
+]
+`;

@@ -1,9 +1,11 @@
-import { Group } from '../definitions';
+import { TriggerGroup } from '../definitions';
 
 export const create_group_expression = (
-  group: Group,
-  options: { type: 'open' | 'close' },
-) =>
-  options.type === 'open'
-    ? `${group.method}(${JSON.stringify(group.title)}, function () {`
-    : `})`;
+  group: TriggerGroup,
+  test_expression: string,
+) => {
+  // istanbul ignore next
+  const { method, description: raw_description = '' } = group;
+  const description = JSON.stringify(raw_description);
+  return `${method}(${description}, function () { ${test_expression} })`;
+};

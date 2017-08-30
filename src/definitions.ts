@@ -14,100 +14,123 @@ export const env_root_dir = 'DTS_JEST_ROOT_DIR';
 
 export const runtime_indent_spaces = 2;
 
-export const trigger_regex = /^\s*\/\/\s*@dts-jest\b(:?\S*)\s*(.+)?\s*$/;
-export enum TriggerMatchIndex {
+export const docblock_option_regex = /@dts-jest((?: +[^:]+:[^ ]+)+)/;
+export enum DocblockOptionMatchIndex {
+  Input,
+  Options,
+}
+export enum DocblockOptionValue {
+  EnableTestType = 'enable:test-type',
+  EnableTestValue = 'enable:test-value',
+  DisableTestType = 'disable:test-type',
+  DisableTestValue = 'disable:test-value',
+}
+export interface DocblockOptions {
+  test_type?: boolean;
+  test_value?: boolean;
+}
+
+export const trigger_header_regex = /^\s*@dts-jest\b(:?\S*)\s*(.*)\s*$/;
+export enum TriggerHeaderMatchIndex {
   Input,
   Flags,
   Description,
 }
-export type TriggerMatchArray = [string, string, string | undefined];
 
-export enum AssertionFlag {
-  Snapshot = ':snapshot',
-  Show = ':show',
-  Pass = ':pass',
-  Fail = ':fail',
+export const trigger_footer_regex = /^=>\s*([\s\S]*)\s*$/;
+export enum TriggerFooterMatchIndex {
+  Input,
+  Value,
 }
-export enum ActualAssertionFlag {
+
+export enum TriggerHeaderFlags {
+  ':snap' = 1 << 0,
+  ':show' = 1 << 1,
+  ':pass' = 1 << 2,
+  ':fail' = 1 << 3,
+  ':only' = 1 << 4,
+  ':skip' = 1 << 5,
+  ':group' = 1 << 6,
+  Assertion = TriggerHeaderFlags[':snap'] |
+    TriggerHeaderFlags[':show'] |
+    TriggerHeaderFlags[':pass'] |
+    TriggerHeaderFlags[':fail'],
+}
+
+export enum TriggerFooterFlag {
+  Show = '?',
   Error = ':error',
   NoError = ':no-error',
-  Question = '?',
 }
 
-export enum TestFlag {
-  Test = ':test',
-  Only = ':only',
-  Skip = ':skip',
-}
 export enum TestMethod {
   Test = 'test',
   Only = 'test.only',
   Skip = 'test.skip',
 }
-export const group_flag = ':group';
+
 export enum GroupMethod {
   Test = 'describe',
   Only = 'describe.only',
   Skip = 'describe.skip',
 }
 
-export interface Target {
-  /**
-   * 0-based
-   */
+export interface TriggerHeader {
   line: number;
-  expression: string;
+  flags: TriggerHeaderFlags;
+  method: TestMethod;
   description?: string;
-  group?: Group;
+  group?: TriggerGroup;
+}
+
+export interface TriggerBody {
+  start: number;
+  end: number;
+  expression: string;
+}
+
+export interface TriggerFooter {
+  line: number;
+  flag?: TriggerFooterFlag;
+  expected?: string;
+}
+
+export interface Trigger {
+  header: TriggerHeader;
+  body: TriggerBody;
+  footer?: TriggerFooter;
+}
+
+export interface TriggerGroup {
+  line: number;
+  method: GroupMethod;
+  description?: string;
 }
 
 export interface Snapshot {
+  line: number;
   inference?: string;
   diagnostic?: string;
 }
-export interface Expected {
-  value: string;
-}
-
-export interface TriggerInfo {
-  flags: AssertionFlag[];
-  method: TestMethod;
-}
-export interface Trigger extends Target, TriggerInfo {
-  start: number;
-  end: number;
-}
-export interface ActualTrigger extends Trigger, Expected {}
-
-export interface GroupInfo {
-  method: GroupMethod;
-}
-export interface Group extends GroupInfo {
-  title: string;
-}
-
-export type TriggerOrGroupInfo =
-  | ({ is_group: false } & TriggerInfo)
-  | ({ is_group: true } & GroupInfo);
-
-export interface Result extends Target, Snapshot {}
-export interface ActualResult extends Target, Expected {}
 
 export interface JestConfig {
   rootDir: string;
   globals: { [K in typeof config_namespace]?: RawConfig };
-  _dts_jest_internal_test_?: boolean;
 }
 
-export interface RawConfig {
-  tsconfig?: string | Record<string, _ts.CompilerOptionsValue>;
-  type_format?: _ts.TypeFormatFlags;
+export interface RawConfig extends DocblockOptions {
+  compiler_options?: string | Record<string, any>;
+  enclosing_declaration?: boolean;
+  type_format_flags?: _ts.TypeFormatFlags;
   typescript?: string;
 }
 
-export interface FormattedConfig {
-  tsconfig: _ts.CompilerOptions;
-  type_format: _ts.TypeFormatFlags;
+export interface NormalizedConfig {
+  test_type: boolean;
+  test_value: boolean;
+  compiler_options: _ts.CompilerOptions;
+  enclosing_declaration: boolean;
+  type_format_flags: _ts.TypeFormatFlags;
   typescript: typeof _ts;
   typescript_path: string;
 }

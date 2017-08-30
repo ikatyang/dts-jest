@@ -2,13 +2,18 @@
   "testEnvironment": "node",
   "moduleFileExtensions": ["ts", "js", "json"],
   "rootDir": "..",
-  "testMatch": ["<rootDir>/tests/**/*.ts"],
+  "testMatch": ["<rootDir>/tests/example.ts"],
   "transform": {
-    "\\.tsfm\\.ts$": "<rootDir>/transform",
-    "\\.tsfm-act\\.ts$": "<rootDir>/transform-actual"
+    "\\.ts$": "<rootDir>/transform"
   },
-  "reporters": [
-    "default",
-    "<rootDir>/reporter"
-  ]
+  "reporters": ["default", "<rootDir>/reporter"],
+  "globals": {
+    "_dts_jest_": {
+      "compiler_options": {
+        "module": "commonjs",
+        "strict": true,
+        "target": "es6"
+      }
+    }
+  }
 }

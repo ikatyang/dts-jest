@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should return correctly 1`] = `
+Array [
+  Object {
+    "end": 31,
+    "expression": "Math.max(1, 2, 3)",
+    "start": 13,
+  },
+  Object {
+    "end": 73,
+    "expression": "Math.max(
+  1,
+  2,
+  3,
+)",
+    "start": 46,
+  },
+  Object {
+    "end": 119,
+    "expression": "Math.max(1, 2, 3)",
+    "start": 101,
+  },
+  Object {
+    "end": 187,
+    "expression": "Math.max(
+  1,
+  2,
+  3,
+)",
+    "start": 152,
+  },
+]
+`;
+
+exports[`should throw error if there are some invalid groups 1`] = `
+"Invalid trigger-group(s) detected:
+
+  find-trigger-bodies/invalid-group.ts:2
+  find-trigger-bodies/invalid-group.ts:14 inside"
+`;
+
+exports[`should throw error if there are some unattachable bodies 1`] = `
+"Unattachable trigger(s) detected:
+
+  find-trigger-bodies/unattachable.ts:1
+  find-trigger-bodies/unattachable.ts:2 description"
+`;

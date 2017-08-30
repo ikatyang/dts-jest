@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should return correctly 1`] = `
+Array [
+  Object {
+    "expected": "3",
+    "line": 1,
+  },
+  Object {
+    "flag": "?",
+    "line": 4,
+  },
+  Object {
+    "flag": ":error",
+    "line": 7,
+  },
+  Object {
+    "flag": ":no-error",
+    "line": 10,
+  },
+  Object {
+    "expected": "3",
+    "line": 13,
+  },
+  Object {
+    "flag": "?",
+    "line": 16,
+  },
+  Object {
+    "flag": ":error",
+    "line": 19,
+  },
+  Object {
+    "flag": ":no-error",
+    "line": 22,
+  },
+]
+`;
+
+exports[`should throw error if there are some unattachable footers 1`] = `
+"Unattachable trigger-footer(s) detected:
+
+  find-trigger-footers/unattachable.ts:1"
+`;

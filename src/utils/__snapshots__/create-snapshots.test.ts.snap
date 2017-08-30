@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should create correctly 1`] = `
+Array [
+  Object {
+    "diagnostic": "Argument of type '\\"123\\"' is not assignable to parameter of type 'number'.",
+    "line": 7,
+  },
+  Object {
+    "diagnostic": "Property 'assign' does not exist on type 'ObjectConstructor'.",
+    "line": 10,
+  },
+  Object {
+    "inference": "number",
+    "line": 1,
+  },
+  Object {
+    "inference": "number",
+    "line": 4,
+  },
+]
+`;
+
+exports[`should throw error of there are some unmatched diagnostics 1`] = `
+"Unmatched diagnostic(s) detected:
+
+  <cwd>/fixtures/create-snapshots/unmatched.ts:1 Argument of type '\\"str\\"' is not assignable to parameter of type 'number'."
+`;

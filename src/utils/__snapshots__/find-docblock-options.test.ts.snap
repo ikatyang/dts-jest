@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should find disable:test-type correctly 1`] = `
+Object {
+  "test_type": false,
+}
+`;
+
+exports[`should find disable:test-value correctly 1`] = `
+Object {
+  "test_value": false,
+}
+`;
+
+exports[`should find enable:test-type correctly 1`] = `
+Object {
+  "test_type": true,
+}
+`;
+
+exports[`should find enable:test-value correctly 1`] = `
+Object {
+  "test_value": true,
+}
+`;
+
+exports[`should find multi option value correctly 1`] = `
+Object {
+  "test_type": false,
+  "test_value": true,
+}
+`;
+
+exports[`should throw error if there is unexpected value 1`] = `"Unexpected option value 'enable:nothing'"`;

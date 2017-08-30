@@ -16,18 +16,21 @@
   },
   "repository": "https://github.com/ikatyang/dts-jest",
   "homepage": "https://github.com/ikatyang/dts-jest#readme",
-  "author": "ikatyang",
+  "author": {
+    "name": "Ika",
+    "email": "ikatyang@gmail.com",
+    "url": "https://github.com/ikatyang"
+  },
   "license": "MIT",
   "scripts": {
     "prepublish": "yarn run build",
     "lint": "tslint --type-check -p ./tsconfig.json",
-    "prebuild": "rm -rf ./lib",
-    "build": "tsc -p ./tsconfig.build.json",
     "test": "jest -c ./jest.json --no-cache",
     "test-integration": "jest -c ./tests/jest.json --no-cache",
-    "snap-integration": "yarn run test-integration -- --verbose --useStderr --no-color --noStackTrace 2>&1 >/dev/null | (ts-node ./scripts/normalize-jest-output.ts) > ./snapshots/integration.txt",
-    "release": "standard-version",
-    "check-diff": "git diff --exit-code"
+    "remap-integration": "node ./bin/dts-jest-remap ./tests/example.ts --rename '{{basename}}.snap.{{extname}}'",
+    "prebuild": "rm -rf ./lib",
+    "build": "tsc -p ./tsconfig.build.json",
+    "release": "standard-version"
   },
   "dependencies": {
     "globby": "^6.1.0",

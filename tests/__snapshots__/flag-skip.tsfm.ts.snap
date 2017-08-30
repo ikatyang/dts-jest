@@ -1,5 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`number_to_string(1) 1`] = `"string"`;
-
-exports[`number_to_string(3) 1`] = `"string"`;

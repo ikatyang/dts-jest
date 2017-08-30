@@ -6,6 +6,7 @@
     "prettier-config-ikatyang/tslint"
   ],
   "rules": {
-    "no-unnecessary-type-assertion": false
+    "no-unnecessary-type-assertion": false,
+    "strict-boolean-expressions": [true, "allow-number"]
   }
 }

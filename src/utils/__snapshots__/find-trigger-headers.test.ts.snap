@@ -1,0 +1,397 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should return correctly 1`] = `
+Array [
+  Object {
+    "description": undefined,
+    "flag_literals": Array [],
+    "flags": 0,
+    "group": undefined,
+    "line": 0,
+    "method": "test",
+  },
+  Object {
+    "description": undefined,
+    "flag_literals": Array [
+      ":show",
+    ],
+    "flags": 2,
+    "group": undefined,
+    "line": 1,
+    "method": "test",
+  },
+  Object {
+    "description": undefined,
+    "flag_literals": Array [
+      ":snap",
+    ],
+    "flags": 1,
+    "group": undefined,
+    "line": 2,
+    "method": "test",
+  },
+  Object {
+    "description": undefined,
+    "flag_literals": Array [
+      ":snap",
+      ":show",
+    ],
+    "flags": 3,
+    "group": undefined,
+    "line": 3,
+    "method": "test",
+  },
+  Object {
+    "description": undefined,
+    "flag_literals": Array [
+      ":pass",
+    ],
+    "flags": 4,
+    "group": undefined,
+    "line": 4,
+    "method": "test",
+  },
+  Object {
+    "description": undefined,
+    "flag_literals": Array [
+      ":show",
+      ":pass",
+    ],
+    "flags": 6,
+    "group": undefined,
+    "line": 5,
+    "method": "test",
+  },
+  Object {
+    "description": undefined,
+    "flag_literals": Array [
+      ":snap",
+      ":pass",
+    ],
+    "flags": 5,
+    "group": undefined,
+    "line": 6,
+    "method": "test",
+  },
+  Object {
+    "description": undefined,
+    "flag_literals": Array [
+      ":snap",
+      ":show",
+      ":pass",
+    ],
+    "flags": 7,
+    "group": undefined,
+    "line": 7,
+    "method": "test",
+  },
+  Object {
+    "description": undefined,
+    "flag_literals": Array [
+      ":fail",
+    ],
+    "flags": 8,
+    "group": undefined,
+    "line": 8,
+    "method": "test",
+  },
+  Object {
+    "description": undefined,
+    "flag_literals": Array [
+      ":show",
+      ":fail",
+    ],
+    "flags": 10,
+    "group": undefined,
+    "line": 9,
+    "method": "test",
+  },
+  Object {
+    "description": undefined,
+    "flag_literals": Array [
+      ":snap",
+      ":fail",
+    ],
+    "flags": 9,
+    "group": undefined,
+    "line": 10,
+    "method": "test",
+  },
+  Object {
+    "description": undefined,
+    "flag_literals": Array [
+      ":snap",
+      ":show",
+      ":fail",
+    ],
+    "flags": 11,
+    "group": undefined,
+    "line": 11,
+    "method": "test",
+  },
+  Object {
+    "description": "description",
+    "flag_literals": Array [],
+    "flags": 0,
+    "group": undefined,
+    "line": 13,
+    "method": "test",
+  },
+  Object {
+    "description": "description + flag",
+    "flag_literals": Array [
+      ":pass",
+    ],
+    "flags": 4,
+    "group": undefined,
+    "line": 14,
+    "method": "test",
+  },
+]
+`;
+
+exports[`should return correctly with group 1`] = `
+Array [
+  Object {
+    "description": "1",
+    "flag_literals": Array [],
+    "flags": 0,
+    "group": undefined,
+    "line": 0,
+    "method": "test",
+  },
+  Object {
+    "description": "2",
+    "flag_literals": Array [],
+    "flags": 0,
+    "group": undefined,
+    "line": 1,
+    "method": "test",
+  },
+  Object {
+    "description": "? 1",
+    "flag_literals": Array [],
+    "flags": 0,
+    "group": Object {
+      "description": undefined,
+      "line": 2,
+      "method": "describe",
+    },
+    "line": 3,
+    "method": "test",
+  },
+  Object {
+    "description": "? 2",
+    "flag_literals": Array [],
+    "flags": 0,
+    "group": Object {
+      "description": undefined,
+      "line": 2,
+      "method": "describe",
+    },
+    "line": 4,
+    "method": "test",
+  },
+  Object {
+    "description": "A 1",
+    "flag_literals": Array [],
+    "flags": 0,
+    "group": Object {
+      "description": "A",
+      "line": 5,
+      "method": "describe",
+    },
+    "line": 6,
+    "method": "test",
+  },
+  Object {
+    "description": "A 2",
+    "flag_literals": Array [],
+    "flags": 0,
+    "group": Object {
+      "description": "A",
+      "line": 5,
+      "method": "describe",
+    },
+    "line": 7,
+    "method": "test",
+  },
+  Object {
+    "description": "B 1",
+    "flag_literals": Array [],
+    "flags": 0,
+    "group": Object {
+      "description": "B",
+      "line": 8,
+      "method": "describe",
+    },
+    "line": 9,
+    "method": "test",
+  },
+  Object {
+    "description": "B 2",
+    "flag_literals": Array [],
+    "flags": 0,
+    "group": Object {
+      "description": "B",
+      "line": 8,
+      "method": "describe",
+    },
+    "line": 10,
+    "method": "test",
+  },
+]
+`;
+
+exports[`should return correctly with method 1`] = `
+Array [
+  Object {
+    "description": undefined,
+    "flag_literals": Array [],
+    "flags": 0,
+    "group": undefined,
+    "line": 0,
+    "method": "test",
+  },
+  Object {
+    "description": undefined,
+    "flag_literals": Array [
+      ":only",
+    ],
+    "flags": 16,
+    "group": undefined,
+    "line": 1,
+    "method": "test.only",
+  },
+  Object {
+    "description": undefined,
+    "flag_literals": Array [
+      ":skip",
+    ],
+    "flags": 32,
+    "group": undefined,
+    "line": 2,
+    "method": "test.skip",
+  },
+  Object {
+    "description": undefined,
+    "flag_literals": Array [],
+    "flags": 0,
+    "group": Object {
+      "description": undefined,
+      "line": 4,
+      "method": "describe",
+    },
+    "line": 6,
+    "method": "test",
+  },
+  Object {
+    "description": undefined,
+    "flag_literals": Array [
+      ":only",
+    ],
+    "flags": 16,
+    "group": Object {
+      "description": undefined,
+      "line": 4,
+      "method": "describe",
+    },
+    "line": 7,
+    "method": "test.only",
+  },
+  Object {
+    "description": undefined,
+    "flag_literals": Array [
+      ":skip",
+    ],
+    "flags": 32,
+    "group": Object {
+      "description": undefined,
+      "line": 4,
+      "method": "describe",
+    },
+    "line": 8,
+    "method": "test.skip",
+  },
+  Object {
+    "description": undefined,
+    "flag_literals": Array [],
+    "flags": 0,
+    "group": Object {
+      "description": undefined,
+      "line": 10,
+      "method": "describe.only",
+    },
+    "line": 12,
+    "method": "test",
+  },
+  Object {
+    "description": undefined,
+    "flag_literals": Array [
+      ":only",
+    ],
+    "flags": 16,
+    "group": Object {
+      "description": undefined,
+      "line": 10,
+      "method": "describe.only",
+    },
+    "line": 13,
+    "method": "test.only",
+  },
+  Object {
+    "description": undefined,
+    "flag_literals": Array [
+      ":skip",
+    ],
+    "flags": 32,
+    "group": Object {
+      "description": undefined,
+      "line": 10,
+      "method": "describe.only",
+    },
+    "line": 14,
+    "method": "test.skip",
+  },
+  Object {
+    "description": undefined,
+    "flag_literals": Array [],
+    "flags": 0,
+    "group": Object {
+      "description": undefined,
+      "line": 16,
+      "method": "describe.skip",
+    },
+    "line": 17,
+    "method": "test",
+  },
+  Object {
+    "description": undefined,
+    "flag_literals": Array [
+      ":only",
+    ],
+    "flags": 16,
+    "group": Object {
+      "description": undefined,
+      "line": 16,
+      "method": "describe.skip",
+    },
+    "line": 18,
+    "method": "test.only",
+  },
+  Object {
+    "description": undefined,
+    "flag_literals": Array [
+      ":skip",
+    ],
+    "flags": 32,
+    "group": Object {
+      "description": undefined,
+      "line": 16,
+      "method": "describe.skip",
+    },
+    "line": 19,
+    "method": "test.skip",
+  },
+]
+`;

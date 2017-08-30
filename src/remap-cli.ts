@@ -3,54 +3,55 @@ import globby = require('globby');
 import intersection = require('lodash.intersection');
 import make_dir = require('make-dir');
 import * as path from 'path';
-import yargs = require('yargs');
-import { package_homepage, package_remap_bin } from './definitions';
 import { remap } from './remap';
-import { get_typescript } from './utils/get-typescript';
+import { create_message } from './utils/create-message';
+import { create_typescript_info } from './utils/create-typescript-info';
+import { load_typescript } from './utils/load-typescript';
 
 export interface RemapCliOptions {
   check?: boolean;
-  listDiff?: boolean;
+  listDifferent?: boolean;
   outDir?: string;
   rename?: string;
   typescript?: string;
 }
 
-export interface RemapCliArgs extends RemapCliOptions {
+export interface RemapCliArguments extends RemapCliOptions {
   _: string[];
 }
 
-const remap_cli_parser = get_argv_parser();
-
-export const remap_cli = (argv: string[]): void => {
+export const remap_cli = (args: RemapCliArguments): void => {
   // istanbul ignore next
   const {
     _: globs,
     check = false,
-    listDiff: list_diff = false,
+    listDifferent: list_different = false,
     outDir: output_directory,
     rename: rename_template,
     typescript: typescript_id,
-  } = remap_cli_parser.parse(argv);
+  } = args;
 
-  const filepaths = globby.sync(globs, { absolute: true });
+  const source_filenames = globby.sync(globs, { absolute: true });
+  const logger = create_logger();
 
-  if (filepaths.length === 0) {
-    log('There is no matched file.');
+  if (source_filenames.length === 0) {
+    logger.log('There is no matched file.');
     return;
   }
 
-  const invalid_filepaths = get_invalid_filepaths(
-    filepaths,
+  const invalid_filenames = get_invalid_filenames(
+    source_filenames,
     output_directory,
     rename_template,
   );
 
-  if (invalid_filepaths.length !== 0) {
+  if (invalid_filenames.length !== 0) {
     throw new Error(
-      `Input and output filename cannot be the same:\n\n${invalid_filepaths
-        .map(x => `  ${x}`)
-        .join('\n')}\n\nConsider adjusting option: --outDir or --rename`,
+      create_message(
+        'Input and output filename cannot be the same:',
+        invalid_filenames,
+        'Consider adjusting option `--outDir` or `--rename` to redirect output',
+      ),
     );
   }
 
@@ -58,167 +59,139 @@ export const remap_cli = (argv: string[]): void => {
     make_dir.sync(output_directory);
   }
 
-  const { ts, ts_path } = get_typescript(typescript_id, '');
+  const { typescript: ts, typescript_path } = load_typescript(typescript_id);
 
-  log(`Using TypeScript v${ts.version} from ${ts_path}`);
+  logger.log(create_typescript_info(ts.version, typescript_path));
 
-  let is_check_success = true;
+  interface Different {
+    source_filename: string;
+    output_filename: string;
+  }
+  const differents: Different[] = [];
 
-  filepaths.forEach(filepath => {
-    const source_content = fs.readFileSync(filepath, 'utf8');
+  source_filenames.forEach(source_filename => {
+    const source_content = fs.readFileSync(source_filename, 'utf8');
 
-    const snapshot_filepath = get_snapshot_filepath(filepath);
-    const snapshot_content = fs.readFileSync(snapshot_filepath, 'utf8');
+    const snapshot_filename = get_snapshot_filename(source_filename);
+    const snapshot_content = fs.readFileSync(snapshot_filename, 'utf8');
 
-    const output_filepath = get_output_filepath(
-      filepath,
+    const output_filename = get_output_filename(
+      source_filename,
       output_directory,
       rename_template,
     );
     const output_content = remap(source_content, snapshot_content, {
       typescript: ts,
-      source_filename: filepath,
+      source_filename,
     });
 
-    if (check || list_diff) {
-      const target_content = fs.readFileSync(output_filepath, 'utf8');
+    if (check || list_different) {
+      let target_content: string | undefined;
+
+      try {
+        target_content = fs.readFileSync(output_filename, 'utf8');
+      } catch (e) {
+        target_content = undefined;
+      }
 
       if (output_content !== target_content) {
-        if (check) {
-          is_check_success = false;
-        }
-
-        if (list_diff) {
-          log(output_filepath);
-        }
+        differents.push({ source_filename, output_filename });
       }
     }
 
     if (!check) {
-      fs.writeFileSync(output_filepath, output_content);
+      fs.writeFileSync(output_filename, output_content);
     }
   });
 
-  if (!is_check_success) {
-    throw new Error(`Difference(s) detected`);
+  if (differents.length === 0) {
+    return;
   }
+
+  const erorr_message = 'Difference(s) detected';
+
+  if (check && !list_different) {
+    throw new Error(erorr_message);
+  }
+
+  const message = create_message(
+    'Listing files that their target content is different from output content:',
+    differents.map(
+      different =>
+        `${different.source_filename} -> ${different.output_filename}`,
+    ),
+    check ? erorr_message : undefined,
+  );
+
+  if (check) {
+    throw new Error(message);
+  }
+
+  logger.log(message);
 };
 
-function get_invalid_filepaths(
-  filepaths: string[],
+function get_invalid_filenames(
+  filenames: string[],
   output_directory?: string,
   rename_template?: string,
 ) {
   return intersection(
-    filepaths,
-    filepaths.map(filepath =>
-      get_output_filepath(filepath, output_directory, rename_template),
+    filenames,
+    filenames.map(filepath =>
+      get_output_filename(filepath, output_directory, rename_template),
     ),
   );
 }
 
-function get_output_filepath(
-  filepath: string,
+function get_output_filename(
+  filename: string,
   output_directory?: string,
   rename_template?: string,
 ) {
   const redirect_dirpath =
     output_directory === undefined
-      ? path.dirname(filepath)
+      ? path.dirname(filename)
       : path.resolve(output_directory);
 
-  const renamed_filename = rename_filename(filepath, rename_template);
+  const renamed_filename = rename_filename(filename, rename_template);
 
   return path.join(redirect_dirpath, renamed_filename);
 }
 
-function rename_filename(filepath: string, template?: string) {
-  const filename = path.basename(filepath);
+function rename_filename(filename: string, template?: string) {
+  const base_filename = path.basename(filename);
 
   if (template === undefined) {
-    return filename;
+    return base_filename;
   }
 
-  const extname = path.extname(filepath);
-  const basename = path.basename(filepath, extname);
+  const extname = path.extname(filename);
+  const basename = path.basename(filename, extname);
 
   return template
-    .replace('{{filename}}', filename)
+    .replace('{{filename}}', base_filename)
     .replace('{{basename}}', basename)
     .replace('{{extname}}', extname.slice(1) /* remove leading dot */);
 }
 
-function get_snapshot_filepath(filepath: string) {
+function get_snapshot_filename(filename: string) {
   return path.join(
-    path.dirname(filepath),
+    path.dirname(filename),
     '__snapshots__',
-    `${path.basename(filepath)}.snap`,
+    `${path.basename(filename)}.snap`,
   );
 }
 
-function get_argv_parser() {
-  let parser = yargs
-    .usage(
-      `Usage: ${package_remap_bin} [--outDir <path>] [--rename <template>] <TestFileGlob> ...`,
-    )
-    .demandCommand(1)
-    .epilogue(`Documentation: ${package_homepage}`);
-
-  const options = get_cli_options();
-
-  ['help', 'version', ...Object.keys(options)].sort().forEach(key => {
-    switch (key) {
-      case 'help':
-      case 'version':
-        parser = parser[key]().alias(key, key[0]);
-        break;
-      default:
-        parser = parser.option(key, options[key as keyof RemapCliOptions]);
-        break;
+// tslint:disable:no-console
+function create_logger() {
+  return new class {
+    public counter = 0;
+    public log(message: string) {
+      if (this.counter++ !== 0) {
+        console.log('');
+      }
+      console.log(message);
     }
-  });
-
-  return parser;
+  }();
 }
-
-function get_cli_options(): {
-  [K in keyof RemapCliOptions]: {
-    type: 'boolean' | 'string';
-    alias: string;
-    description: string;
-  }
-} {
-  return {
-    check: {
-      alias: 'c',
-      type: 'boolean',
-      description: 'Throw error if target is different with output',
-    },
-    listDiff: {
-      alias: 'l',
-      type: 'boolean',
-      description: 'Print filename if target is different with output',
-    },
-    outDir: {
-      alias: 'o',
-      type: 'string',
-      description: 'Redirect output structure to the directory',
-    },
-    rename: {
-      alias: 'r',
-      type: 'string',
-      description:
-        'Rename output filename using template {{variable}}, available variable: filename, basename, extname',
-    },
-    typescript: {
-      alias: 't',
-      type: 'string',
-      description: 'Specify which TypeScript source to use',
-    },
-  };
-}
-
-function log(message: string) {
-  // tslint:disable-next-line:no-console
-  console.log(message);
-}
+// tslint:enable:no-console

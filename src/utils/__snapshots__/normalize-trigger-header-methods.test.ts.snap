@@ -1,0 +1,95 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should normalize correctly with group-only 1`] = `
+Array [
+  "1 -> test.skip",
+  "2 -> test.skip",
+  "A1 -> test",
+  "A2 -> test",
+  "B1 -> test.skip",
+  "B2 -> test.skip",
+]
+`;
+
+exports[`should normalize correctly with multi group-only 1`] = `
+Array [
+  "1 -> test.skip",
+  "2 -> test.skip",
+  "A1 -> test",
+  "A2 -> test",
+  "B1 -> test.skip",
+  "B2 -> test.skip",
+  "C1 -> test",
+  "C2 -> test",
+]
+`;
+
+exports[`should normalize correctly with multi group-only and trigger-only 1`] = `
+Array [
+  "1 -> test.skip",
+  "2 -> test",
+  "3 -> test",
+  "A1 -> test.skip",
+  "A2 -> test.skip",
+  "B1 -> test.skip",
+  "B2 -> test.skip",
+  "C1 -> test",
+  "C2 -> test",
+]
+`;
+
+exports[`should normalize correctly with multi trigger-only 1`] = `
+Array [
+  "1 -> test.skip",
+  "2 -> test",
+  "3 -> test",
+  "A1 -> test.skip",
+  "A2 -> test.skip",
+  "B1 -> test.skip",
+  "B2 -> test.skip",
+]
+`;
+
+exports[`should normalize correctly with trigger-only 1`] = `
+Array [
+  "1 -> test.skip",
+  "2 -> test",
+  "A1 -> test.skip",
+  "A2 -> test.skip",
+  "B1 -> test.skip",
+  "B2 -> test.skip",
+]
+`;
+
+exports[`should normalize correctly with trigger-only in group-only 1`] = `
+Array [
+  "1 -> test.skip",
+  "2 -> test.skip",
+  "A1 -> test",
+  "A2 -> test.skip",
+  "B1 -> test.skip",
+  "B2 -> test.skip",
+]
+`;
+
+exports[`should normalize correctly with trigger-only in group-skip 1`] = `
+Array [
+  "1 -> test.skip",
+  "2 -> test.skip",
+  "A1 -> test",
+  "A2 -> test.skip",
+  "B1 -> test.skip",
+  "B2 -> test.skip",
+]
+`;
+
+exports[`should not be affected without only 1`] = `
+Array [
+  "1 -> test",
+  "2 -> test",
+  "A1 -> test",
+  "A2 -> test",
+  "B1 -> test",
+  "B2 -> test",
+]
+`;

@@ -1,44 +1,11 @@
-import { runtime_namespace, AssertionFlag, Trigger } from '../definitions';
-import { get_formatted_description } from './get-formatted-description';
-import { remove_spaces } from './remove-spaces';
+import { Trigger } from '../definitions';
+import { get_description_for_jest } from './get-description-for-jest';
 
-export const create_test_expression = (trigger: Trigger) => {
-  const description = get_formatted_description(trigger, false);
-  const stringified_description = JSON.stringify(description);
-
-  const report_expression = `${runtime_namespace}.report(${trigger.line})`;
-  const snapshot_expression = `${runtime_namespace}.snapshot(${trigger.line})`;
-  const safe_snapshot_expression = `${runtime_namespace}.safe_snapshot(${trigger.line})`;
-
-  const assertion_expressions: string[] = [];
-
-  if (trigger.flags.indexOf(AssertionFlag.Show) !== -1) {
-    assertion_expressions.push(`console.log(${report_expression})`);
-  }
-
-  if (trigger.flags.indexOf(AssertionFlag.Pass) !== -1) {
-    assertion_expressions.push(
-      `expect(function () { return ${snapshot_expression}; }).not.toThrowError()`,
-    );
-  } else if (trigger.flags.indexOf(AssertionFlag.Fail) !== -1) {
-    assertion_expressions.push(
-      `expect(function () { return ${snapshot_expression}; }).toThrowError()`,
-    );
-  }
-
-  if (trigger.flags.indexOf(AssertionFlag.Snapshot) !== -1) {
-    assertion_expressions.push(
-      `expect(${safe_snapshot_expression}).toMatchSnapshot()`,
-    );
-  }
-
-  if (assertion_expressions.length === 0) {
-    assertion_expressions.push(`expect.hasAssertions()`);
-  }
-
-  return remove_spaces(`
-    ${trigger.method}(${stringified_description}, function () {
-      ${assertion_expressions.join(';')};
-    })
-  `);
+export const create_test_expression = (
+  trigger: Trigger,
+  assertion_expression: string,
+) => {
+  const description = JSON.stringify(get_description_for_jest(trigger));
+  const { header: { method } } = trigger;
+  return `${method}(${description}, function () { ${assertion_expression} })`;
 };
