@@ -1,4 +1,4 @@
-import { env_root_dir, RawConfig, Trigger } from './definitions';
+import { RawConfig, Trigger } from './definitions';
 import { Runtime } from './runtime';
 import { create_snapshots } from './utils/create-snapshots';
 import { normalize_config } from './utils/normalize-config';
@@ -8,10 +8,7 @@ export const setup = (
   raw_config: RawConfig,
   triggers: Trigger[],
 ) => {
-  // get from transform.ts
-  const root_dir = process.env[env_root_dir]!;
-
-  const normalized_config = normalize_config(raw_config, root_dir);
+  const normalized_config = normalize_config(raw_config);
   const snapshots = create_snapshots(filename, triggers, normalized_config);
 
   return new Runtime(filename, normalized_config, triggers, snapshots);

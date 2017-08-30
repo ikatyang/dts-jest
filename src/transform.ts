@@ -1,6 +1,5 @@
 import {
   config_namespace,
-  env_root_dir,
   runtime_namespace,
   JestConfig,
   Trigger,
@@ -22,12 +21,8 @@ export const transform: jest.Transformer['process'] = (
   source_filename,
   jest_config: JestConfig,
 ) => {
-  // set for setup.ts
-  process.env[env_root_dir] = jest_config.rootDir;
-
   const normalized_config = normalize_config(
     jest_config.globals[config_namespace],
-    jest_config.rootDir,
   );
 
   const { typescript: ts, compiler_options, transpile } = normalized_config;

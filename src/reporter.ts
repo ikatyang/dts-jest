@@ -19,7 +19,6 @@ export class Reporter implements jest.Reporter {
     contexts.forEach(context => {
       const { typescript: ts, typescript_path } = normalize_config(
         (context.config as JestConfig).globals[config_namespace],
-        context.config.rootDir,
       );
 
       // istanbul ignore next

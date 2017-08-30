@@ -27,6 +27,6 @@ function get_snapshots(id: string) {
   const filename = get_fixture_filename(full_id);
   const source_file = load_fixture_source_file(full_id, ts);
   const triggers = find_triggers(source_file, ts);
-  const config = normalize_config({}, process.cwd());
+  const config = normalize_config({});
   return create_snapshots(filename, triggers, config);
 }

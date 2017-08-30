@@ -2670,10 +2670,6 @@ ts-node@3.3.0:
     v8flags "^3.0.0"
     yn "^2.0.0"
 
-tsconfig-extends@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/tsconfig-extends/-/tsconfig-extends-1.0.1.tgz#f5e5a4c3520a284c5642a7fb57713cbb7ae42f0f"
-
 tsconfig@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/tsconfig/-/tsconfig-6.0.0.tgz#6b0e8376003d7af1864f8df8f89dd0059ffcd032"
