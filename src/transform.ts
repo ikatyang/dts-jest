@@ -1,6 +1,5 @@
 import {
   config_namespace,
-  env_root_dir,
   runtime_namespace,
   JestConfig,
   Trigger,

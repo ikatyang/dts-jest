@@ -1,4 +1,4 @@
-import { env_root_dir, RawConfig, Trigger } from './definitions';
+import { RawConfig, Trigger } from './definitions';
 import { Runtime } from './runtime';
 import { create_snapshots } from './utils/create-snapshots';
 import { normalize_config } from './utils/normalize-config';
