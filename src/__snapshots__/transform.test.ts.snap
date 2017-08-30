@@ -2,23 +2,23 @@
 
 exports[`should transform correctly with { test_type: false, test_value: false } 1`] = `
 "<create_setup_expression>;
-test(\\"Math.max(1)\\", function () { expect.hasAssertions() })
+describe(\\"Math.max(1)\\", function () {  })
 
 describe(\\"A\\", function () { 
 
 
-test(\\"Math.max(2)\\", function () { expect.hasAssertions() })
+describe(\\"Math.max(2)\\", function () {  })
 
 
-test(\\"Math.max(3)\\", function () { expect.hasAssertions() })
+describe(\\"Math.max(3)\\", function () {  })
 
  });describe(\\"B\\", function () { 
 
 
-test(\\"Math.max(4)\\", function () { expect.hasAssertions() })
+describe(\\"Math.max(4)\\", function () {  })
 
 
-test(\\"Object.assign({\\\\n        a: 1,\\\\n      }, {\\\\n        b: 2,\\\\n      }, {\\\\n        c: 3,\\\\n      })\\", function () { expect.hasAssertions() })
+describe(\\"Object.assign({\\\\n        a: 1,\\\\n      }, {\\\\n        b: 2,\\\\n      }, {\\\\n        c: 3,\\\\n      })\\", function () {  })
 
 
 
@@ -36,29 +36,29 @@ test(\\"Object.assign({\\\\n        a: 1,\\\\n      }, {\\\\n        b: 2,\\\\n 
 
 exports[`should transform correctly with { test_type: false, test_value: true } 1`] = `
 "<create_setup_expression>;// @dts-jest:pass
-test(\\"Math.max(1)\\", function () { expect(Math.max(1)).toEqual(1) }) //=> 1
+describe(\\"Math.max(1)\\", function () { test(\\"(value) should equal to 1\\", function () { expect(Math.max(1)).toEqual(1) }) }) //=> 1
 
 describe(\\"A\\", function () { // @dts-jest:group A
 
 // @dts-jest:pass
-test(\\"Math.max(2)\\", function () { expect(Math.max(2)).toEqual(2) }) //=> 2
+describe(\\"Math.max(2)\\", function () { test(\\"(value) should equal to 2\\", function () { expect(Math.max(2)).toEqual(2) }) }) //=> 2
 
 // @dts-jest:pass
-test(\\"Math.max(3)\\", function () { expect(Math.max(3)).toEqual(3) }) //=> 3
+describe(\\"Math.max(3)\\", function () { test(\\"(value) should equal to 3\\", function () { expect(Math.max(3)).toEqual(3) }) }) //=> 3
 
  });describe(\\"B\\", function () { // @dts-jest:group B
 
 // @dts-jest:show
-test(\\"Math.max(4)\\", function () { console.log(_dts_jest_runtime_.get_value_report(14, function () { return Math.max(4) })) }) //=> ?
+describe(\\"Math.max(4)\\", function () { test(\\"(value) should show report\\", function () { console.log(_dts_jest_runtime_.get_value_report(14, function () { return Math.max(4) })) }) }) //=> ?
 
 // @dts-jest:pass
-test(\\"Object.assign({\\\\n        a: 1,\\\\n      }, {\\\\n        b: 2,\\\\n      }, {\\\\n        c: 3,\\\\n      })\\", function () { expect(Object.assign({
+describe(\\"Object.assign({\\\\n        a: 1,\\\\n      }, {\\\\n        b: 2,\\\\n      }, {\\\\n        c: 3,\\\\n      })\\", function () { test(\\"(value) should equal to { a: 1, b: 2, c: 3, }\\", function () { expect(Object.assign({
   a: 1,
 }, {
   b: 2,
 }, {
   c: 3,
-})).toEqual({    a: 1,    b: 2,    c: 3,}) }) /*=>
+})).toEqual({ a: 1, b: 2, c: 3, }) }) }) /*=>
   {
     a: 1,
     b: 2,
@@ -70,23 +70,23 @@ test(\\"Object.assign({\\\\n        a: 1,\\\\n      }, {\\\\n        b: 2,\\\\n 
 
 exports[`should transform correctly with { test_type: true, test_value: false } 1`] = `
 "<create_setup_expression>;
-test(\\"Math.max(1)\\", function () { expect(function () { _dts_jest_runtime_.get_type_inference_or_throw_diagnostic(1) }).not.toThrowError() })
+describe(\\"Math.max(1)\\", function () { test(\\"(type) should not throw error\\", function () { expect(function () { _dts_jest_runtime_.get_type_inference_or_throw_diagnostic(1) }).not.toThrowError() }) })
 
 describe(\\"A\\", function () { 
 
 
-test(\\"Math.max(2)\\", function () { expect(function () { _dts_jest_runtime_.get_type_inference_or_throw_diagnostic(6) }).not.toThrowError() })
+describe(\\"Math.max(2)\\", function () { test(\\"(type) should not throw error\\", function () { expect(function () { _dts_jest_runtime_.get_type_inference_or_throw_diagnostic(6) }).not.toThrowError() }) })
 
 
-test(\\"Math.max(3)\\", function () { expect(function () { _dts_jest_runtime_.get_type_inference_or_throw_diagnostic(9) }).not.toThrowError() })
+describe(\\"Math.max(3)\\", function () { test(\\"(type) should not throw error\\", function () { expect(function () { _dts_jest_runtime_.get_type_inference_or_throw_diagnostic(9) }).not.toThrowError() }) })
 
  });describe(\\"B\\", function () { 
 
 
-test(\\"Math.max(4)\\", function () { console.log(_dts_jest_runtime_.get_type_report(14)) })
+describe(\\"Math.max(4)\\", function () { test(\\"(type) should show report\\", function () { console.log(_dts_jest_runtime_.get_type_report(14)) }) })
 
 
-test(\\"Object.assign({\\\\n        a: 1,\\\\n      }, {\\\\n        b: 2,\\\\n      }, {\\\\n        c: 3,\\\\n      })\\", function () { expect(function () { _dts_jest_runtime_.get_type_inference_or_throw_diagnostic(17) }).not.toThrowError() })
+describe(\\"Object.assign({\\\\n        a: 1,\\\\n      }, {\\\\n        b: 2,\\\\n      }, {\\\\n        c: 3,\\\\n      })\\", function () { test(\\"(type) should not throw error\\", function () { expect(function () { _dts_jest_runtime_.get_type_inference_or_throw_diagnostic(17) }).not.toThrowError() }) })
 
 
 
@@ -104,29 +104,29 @@ test(\\"Object.assign({\\\\n        a: 1,\\\\n      }, {\\\\n        b: 2,\\\\n 
 
 exports[`should transform correctly with { test_type: true, test_value: true } 1`] = `
 "<create_setup_expression>;// @dts-jest:pass
-test(\\"Math.max(1)\\", function () { expect(function () { _dts_jest_runtime_.get_type_inference_or_throw_diagnostic(1) }).not.toThrowError();expect(Math.max(1)).toEqual(1) }) //=> 1
+describe(\\"Math.max(1)\\", function () { test(\\"(type) should not throw error\\", function () { expect(function () { _dts_jest_runtime_.get_type_inference_or_throw_diagnostic(1) }).not.toThrowError() });test(\\"(value) should equal to 1\\", function () { expect(Math.max(1)).toEqual(1) }) }) //=> 1
 
 describe(\\"A\\", function () { // @dts-jest:group A
 
 // @dts-jest:pass
-test(\\"Math.max(2)\\", function () { expect(function () { _dts_jest_runtime_.get_type_inference_or_throw_diagnostic(6) }).not.toThrowError();expect(Math.max(2)).toEqual(2) }) //=> 2
+describe(\\"Math.max(2)\\", function () { test(\\"(type) should not throw error\\", function () { expect(function () { _dts_jest_runtime_.get_type_inference_or_throw_diagnostic(6) }).not.toThrowError() });test(\\"(value) should equal to 2\\", function () { expect(Math.max(2)).toEqual(2) }) }) //=> 2
 
 // @dts-jest:pass
-test(\\"Math.max(3)\\", function () { expect(function () { _dts_jest_runtime_.get_type_inference_or_throw_diagnostic(9) }).not.toThrowError();expect(Math.max(3)).toEqual(3) }) //=> 3
+describe(\\"Math.max(3)\\", function () { test(\\"(type) should not throw error\\", function () { expect(function () { _dts_jest_runtime_.get_type_inference_or_throw_diagnostic(9) }).not.toThrowError() });test(\\"(value) should equal to 3\\", function () { expect(Math.max(3)).toEqual(3) }) }) //=> 3
 
  });describe(\\"B\\", function () { // @dts-jest:group B
 
 // @dts-jest:show
-test(\\"Math.max(4)\\", function () { console.log(_dts_jest_runtime_.get_type_report(14));console.log(_dts_jest_runtime_.get_value_report(14, function () { return Math.max(4) })) }) //=> ?
+describe(\\"Math.max(4)\\", function () { test(\\"(type) should show report\\", function () { console.log(_dts_jest_runtime_.get_type_report(14)) });test(\\"(value) should show report\\", function () { console.log(_dts_jest_runtime_.get_value_report(14, function () { return Math.max(4) })) }) }) //=> ?
 
 // @dts-jest:pass
-test(\\"Object.assign({\\\\n        a: 1,\\\\n      }, {\\\\n        b: 2,\\\\n      }, {\\\\n        c: 3,\\\\n      })\\", function () { expect(function () { _dts_jest_runtime_.get_type_inference_or_throw_diagnostic(17) }).not.toThrowError();expect(Object.assign({
+describe(\\"Object.assign({\\\\n        a: 1,\\\\n      }, {\\\\n        b: 2,\\\\n      }, {\\\\n        c: 3,\\\\n      })\\", function () { test(\\"(type) should not throw error\\", function () { expect(function () { _dts_jest_runtime_.get_type_inference_or_throw_diagnostic(17) }).not.toThrowError() });test(\\"(value) should equal to { a: 1, b: 2, c: 3, }\\", function () { expect(Object.assign({
   a: 1,
 }, {
   b: 2,
 }, {
   c: 3,
-})).toEqual({    a: 1,    b: 2,    c: 3,}) }) /*=>
+})).toEqual({ a: 1, b: 2, c: 3, }) }) }) /*=>
   {
     a: 1,
     b: 2,
@@ -138,22 +138,22 @@ test(\\"Object.assign({\\\\n        a: 1,\\\\n      }, {\\\\n        b: 2,\\\\n 
 
 exports[`should transform to fake environment for no-footers even if test_value = true 1`] = `
 "<create_setup_expression>;
-test(\\"Math.max(1)\\", function () { expect(function () { _dts_jest_runtime_.get_type_inference_or_throw_diagnostic(1) }).not.toThrowError() })
+describe(\\"Math.max(1)\\", function () { test(\\"(type) should not throw error\\", function () { expect(function () { _dts_jest_runtime_.get_type_inference_or_throw_diagnostic(1) }).not.toThrowError() }) })
 
 describe(\\"A\\", function () { 
 
 
-test(\\"Math.max(2)\\", function () { expect(function () { _dts_jest_runtime_.get_type_inference_or_throw_diagnostic(6) }).not.toThrowError() })
+describe(\\"Math.max(2)\\", function () { test(\\"(type) should not throw error\\", function () { expect(function () { _dts_jest_runtime_.get_type_inference_or_throw_diagnostic(6) }).not.toThrowError() }) })
 
 
-test(\\"Math.max(3)\\", function () { expect(function () { _dts_jest_runtime_.get_type_inference_or_throw_diagnostic(9) }).not.toThrowError() })
+describe(\\"Math.max(3)\\", function () { test(\\"(type) should not throw error\\", function () { expect(function () { _dts_jest_runtime_.get_type_inference_or_throw_diagnostic(9) }).not.toThrowError() }) })
 
  });describe(\\"B\\", function () { 
 
 
-test(\\"Math.max(4)\\", function () { expect(function () { _dts_jest_runtime_.get_type_inference_or_throw_diagnostic(14) }).not.toThrowError() })
+describe(\\"Math.max(4)\\", function () { test(\\"(type) should not throw error\\", function () { expect(function () { _dts_jest_runtime_.get_type_inference_or_throw_diagnostic(14) }).not.toThrowError() }) })
 
 
-test(\\"Object.assign({ a: 1 }, { b: 2 }, { c: 3 })\\", function () { expect(function () { _dts_jest_runtime_.get_type_inference_or_throw_diagnostic(17) }).not.toThrowError() })
+describe(\\"Object.assign({ a: 1 }, { b: 2 }, { c: 3 })\\", function () { test(\\"(type) should not throw error\\", function () { expect(function () { _dts_jest_runtime_.get_type_inference_or_throw_diagnostic(17) }).not.toThrowError() }) })
  });"
 `;

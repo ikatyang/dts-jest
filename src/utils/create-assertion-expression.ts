@@ -1,4 +1,5 @@
 import { Trigger, TriggerFooterFlag, TriggerHeaderFlags } from '../definitions';
+import { get_snapshot_description } from './get-snapshot-description';
 
 export interface CreateAssertionExpressionOptions {
   test_type: boolean;
@@ -18,31 +19,35 @@ export const create_assertion_expression = (
   const { header, body, footer } = trigger;
 
   push_type_show_if_available();
-  push_value_show_if_available();
   push_type_pass_if_available();
   push_type_fail_if_available();
+  push_type_snap_if_available();
+  push_value_show_if_available();
   push_value_equal_if_available();
   push_value_error_if_available();
   push_value_no_error_if_available();
-  push_type_snap_if_available();
-
-  if (expressions.length === 0) {
-    expressions.push(`expect.hasAssertions()`);
-  }
 
   return expressions.join(';');
 
   // tslint:disable:early-exit
   function push_type_show_if_available() {
     if (options.test_type && header.flags & TriggerHeaderFlags[':show']) {
-      expressions.push(`console.log(${options.get_type_report_expression})`);
+      expressions.push(
+        create_wrapper(
+          '(type) should show report',
+          `console.log(${options.get_type_report_expression})`,
+        ),
+      );
     }
   }
 
   function push_type_pass_if_available() {
     if (options.test_type && header.flags & TriggerHeaderFlags[':pass']) {
       expressions.push(
-        `expect(function () { ${options.get_type_inference_or_throw_diagnostic_expression} }).not.toThrowError()`,
+        create_wrapper(
+          '(type) should not throw error',
+          `expect(function () { ${options.get_type_inference_or_throw_diagnostic_expression} }).not.toThrowError()`,
+        ),
       );
     }
   }
@@ -50,15 +55,24 @@ export const create_assertion_expression = (
   function push_type_fail_if_available() {
     if (options.test_type && header.flags & TriggerHeaderFlags[':fail']) {
       expressions.push(
-        `expect(function () { ${options.get_type_inference_or_throw_diagnostic_expression} }).toThrowError()`,
+        create_wrapper(
+          '(type) should throw error',
+          `expect(function () { ${options.get_type_inference_or_throw_diagnostic_expression} }).toThrowError()`,
+        ),
       );
     }
   }
 
   function push_type_snap_if_available() {
     if (options.test_type && header.flags & TriggerHeaderFlags[':snap']) {
+      const snapshot_description = JSON.stringify(
+        get_snapshot_description(trigger),
+      );
       expressions.push(
-        `expect(${options.get_type_inference_or_diagnostic_expression}).toMatchSnapshot()`,
+        create_wrapper(
+          '(type) should match snapshot',
+          `expect(${options.get_type_inference_or_diagnostic_expression}).toMatchSnapshot(${snapshot_description})`,
+        ),
       );
     }
   }
@@ -70,7 +84,10 @@ export const create_assertion_expression = (
       footer.flag === undefined
     ) {
       expressions.push(
-        `expect(${body.expression}).toEqual(${footer.expected})`,
+        create_wrapper(
+          `(value) should equal to ${footer.expected}`,
+          `expect(${body.expression}).toEqual(${footer.expected})`,
+        ),
       );
     }
   }
@@ -82,7 +99,10 @@ export const create_assertion_expression = (
       footer.flag === TriggerFooterFlag.Error
     ) {
       expressions.push(
-        `expect(function () { ${body.expression} }).toThrowError()`,
+        create_wrapper(
+          '(value) should throw error',
+          `expect(function () { ${body.expression} }).toThrowError()`,
+        ),
       );
     }
   }
@@ -94,7 +114,10 @@ export const create_assertion_expression = (
       footer.flag === TriggerFooterFlag.NoError
     ) {
       expressions.push(
-        `expect(function () { ${body.expression} }).not.toThrowError()`,
+        create_wrapper(
+          '(value) should not throw error',
+          `expect(function () { ${body.expression} }).not.toThrowError()`,
+        ),
       );
     }
   }
@@ -105,8 +128,19 @@ export const create_assertion_expression = (
       footer !== undefined &&
       footer.flag === TriggerFooterFlag.Show
     ) {
-      expressions.push(`console.log(${options.get_value_report_expression})`);
+      expressions.push(
+        create_wrapper(
+          '(value) should show report',
+          `console.log(${options.get_value_report_expression})`,
+        ),
+      );
     }
   }
   // tslint:enable:early-exit
+
+  function create_wrapper(title: string, expression: string) {
+    const description = JSON.stringify(title);
+    const { header: { method } } = trigger;
+    return `${method}(${description}, function () { ${expression} })`;
+  }
 };
