@@ -1,6 +1,9 @@
 import * as ts from 'typescript';
+import { cwd_serializer } from '../helpers/cwd-serializer';
 import { get_fixture_filename } from '../helpers/load-fixture';
 import { load_compiler_options } from './load-compiler-options';
+
+expect.addSnapshotSerializer(cwd_serializer);
 
 it('should return correctly with tsconfig (filename)', () => {
   expect(load_options('example')).toMatchSnapshot();
