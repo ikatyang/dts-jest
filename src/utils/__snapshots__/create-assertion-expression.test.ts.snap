@@ -42,7 +42,7 @@ Array [
   Array [
     "Object.assign({ a: 1 }, { b: 2 }, { c: 3 })",
     Array [
-      "test(\\"(value) should equal to {    a: 1,    b: 2,    c: 3,}\\", function () { expect(Object.assign({ a: 1 }, { b: 2 }, { c: 3 })).toEqual({    a: 1,    b: 2,    c: 3,}) })",
+      "test(\\"(value) should equal to { a: 1, b: 2, c: 3, }\\", function () { expect(Object.assign({ a: 1 }, { b: 2 }, { c: 3 })).toEqual({ a: 1, b: 2, c: 3, }) })",
       "test(\\"(type) should match snapshot\\", function () { expect(<get_type_inference_or_diagnostic_expression>).toMatchSnapshot() })",
     ],
   ],

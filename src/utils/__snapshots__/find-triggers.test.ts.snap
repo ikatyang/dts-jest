@@ -80,7 +80,7 @@ Array [
       "start": 180,
     },
     "footer": Object {
-      "expected": "{    a: 1,    b: 2,    c: 3,}",
+      "expected": "{ a: 1, b: 2, c: 3, }",
       "line": 14,
     },
     "header": Object {

@@ -50,6 +50,6 @@ export const normalize_expected_value = (
 
   return printer
     .printNode(ts.EmitHint.Expression, expression, source_file)
-    .replace(/\n/g, '') // TODO: remove unnecessary spaces
+    .replace(/\s*\n\s*/g, ' ')
     .replace(/;+$/, '');
 };
