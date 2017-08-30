@@ -3,7 +3,7 @@ import * as _ts from 'typescript';
 import { TestMethod, Trigger, TriggerHeaderFlags } from './definitions';
 import { create_source_file } from './utils/create-source-file';
 import { find_triggers } from './utils/find-triggers';
-import { get_description_for_jest } from './utils/get-description-for-jest';
+import { get_snapshot_description } from './utils/get-snapshot-description';
 import { normalize_trigger_header_methods } from './utils/normalize-trigger-header-methods';
 
 // tslint:disable-next-line:no-duplicate-imports no-unused-variable
@@ -41,10 +41,9 @@ export const remap = (
         trigger.header.flags & TriggerHeaderFlags[':snap'],
     )
     .forEach(trigger => {
-      const base_title = get_snapshot_base_title(trigger);
-      const counter = get_increased_counter(base_title);
-
-      const title = `${base_title} ${counter}`;
+      const description = get_snapshot_description(trigger);
+      const counter = get_increased_counter(description);
+      const title = `${description} ${counter}`;
 
       if (!(title in parsed_snapshot)) {
         throw new Error(`Unmatched snapshot title \`${title}\``);
@@ -71,10 +70,3 @@ export const remap = (
     return (counters[title] = title in counters ? counters[title] + 1 : 1);
   }
 };
-
-function get_snapshot_base_title(trigger: Trigger) {
-  const { header } = trigger;
-  const has_group = header.group !== undefined;
-  const title = get_description_for_jest(trigger);
-  return has_group ? `${header.group!.description} ${title}` : title;
-}
