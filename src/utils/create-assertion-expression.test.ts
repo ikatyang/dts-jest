@@ -20,7 +20,9 @@ it('should return correctly', () => {
           '<get_type_inference_or_throw_diagnostic_expression>',
         get_type_report_expression: '<get_type_report_expression>',
         get_value_report_expression: '<get_value_report_expression>',
-      }).split(';'),
+      })
+        .split(';')
+        .filter(x => x.length !== 0),
     ]),
   ).toMatchSnapshot();
 });

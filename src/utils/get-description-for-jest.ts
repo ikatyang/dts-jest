@@ -1,5 +1,6 @@
 import { Trigger } from '../definitions';
 
+// TODO: apply new indentation
 const jest_title_leading_spaces_count = 4;
 const jest_grouped_title_leading_spaces_count = 6;
 
