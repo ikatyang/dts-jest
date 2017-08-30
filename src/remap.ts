@@ -1,6 +1,6 @@
 import * as jest_snapshot_parser from 'jest-snapshot-parser';
 import * as _ts from 'typescript';
-import { TestMethod, Trigger } from './definitions';
+import { TestMethod, Trigger, TriggerHeaderFlags } from './definitions';
 import { create_source_file } from './utils/create-source-file';
 import { find_triggers } from './utils/find-triggers';
 import { get_description_for_jest } from './utils/get-description-for-jest';
@@ -35,7 +35,11 @@ export const remap = (
   const counters: Record<string, number> = {};
 
   triggers
-    .filter(trigger => trigger.header.method === TestMethod.Test)
+    .filter(
+      trigger =>
+        trigger.header.method === TestMethod.Test &&
+        trigger.header.flags & TriggerHeaderFlags[':snap'],
+    )
     .forEach(trigger => {
       const base_title = get_snapshot_base_title(trigger);
       const counter = get_increased_counter(base_title);
