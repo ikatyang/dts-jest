@@ -123,6 +123,7 @@ export interface RawConfig extends DocblockOptions {
   enclosing_declaration?: boolean;
   type_format_flags?: _ts.TypeFormatFlags;
   typescript?: string;
+  transpile?: boolean;
 }
 
 export interface NormalizedConfig {
@@ -133,4 +134,5 @@ export interface NormalizedConfig {
   type_format_flags: _ts.TypeFormatFlags;
   typescript: typeof _ts;
   typescript_path: string;
+  transpile: boolean;
 }

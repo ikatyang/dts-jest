@@ -6,11 +6,13 @@ import {
   Trigger,
 } from './definitions';
 import { apply_grouping } from './utils/apply-grouping';
+import { create_message } from './utils/create-message';
 import { create_setup_expression } from './utils/create-setup-expression';
 import { create_source_file } from './utils/create-source-file';
 import { create_test_expression } from './utils/create-test-expression';
 import { find_docblock_options } from './utils/find-docblock-options';
 import { find_triggers } from './utils/find-triggers';
+import { get_diagnostic_message } from './utils/get-diagnostic-message';
 import { get_trigger_groups } from './utils/get-trigger-groups';
 import { get_trigger_body_line } from './utils/get-trigger-line';
 import { normalize_config } from './utils/normalize-config';
@@ -28,7 +30,7 @@ export const transform: jest.Transformer['process'] = (
     jest_config.rootDir,
   );
 
-  const { typescript: ts } = normalized_config;
+  const { typescript: ts, compiler_options, transpile } = normalized_config;
 
   const source_file = create_source_file(source_filename, source_text, ts);
   const triggers = find_triggers(source_file, ts);
@@ -85,8 +87,30 @@ export const transform: jest.Transformer['process'] = (
         transformed.slice(0, start) + test_expression + transformed.slice(end);
     }
 
-    const transformed_line_contents = transformed.split('\n');
-    return apply_grouping(transformed_line_contents, groups).join('\n');
+    transformed = apply_grouping(transformed.split('\n'), groups).join('\n');
+
+    if (!transpile) {
+      return transformed;
+    }
+
+    const transpile_output = ts.transpileModule(transformed, {
+      compilerOptions: compiler_options,
+      fileName: source_filename,
+    });
+
+    if (
+      transpile_output.diagnostics !== undefined &&
+      transpile_output.diagnostics.length !== 0
+    ) {
+      throw new Error(
+        create_message(
+          `Unexpected error while transpiling '${source_filename}':`,
+          transpile_output.diagnostics.map(get_diagnostic_message),
+        ),
+      );
+    }
+
+    return transpile_output.outputText;
   }
 };
 
