@@ -6,7 +6,6 @@ import {
   Trigger,
 } from './definitions';
 import { apply_grouping } from './utils/apply-grouping';
-import { create_assertion_expression } from './utils/create-assertion-expression';
 import { create_setup_expression } from './utils/create-setup-expression';
 import { create_source_file } from './utils/create-source-file';
 import { create_test_expression } from './utils/create-test-expression';
@@ -99,7 +98,7 @@ function get_test_expression(
   const body_line = get_trigger_body_line(trigger.header.line);
   const { body: { expression } } = trigger;
 
-  const assertion_expression = create_assertion_expression(trigger, {
+  return create_test_expression(trigger, {
     test_type,
     test_value,
     get_type_inference_or_diagnostic_expression: `${runtime_namespace}.get_type_inference_or_diagnostic(${body_line})`,
@@ -107,6 +106,4 @@ function get_test_expression(
     get_type_report_expression: `${runtime_namespace}.get_type_report(${body_line})`,
     get_value_report_expression: `${runtime_namespace}.get_value_report(${body_line}, function () { return ${expression} })`,
   });
-
-  return create_test_expression(trigger, assertion_expression);
 }
