@@ -17,6 +17,7 @@ export const create_assertion_expression = (
 
   const { header, body, footer } = trigger;
 
+  // TODO: sort
   push_type_show_if_available();
   push_value_show_if_available();
   push_type_pass_if_available();
