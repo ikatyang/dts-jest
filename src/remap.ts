@@ -1,6 +1,6 @@
 import * as jest_snapshot_parser from 'jest-snapshot-parser';
 import * as _ts from 'typescript';
-import { TestMethod, Trigger, TriggerHeaderFlags } from './definitions';
+import { TestMethod, TriggerHeaderFlags } from './definitions';
 import { create_source_file } from './utils/create-source-file';
 import { find_triggers } from './utils/find-triggers';
 import { get_snapshot_description } from './utils/get-snapshot-description';

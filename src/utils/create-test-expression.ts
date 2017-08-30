@@ -1,4 +1,4 @@
-import { GroupMethod, Trigger, TestMethod } from '../definitions';
+import { GroupMethod, Trigger } from '../definitions';
 import {
   create_assertion_expression,
   CreateAssertionExpressionOptions,
