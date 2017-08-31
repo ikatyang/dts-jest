@@ -1,7 +1,7 @@
 import { Trigger } from '../definitions';
 
-const jest_title_leading_spaces_count = 4;
-const jest_grouped_title_leading_spaces_count = 6;
+const jest_title_leading_spaces_count = 2;
+const jest_grouped_title_leading_spaces_count = 4;
 
 export const get_description_for_jest = (trigger: Trigger) => {
   const { header, body } = trigger;
