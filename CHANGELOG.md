@@ -2,6 +2,71 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="22.0.0"></a>
+# [22.0.0](https://github.com/ikatyang/dts-jest/compare/v21.0.0...v22.0.0) (2017-08-31)
+
+
+### Bug Fixes
+
+* **deps:** jest peerDeps should allow ^20.0.0 ([1a24239](https://github.com/ikatyang/dts-jest/commit/1a24239))
+* report unmatched diagnostic ([#52](https://github.com/ikatyang/dts-jest/issues/52)) ([4ab0f86](https://github.com/ikatyang/dts-jest/commit/4ab0f86))
+* **deps:** update peerDeps typescript to ^2.3.0 ([c075dd2](https://github.com/ikatyang/dts-jest/commit/c075dd2))
+
+### Features
+
+* add ability to specify which typescript to use ([#49](https://github.com/ikatyang/dts-jest/issues/49)) ([9213bc1](https://github.com/ikatyang/dts-jest/commit/9213bc1))
+* add reporter to show current TS version ([#51](https://github.com/ikatyang/dts-jest/issues/51)) ([bf4ee48](https://github.com/ikatyang/dts-jest/commit/bf4ee48))
+* combine type and value tests ([#69](https://github.com/ikatyang/dts-jest/issues/69)) ([876b37d](https://github.com/ikatyang/dts-jest/commit/876b37d))
+* redefine flags ([#54](https://github.com/ikatyang/dts-jest/issues/54)) ([dc1883f](https://github.com/ikatyang/dts-jest/commit/dc1883f))
+* rewrite remap & remap-cli ([#59](https://github.com/ikatyang/dts-jest/issues/59)) ([1db5ea0](https://github.com/ikatyang/dts-jest/commit/1db5ea0))
+* show detailed test title ([#74](https://github.com/ikatyang/dts-jest/issues/74)) ([2eac61f](https://github.com/ikatyang/dts-jest/commit/2eac61f))
+* support `tsconfig.json` literal options ([#56](https://github.com/ikatyang/dts-jest/issues/56)) ([f9dd34a](https://github.com/ikatyang/dts-jest/commit/f9dd34a))
+
+
+### BREAKING CHANGES
+
+* **deps:** drop TS < v2.3
+* **transform-actual:** remove transformer `transform-actual` as it currently combined with `transform`
+* **remap:** [API] `remap(...)`
+  * before
+    * `snapshot_content`
+      * allow `string` (raw content from *.snap)
+      * allow `Record<string, string>` (unparsed content from *.snap)
+  * after
+    * `snapshot_content`
+      * allow `string` (raw content from *.snap)
+      * allow `Record<string, string>` (parsed content from *.snap)
+* **remap-cli:** rename bin from `dts-jest-remap-snapshot` to `dts-jest-remap`
+  * input using source file instead of snapshot file, e.g.
+    * before: `./__snapshots__/example.ts.snap`
+    * after: `./example.ts`
+  * output content does not print to stdout now, use `--outDir` and `--rename` to specify output path instead
+* **configs:** replace config value with config literal
+  * Before
+    ```json5
+    {
+      "target": 5 // ts.ScriptTarget.ESNext
+    }
+    ```
+  * After
+    ```json
+    {
+      "target": "esnext"
+    }
+    ```
+* **flags:** redefine flag
+  * type tests
+    * `@dts-jest` -> `@dts-jest:snapshot`
+    * `@dts-jest:snap` -> `@dts-jest:snapshot`
+    * `@dts-jest:pass` -> `@dts-jest:pass:snapshot`
+    * `@dts-jest:fail` -> `@dts-jest:fail:snapshot`
+  * actual tests
+    * `@dts-jest` + `//=> value` -> `//=> :no-error`
+    * `@dts-jest:snap` + `//=> value` -> `//=> :no-error`
+    * `@dts-jest:show` + `//=> value` -> `//=> ?`
+    * `@dts-jest:pass` + `//=> value` -> `//=> value`
+    * `@dts-jest:fail` + `//=> value` -> `//=> :error`
+
 <a name="21.0.0"></a>
 # [21.0.0](https://github.com/ikatyang/dts-jest/compare/v20.5.1...v21.0.0) (2017-08-18)
 
