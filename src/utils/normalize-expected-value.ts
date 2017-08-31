@@ -3,7 +3,7 @@ import { create_message } from './create-message';
 import { create_source_file } from './create-source-file';
 import { get_diagnostic_message } from './get-diagnostic-message';
 import { get_display_line } from './get-display-line';
-import { get_one_line_node_text } from './get-one-line-node-text';
+import { get_node_one_line_text } from './get-node-one-line-text';
 
 interface InternalSourceFile extends _ts.SourceFile {
   parseDiagnostics?: _ts.Diagnostic[];
@@ -38,5 +38,5 @@ export const normalize_expected_value = (
   const expression = (source_file.statements[0] as _ts.VariableStatement)
     .declarationList.declarations[0].initializer!;
 
-  return get_one_line_node_text(expression, source_file, ts);
+  return get_node_one_line_text(expression, source_file, ts);
 };
