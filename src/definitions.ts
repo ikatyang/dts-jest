@@ -87,7 +87,7 @@ export interface TriggerBody {
   start: number;
   end: number;
   one_line_expression: string;
-  expression: string;
+  text: string;
 }
 
 export interface TriggerFooter {

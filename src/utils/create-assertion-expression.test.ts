@@ -10,7 +10,7 @@ it('should return correctly', () => {
   );
   expect(
     triggers.map(trigger => [
-      trigger.body.expression,
+      trigger.body.text,
       create_assertion_expression(trigger, {
         test_type: true,
         test_value: true,
