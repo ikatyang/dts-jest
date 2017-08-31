@@ -87,11 +87,11 @@ export interface TriggerBody {
   start: number;
   end: number;
   /**
-   * raw expression text without trailing comma
+   * raw expression text without trailing semicolon
    */
   text: string;
   /**
-   * one line expression text without trailing comma
+   * one line expression text without trailing semicolon
    */
   experssion: string;
 }
