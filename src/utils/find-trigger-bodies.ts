@@ -60,7 +60,9 @@ export const find_trigger_bodies = (
         start,
         end,
         one_line_expression: get_one_line_node_text(node, source_file, ts),
-        expression: get_formatted_expression(node, source_file),
+        expression: get_dedented_expression_text(node, source_file)
+          // remove trailing semicolons and spaces
+          .replace(/\s*;*\s*$/, ''),
       });
     },
     ts,
@@ -98,15 +100,16 @@ export const find_trigger_bodies = (
   return bodies;
 };
 
-function get_formatted_expression(node: _ts.Node, source_file: _ts.SourceFile) {
+function get_dedented_expression_text(
+  node: _ts.Node,
+  source_file: _ts.SourceFile,
+) {
   const start = node.getStart();
   const { character } = source_file.getLineAndCharacterOfPosition(start);
 
   return (
     node
       .getText(source_file)
-      // remove trailing semicolons and spaces
-      .replace(/\s*;*\s*$/, '')
       // dedent
       .replace(/^ */gm, spaces =>
         ' '.repeat(Math.max(0, spaces.length - character)),
