@@ -18,6 +18,7 @@ A preprocessor for [Jest](https://facebook.github.io/jest/) to snapshot test [Ty
 - [Testing](#testing)
 - [Configs](#configs)
 - [Generate diff-friendly snapshots](#generate-diff-friendly-snapshots)
+- [FAQ](#faq)
 - [Development](#development)
 - [Related](#related)
 - [License](#license)
@@ -31,6 +32,8 @@ npm install --save-dev dts-jest jest typescript
 # using yarn
 yarn add --dev dts-jest jest typescript
 ```
+
+- require `jest@^20.0.0` and `typescript@^2.3.0`
 
 ## Usage
 
@@ -243,14 +246,16 @@ There are several options
 - typescript
   - default: `typescript` (node resolution)
   - specify which path of typescript to use
-  - `<rootDir>` available
 - compiler_options
   - default: `{}`
   - specify which *path of `tsconfig.json` (string)* or *compilerOptions (object)* to use
-  - `<rootDir>` available
 - type_format_flags
   - default: `ts.TypeFormatFlags.NoTruncation`
   - specify type format
+- transpile
+  - default: `true`
+  - transpile code before testing, only affect tests that needs to test value
+  - transpiling code will cause line number incorrect, it's better to disable this option if possible
 
 For example:
 
@@ -317,6 +322,16 @@ Options:
   --typescript, -t     Specify which TypeScript source to use           [string]
   --version, -v        Show version number                             [boolean]
 ```
+
+## FAQ
+
+- `Compiler option 'lib' requires a value of type list`
+  - Arrays in `jest` > `globals` > `_dts_jest_` will be transformed into objects.
+  - Consider to use [`setupFiles`](https://facebook.github.io/jest/docs/en/configuration.html#setupfiles-array) to set configs (`globals._dts_jest_ = { ... }`).
+  - See [jest#2093](https://github.com/facebook/jest/issues/2093) for details.
+- `Debug Failure`
+  - This is mostly caused by regex literal due to the printer bug [TypeScript#18071](https://github.com/Microsoft/TypeScript/issues/18071) (fixed in TS v2.6).
+  - Workaround: use regex instance instead, e.g. `new RegExp('something')`.
 
 ## Development
 
