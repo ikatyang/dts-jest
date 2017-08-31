@@ -86,7 +86,14 @@ export interface TriggerHeader {
 export interface TriggerBody {
   start: number;
   end: number;
-  expression: string;
+  /**
+   * raw expression text without trailing semicolon
+   */
+  text: string;
+  /**
+   * one line expression text without trailing semicolon
+   */
+  experssion: string;
 }
 
 export interface TriggerFooter {

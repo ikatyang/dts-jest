@@ -4,31 +4,35 @@ exports[`should return correctly 1`] = `
 Array [
   Object {
     "end": 31,
-    "expression": "Math.max(1, 2, 3)",
+    "experssion": "Math.max(1, 2, 3)",
     "start": 13,
+    "text": "Math.max(1, 2, 3)",
   },
   Object {
     "end": 73,
-    "expression": "Math.max(
+    "experssion": "Math.max(1, 2, 3)",
+    "start": 46,
+    "text": "Math.max(
   1,
   2,
   3,
 )",
-    "start": 46,
   },
   Object {
     "end": 119,
-    "expression": "Math.max(1, 2, 3)",
+    "experssion": "Math.max(1, 2, 3)",
     "start": 101,
+    "text": "Math.max(1, 2, 3)",
   },
   Object {
     "end": 187,
-    "expression": "Math.max(
+    "experssion": "Math.max(1, 2, 3)",
+    "start": 152,
+    "text": "Math.max(
   1,
   2,
   3,
 )",
-    "start": 152,
   },
 ]
 `;

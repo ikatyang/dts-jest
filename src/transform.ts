@@ -70,13 +70,10 @@ export const transform: jest.Transformer['process'] = (
     for (let i = triggers.length - 1; i >= 0; i--) {
       const trigger = triggers[i];
 
-      const test_expression = get_test_expression(
-        trigger,
-        test_type,
-        test_value,
-      );
-
-      const { start, end } = trigger.body;
+      const { start, end, text } = trigger.body;
+      const test_expression =
+        get_test_expression(trigger, test_type, test_value) +
+        text.replace(/[^\n]/g, ''); // add missing line break so as to retain line number
 
       transformed =
         transformed.slice(0, start) + test_expression + transformed.slice(end);
@@ -116,7 +113,7 @@ function get_test_expression(
   test_value: boolean,
 ) {
   const body_line = get_trigger_body_line(trigger.header.line);
-  const { body: { expression } } = trigger;
+  const { body: { text } } = trigger;
 
   return create_test_expression(trigger, {
     test_type,
@@ -124,6 +121,6 @@ function get_test_expression(
     get_type_inference_or_diagnostic_expression: `${runtime_namespace}.get_type_inference_or_diagnostic(${body_line})`,
     get_type_inference_or_throw_diagnostic_expression: `${runtime_namespace}.get_type_inference_or_throw_diagnostic(${body_line})`,
     get_type_report_expression: `${runtime_namespace}.get_type_report(${body_line})`,
-    get_value_report_expression: `${runtime_namespace}.get_value_report(${body_line}, function () { return ${expression} })`,
+    get_value_report_expression: `${runtime_namespace}.get_value_report(${body_line}, function () { return ${text} })`,
   });
 }

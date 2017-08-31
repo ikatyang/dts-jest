@@ -1,5 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`should retain line number while transforming 1`] = `
+"<create_setup_expression>;// @dts-jest:pass
+describe(\\"Object.assign({\\\\n      a: 1,\\\\n    }, {\\\\n      b: 2,\\\\n    }, {\\\\n      c: 3,\\\\n    })\\", function () { test(\\"(type) should not throw error\\", function () { expect(function () { _dts_jest_runtime_.get_type_inference_or_throw_diagnostic(1) }).not.toThrowError() });test(\\"(value) should equal to 123\\", function () { expect(Object.assign({ a: 1, }, { b: 2, }, { c: 3, })).toEqual(123) }) })
+
+
+
+
+
+ //=> 123
+
+// @dts-jest:pass
+describe(\\"Object.assign({\\\\n      a: 1,\\\\n    }, {\\\\n      b: 2,\\\\n    }, {\\\\n      c: 3,\\\\n    })\\", function () { test(\\"(type) should not throw error\\", function () { expect(function () { _dts_jest_runtime_.get_type_inference_or_throw_diagnostic(10) }).not.toThrowError() });test(\\"(value) should equal to { a: 1, b: 2, c: 3, }\\", function () { expect(Object.assign({ a: 1, }, { b: 2, }, { c: 3, })).toEqual({ a: 1, b: 2, c: 3, }) }) })
+
+
+
+
+
+ /*=>
+  {
+    a: 1,
+    b: 2,
+    c: 3,
+  }
+*/
+"
+`;
+
 exports[`should transform correctly with { test_type: false, test_value: false } 1`] = `
 "<create_setup_expression>;
 describe(\\"Math.max(1)\\", function () {  })
@@ -52,13 +79,13 @@ describe(\\"Math.max(3)\\", function () { test(\\"(value) should equal to 3\\", 
 describe(\\"Math.max(4)\\", function () { test(\\"(value) should show report\\", function () { console.log(_dts_jest_runtime_.get_value_report(14, function () { return Math.max(4) })) }) }) //=> ?
 
 // @dts-jest:pass
-describe(\\"Object.assign({\\\\n        a: 1,\\\\n      }, {\\\\n        b: 2,\\\\n      }, {\\\\n        c: 3,\\\\n      })\\", function () { test(\\"(value) should equal to { a: 1, b: 2, c: 3, }\\", function () { expect(Object.assign({
-  a: 1,
-}, {
-  b: 2,
-}, {
-  c: 3,
-})).toEqual({ a: 1, b: 2, c: 3, }) }) }) /*=>
+describe(\\"Object.assign({\\\\n        a: 1,\\\\n      }, {\\\\n        b: 2,\\\\n      }, {\\\\n        c: 3,\\\\n      })\\", function () { test(\\"(value) should equal to { a: 1, b: 2, c: 3, }\\", function () { expect(Object.assign({ a: 1, }, { b: 2, }, { c: 3, })).toEqual({ a: 1, b: 2, c: 3, }) }) })
+
+
+
+
+
+ /*=>
   {
     a: 1,
     b: 2,
@@ -120,13 +147,13 @@ describe(\\"Math.max(3)\\", function () { test(\\"(type) should not throw error\
 describe(\\"Math.max(4)\\", function () { test(\\"(type) should show report\\", function () { console.log(_dts_jest_runtime_.get_type_report(14)) });test(\\"(value) should show report\\", function () { console.log(_dts_jest_runtime_.get_value_report(14, function () { return Math.max(4) })) }) }) //=> ?
 
 // @dts-jest:pass
-describe(\\"Object.assign({\\\\n        a: 1,\\\\n      }, {\\\\n        b: 2,\\\\n      }, {\\\\n        c: 3,\\\\n      })\\", function () { test(\\"(type) should not throw error\\", function () { expect(function () { _dts_jest_runtime_.get_type_inference_or_throw_diagnostic(17) }).not.toThrowError() });test(\\"(value) should equal to { a: 1, b: 2, c: 3, }\\", function () { expect(Object.assign({
-  a: 1,
-}, {
-  b: 2,
-}, {
-  c: 3,
-})).toEqual({ a: 1, b: 2, c: 3, }) }) }) /*=>
+describe(\\"Object.assign({\\\\n        a: 1,\\\\n      }, {\\\\n        b: 2,\\\\n      }, {\\\\n        c: 3,\\\\n      })\\", function () { test(\\"(type) should not throw error\\", function () { expect(function () { _dts_jest_runtime_.get_type_inference_or_throw_diagnostic(17) }).not.toThrowError() });test(\\"(value) should equal to { a: 1, b: 2, c: 3, }\\", function () { expect(Object.assign({ a: 1, }, { b: 2, }, { c: 3, })).toEqual({ a: 1, b: 2, c: 3, }) }) })
+
+
+
+
+
+ /*=>
   {
     a: 1,
     b: 2,
@@ -141,7 +168,7 @@ exports[`should transform to commonjs if set 1`] = `
 exports.__esModule = true;
 var path = require(\\"path\\");
 // @dts-jest
-describe(\\"path.basename('path/to/somewhere')\\", function () { test(\\"(value) should equal to \\\\\\"somewhere\\\\\\"\\", function () { expect(path.basename('path/to/somewhere')).toEqual(\\"somewhere\\"); }); }); //=> 'somewhere'
+describe(\\"path.basename('path/to/somewhere')\\", function () { test(\\"(value) should equal to \\\\\\"somewhere\\\\\\"\\", function () { expect(path.basename(\\"path/to/somewhere\\")).toEqual(\\"somewhere\\"); }); }); //=> 'somewhere'
 "
 `;
 

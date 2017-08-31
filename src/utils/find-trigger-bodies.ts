@@ -2,6 +2,7 @@ import * as _ts from 'typescript';
 import { TriggerBody, TriggerGroup, TriggerHeader } from '../definitions';
 import { create_message } from './create-message';
 import { get_display_line } from './get-display-line';
+import { get_node_one_line_text } from './get-node-one-line-text';
 import { get_trigger_groups } from './get-trigger-groups';
 import { get_trigger_header_line } from './get-trigger-line';
 import { traverse_node } from './traverse-node';
@@ -58,7 +59,10 @@ export const find_trigger_bodies = (
       bodies.push({
         start,
         end,
-        expression: get_formatted_expression(node, source_file),
+        experssion: get_node_one_line_text(node, source_file, ts),
+        text: get_dedented_expression_text(node, source_file)
+          // remove trailing semicolons and spaces
+          .replace(/\s*;*\s*$/, ''),
       });
     },
     ts,
@@ -96,15 +100,16 @@ export const find_trigger_bodies = (
   return bodies;
 };
 
-function get_formatted_expression(node: _ts.Node, source_file: _ts.SourceFile) {
+function get_dedented_expression_text(
+  node: _ts.Node,
+  source_file: _ts.SourceFile,
+) {
   const start = node.getStart();
   const { character } = source_file.getLineAndCharacterOfPosition(start);
 
   return (
     node
       .getText(source_file)
-      // remove trailing semicolons and spaces
-      .replace(/\s*;*\s*$/, '')
       // dedent
       .replace(/^ */gm, spaces =>
         ' '.repeat(Math.max(0, spaces.length - character)),

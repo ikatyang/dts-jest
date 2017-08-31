@@ -48,6 +48,12 @@ it('should respect docblock options', () => {
   );
 });
 
+it('should retain line number while transforming', () => {
+  expect(
+    transform_fixture('multi-line', { test_value: true }),
+  ).toMatchSnapshot();
+});
+
 it('should transform to commonjs if set', () => {
   expect(
     transform_fixture('commonjs', {

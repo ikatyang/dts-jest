@@ -108,7 +108,7 @@ export class Runtime {
     const description =
       header.description === undefined ? '' : `\n${header.description}\n`;
 
-    const indented_expression = indent(body.expression, runtime_indent_spaces);
+    const indented_expression = indent(body.text, runtime_indent_spaces);
     const indented_value = indent(value, runtime_indent_spaces);
 
     const line = kind === 'type' ? header.line : trigger.footer!.line;

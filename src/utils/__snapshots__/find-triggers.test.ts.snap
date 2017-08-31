@@ -5,8 +5,9 @@ Array [
   Object {
     "body": Object {
       "end": 63,
-      "expression": "Math.max(1, 2, 3)",
+      "experssion": "Math.max(1, 2, 3)",
       "start": 45,
+      "text": "Math.max(1, 2, 3)",
     },
     "footer": Object {
       "expected": "3",
@@ -31,8 +32,9 @@ Array [
   Object {
     "body": Object {
       "end": 103,
-      "expression": "Math.abs(-1)",
+      "experssion": "Math.abs(-1)",
       "start": 90,
+      "text": "Math.abs(-1)",
     },
     "footer": Object {
       "flag": "?",
@@ -56,8 +58,9 @@ Array [
   Object {
     "body": Object {
       "end": 165,
-      "expression": "Math.cos(Math.PI)",
+      "experssion": "Math.cos(Math.PI)",
       "start": 147,
+      "text": "Math.cos(Math.PI)",
     },
     "footer": undefined,
     "header": Object {
@@ -76,8 +79,9 @@ Array [
   Object {
     "body": Object {
       "end": 224,
-      "expression": "Object.assign({ a: 1 }, { b: 2 }, { c: 3 })",
+      "experssion": "Object.assign({ a: 1 }, { b: 2 }, { c: 3 })",
       "start": 180,
+      "text": "Object.assign({ a: 1 }, { b: 2 }, { c: 3 })",
     },
     "footer": Object {
       "expected": "{ a: 1, b: 2, c: 3, }",
