@@ -70,13 +70,10 @@ export const transform: jest.Transformer['process'] = (
     for (let i = triggers.length - 1; i >= 0; i--) {
       const trigger = triggers[i];
 
-      const test_expression = get_test_expression(
-        trigger,
-        test_type,
-        test_value,
-      );
-
-      const { start, end } = trigger.body;
+      const { start, end, text } = trigger.body;
+      const test_expression =
+        get_test_expression(trigger, test_type, test_value) +
+        text.replace(/[^\n]/g, ''); // add missing line break so as to retain line number
 
       transformed =
         transformed.slice(0, start) + test_expression + transformed.slice(end);
