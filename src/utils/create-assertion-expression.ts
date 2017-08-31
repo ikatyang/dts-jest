@@ -86,7 +86,7 @@ export const create_assertion_expression = (
       expressions.push(
         create_wrapper(
           `(value) should equal to ${footer.expected}`,
-          `expect(${body.text}).toEqual(${footer.expected})`,
+          `expect(${body.experssion}).toEqual(${footer.expected})`,
         ),
       );
     }
@@ -101,7 +101,7 @@ export const create_assertion_expression = (
       expressions.push(
         create_wrapper(
           '(value) should throw error',
-          `expect(function () { ${body.text} }).toThrowError()`,
+          `expect(function () { ${body.experssion} }).toThrowError()`,
         ),
       );
     }
@@ -116,7 +116,7 @@ export const create_assertion_expression = (
       expressions.push(
         create_wrapper(
           '(value) should not throw error',
-          `expect(function () { ${body.text} }).not.toThrowError()`,
+          `expect(function () { ${body.experssion} }).not.toThrowError()`,
         ),
       );
     }
