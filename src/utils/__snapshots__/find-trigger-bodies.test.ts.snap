@@ -5,6 +5,7 @@ Array [
   Object {
     "end": 31,
     "expression": "Math.max(1, 2, 3)",
+    "one_line_expression": "Math.max(1, 2, 3)",
     "start": 13,
   },
   Object {
@@ -14,11 +15,13 @@ Array [
   2,
   3,
 )",
+    "one_line_expression": "Math.max(1, 2, 3)",
     "start": 46,
   },
   Object {
     "end": 119,
     "expression": "Math.max(1, 2, 3)",
+    "one_line_expression": "Math.max(1, 2, 3)",
     "start": 101,
   },
   Object {
@@ -28,6 +31,7 @@ Array [
   2,
   3,
 )",
+    "one_line_expression": "Math.max(1, 2, 3)",
     "start": 152,
   },
 ]

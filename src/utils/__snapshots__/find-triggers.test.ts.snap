@@ -6,6 +6,7 @@ Array [
     "body": Object {
       "end": 63,
       "expression": "Math.max(1, 2, 3)",
+      "one_line_expression": "Math.max(1, 2, 3)",
       "start": 45,
     },
     "footer": Object {
@@ -32,6 +33,7 @@ Array [
     "body": Object {
       "end": 103,
       "expression": "Math.abs(-1)",
+      "one_line_expression": "Math.abs(-1)",
       "start": 90,
     },
     "footer": Object {
@@ -57,6 +59,7 @@ Array [
     "body": Object {
       "end": 165,
       "expression": "Math.cos(Math.PI)",
+      "one_line_expression": "Math.cos(Math.PI)",
       "start": 147,
     },
     "footer": undefined,
@@ -77,6 +80,7 @@ Array [
     "body": Object {
       "end": 224,
       "expression": "Object.assign({ a: 1 }, { b: 2 }, { c: 3 })",
+      "one_line_expression": "Object.assign({ a: 1 }, { b: 2 }, { c: 3 })",
       "start": 180,
     },
     "footer": Object {

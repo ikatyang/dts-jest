@@ -2,6 +2,7 @@ import * as _ts from 'typescript';
 import { TriggerBody, TriggerGroup, TriggerHeader } from '../definitions';
 import { create_message } from './create-message';
 import { get_display_line } from './get-display-line';
+import { get_one_line_node_text } from './get-one-line-node-text';
 import { get_trigger_groups } from './get-trigger-groups';
 import { get_trigger_header_line } from './get-trigger-line';
 import { traverse_node } from './traverse-node';
@@ -58,6 +59,7 @@ export const find_trigger_bodies = (
       bodies.push({
         start,
         end,
+        one_line_expression: get_one_line_node_text(node, source_file, ts),
         expression: get_formatted_expression(node, source_file),
       });
     },
