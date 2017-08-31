@@ -8,31 +8,32 @@ A preprocessor for [Jest](https://facebook.github.io/jest/) to snapshot test [Ty
 
 [Changelog](https://github.com/ikatyang/dts-jest/blob/master/CHANGELOG.md)
 
-- [Version](#version)
 - [Install](#install)
 - [Usage](#usage)
-- [Writing tests](#writing-tests)
+- [Writing Tests](#writing-tests)
 - [Patterns](#patterns)
+  - [Patterns for Testing](#patterns-for-testing)
+  - [Patterns for Grouping](#patterns-for-grouping)
+  - [Patterns for File-Level Config](#patterns-for-file-level-config)
 - [Testing](#testing)
 - [Configs](#configs)
-- [Actual Tests](#actual-tests)
 - [Generate diff-friendly snapshots](#generate-diff-friendly-snapshots)
-- [Developement](#development)
+- [FAQ](#faq)
+- [Development](#development)
 - [Related](#related)
+- [License](#license)
 
 ## Install
 
-using npm
-
 ```sh
+# using npm
 npm install --save-dev dts-jest jest typescript
-```
 
-using yarn
-
-```sh
+# using yarn
 yarn add --dev dts-jest jest typescript
 ```
+
+- require `jest@^20.0.0` and `typescript@^2.3.0`
 
 ## Usage
 
@@ -57,62 +58,87 @@ This setup allow you to test files `**/dts-jest/**/*.ts` via `dts-jest`.
 
 ## Writing Tests
 
-The test cases must start with `// @dts-jest`, and the second line should be an expression that you want to test its type.
+The test cases must start with a comment `@dts-jest`, and the second line should be an expression that you want to test its type or value.
 
 (./dts-jest/example.ts)
 
 ```ts
-declare const arrayify: <T extends string | number>(v: T) => T[];
+// @dts-jest:pass:snap
+Math.max(1);
 
-// @dts-jest
-arrayify('');
+// @dts-jest:fail:snap
+Math.max('123');
 
-// @dts-jest:show
-arrayify(true);
-
-// @dts-jest optional-description
-arrayify(0);
+// @dts-jest:pass
+Math.min(1, 2, 3); //=> 1
 ```
 
 ## Patterns
 
-#### Testing
+### Patterns for Testing
 
 ```ts
 // @dts-jest[flags] [description]
-expression
+expression //=> expected
 ```
 
 - description
-  - default: expression
+  - optional
+  - default: `expression`
 - flag
+  - optional
   - for test
-    - default: `:test`
-    - `:test`: aka [`test`](https://facebook.github.io/jest/docs/en/api.html#testname-fn)
-    - `:only`: aka [`test.only`](https://facebook.github.io/jest/docs/en/api.html#testonlyname-fn)
-    - `:skip`: aka [`test.skip`](https://facebook.github.io/jest/docs/en/api.html#testskipname-fn)
-  - for assertion
-    - default: `:shot`
-    - `:shot`: aka `:pass` + `:fail`, snapshot its inferenced type or diagnostic message
-    - `:show`: aka `console.log`
-    - `:pass`: aka [`toMatchSnapshot`](https://facebook.github.io/jest/docs/en/expect.html#tomatchsnapshotoptionalstring)
-    - `:fail`: aka [`toThrowErrorMatchingSnapshot`](https://facebook.github.io/jest/docs/en/expect.html#tothrowerrormatchingsnapshot)
+    - default: [`test`](https://facebook.github.io/jest/docs/en/api.html#testname-fn)
+    - `:only`: [`test.only`](https://facebook.github.io/jest/docs/en/api.html#testonlyname-fn)
+    - `:skip`: [`test.skip`](https://facebook.github.io/jest/docs/en/api.html#testskipname-fn)
+  - for type assertion
+    - default: none
+    - `:show`: `console.log(type)`
+    - `:pass`: `expect(() => type)`[`.not`](https://facebook.github.io/jest/docs/en/expect.html#not)[`.toThrowError()`](https://facebook.github.io/jest/docs/en/expect.html#tothrowerror)
+    - `:fail`: `expect(() => type)`[`.toThrowError()`](https://facebook.github.io/jest/docs/en/expect.html#tothrowerror)
+    - `:snap`:
+      - snapshot inferred type or diagnostic message
+      - `expect(type)`[`.toMatchSnapshot()`](https://facebook.github.io/jest/docs/en/expect.html#tomatchsnapshotoptionalstring)
+      - `expect(type)`[`.toThrowErrorMatchingSnapshot()`](https://facebook.github.io/jest/docs/en/expect.html#tothrowerrormatchingsnapshot)
+- expected
+  - optional
+  - `//=> expected` or `/*=> expected */`
+  - for value assertion
+    - default: none
+    - `?`: `console.log(value)`
+    - `:error`: `expect(() => value)`[`.toThrowError()`](https://facebook.github.io/jest/docs/en/expect.html#tothrowerror)
+    - `:no-error`: `expect(() => value)`[`.not`](https://facebook.github.io/jest/docs/en/expect.html#not)[`.toThrowError()`](https://facebook.github.io/jest/docs/en/expect.html#tothrowerror)
+    - others: `expect(value)`[`.toEqual(expected)`](https://facebook.github.io/jest/docs/en/expect.html#toequalvalue)
 
-#### Grouping
+### Patterns for Grouping
 
 Test cases after this pattern will be marked as that group.
 
 ```ts
-// @dts-jest:group[flags] [title]
+// @dts-jest:group[flag] [description]
 ```
 
-- title
-  - default: `'untitled'`
+- description
+  - default: `''`
 - flag
-  - default: `:test`
-  - `:test`: aka [`describe`](https://facebook.github.io/jest/docs/en/api.html#describename-fn)
-  - `:only`: aka [`describe.only`](https://facebook.github.io/jest/docs/en/api.html#describeonlyname-fn)
-  - `:skip`: aka [`describe.skip`](https://facebook.github.io/jest/docs/en/api.html#describeskipname-fn)
+  - default: [`describe`](https://facebook.github.io/jest/docs/en/api.html#describename-fn)
+  - `:only`: [`describe.only`](https://facebook.github.io/jest/docs/en/api.html#describeonlyname-fn)
+  - `:skip`: [`describe.skip`](https://facebook.github.io/jest/docs/en/api.html#describeskipname-fn)
+
+### Patterns for File-Level Config
+
+File-level config uses the first comment to set, only docblock will be detected.
+
+```ts
+/** @dts-jest [action:option] ... */
+```
+
+- action:
+  - `enable`: set to `true`
+  - `disable`: set to `false`
+- option:
+  - `test-type`: `test_type` option in [configs](#configs)
+  - `test-value`: `test_type` option in [configs](#configs)
 
 ## Testing
 
@@ -124,21 +150,81 @@ npm run test -- --watch
 
 **NOTE**: If you had changed the version of `dts-jest`, you might have to use `--no-cache` flag since Jest may use the older cache.
 
-After running tests, you'll get the following result:
+After running the [example tests](#writing-tests) with `npm run test`, you'll get the following result:
 
-![pass](https://github.com/ikatyang/dts-jest/raw/master/images/pass.png)
+```text
+ PASS  tests/example.ts
+  Math.max(1)
+    ✓ (type) should not throw error
+    ✓ (type) should match snapshot
+  Math.max('123')
+    ✓ (type) should throw error
+    ✓ (type) should match snapshot
+  Math.min(1, 2, 3)
+    ✓ (type) should not throw error
 
-Since snapshot testing will always pass and write the result at first time, it's reommended you to use flag `:show` to see the result first without writing results.
+Snapshot Summary
+ › 2 snapshots written in 1 test suite.
 
-If you modify the function declaration to:
-
-```ts
-declare const arrayify: <T extends boolean>(v: T) => T[];
+Test Suites: 1 passed, 1 total
+Tests:       5 passed, 5 total
+Snapshots:   2 added, 2 total
+Time:        0.000s
+Ran all test suites.
 ```
 
-and test again, you'll get the following result:
+Since snapshot testing will always pass and write the result at the first time, it's reommended you to use `:show` flag to see the result first without writing results.
 
-![fail](https://github.com/ikatyang/dts-jest/raw/master/images/fail.png)
+(./dts-jest/example.ts)
+
+```ts
+// @dts-jest:pass:show
+Math.max(1);
+
+// @dts-jest:fail:show
+Math.max('123');
+
+// @dts-jest:pass
+Math.min(1, 2, 3); //=> 1
+```
+
+```text
+ PASS  dts-jest/example.ts
+  Math.max(1)
+    ✓ (type) should show report
+    ✓ (type) should not throw error
+  Math.max('123')
+    ✓ (type) should show report
+    ✓ (type) should throw error
+  Math.min(1, 2, 3)
+    ✓ (type) should not throw error
+
+Test Suites: 1 passed, 1 total
+Tests:       5 passed, 5 total
+Snapshots:   0 total
+Time:        0.000s
+Ran all test suites.
+
+  console.log dts-jest/example.ts:2
+
+    Inferred
+
+      Math.max(1)
+
+    to be
+
+      number
+
+  console.log dts-jest/example.ts:5
+
+    Inferring
+
+      Math.max('123')
+
+    but throw
+
+      Argument of type '"123"' is not assignable to parameter of type 'number'.
+```
 
 ## Configs
 
@@ -146,12 +232,30 @@ Configs are in `_dts_jest_` field of Jest config `globals`.
 
 There are several options
 
-- tsconfig
+- test_type
+  - default: `true`
+  - enable type testing
+  - [file-level config](#patterns-for-file-level-config) available
+- test_value
+  - default: `false`
+  - enable value testing
+  - [file-level config](#patterns-for-file-level-config) available
+- enclosing_declaration
+  - default: `false`
+  - unwrap type alias
+- typescript
+  - default: `typescript` (node resolution)
+  - specify which path of typescript to use
+- compiler_options
   - default: `{}`
   - specify which *path of `tsconfig.json` (string)* or *compilerOptions (object)* to use
-- type_format
+- type_format_flags
   - default: `ts.TypeFormatFlags.NoTruncation`
   - specify type format
+- transpile
+  - default: `true`
+  - transpile code before testing, only affect tests that needs to test value
+  - transpiling code will cause line number incorrect, it's better to disable this option if possible
 
 For example:
 
@@ -162,66 +266,28 @@ For example:
   "jest": {
     "globals": {
       "_dts_jest_": {
-        "tsconfig": "path/to/tsconfig.json"
+        "compiler_options": {
+          "strict": true,
+          "target": "es6"
+        }
       }
     }
   }
 }
 ```
 
-## Actual Tests
-
-You can use `dts-jest/transform-actual` to test its actual results, for example:
-
-(./package.json)
-
-```json
-{
-  "scripts": {
-    "test": "jest"
-  },
-  "jest": {
-    "moduleFileExtensions": ["ts", "js", "json"],
-    "testRegex": "/dts-jest/.+\\.ts$",
-    "transform": {"/dts-jest/.+\\.ts$": "dts-jest/transform-actual"}
-  }
-}
-```
-
-This transformer allows you to test its value via `//=> value` coment, the comment should be put on the end line of the expression.
-
-```ts
-// @dts-jest
-Math.max(1, 2, 3); //=> 3
-
-// @dts-jest
-Math.max(
-  1,
-  2,
-  3,
-); //=> 3
-
-const result = 3;
-// @dts-jest
-Math.max(
-  1,
-  2,
-  3,
-); //=> result
-```
-
 ## Generate diff-friendly snapshots
 
-Originally, snapshots and source content are in different files, it is hard to check their difference before/after, so here comes the `dts-jest-remap-snapshots` for generating diff-friendly snapshots.
+Originally, snapshots and source content are in different files, it is hard to check their difference before/after, so here comes the `dts-jest-remap` for generating diff-friendly snapshots.
 
-(./example.ts)
+(./tests/example.ts)
 
 ```ts
-// @dts-jest
+// @dts-jest:snap
 Math.max(1, 2, 3);
 ```
 
-(./`__snapshots__`/example.ts.snap) note this file is generated by Jest
+(./tests/`__snapshots__`/example.ts.snap) note this file is generated by Jest
 
 ```ts
 // Jest Snapshot v1, https://goo.gl/fbAQLP
@@ -231,15 +297,41 @@ exports[`Math.max(1, 2, 3) 1`] = `"number"`;
 This command will combine both snapshots and source content in one file:
 
 ```sh
-dts-jest-remap-snapshot ./__snapshots__/example.ts.snap > path/to/your-generated-file.ts
+dts-jest-remap ./tests/example.ts --outDir ./snapshots
 ```
 
-(path/to/your-generated-file.ts)
+(./snapshots/example.ts)
 
 ```ts
-// @dts-jest -> number
+// @dts-jest:snap -> number
 Math.max(1, 2, 3);
 ```
+
+```text
+Usage: dts-jest-remap [--outDir <path>] [--rename <template>] <TestFileGlob> ...
+
+Options:
+  --check, -c          Throw error if target content is different from output
+                       content                                         [boolean]
+  --help, -h           Show help                                       [boolean]
+  --listDifferent, -l  Print the filenames of files that their target content is
+                       different from output content                   [boolean]
+  --outDir, -o         Redirect output structure to the directory       [string]
+  --rename, -r         Rename output filename using template {{variable}},
+                       available variable: filename, basename, extname  [string]
+  --typescript, -t     Specify which TypeScript source to use           [string]
+  --version, -v        Show version number                             [boolean]
+```
+
+## FAQ
+
+- `Compiler option 'lib' requires a value of type list`
+  - Arrays in `jest` > `globals` > `_dts_jest_` will be transformed into objects.
+  - Consider to use [`setupFiles`](https://facebook.github.io/jest/docs/en/configuration.html#setupfiles-array) to set configs (`globals._dts_jest_ = { ... }`).
+  - See [jest#2093](https://github.com/facebook/jest/issues/2093) for details.
+- `Debug Failure`
+  - This is mostly caused by regex literal due to the printer bug [TypeScript#18071](https://github.com/Microsoft/TypeScript/issues/18071) (fixed in TS v2.6).
+  - Workaround: use regex instance instead, e.g. `new RegExp('something')`.
 
 ## Development
 
@@ -256,5 +348,9 @@ yarn run build
 
 ## Related
 
-- [ts-jest](https://github.com/kulshekhar/ts-jest): A preprocessor to help use Typescript with Jest
+- [dtslint](https://github.com/Microsoft/dtslint): A utility built on TSLint for linting TypeScript declaration (.d.ts) files
 - [typings-checker](https://github.com/danvk/typings-checker): Positive and negative assertions about TypeScript types and errors
+
+## License
+
+MIT © [Ika](https://github.com/ikatyang)
