@@ -59,7 +59,7 @@ export const find_trigger_bodies = (
       bodies.push({
         start,
         end,
-        one_line_expression: get_one_line_node_text(node, source_file, ts),
+        experssion: get_one_line_node_text(node, source_file, ts),
         text: get_dedented_expression_text(node, source_file)
           // remove trailing semicolons and spaces
           .replace(/\s*;*\s*$/, ''),
