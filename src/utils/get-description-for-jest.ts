@@ -11,6 +11,6 @@ export const get_description_for_jest = (trigger: Trigger) => {
       : jest_grouped_title_leading_spaces_count,
   );
   const description =
-    header.description !== undefined ? header.description : body.expression;
+    header.description !== undefined ? header.description : body.text;
   return description.replace(/\n/g, `\n${indentation}`);
 };

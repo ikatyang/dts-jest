@@ -86,7 +86,14 @@ export interface TriggerHeader {
 export interface TriggerBody {
   start: number;
   end: number;
-  expression: string;
+  /**
+   * raw expression text without trailing semicolon
+   */
+  text: string;
+  /**
+   * one line expression text without trailing semicolon
+   */
+  experssion: string;
 }
 
 export interface TriggerFooter {
@@ -123,6 +130,7 @@ export interface RawConfig extends DocblockOptions {
   enclosing_declaration?: boolean;
   type_format_flags?: _ts.TypeFormatFlags;
   typescript?: string;
+  transpile?: boolean;
 }
 
 export interface NormalizedConfig {
@@ -133,4 +141,5 @@ export interface NormalizedConfig {
   type_format_flags: _ts.TypeFormatFlags;
   typescript: typeof _ts;
   typescript_path: string;
+  transpile: boolean;
 }

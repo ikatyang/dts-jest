@@ -48,6 +48,22 @@ it('should respect docblock options', () => {
   );
 });
 
+it('should retain line number while transforming', () => {
+  expect(
+    transform_fixture('multi-line', { test_value: true }),
+  ).toMatchSnapshot();
+});
+
+it('should transform to commonjs if set', () => {
+  expect(
+    transform_fixture('commonjs', {
+      test_value: true,
+      transpile: true,
+      compiler_options: { module: 'commonjs' },
+    }),
+  ).toMatchSnapshot();
+});
+
 function transform_fixture(
   id: string,
   raw_config: RawConfig,
@@ -58,7 +74,7 @@ function transform_fixture(
   const source = preprocessor(load_fixture(full_id));
   const config: JestConfig = {
     rootDir: '',
-    globals: { _dts_jest_: raw_config },
+    globals: { _dts_jest_: { transpile: false, ...raw_config } },
   };
   return transform(source, filename, config as any);
 }

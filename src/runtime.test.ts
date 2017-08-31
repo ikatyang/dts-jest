@@ -1,4 +1,5 @@
 import * as ts from 'typescript';
+import { cwd_serializer } from './helpers/cwd-serializer';
 import {
   get_fixture_filename,
   load_fixture_source_file,
@@ -6,7 +7,10 @@ import {
 import { setup } from './setup';
 import { find_triggers } from './utils/find-triggers';
 
-const runtime = get_runtime('example');
+expect.addSnapshotSerializer(cwd_serializer);
+
+const runtime = get_runtime('example', false);
+const tranpiled_runtime = get_runtime('example', true);
 
 const pass_line = 1;
 const fail_line = 7;
@@ -57,6 +61,9 @@ describe('#get_type_report()', () => {
       runtime.get_type_report(get_description_line(pass_line)),
     ).toMatchSnapshot();
   });
+  it('should return inference report on non-fail line with line info while transpiled', () => {
+    expect(tranpiled_runtime.get_type_report(pass_line)).toMatchSnapshot();
+  });
 });
 
 describe('#get_value_report()', () => {
@@ -88,12 +95,20 @@ describe('#get_value_report()', () => {
       })),
     ).toMatchSnapshot();
   });
+  it('should return formatted value report for non-fail getter with line info while transpiled', () => {
+    expect(
+      tranpiled_runtime.get_value_report(
+        get_description_line(value_line),
+        () => ({ example: 'value' }),
+      ),
+    ).toMatchSnapshot();
+  });
 });
 
-function get_runtime(id: string) {
+function get_runtime(id: string, transpile: boolean) {
   const full_id = `runtime/${id}.ts`;
   const filename = get_fixture_filename(full_id);
   const source_file = load_fixture_source_file(full_id, ts);
   const triggers = find_triggers(source_file, ts);
-  return setup(filename, {}, triggers);
+  return setup(filename, { transpile }, triggers);
 }

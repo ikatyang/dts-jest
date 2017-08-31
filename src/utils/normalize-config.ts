@@ -4,7 +4,6 @@ import { load_typescript } from './load-typescript';
 
 export const normalize_config = (
   raw_config: RawConfig = {},
-  root_dir: string,
 ): NormalizedConfig => {
   // istanbul ignore next
   const {
@@ -13,11 +12,10 @@ export const normalize_config = (
     compiler_options: raw_compiler_options = {},
     enclosing_declaration = false,
     typescript: typescript_id = 'typescript',
+    transpile = true,
   } = raw_config;
 
-  const { typescript, typescript_path } = load_typescript(
-    replace_root_dir(typescript_id, root_dir),
-  );
+  const { typescript, typescript_path } = load_typescript(typescript_id);
 
   // istanbul ignore next
   const {
@@ -25,15 +23,12 @@ export const normalize_config = (
   } = raw_config;
 
   const compiler_options = load_compiler_options(
-    // istanbul ignore next
-    typeof raw_compiler_options === 'string'
-      ? replace_root_dir(raw_compiler_options, root_dir)
-      : raw_compiler_options,
-    root_dir,
+    raw_compiler_options,
     typescript,
   );
 
   return {
+    transpile,
     test_type,
     test_value,
     compiler_options,
@@ -43,7 +38,3 @@ export const normalize_config = (
     typescript_path,
   };
 };
-
-function replace_root_dir(str: string, root_dir: string) {
-  return str.replace('<rootDir>', root_dir);
-}
