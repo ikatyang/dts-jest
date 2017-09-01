@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="22.0.1"></a>
+## [22.0.1](https://github.com/ikatyang/dts-jest/compare/v22.0.0...v22.0.1) (2017-09-01)
+
+
+### Bug Fixes
+
+* **runtime:** show 1-based line number ([#82](https://github.com/ikatyang/dts-jest/issues/82)) ([de4c6aa](https://github.com/ikatyang/dts-jest/commit/de4c6aa))
+
+
+
 <a name="22.0.0"></a>
 # [22.0.0](https://github.com/ikatyang/dts-jest/compare/v21.0.0...v22.0.0) (2017-08-31)
 
