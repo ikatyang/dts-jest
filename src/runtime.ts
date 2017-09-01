@@ -5,6 +5,7 @@ import {
   Snapshot,
   Trigger,
 } from './definitions';
+import { get_display_line } from './utils/get-display-line';
 import { get_trigger_body_line } from './utils/get-trigger-line';
 import { indent } from './utils/indent';
 
@@ -111,7 +112,11 @@ export class Runtime {
     const indented_expression = indent(body.text, runtime_indent_spaces);
     const indented_value = indent(value, runtime_indent_spaces);
 
-    const line = kind === 'type' ? header.line : trigger.footer!.line;
+    const line = get_display_line(
+      kind === 'type'
+        ? get_trigger_body_line(header.line)
+        : trigger.footer!.line,
+    );
     const line_info = this._config.transpile
       ? `\n(${this._filename}:${line})\n`
       : '';

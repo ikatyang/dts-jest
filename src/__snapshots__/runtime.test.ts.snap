@@ -48,7 +48,7 @@ to be
 
 exports[`#get_type_report() should return inference report on non-fail line with line info while transpiled 1`] = `
 "
-(<cwd>/fixtures/runtime/example.ts:0)
+(<cwd>/fixtures/runtime/example.ts:2)
 
 Inferred
 
@@ -116,7 +116,7 @@ to be
 
 exports[`#get_value_report() should return formatted value report for non-fail getter with line info while transpiled 1`] = `
 "
-(<cwd>/fixtures/runtime/example.ts:16)
+(<cwd>/fixtures/runtime/example.ts:17)
 
 description-value
 
