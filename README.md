@@ -18,6 +18,7 @@ A preprocessor for [Jest](https://facebook.github.io/jest/) to snapshot test [Ty
 - [Testing](#testing)
 - [Configs](#configs)
 - [Generate diff-friendly snapshots](#generate-diff-friendly-snapshots)
+- [Reporter](#reporter)
 - [FAQ](#faq)
 - [Development](#development)
 - [Related](#related)
@@ -321,6 +322,25 @@ Options:
                        available variable: filename, basename, extname  [string]
   --typescript, -t     Specify which TypeScript source to use           [string]
   --version, -v        Show version number                             [boolean]
+```
+
+## Reporter
+
+If you'd like to know which typescript you are using, add `dts-jest/reporter` to your [Jest reporters](https://facebook.github.io/jest/docs/en/configuration.html#reporters-array-modulename-modulename-options), for example:
+
+```json
+{
+  "reporters": [
+    "default",
+    "dts-jest/reporter"
+  ]
+}
+```
+
+It'll show the TS version and path after testing:
+
+```text
+[dts-jest] using TypeScript v0.0.0 from path/to/typescript
 ```
 
 ## FAQ
