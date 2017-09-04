@@ -1,6 +1,7 @@
 import { NormalizedConfig, RawConfig } from '../definitions';
 import { load_compiler_options } from './load-compiler-options';
 import { load_typescript } from './load-typescript';
+import { replace_cwd } from './replace-cwd';
 
 export const normalize_config = (
   raw_config: RawConfig = {},
@@ -15,7 +16,9 @@ export const normalize_config = (
     transpile = true,
   } = raw_config;
 
-  const { typescript, typescript_path } = load_typescript(typescript_id);
+  const { typescript, typescript_path } = load_typescript(
+    replace_cwd(typescript_id),
+  );
 
   // istanbul ignore next
   const {

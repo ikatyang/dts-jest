@@ -247,6 +247,7 @@ There are several options
 - typescript
   - default: `typescript` (node resolution)
   - specify which path of typescript to use
+  - `<cwd>` available
 - compiler_options
   - default: `{}`
   - specify which *path of `tsconfig.json` (string)* or *compilerOptions (object)* to use
