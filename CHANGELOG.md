@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="22.0.3"></a>
+## [22.0.3](https://github.com/ikatyang/dts-jest/compare/v22.0.2...v22.0.3) (2017-09-05)
+
+
+### Bug Fixes
+
+* **deps:** update dependency pretty-format to ^21.0.0 ([#88](https://github.com/ikatyang/dts-jest/issues/88)) ([3721a48](https://github.com/ikatyang/dts-jest/commit/3721a48))
+* **peerDeps:** accept jest ^21.0.0 ([#89](https://github.com/ikatyang/dts-jest/issues/89)) ([fc47496](https://github.com/ikatyang/dts-jest/commit/fc47496))
+
+
+
 <a name="22.0.2"></a>
 ## [22.0.2](https://github.com/ikatyang/dts-jest/compare/v22.0.1...v22.0.2) (2017-09-04)
 
