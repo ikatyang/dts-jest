@@ -50,7 +50,7 @@
     "@types/node": "8.0.26",
     "@types/pretty-format": "20.0.0",
     "@types/yargs": "8.0.2",
-    "jest": "20.0.4",
+    "jest": "21.0.1",
     "prettier": "1.6.1",
     "prettier-config-ikatyang": "1.1.1",
     "standard-version": "4.2.0",
