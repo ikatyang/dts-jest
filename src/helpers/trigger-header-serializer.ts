@@ -6,6 +6,7 @@ export const trigger_header_serializer: jest.SnapshotSerializerPlugin = {
 
     let { flags } = value;
 
+    // tslint:disable-next-line:ban-comma-operator
     for (let base = 1; flags !== 0; flags >>= 1, base <<= 1) {
       if (flags & 1) {
         flag_literals.push(TriggerHeaderFlags[base]);
