@@ -46,7 +46,7 @@
     "@types/globby": "6.1.0",
     "@types/jest": "21.1.5",
     "@types/lodash.intersection": "4.4.3",
-    "@types/make-dir": "1.0.2",
+    "@types/make-dir": "1.0.3",
     "@types/node": "8.0.50",
     "@types/pretty-format": "20.0.0",
     "@types/yargs": "8.0.2",
