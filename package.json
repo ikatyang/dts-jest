@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "@types/globby": "6.1.0",
-    "@types/jest": "21.1.6",
+    "@types/jest": "21.1.7",
     "@types/lodash.intersection": "4.4.3",
     "@types/make-dir": "1.0.3",
     "@types/node": "8.0.53",
