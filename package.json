@@ -40,7 +40,7 @@
     "pretty-format": "^21.0.0",
     "ts-comment": "^1.1.0",
     "tslib": "^1.7.1",
-    "yargs": "^9.0.0"
+    "yargs": "^11.0.0"
   },
   "devDependencies": {
     "@types/globby": "6.1.0",
@@ -49,7 +49,7 @@
     "@types/make-dir": "1.0.3",
     "@types/node": "8.9.2",
     "@types/pretty-format": "20.0.0",
-    "@types/yargs": "8.0.3",
+    "@types/yargs": "11.0.0",
     "jest": "21.2.1",
     "prettier": "1.7.4",
     "prettier-config-ikatyang": "1.1.1",
