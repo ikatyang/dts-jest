@@ -48,9 +48,9 @@
   version "9.6.1"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-9.6.1.tgz#e2d374ef15b315b48e7efc308fa1a7cd51faa06c"
 
-"@types/node@8.10.7":
-  version "8.10.7"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.10.7.tgz#40c0058c115bd42ee9bf35d7a217eeef1acd2716"
+"@types/node@8.10.9":
+  version "8.10.9"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.10.9.tgz#b507a74a7d3eddc74a17dc35fd40d8f45dde0d6c"
 
 "@types/pretty-format@20.0.0":
   version "20.0.0"
