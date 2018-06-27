@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="22.0.4"></a>
+## [22.0.4](https://github.com/ikatyang/dts-jest/compare/v22.0.3...v22.0.4) (2018-06-27)
+
+
+### Bug Fixes
+
+* **deps:** update dependency yargs to ^9.0.0 ([#102](https://github.com/ikatyang/dts-jest/issues/102)) ([67be7f5](https://github.com/ikatyang/dts-jest/commit/67be7f5))
+* support `typeRoots` ([#252](https://github.com/ikatyang/dts-jest/issues/252)) ([b918aa8](https://github.com/ikatyang/dts-jest/commit/b918aa8))
+
+
+
 <a name="22.0.3"></a>
 ## [22.0.3](https://github.com/ikatyang/dts-jest/compare/v22.0.2...v22.0.3) (2017-09-05)
 
