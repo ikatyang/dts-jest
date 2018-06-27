@@ -18,11 +18,12 @@ export const create_snapshots = (
   const {
     typescript: ts,
     compiler_options,
+    file_names,
     enclosing_declaration,
     type_format_flags,
   } = normalized_config;
 
-  const program = ts.createProgram([filename], compiler_options);
+  const program = ts.createProgram([filename, ...file_names], compiler_options);
   const source_file = program.getSourceFile(filename);
 
   const body_line_map = new Map<number, Trigger>();

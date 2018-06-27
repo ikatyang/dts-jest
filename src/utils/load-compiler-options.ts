@@ -6,7 +6,7 @@ import { get_diagnostic_message } from './get-diagnostic-message';
 export const load_compiler_options = (
   raw_options: string | Record<string, any>,
   ts: typeof _ts,
-): _ts.CompilerOptions =>
+): { options: _ts.CompilerOptions; file_names: string[] } =>
   typeof raw_options === 'string'
     ? load_from_tsconfig(raw_options, ts)
     : load_from_raw_options(raw_options, ts);
@@ -29,7 +29,7 @@ function load_from_raw_options(
     );
   }
 
-  return options;
+  return { options, file_names: [] };
 }
 
 function load_from_tsconfig(filename: string, ts: typeof _ts) {
@@ -50,11 +50,11 @@ function load_from_tsconfig(filename: string, ts: typeof _ts) {
 
   const dirname = path.dirname(filename);
 
-  const { errors, options } = ts.parseJsonConfigFileContent(
-    tsconfig,
-    ts.sys,
-    dirname,
-  );
+  const {
+    errors,
+    options,
+    fileNames: file_names,
+  } = ts.parseJsonConfigFileContent(tsconfig, ts.sys, dirname);
 
   if (errors.length !== 0) {
     throw new Error(
@@ -65,5 +65,5 @@ function load_from_tsconfig(filename: string, ts: typeof _ts) {
     );
   }
 
-  return options;
+  return { options, file_names };
 }

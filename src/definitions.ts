@@ -137,6 +137,7 @@ export interface NormalizedConfig {
   test_type: boolean;
   test_value: boolean;
   compiler_options: _ts.CompilerOptions;
+  file_names: string[];
   enclosing_declaration: boolean;
   type_format_flags: _ts.TypeFormatFlags;
   typescript: typeof _ts;

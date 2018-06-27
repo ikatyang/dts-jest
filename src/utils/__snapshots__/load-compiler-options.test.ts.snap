@@ -2,20 +2,32 @@
 
 exports[`should return correctly with tsconfig (filename) 1`] = `
 Object {
-  "allowSyntheticDefaultImports": true,
-  "configFilePath": undefined,
-  "declaration": true,
-  "module": 1,
-  "strict": true,
-  "target": 2,
+  "file_names": Array [
+    "<cwd>/fixtures/load-compiler-options/example/placeholder.ts",
+    "<cwd>/fixtures/load-compiler-options/example/types/index.d.ts",
+  ],
+  "options": Object {
+    "allowSyntheticDefaultImports": true,
+    "configFilePath": undefined,
+    "declaration": true,
+    "module": 1,
+    "strict": true,
+    "target": 2,
+    "typeRoots": Array [
+      "<cwd>/fixtures/load-compiler-options/example/types",
+    ],
+  },
 }
 `;
 
 exports[`should return correctly with tsconfig (raw-options) 1`] = `
 Object {
-  "module": 1,
-  "strict": true,
-  "target": 2,
+  "file_names": Array [],
+  "options": Object {
+    "module": 1,
+    "strict": true,
+    "target": 2,
+  },
 }
 `;
 

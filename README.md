@@ -250,7 +250,7 @@ There are several options
   - `<cwd>` available
 - compiler_options
   - default: `{}`
-  - specify which *path of `tsconfig.json` (string)* or *compilerOptions (object)* to use
+  - specify which *path of `tsconfig.json` (string)* ~~or *compilerOptions (object)*~~ (deprecated, does not support `typeRoots` for _object_) to use
 - type_format_flags
   - default: `ts.TypeFormatFlags.NoTruncation`
   - specify type format
