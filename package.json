@@ -49,7 +49,7 @@
     "@types/make-dir": "1.0.3",
     "@types/node": "8.10.29",
     "@types/pretty-format": "20.0.0",
-    "@types/yargs": "8.0.3",
+    "@types/yargs": "11.1.1",
     "jest": "21.2.1",
     "prettier": "1.7.4",
     "prettier-config-ikatyang": "1.1.1",
