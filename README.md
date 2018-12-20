@@ -139,7 +139,7 @@ File-level config uses the first comment to set, only docblock will be detected.
   - `disable`: set to `false`
 - option:
   - `test-type`: `test_type` option in [configs](#configs)
-  - `test-value`: `test_type` option in [configs](#configs)
+  - `test-value`: `test_value` option in [configs](#configs)
 
 ## Testing
 
