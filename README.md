@@ -59,7 +59,7 @@ This setup allow you to test files `**/dts-jest/**/*.ts` via `dts-jest`.
 
 ## Writing Tests
 
-The test cases must start with a comment `@dts-jest`, and the second line should be an expression that you want to test its type or value.
+The test cases must start with a comment `@dts-jest`, and the next line should be an expression that you want to test its type or value.
 
 (./dts-jest/example.ts)
 
