@@ -48,7 +48,7 @@
     "@types/lodash.intersection": "4.4.5",
     "@types/make-dir": "1.0.3",
     "@types/node": "8.10.40",
-    "@types/pretty-format": "20.0.0",
+    "@types/pretty-format": "20.0.1",
     "@types/yargs": "8.0.3",
     "jest": "21.2.1",
     "prettier": "1.7.4",

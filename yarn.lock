@@ -52,9 +52,9 @@
   version "8.10.40"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.10.40.tgz#4314888d5cd537945d73e9ce165c04cc550144a4"
 
-"@types/pretty-format@20.0.0":
-  version "20.0.0"
-  resolved "https://registry.yarnpkg.com/@types/pretty-format/-/pretty-format-20.0.0.tgz#67bdc5c060614f93f0ee63e45a45dbcdea65c3ce"
+"@types/pretty-format@20.0.1":
+  version "20.0.1"
+  resolved "https://registry.yarnpkg.com/@types/pretty-format/-/pretty-format-20.0.1.tgz#7ce03b403887b087701a2b4534464f48ce7b2f48"
 
 "@types/strip-bom@^3.0.0":
   version "3.0.0"
