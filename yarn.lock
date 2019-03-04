@@ -24,9 +24,9 @@
   version "21.1.10"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-21.1.10.tgz#dcacb5217ddf997a090cc822bba219b4b2fd7984"
 
-"@types/lodash.intersection@4.4.5":
-  version "4.4.5"
-  resolved "https://registry.yarnpkg.com/@types/lodash.intersection/-/lodash.intersection-4.4.5.tgz#873166153bcad5b68bc732c8004eb493d42480c1"
+"@types/lodash.intersection@4.4.6":
+  version "4.4.6"
+  resolved "https://registry.yarnpkg.com/@types/lodash.intersection/-/lodash.intersection-4.4.6.tgz#0fb241badf6edbb2a7d194a70c50e950e2486e68"
   dependencies:
     "@types/lodash" "*"
 
