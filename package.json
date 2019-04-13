@@ -44,17 +44,17 @@
   },
   "devDependencies": {
     "@types/globby": "6.1.0",
-    "@types/jest": "21.1.10",
+    "@types/jest": "22.2.3",
     "@types/lodash.intersection": "4.4.6",
     "@types/make-dir": "1.0.3",
     "@types/node": "6.14.4",
     "@types/pretty-format": "20.0.1",
     "@types/yargs": "8.0.3",
-    "jest": "21.2.1",
+    "jest": "22.4.4",
     "prettier": "1.17.0",
     "prettier-config-ikatyang": "1.1.1",
     "standard-version": "4.4.0",
-    "ts-jest": "21.2.4",
+    "ts-jest": "22.4.6",
     "tslint": "5.15.0",
     "tslint-config-ikatyang": "2.5.1",
     "tslint-config-prettier": "1.18.0",
@@ -62,7 +62,7 @@
     "typescript": "3.4.3"
   },
   "peerDependencies": {
-    "jest": "^20.0.0 || ^21.0.0",
+    "jest": ">= 22.0.0",
     "typescript": ">= 2.3.0"
   },
   "engines": {

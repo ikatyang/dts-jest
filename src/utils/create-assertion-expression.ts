@@ -1,5 +1,4 @@
 import { Trigger, TriggerFooterFlag, TriggerHeaderFlags } from '../definitions';
-import { get_snapshot_description } from './get-snapshot-description';
 
 export interface CreateAssertionExpressionOptions {
   test_type: boolean;
@@ -9,6 +8,8 @@ export interface CreateAssertionExpressionOptions {
   get_type_report_expression: string;
   get_value_report_expression: string;
 }
+
+export const snapshot_assertion_message = '(type) should match snapshot';
 
 export const create_assertion_expression = (
   trigger: Trigger,
@@ -69,15 +70,12 @@ export const create_assertion_expression = (
 
   function push_type_snap_if_available() {
     if (options.test_type && header.flags & TriggerHeaderFlags[':snap']) {
-      const snapshot_description = JSON.stringify(
-        get_snapshot_description(trigger),
-      );
       expressions.push(
         create_wrapper(
-          '(type) should match snapshot',
+          snapshot_assertion_message,
           `expect(${
             options.get_type_inference_or_diagnostic_expression
-          }).toMatchSnapshot(${snapshot_description})`,
+          }).toMatchSnapshot()`,
         ),
       );
     }

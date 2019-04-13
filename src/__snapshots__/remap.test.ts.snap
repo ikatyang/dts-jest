@@ -30,4 +30,4 @@ Math.tan(0);
 
 exports[`should throw error if there is non-string value in snapshot value 1`] = `"Snapshot value should be a string, but got 123"`;
 
-exports[`should throw error if there is unmatched snapshot 1`] = `"Unmatched snapshot title \`Math.max(4, 5, 6) 1\`"`;
+exports[`should throw error if there is unmatched snapshot 1`] = `"Unmatched snapshot title \`Math.max(4, 5, 6) (type) should match snapshot 1\`"`;

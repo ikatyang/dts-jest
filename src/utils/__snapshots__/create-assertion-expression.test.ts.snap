@@ -7,7 +7,7 @@ Array [
     Array [
       "test(\\"(type) should show report\\", function () { console.log(<get_type_report_expression>) })",
       "test(\\"(type) should not throw error\\", function () { expect(function () { <get_type_inference_or_throw_diagnostic_expression> }).not.toThrowError() })",
-      "test(\\"(type) should match snapshot\\", function () { expect(<get_type_inference_or_diagnostic_expression>).toMatchSnapshot(\\"Math.max(1, 2, 3)\\") })",
+      "test(\\"(type) should match snapshot\\", function () { expect(<get_type_inference_or_diagnostic_expression>).toMatchSnapshot() })",
       "test(\\"(value) should equal to 3\\", function () { expect(Math.max(1, 2, 3)).toEqual(3) })",
     ],
   ],
@@ -35,14 +35,14 @@ Array [
     Array [
       "test(\\"(type) should show report\\", function () { console.log(<get_type_report_expression>) })",
       "test(\\"(type) should not throw error\\", function () { expect(function () { <get_type_inference_or_throw_diagnostic_expression> }).not.toThrowError() })",
-      "test(\\"(type) should match snapshot\\", function () { expect(<get_type_inference_or_diagnostic_expression>).toMatchSnapshot(\\"Math.sin(Math.PI)\\") })",
+      "test(\\"(type) should match snapshot\\", function () { expect(<get_type_inference_or_diagnostic_expression>).toMatchSnapshot() })",
       "test(\\"(value) should show report\\", function () { console.log(<get_value_report_expression>) })",
     ],
   ],
   Array [
     "Object.assign({ a: 1 }, { b: 2 }, { c: 3 })",
     Array [
-      "test(\\"(type) should match snapshot\\", function () { expect(<get_type_inference_or_diagnostic_expression>).toMatchSnapshot(\\"Object.assign({ a: 1 }, { b: 2 }, { c: 3 })\\") })",
+      "test(\\"(type) should match snapshot\\", function () { expect(<get_type_inference_or_diagnostic_expression>).toMatchSnapshot() })",
       "test(\\"(value) should equal to { a: 1, b: 2, c: 3, }\\", function () { expect(Object.assign({ a: 1 }, { b: 2 }, { c: 3 })).toEqual({ a: 1, b: 2, c: 3, }) })",
     ],
   ],
