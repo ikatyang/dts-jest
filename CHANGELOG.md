@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="23.0.0"></a>
+# [23.0.0](https://github.com/ikatyang/dts-jest/compare/v22.0.4...v23.0.0) (2019-04-13)
+
+
+### Chores
+
+* update dependencies ([#324](https://github.com/ikatyang/dts-jest/issues/324)) ([937b81a](https://github.com/ikatyang/dts-jest/commit/937b81a))
+
+
+### Features
+
+* support jest 22+ ([#325](https://github.com/ikatyang/dts-jest/issues/325)) ([4416e76](https://github.com/ikatyang/dts-jest/commit/4416e76))
+
+
+### BREAKING CHANGES
+
+* drop support for jest < 22
+* drop support for node v4
+
+
+
 <a name="22.0.4"></a>
 ## [22.0.4](https://github.com/ikatyang/dts-jest/compare/v22.0.3...v22.0.4) (2018-06-27)
 
