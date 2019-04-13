@@ -62,11 +62,15 @@ export const find_trigger_headers = (
 function get_test_method(flag: TriggerHeaderFlags) {
   return flag & TriggerHeaderFlags[':only']
     ? TestMethod.Only
-    : flag & TriggerHeaderFlags[':skip'] ? TestMethod.Skip : TestMethod.Test;
+    : flag & TriggerHeaderFlags[':skip']
+    ? TestMethod.Skip
+    : TestMethod.Test;
 }
 
 function get_group_method(flag: TriggerHeaderFlags) {
   return flag & TriggerHeaderFlags[':only']
     ? GroupMethod.Only
-    : flag & TriggerHeaderFlags[':skip'] ? GroupMethod.Skip : GroupMethod.Test;
+    : flag & TriggerHeaderFlags[':skip']
+    ? GroupMethod.Skip
+    : GroupMethod.Test;
 }

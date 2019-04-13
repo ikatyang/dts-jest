@@ -24,7 +24,7 @@ export const create_snapshots = (
   } = normalized_config;
 
   const program = ts.createProgram([filename, ...file_names], compiler_options);
-  const source_file = program.getSourceFile(filename);
+  const source_file = program.getSourceFile(filename)!;
 
   const body_line_map = new Map<number, Trigger>();
   triggers.forEach(trigger => {
