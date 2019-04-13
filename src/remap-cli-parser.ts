@@ -24,7 +24,7 @@ export const create_remap_cli_parser = () => {
     .forEach(key => {
       parser = is_special_key(key)
         ? parser[key]().alias(key, special_options[key].alias)
-        : parser.option(key, options[key as keyof RemapCliOptions]);
+        : parser.option(key, options[key as keyof RemapCliOptions]!);
     });
 
   return parser.parse.bind(parser) as (argv: string[]) => RemapCliArguments;

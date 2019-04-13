@@ -42,9 +42,11 @@ export const transform: jest.Transformer['process'] = (
   const is_fake_environment = !test_value;
 
   const setup_expression = create_setup_expression(triggers);
-  return `${setup_expression};${is_fake_environment
-    ? get_fake_environment_transformed_content()
-    : get_real_environment_transformed_content()}`;
+  return `${setup_expression};${
+    is_fake_environment
+      ? get_fake_environment_transformed_content()
+      : get_real_environment_transformed_content()
+  }`;
 
   function get_fake_environment_transformed_content() {
     const transformed_line_contents = source_text.split('\n').map(() => '');
@@ -113,7 +115,9 @@ function get_test_expression(
   test_value: boolean,
 ) {
   const body_line = get_trigger_body_line(trigger.header.line);
-  const { body: { text } } = trigger;
+  const {
+    body: { text },
+  } = trigger;
 
   return create_test_expression(trigger, {
     test_type,

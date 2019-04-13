@@ -184,7 +184,7 @@ function get_snapshot_filename(filename: string) {
 
 // tslint:disable:no-console
 function create_logger() {
-  return new class {
+  return new (class {
     public counter = 0;
     public log(message: string) {
       if (this.counter++ !== 0) {
@@ -192,6 +192,6 @@ function create_logger() {
       }
       console.log(message);
     }
-  }();
+  })();
 }
 // tslint:enable:no-console

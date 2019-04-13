@@ -46,7 +46,9 @@ export const create_assertion_expression = (
       expressions.push(
         create_wrapper(
           '(type) should not throw error',
-          `expect(function () { ${options.get_type_inference_or_throw_diagnostic_expression} }).not.toThrowError()`,
+          `expect(function () { ${
+            options.get_type_inference_or_throw_diagnostic_expression
+          } }).not.toThrowError()`,
         ),
       );
     }
@@ -57,7 +59,9 @@ export const create_assertion_expression = (
       expressions.push(
         create_wrapper(
           '(type) should throw error',
-          `expect(function () { ${options.get_type_inference_or_throw_diagnostic_expression} }).toThrowError()`,
+          `expect(function () { ${
+            options.get_type_inference_or_throw_diagnostic_expression
+          } }).toThrowError()`,
         ),
       );
     }
@@ -71,7 +75,9 @@ export const create_assertion_expression = (
       expressions.push(
         create_wrapper(
           '(type) should match snapshot',
-          `expect(${options.get_type_inference_or_diagnostic_expression}).toMatchSnapshot(${snapshot_description})`,
+          `expect(${
+            options.get_type_inference_or_diagnostic_expression
+          }).toMatchSnapshot(${snapshot_description})`,
         ),
       );
     }
@@ -140,7 +146,9 @@ export const create_assertion_expression = (
 
   function create_wrapper(title: string, expression: string) {
     const description = JSON.stringify(title);
-    const { header: { method } } = trigger;
+    const {
+      header: { method },
+    } = trigger;
     return `${method}(${description}, function () { ${expression} })`;
   }
 };

@@ -11,5 +11,7 @@ export const create_test_expression = (
 ) => {
   const description = JSON.stringify(get_description_for_jest(trigger));
   const assertion_expression = create_assertion_expression(trigger, options);
-  return `${GroupMethod.Test}(${description}, function () { ${assertion_expression} })`;
+  return `${
+    GroupMethod.Test
+  }(${description}, function () { ${assertion_expression} })`;
 };

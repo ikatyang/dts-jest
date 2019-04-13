@@ -34,7 +34,7 @@ npm install --save-dev dts-jest jest typescript
 yarn add --dev dts-jest jest typescript
 ```
 
-- require `jest@^20.0.0` and `typescript@^2.3.0`
+- require `jest@^20.0.0` and `typescript@>=2.3.0`
 
 ## Usage
 
