@@ -119,6 +119,15 @@ Test cases after this pattern will be marked as that group.
 // @dts-jest:group[flag] [description]
 ```
 
+If you need a block scope for your tests you can use a Block Statement.
+
+```ts
+// @dts-jest:group[flag] [description]
+{
+  // your tests
+}
+```
+
 - description
   - default: `''`
 - flag
