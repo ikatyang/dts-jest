@@ -33,7 +33,7 @@
     "release": "standard-version"
   },
   "dependencies": {
-    "globby": "^6.1.0",
+    "globby": "^9.0.0",
     "jest-snapshot-parser": "^1.0.0",
     "lodash.intersection": "^4.4.0",
     "make-dir": "^1.0.0",
