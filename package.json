@@ -37,7 +37,7 @@
     "jest-snapshot-parser": "^1.0.0",
     "lodash.intersection": "^4.4.0",
     "make-dir": "^1.0.0",
-    "pretty-format": "^21.0.0",
+    "pretty-format": "^24.0.0",
     "ts-comment": "^1.1.0",
     "tslib": "^1.7.1",
     "yargs": "^9.0.0"
