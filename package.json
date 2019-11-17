@@ -51,7 +51,7 @@
     "@types/pretty-format": "20.0.1",
     "@types/yargs": "8.0.3",
     "jest": "22.4.4",
-    "prettier": "1.17.1",
+    "prettier": "1.19.1",
     "prettier-config-ikatyang": "1.1.1",
     "standard-version": "4.4.0",
     "ts-jest": "22.4.6",
