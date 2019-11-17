@@ -43,7 +43,7 @@
     "yargs": "^9.0.0"
   },
   "devDependencies": {
-    "@types/globby": "6.1.0",
+    "@types/globby": "8.0.0",
     "@types/jest": "22.2.3",
     "@types/lodash.intersection": "4.4.6",
     "@types/make-dir": "1.0.3",
