@@ -83,10 +83,10 @@
   resolved "https://registry.yarnpkg.com/@types/pretty-format/-/pretty-format-20.0.1.tgz#7ce03b403887b087701a2b4534464f48ce7b2f48"
   integrity sha512-Oh7wnvVUCtVIWnCHQWe9qDZKn0fGyk5AMq99jXml0x39K59P+z9qe31CNRtop9TceCpS7NmoK+J9eGeCnyFgnw==
 
-"@types/yargs@8.0.3":
-  version "8.0.3"
-  resolved "https://registry.yarnpkg.com/@types/yargs/-/yargs-8.0.3.tgz#6f0ad77792762fc69d209716dbab3201dcba56fb"
-  integrity sha512-YdxO7zGQf2qJeMgR0fNO8QTlj88L2zCP5GOddovoTyetgLiNDOUXcWzhWKb4EdZZlOjLQUA0JM8lW7VcKQL+9w==
+"@types/yargs@8.0.4":
+  version "8.0.4"
+  resolved "https://registry.yarnpkg.com/@types/yargs/-/yargs-8.0.4.tgz#9665504f5bcdb3c37d7babacd038954692717684"
+  integrity sha512-n2UqbleYF93mEGsaYuE66TDiJq18+8YAvITNonNb1q/ZllzqfvCl4CaE2qcXow5g0gai1p7B/FqiVtgNTrbE3A==
 
 JSONStream@^1.0.4:
   version "1.3.5"
