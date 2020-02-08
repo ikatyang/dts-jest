@@ -53,7 +53,7 @@
     "jest": "22.4.4",
     "prettier": "1.17.1",
     "prettier-config-ikatyang": "1.1.1",
-    "standard-version": "4.4.0",
+    "standard-version": "7.1.0",
     "ts-jest": "22.4.6",
     "tslint": "5.20.1",
     "tslint-config-ikatyang": "2.5.1",
