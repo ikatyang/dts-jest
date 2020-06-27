@@ -21,6 +21,12 @@ it('should do nothing with unmatched comment', () => {
   expect(find_headers('unmatched')).toHaveLength(0);
 });
 
+it('should treat @ts-expect-error as @dts-jest:fail', () => {
+  expect(find_headers('ts-expect-error')).toEqual(
+    find_headers('ts-expect-error-equivalent'),
+  );
+});
+
 function find_headers(id: string) {
   return find_trigger_headers(
     load_fixture_source_file(`find-trigger-headers/${id}.ts`, ts),

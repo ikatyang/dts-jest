@@ -1,3 +1,4 @@
+import * as _ts from 'typescript';
 import {
   NormalizedConfig,
   Snapshot,
@@ -41,6 +42,8 @@ export const create_snapshots = (
   const unmatched_diagnostics: UnmatchedDiagnostic[] = [];
 
   const snapshots: Snapshot[] = [];
+
+  make_ts_expect_error_diagnostics_available(source_file, ts);
 
   const diagnostics = ts.getPreEmitDiagnostics(program, source_file);
   for (const diagnostic of diagnostics) {
@@ -110,3 +113,26 @@ export const create_snapshots = (
 
   return snapshots;
 };
+
+// ref: https://github.com/microsoft/TypeScript/pull/36014
+function make_ts_expect_error_diagnostics_available(
+  source_file: _ts.SourceFile,
+  ts: typeof _ts,
+): void {
+  const comment_directives: undefined | unknown[] =
+    // @ts-expect-error: internal api
+    source_file.commentDirectives;
+
+  if (!Array.isArray(comment_directives)) {
+    return;
+  }
+
+  for (let i = comment_directives.length - 1; i >= 0; i--) {
+    const comment_directive = comment_directives[i];
+    // istanbul ignore else
+    // @ts-expect-error: internal api
+    if (comment_directive.type === ts.CommentDirectiveType.ExpectError) {
+      comment_directives.splice(i, 1);
+    }
+  }
+}

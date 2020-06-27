@@ -11,6 +11,9 @@ Math.max(2); //=> 2
 // @dts-jest:fail:snap -> Argument of type '"123"' is not assignable to parameter of type 'number'.
 Math.max('123');
 
+// @ts-expect-error:snap -> Argument of type '"456"' is not assignable to parameter of type 'number'.
+Math.max('456');
+
 // @dts-jest:group B
 
 // @dts-jest:show
