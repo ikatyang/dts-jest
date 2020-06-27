@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="23.1.0"></a>
+# [23.1.0](https://github.com/ikatyang/dts-jest/compare/v23.0.0...v23.1.0) (2020-06-27)
+
+
+### Features
+
+* support `[@ts-expect-error](https://github.com/ts-expect-error)` ([60451a3](https://github.com/ikatyang/dts-jest/commit/60451a3))
+
+
+
 <a name="23.0.0"></a>
 # [23.0.0](https://github.com/ikatyang/dts-jest/compare/v22.0.4...v23.0.0) (2019-04-13)
 
