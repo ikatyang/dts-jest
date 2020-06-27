@@ -12,6 +12,16 @@ export const get_node_one_line_text = (
         // let newlines in template string to be escaped
         const cloned_node = ts.getMutableClone(current_node);
         delete cloned_node.pos;
+
+        if (
+          cloned_node.kind >= ts.SyntaxKind.FirstTemplateToken &&
+          cloned_node.kind <= ts.SyntaxKind.LastTemplateToken &&
+          'rawText' in cloned_node
+        ) {
+          // @ts-expect-error: hack for TypeScript 3.6+ (ref: https://github.com/microsoft/TypeScript/pull/32844)
+          cloned_node.rawText = cloned_node.rawText.replace(/\n/g, '\\n');
+        }
+
         return cloned_node;
       },
     },

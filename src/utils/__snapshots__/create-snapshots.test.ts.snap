@@ -7,7 +7,8 @@ Array [
     "line": 7,
   },
   Object {
-    "diagnostic": "Property 'assign' does not exist on type 'ObjectConstructor'.",
+    "diagnostic": "Argument of type '{ c: number; }' is not assignable to parameter of type '{ a: 1; }'.
+  Object literal may only specify known properties, and 'c' does not exist in type '{ a: 1; }'.",
     "line": 10,
   },
   Object {
