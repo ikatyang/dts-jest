@@ -81,7 +81,12 @@ Math.min(1, 2, 3); //=> 1
 ```ts
 // @dts-jest[flags] [description]
 expression //=> expected
+
+// @ts-expect-error[flags] [description]
+expression //=> expected
 ```
+
+_Note:_ [`@ts-expect-error`](https://devblogs.microsoft.com/typescript/announcing-typescript-3-9-beta/#ts-expect-error-comments) is treated as an alias of `@dts-jest:fail` in `dts-jest`.
 
 - description
   - optional

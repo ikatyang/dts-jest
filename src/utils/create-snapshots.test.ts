@@ -22,6 +22,10 @@ it('should throw error of there are some unmatched diagnostics', () => {
   expect(() => get_snapshots('unmatched')).toThrowErrorMatchingSnapshot();
 });
 
+it('should support @ts-expect-error', () => {
+  expect(get_snapshots('ts-expect-error')).toMatchSnapshot();
+});
+
 function get_snapshots(id: string) {
   const full_id = `create-snapshots/${id}.ts`;
   const filename = get_fixture_filename(full_id);

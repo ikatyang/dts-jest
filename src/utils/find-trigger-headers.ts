@@ -23,7 +23,10 @@ export const find_trigger_headers = (
   for_each_comment(
     source_file,
     (comment, scanner) => {
-      const match = get_comment_content(comment).match(trigger_header_regex);
+      const match = get_comment_content(comment)
+        // treat `@ts-expect-error` as `@dts-jest:fail`
+        .replace(/^\s*@ts-expect-error/, '@dts-jest:fail')
+        .match(trigger_header_regex);
 
       if (match === null) {
         return;

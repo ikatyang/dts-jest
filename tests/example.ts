@@ -11,6 +11,9 @@ Math.max(2); //=> 2
 // @dts-jest:fail:snap
 Math.max('123');
 
+// @ts-expect-error:snap
+Math.max('456');
+
 // @dts-jest:group B
 
 // @dts-jest:show
