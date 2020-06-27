@@ -165,7 +165,7 @@ describe(\\"Object.assign({\\\\n      a: 1,\\\\n    }, {\\\\n      b: 2,\\\\n   
 
 exports[`should transform to commonjs if set 1`] = `
 "<create_setup_expression>;\\"use strict\\";
-exports.__esModule = true;
+Object.defineProperty(exports, \\"__esModule\\", { value: true });
 var path = require(\\"path\\");
 // @dts-jest
 describe(\\"path.basename('path/to/somewhere')\\", function () { test(\\"(value) should equal to \\\\\\"somewhere\\\\\\"\\", function () { expect(path.basename(\\"path/to/somewhere\\")).toEqual(\\"somewhere\\"); }); }); //=> 'somewhere'
