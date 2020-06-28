@@ -67,11 +67,14 @@ The test cases must start with a comment `@dts-jest`, and the next line should b
 // @dts-jest:pass:snap
 Math.max(1);
 
+// @dts-jest:pass
+Math.min(1, 2, 3); //=> 1
+
 // @dts-jest:fail:snap
 Math.max('123');
 
-// @dts-jest:pass
-Math.min(1, 2, 3); //=> 1
+// @ts-expect-error:snap
+Math.max('123');
 ```
 
 ## Patterns
