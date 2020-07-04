@@ -8,7 +8,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Features
 
-* support `[@ts-expect-error](https://github.com/ts-expect-error)` ([60451a3](https://github.com/ikatyang/dts-jest/commit/60451a3))
+* support `@ts-expect-error` ([60451a3](https://github.com/ikatyang/dts-jest/commit/60451a3))
 
 
 
