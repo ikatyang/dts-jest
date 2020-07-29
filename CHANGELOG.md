@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="23.2.0"></a>
+# [23.2.0](https://github.com/ikatyang/dts-jest/compare/v23.1.0...v23.2.0) (2020-07-29)
+
+
+### Features
+
+* add `:not-any` flag ([#394](https://github.com/ikatyang/dts-jest/issues/394)) ([7ecd983](https://github.com/ikatyang/dts-jest/commit/7ecd983))
+
+
+
 <a name="23.1.0"></a>
 # [23.1.0](https://github.com/ikatyang/dts-jest/compare/v23.0.0...v23.1.0) (2020-06-27)
 
