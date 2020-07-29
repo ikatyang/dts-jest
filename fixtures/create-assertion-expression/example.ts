@@ -24,3 +24,6 @@ Object.assign({ a: 1 }, { b: 2 }, { c: 3 }); /*=>
 
 // @dts-jest
 Math.min(3, 2, 1);
+
+// @dts-jest:not-any
+Math.min(3, 2, 1);

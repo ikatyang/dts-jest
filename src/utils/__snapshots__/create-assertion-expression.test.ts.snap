@@ -50,5 +50,11 @@ Array [
     "Math.min(3, 2, 1)",
     Array [],
   ],
+  Array [
+    "Math.min(3, 2, 1)",
+    Array [
+      "test(\\"(type) should not be any\\", function () { expect(<get_type_inference_or_diagnostic_expression>).not.toBe(\\"any\\") })",
+    ],
+  ],
 ]
 `;
