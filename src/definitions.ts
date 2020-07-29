@@ -51,10 +51,12 @@ export enum TriggerHeaderFlags {
   ':only' = 1 << 4,
   ':skip' = 1 << 5,
   ':group' = 1 << 6,
+  ':not-any' = 1 << 7,
   Assertion = TriggerHeaderFlags[':snap'] |
     TriggerHeaderFlags[':show'] |
     TriggerHeaderFlags[':pass'] |
-    TriggerHeaderFlags[':fail'],
+    TriggerHeaderFlags[':fail'] |
+    TriggerHeaderFlags[':not-any'],
 }
 
 export enum TriggerFooterFlag {

@@ -109,6 +109,7 @@ _Note:_ [`@ts-expect-error`](https://devblogs.microsoft.com/typescript/announcin
       - snapshot inferred type or diagnostic message
       - `expect(type)`[`.toMatchSnapshot()`](https://facebook.github.io/jest/docs/en/expect.html#tomatchsnapshotoptionalstring)
       - `expect(type)`[`.toThrowErrorMatchingSnapshot()`](https://facebook.github.io/jest/docs/en/expect.html#tothrowerrormatchingsnapshot)
+    - `:not-any`: `expect(type)`[`.not`](https://facebook.github.io/jest/docs/en/expect.html#not)[`.toBe("any")`](https://facebook.github.io/jest/docs/en/expect.html#tobevalue)
 - expected
   - optional
   - `//=> expected` or `/*=> expected */`

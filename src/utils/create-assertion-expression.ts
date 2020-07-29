@@ -23,6 +23,7 @@ export const create_assertion_expression = (
   push_type_pass_if_available();
   push_type_fail_if_available();
   push_type_snap_if_available();
+  push_type_not_any_if_available();
   push_value_show_if_available();
   push_value_equal_if_available();
   push_value_error_if_available();
@@ -76,6 +77,19 @@ export const create_assertion_expression = (
           `expect(${
             options.get_type_inference_or_diagnostic_expression
           }).toMatchSnapshot()`,
+        ),
+      );
+    }
+  }
+
+  function push_type_not_any_if_available() {
+    if (options.test_type && header.flags & TriggerHeaderFlags[':not-any']) {
+      expressions.push(
+        create_wrapper(
+          '(type) should not be any',
+          `expect(${
+            options.get_type_inference_or_diagnostic_expression
+          }).not.toBe("any")`,
         ),
       );
     }

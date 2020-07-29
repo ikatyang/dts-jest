@@ -33,3 +33,6 @@ Object.assign({
     c: 3,
   }
 */
+
+// @dts-jest:not-any
+Math.max(5);

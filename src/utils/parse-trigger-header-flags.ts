@@ -12,6 +12,7 @@ export const parse_trigger_header_flags = (unparsed_flags: string) => {
         case TriggerHeaderFlags[TriggerHeaderFlags[':pass']]:
         case TriggerHeaderFlags[TriggerHeaderFlags[':show']]:
         case TriggerHeaderFlags[TriggerHeaderFlags[':snap']]:
+        case TriggerHeaderFlags[TriggerHeaderFlags[':not-any']]:
         case TriggerHeaderFlags[TriggerHeaderFlags[':only']]:
         case TriggerHeaderFlags[TriggerHeaderFlags[':skip']]:
         case TriggerHeaderFlags[TriggerHeaderFlags[':group']]:
