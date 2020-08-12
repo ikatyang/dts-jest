@@ -40,7 +40,7 @@
     "pretty-format": "^21.0.0",
     "ts-comment": "^1.1.0",
     "tslib": "^1.7.1",
-    "yargs": "^9.0.0"
+    "yargs": "^14.2.3"
   },
   "devDependencies": {
     "@types/globby": "6.1.0",
