@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="23.3.0"></a>
+# [23.3.0](https://github.com/ikatyang/dts-jest/compare/v23.2.0...v23.3.0) (2020-08-12)
+
+
+### Features
+
+* **deps:** upgrade yargs to 14.x ([#396](https://github.com/ikatyang/dts-jest/issues/396)) ([4584254](https://github.com/ikatyang/dts-jest/commit/4584254))
+
+
+
 <a name="23.2.0"></a>
 # [23.2.0](https://github.com/ikatyang/dts-jest/compare/v23.1.0...v23.2.0) (2020-07-29)
 
