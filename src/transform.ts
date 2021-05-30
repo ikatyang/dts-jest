@@ -19,7 +19,7 @@ import { normalize_config } from './utils/normalize-config';
 export const transform: jest.Transformer['process'] = (
   source_text,
   source_filename,
-  jest_config: JestConfig,
+  { config: jest_config }: { config: JestConfig },
 ) => {
   const normalized_config = normalize_config(
     jest_config.globals[config_namespace],
