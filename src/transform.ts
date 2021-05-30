@@ -16,11 +16,11 @@ import { get_trigger_groups } from './utils/get-trigger-groups';
 import { get_trigger_body_line } from './utils/get-trigger-line';
 import { normalize_config } from './utils/normalize-config';
 
-export const transform: jest.Transformer['process'] = (
-  source_text,
-  source_filename,
-  jest_config: JestConfig,
-) => {
+export const transform = (
+  source_text: string,
+  source_filename: string,
+  { config: jest_config }: { config: JestConfig },
+): ReturnType<jest.Transformer['process']> => {
   const normalized_config = normalize_config(
     jest_config.globals[config_namespace],
   );
