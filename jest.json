@@ -2,9 +2,14 @@
   "testEnvironment": "node",
   "moduleFileExtensions": ["ts", "js", "json"],
   "testMatch": ["**/*.test.ts"],
-  "transform": {"\\.ts$": "ts-jest/preprocessor"},
+  "transform": {"\\.ts$": "ts-jest"},
   "coverageReporters": ["lcov", "text-summary"],
   "collectCoverageFrom": ["src/**/*.ts"],
+  "globals": {
+    "ts-jest": {
+      "isolatedModules": true
+    }
+  },
   "coverageThreshold": {
     "global": {
       "branches": 100,
