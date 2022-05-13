@@ -42,11 +42,13 @@ export const transform = (
   const is_fake_environment = !test_value;
 
   const setup_expression = create_setup_expression(triggers);
-  return `${setup_expression};${
-    is_fake_environment
-      ? get_fake_environment_transformed_content()
-      : get_real_environment_transformed_content()
-  }`;
+  return {
+    code: `${setup_expression};${
+      is_fake_environment
+        ? get_fake_environment_transformed_content()
+        : get_real_environment_transformed_content()
+    }`,
+  };
 
   function get_fake_environment_transformed_content() {
     const transformed_line_contents = source_text.split('\n').map(() => '');
