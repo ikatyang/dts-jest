@@ -105,7 +105,9 @@ export const transform = (
       );
     }
 
-    return transpile_output.outputText;
+    return {
+      code: transpile_output.outputText,
+    };
   }
 };
 
