@@ -1,6 +1,20 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [25.0.0](https://github.com/ikatyang/dts-jest/compare/v24.0.0...v25.0.0) (2022-05-14)
+
+
+### Features
+
+* support Jest 28 ([4ccfe7a](https://github.com/ikatyang/dts-jest/commit/4ccfe7aed77b44379f0c78be75cb8a684dc30791))
+
+
+### BREAKING CHANGES
+
+* Jest 28 is now the minimal supported version
+
+
 
 <a name="24.0.0"></a>
 # [24.0.0](https://github.com/ikatyang/dts-jest/compare/v23.3.0...v24.0.0) (2021-05-30)

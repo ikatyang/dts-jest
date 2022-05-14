@@ -38,7 +38,8 @@ yarn add --dev dts-jest jest typescript
 
   | dts-jest | jest        |
   | -------- | ----------- |
-  | >=24     | >=27        |
+  | >=25     | >=28        |
+  | 24.x     | 27.x        |
   | 23.x     | 22.x ~ 26.x |
 
 ## Usage
