@@ -11,6 +11,7 @@ export const get_node_one_line_text = (
       substituteNode: (_hint, current_node) => {
         // let newlines in template string to be escaped
         const cloned_node = ts.getMutableClone(current_node);
+        // @ts-ignore
         delete cloned_node.pos;
 
         if (

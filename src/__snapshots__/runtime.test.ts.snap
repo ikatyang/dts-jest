@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`#get_type_inference_or_diagnostic() should return diagnostic on fail line 1`] = `"Argument of type '\\"123\\"' is not assignable to parameter of type 'number'."`;
+exports[`#get_type_inference_or_diagnostic() should return diagnostic on fail line 1`] = `"Argument of type 'string' is not assignable to parameter of type 'number'."`;
 
 exports[`#get_type_inference_or_diagnostic() should return inference on non-fail line 1`] = `"number"`;
 
 exports[`#get_type_inference_or_throw_diagnostic() should return inference on non-fail line 1`] = `"number"`;
 
-exports[`#get_type_inference_or_throw_diagnostic() should throw diagnostic on fail line 1`] = `"Argument of type '\\"123\\"' is not assignable to parameter of type 'number'."`;
+exports[`#get_type_inference_or_throw_diagnostic() should throw diagnostic on fail line 1`] = `"Argument of type 'string' is not assignable to parameter of type 'number'."`;
 
 exports[`#get_type_report() should return diagnostic report on fail line 1`] = `
 "
@@ -16,7 +16,7 @@ Inferring
 
 but throw
 
-  Argument of type '\\"123\\"' is not assignable to parameter of type 'number'.
+  Argument of type 'string' is not assignable to parameter of type 'number'.
 "
 `;
 
@@ -30,7 +30,7 @@ Inferring
 
 but throw
 
-  Argument of type '\\"123\\"' is not assignable to parameter of type 'number'.
+  Argument of type 'string' is not assignable to parameter of type 'number'.
 "
 `;
 

@@ -76,5 +76,5 @@ function transform_fixture(
     rootDir: '',
     globals: { _dts_jest_: { transpile: false, ...raw_config } },
   };
-  return transform(source, filename, { config } as any);
+  return transform(source, filename, { config } as any).code;
 }

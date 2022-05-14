@@ -39,25 +39,24 @@
     "make-dir": "^1.0.0",
     "pretty-format": "^21.0.0",
     "ts-comment": "^1.1.0",
-    "tslib": "^1.7.1",
+    "tslib": "^2.4.0",
     "yargs": "^14.2.3"
   },
   "devDependencies": {
     "@types/globby": "6.1.0",
-    "@types/jest": "22.2.3",
     "@types/lodash.intersection": "4.4.6",
     "@types/make-dir": "1.0.3",
-    "@types/node": "6.14.10",
+    "@types/node": "12.12.6",
     "@types/pretty-format": "20.0.1",
     "@types/yargs": "8.0.3",
-    "jest": "27.0.3",
+    "jest": "28.1.0",
     "prettier": "2.6.2",
     "standard-version": "4.4.0",
-    "ts-jest": "27.0.1",
-    "typescript": "3.9.5"
+    "ts-jest": "28.0.2",
+    "typescript": "4.6.4"
   },
   "peerDependencies": {
-    "jest": ">= 27.0.0",
+    "jest": ">= 28.0.0",
     "typescript": ">= 2.3.0"
   },
   "engines": {

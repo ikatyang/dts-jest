@@ -1,3 +1,4 @@
+import * as JestTransform from '@jest/transform';
 import {
   config_namespace,
   runtime_namespace,
@@ -20,7 +21,7 @@ export const transform = (
   source_text: string,
   source_filename: string,
   { config: jest_config }: { config: JestConfig },
-): ReturnType<jest.Transformer['process']> => {
+): ReturnType<JestTransform.SyncTransformer['process']> => {
   const normalized_config = normalize_config(
     jest_config.globals[config_namespace],
   );
