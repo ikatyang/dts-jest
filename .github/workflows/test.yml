@@ -1,0 +1,40 @@
+name: Test
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  test:
+    name: Test
+    strategy:
+      matrix:
+        version: [10, lts/*]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.version }}
+          cache: 'yarn'
+
+      - name: Install Dependencies
+        run: yarn
+
+      - name: Lint
+        run: yarn test --ci
+
+      - name: Test
+        run: yarn run test -- --ci --verbose --coverage
+
+      - name: Test Integration
+        run: yarn run test-integration -- --ci --verbose
+
+      - name: Test Remap
+        run: yarn run remap-integration -- --check --list-different
+
+      - name: Upload Coverage
+        uses: codecov/codecov-action@v2
