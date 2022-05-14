@@ -5,8 +5,6 @@ import { create_source_file } from './utils/create-source-file';
 import { find_triggers } from './utils/find-triggers';
 import { get_snapshot_description } from './utils/get-snapshot-description';
 import { normalize_trigger_header_methods } from './utils/normalize-trigger-header-methods';
-
-// tslint:disable-next-line:no-duplicate-imports no-unused-variable
 import { Parsed } from 'jest-snapshot-parser';
 
 export interface RemapOptions {

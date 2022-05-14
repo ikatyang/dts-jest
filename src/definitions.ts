@@ -1,6 +1,5 @@
 import * as _ts from 'typescript';
 
-// tslint:disable-next-line:no-var-requires
 const package_json = require('../package.json');
 
 export const package_name = package_json.name;

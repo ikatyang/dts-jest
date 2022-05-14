@@ -50,10 +50,8 @@ export const apply_grouping = (
 
   scopes
     .map(scope => {
-      const [
-        group_expression_left,
-        group_expression_right,
-      ] = `${create_group_expression(scope.group, '\n')};`.split('\n');
+      const [group_expression_left, group_expression_right] =
+        `${create_group_expression(scope.group, '\n')};`.split('\n');
 
       grouped_line_contents[scope.start_line] =
         group_expression_left + grouped_line_contents[scope.start_line];

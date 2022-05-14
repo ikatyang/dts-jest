@@ -31,7 +31,6 @@ export const create_assertion_expression = (
 
   return expressions.join(';');
 
-  // tslint:disable:early-exit
   function push_type_show_if_available() {
     if (options.test_type && header.flags & TriggerHeaderFlags[':show']) {
       expressions.push(
@@ -48,9 +47,7 @@ export const create_assertion_expression = (
       expressions.push(
         create_wrapper(
           '(type) should not throw error',
-          `expect(function () { ${
-            options.get_type_inference_or_throw_diagnostic_expression
-          } }).not.toThrowError()`,
+          `expect(function () { ${options.get_type_inference_or_throw_diagnostic_expression} }).not.toThrowError()`,
         ),
       );
     }
@@ -61,9 +58,7 @@ export const create_assertion_expression = (
       expressions.push(
         create_wrapper(
           '(type) should throw error',
-          `expect(function () { ${
-            options.get_type_inference_or_throw_diagnostic_expression
-          } }).toThrowError()`,
+          `expect(function () { ${options.get_type_inference_or_throw_diagnostic_expression} }).toThrowError()`,
         ),
       );
     }
@@ -74,9 +69,7 @@ export const create_assertion_expression = (
       expressions.push(
         create_wrapper(
           snapshot_assertion_message,
-          `expect(${
-            options.get_type_inference_or_diagnostic_expression
-          }).toMatchSnapshot()`,
+          `expect(${options.get_type_inference_or_diagnostic_expression}).toMatchSnapshot()`,
         ),
       );
     }
@@ -87,9 +80,7 @@ export const create_assertion_expression = (
       expressions.push(
         create_wrapper(
           '(type) should not be any',
-          `expect(${
-            options.get_type_inference_or_diagnostic_expression
-          }).not.toBe("any")`,
+          `expect(${options.get_type_inference_or_diagnostic_expression}).not.toBe("any")`,
         ),
       );
     }
@@ -154,7 +145,6 @@ export const create_assertion_expression = (
       );
     }
   }
-  // tslint:enable:early-exit
 
   function create_wrapper(title: string, expression: string) {
     const description = JSON.stringify(title);

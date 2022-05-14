@@ -5,7 +5,6 @@ import { Reporter } from './reporter';
 expect.addSnapshotSerializer(cwd_serializer);
 expect.addSnapshotSerializer(version_serializer);
 
-// tslint:disable-next-line:no-unbound-method
 const original_stdout_write = process.stdout.write;
 let mocked_stdout_write: jest.MockInstance<any>;
 

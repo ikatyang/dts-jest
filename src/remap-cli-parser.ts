@@ -35,7 +35,7 @@ function get_cli_options(): {
     type: 'boolean' | 'string';
     alias: string;
     description: string;
-  }
+  };
 } {
   return {
     check: {

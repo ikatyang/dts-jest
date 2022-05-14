@@ -21,9 +21,8 @@ export const normalize_config = (
   );
 
   // istanbul ignore next
-  const {
-    type_format_flags = typescript.TypeFormatFlags.NoTruncation,
-  } = raw_config;
+  const { type_format_flags = typescript.TypeFormatFlags.NoTruncation } =
+    raw_config;
 
   const compiler_options = load_compiler_options(
     raw_compiler_options,

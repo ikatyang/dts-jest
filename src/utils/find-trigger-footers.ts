@@ -38,9 +38,8 @@ export const find_trigger_footers = (
       }
 
       const start = scanner.getTokenPos();
-      const { line: footer_line } = source_file.getLineAndCharacterOfPosition(
-        start,
-      );
+      const { line: footer_line } =
+        source_file.getLineAndCharacterOfPosition(start);
 
       const body_end_line = get_trigger_body_end_line(footer_line);
 

@@ -4,10 +4,8 @@ import { create_typescript_info } from './utils/create-typescript-info';
 import { normalize_config } from './utils/normalize-config';
 
 export class Reporter implements jest.Reporter {
-  // tslint:disable-next-line:no-parameter-properties
   constructor(public global_config: jest.GlobalConfig) {}
 
-  // tslint:disable-next-line:naming-convention
   public onRunComplete(contexts: Set<jest.Context>) {
     // istanbul ignore next
     const write_stream = this.global_config.useStderr
