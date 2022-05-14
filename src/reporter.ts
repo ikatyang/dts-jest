@@ -1,12 +1,20 @@
+import * as JestTypes from '@jest/types';
+import * as JestReporters from '@jest/reporters';
 import * as path from 'path';
 import { config_namespace, JestConfig } from './definitions';
 import { create_typescript_info } from './utils/create-typescript-info';
 import { normalize_config } from './utils/normalize-config';
 
-export class Reporter implements jest.Reporter {
-  constructor(public global_config: jest.GlobalConfig) {}
+export class Reporter implements JestReporters.Reporter {
+  constructor(public global_config: JestTypes.Config.GlobalConfig) {}
 
-  public onRunComplete(contexts: Set<jest.Context>) {
+  // istanbul ignore next
+  public onRunStart() {}
+
+  // istanbul ignore next
+  public getLastError() {}
+
+  public onRunComplete(contexts: Set<JestReporters.TestContext>) {
     // istanbul ignore next
     const write_stream = this.global_config.useStderr
       ? process.stderr

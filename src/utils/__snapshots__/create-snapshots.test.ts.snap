@@ -3,7 +3,7 @@
 exports[`should create correctly 1`] = `
 Array [
   Object {
-    "diagnostic": "Argument of type '\\"123\\"' is not assignable to parameter of type 'number'.",
+    "diagnostic": "Argument of type 'string' is not assignable to parameter of type 'number'.",
     "line": 7,
   },
   Object {
@@ -25,7 +25,7 @@ Array [
 exports[`should support @ts-expect-error 1`] = `
 Array [
   Object {
-    "diagnostic": "Argument of type '\\"123\\"' is not assignable to parameter of type 'number'.",
+    "diagnostic": "Argument of type 'string' is not assignable to parameter of type 'number'.",
     "line": 1,
   },
 ]
@@ -34,5 +34,5 @@ Array [
 exports[`should throw error of there are some unmatched diagnostics 1`] = `
 "Unmatched diagnostic(s) detected:
 
-  <cwd>/fixtures/create-snapshots/unmatched.ts:1 Argument of type '\\"str\\"' is not assignable to parameter of type 'number'."
+  <cwd>/fixtures/create-snapshots/unmatched.ts:1 Argument of type 'string' is not assignable to parameter of type 'number'."
 `;
