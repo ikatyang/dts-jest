@@ -9,7 +9,7 @@ jobs:
     name: Test
     strategy:
       matrix:
-        version: [10, lts/*]
+        version: [12, lts/*]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
