@@ -16,8 +16,12 @@ it('should remove newline correctly', () => {
   ).toMatchSnapshot();
 });
 
-it('should replace newline character with escaped newline correctly (template string)', () => {
+it('should replace newline character with escaped newline correctly (NoSubstitutionTemplateLiteral)', () => {
   expect(normalize('`123\n456\n789`')).toMatchSnapshot();
+});
+
+it('should replace newline character with escaped newline correctly (TemplateHead/TemplateMiddle/TemplateTail)', () => {
+  expect(normalize('`12${3}\n456\n${7}89`')).toMatchSnapshot();
 });
 
 it('should remove comments correctly', () => {

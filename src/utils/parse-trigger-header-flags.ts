@@ -1,7 +1,7 @@
 import { TriggerHeaderFlags } from '../definitions';
 
 export const parse_trigger_header_flags = (unparsed_flags: string) => {
-  let flags: TriggerHeaderFlags = 0;
+  let flags = TriggerHeaderFlags.None;
 
   unparsed_flags
     .split(/(?=:)/)
