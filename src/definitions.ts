@@ -43,6 +43,7 @@ export enum TriggerFooterMatchIndex {
 }
 
 export enum TriggerHeaderFlags {
+  None = 0,
   ':snap' = 1 << 0,
   ':show' = 1 << 1,
   ':pass' = 1 << 2,
