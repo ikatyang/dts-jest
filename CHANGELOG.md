@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [26.0.0](https://github.com/ikatyang/dts-jest/compare/v25.0.0...v26.0.0) (2023-04-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* TypeScript 4 is now the minimal supported version
+
+### Features
+
+* support TypeScript 5 ([0237ac6](https://github.com/ikatyang/dts-jest/commit/0237ac6df3e921d384be2222bea2165c5a74ab9e))
+
 ## [25.0.0](https://github.com/ikatyang/dts-jest/compare/v24.0.0...v25.0.0) (2022-05-14)
 
 
