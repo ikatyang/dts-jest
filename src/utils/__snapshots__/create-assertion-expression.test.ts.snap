@@ -6,7 +6,7 @@ Array [
     "Math.max(1, 2, 3)",
     Array [
       "test(\\"(type) should show report\\", function () { console.log(<get_type_report_expression>) })",
-      "test(\\"(type) should not throw error\\", function () { expect(function () { <get_type_inference_or_throw_diagnostic_expression> }).not.toThrowError() })",
+      "test(\\"(type) should not throw error\\", function () { expect(function () { <get_type_inference_or_throw_diagnostic_expression> }).not.toThrow() })",
       "test(\\"(type) should match snapshot\\", function () { expect(<get_type_inference_or_diagnostic_expression>).toMatchSnapshot() })",
       "test(\\"(value) should equal to 3\\", function () { expect(Math.max(1, 2, 3)).toEqual(3) })",
     ],
@@ -14,27 +14,27 @@ Array [
   Array [
     "Math.abs(-1)",
     Array [
-      "test(\\"(type) should throw error\\", function () { expect(function () { <get_type_inference_or_throw_diagnostic_expression> }).toThrowError() })",
+      "test(\\"(type) should throw error\\", function () { expect(function () { <get_type_inference_or_throw_diagnostic_expression> }).toThrow() })",
       "test(\\"(value) should show report\\", function () { console.log(<get_value_report_expression>) })",
     ],
   ],
   Array [
     "Math.cos(Math.PI)",
     Array [
-      "test(\\"(value) should not throw error\\", function () { expect(function () { Math.cos(Math.PI) }).not.toThrowError() })",
+      "test(\\"(value) should not throw error\\", function () { expect(function () { Math.cos(Math.PI) }).not.toThrow() })",
     ],
   ],
   Array [
     "Math.tan(Math.PI)",
     Array [
-      "test(\\"(value) should throw error\\", function () { expect(function () { Math.tan(Math.PI) }).toThrowError() })",
+      "test(\\"(value) should throw error\\", function () { expect(function () { Math.tan(Math.PI) }).toThrow() })",
     ],
   ],
   Array [
     "Math.sin(Math.PI)",
     Array [
       "test(\\"(type) should show report\\", function () { console.log(<get_type_report_expression>) })",
-      "test(\\"(type) should not throw error\\", function () { expect(function () { <get_type_inference_or_throw_diagnostic_expression> }).not.toThrowError() })",
+      "test(\\"(type) should not throw error\\", function () { expect(function () { <get_type_inference_or_throw_diagnostic_expression> }).not.toThrow() })",
       "test(\\"(type) should match snapshot\\", function () { expect(<get_type_inference_or_diagnostic_expression>).toMatchSnapshot() })",
       "test(\\"(value) should show report\\", function () { console.log(<get_value_report_expression>) })",
     ],

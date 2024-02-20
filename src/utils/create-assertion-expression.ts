@@ -47,7 +47,7 @@ export const create_assertion_expression = (
       expressions.push(
         create_wrapper(
           '(type) should not throw error',
-          `expect(function () { ${options.get_type_inference_or_throw_diagnostic_expression} }).not.toThrowError()`,
+          `expect(function () { ${options.get_type_inference_or_throw_diagnostic_expression} }).not.toThrow()`,
         ),
       );
     }
@@ -58,7 +58,7 @@ export const create_assertion_expression = (
       expressions.push(
         create_wrapper(
           '(type) should throw error',
-          `expect(function () { ${options.get_type_inference_or_throw_diagnostic_expression} }).toThrowError()`,
+          `expect(function () { ${options.get_type_inference_or_throw_diagnostic_expression} }).toThrow()`,
         ),
       );
     }
@@ -110,7 +110,7 @@ export const create_assertion_expression = (
       expressions.push(
         create_wrapper(
           '(value) should throw error',
-          `expect(function () { ${body.experssion} }).toThrowError()`,
+          `expect(function () { ${body.experssion} }).toThrow()`,
         ),
       );
     }
@@ -125,7 +125,7 @@ export const create_assertion_expression = (
       expressions.push(
         create_wrapper(
           '(value) should not throw error',
-          `expect(function () { ${body.experssion} }).not.toThrowError()`,
+          `expect(function () { ${body.experssion} }).not.toThrow()`,
         ),
       );
     }

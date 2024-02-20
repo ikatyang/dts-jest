@@ -93,7 +93,7 @@ it('should throw error with differences if differences exist with --check and --
 });
 
 it('should throw error if there is no input', () => {
-  expect(() => remap_cli(remap_cli_parser([]))).toThrowError();
+  expect(() => remap_cli(remap_cli_parser([]))).toThrow();
   expect(get_console_content(console_error)).toMatchSnapshot();
 });
 
