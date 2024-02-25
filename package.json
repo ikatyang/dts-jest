@@ -1,6 +1,6 @@
 {
   "name": "dts-jest",
-  "version": "26.0.1",
+  "version": "26.0.2",
   "description": "A preprocessor for Jest to snapshot test TypeScript declaration (.d.ts) files",
   "keywords": [
     "jest",
