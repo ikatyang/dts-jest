@@ -110,8 +110,8 @@ _Note:_ [`@ts-expect-error`](https://devblogs.microsoft.com/typescript/announcin
   - for type assertion
     - default: none
     - `:show`: `console.log(type)`
-    - `:pass`: `expect(() => type)`[`.not`](https://facebook.github.io/jest/docs/en/expect.html#not)[`.toThrowError()`](https://facebook.github.io/jest/docs/en/expect.html#tothrowerror)
-    - `:fail`: `expect(() => type)`[`.toThrowError()`](https://facebook.github.io/jest/docs/en/expect.html#tothrowerror)
+    - `:pass`: `expect(() => type)`[`.not`](https://facebook.github.io/jest/docs/en/expect.html#not)[`.toThrow()`](https://facebook.github.io/jest/docs/en/expect.html#tothrowerror)
+    - `:fail`: `expect(() => type)`[`.toThrow()`](https://facebook.github.io/jest/docs/en/expect.html#tothrowerror)
     - `:snap`:
       - snapshot inferred type or diagnostic message
       - `expect(type)`[`.toMatchSnapshot()`](https://facebook.github.io/jest/docs/en/expect.html#tomatchsnapshotoptionalstring)
@@ -123,8 +123,8 @@ _Note:_ [`@ts-expect-error`](https://devblogs.microsoft.com/typescript/announcin
   - for value assertion
     - default: none
     - `?`: `console.log(value)`
-    - `:error`: `expect(() => value)`[`.toThrowError()`](https://facebook.github.io/jest/docs/en/expect.html#tothrowerror)
-    - `:no-error`: `expect(() => value)`[`.not`](https://facebook.github.io/jest/docs/en/expect.html#not)[`.toThrowError()`](https://facebook.github.io/jest/docs/en/expect.html#tothrowerror)
+    - `:error`: `expect(() => value)`[`.toThrow()`](https://facebook.github.io/jest/docs/en/expect.html#tothrowerror)
+    - `:no-error`: `expect(() => value)`[`.not`](https://facebook.github.io/jest/docs/en/expect.html#not)[`.toThrow()`](https://facebook.github.io/jest/docs/en/expect.html#tothrowerror)
     - others: `expect(value)`[`.toEqual(expected)`](https://facebook.github.io/jest/docs/en/expect.html#toequalvalue)
 
 ### Patterns for Grouping
