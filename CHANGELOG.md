@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [26.0.1](https://github.com/ikatyang/dts-jest/compare/v26.0.0...v26.0.1) (2024-02-25)
+
+
+### Bug Fixes
+
+* compatible with Jest 30 ([#416](https://github.com/ikatyang/dts-jest/issues/416)) ([9fec19f](https://github.com/ikatyang/dts-jest/commit/9fec19fe75bcc81d4351a2085fa769d77fea73fb))
+
 ## [26.0.0](https://github.com/ikatyang/dts-jest/compare/v25.0.0...v26.0.0) (2023-04-07)
 
 
